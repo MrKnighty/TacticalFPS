@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float mouseSencitivity;
     [SerializeField] TextMeshProUGUI debugUI;
+
+    [SerializeField] CharacterController controller;
     Vector3 velocity;
 
     Vector3 movementVector;
@@ -26,17 +28,16 @@ public class PlayerController : MonoBehaviour
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.z = Input.GetAxisRaw("Vertical");
         print(movementVector);
-        CaculateVelocity();
+
+        if(CaculateVelocity()) // caculate velocity, and only move if the player has any
+            DoMovement(); // caculate movement
 
         CameraRotation();
 
         debugUI.text = "Vel: " + velocity;
-
-       
-
     }
 
-    void CaculateVelocity()
+    bool CaculateVelocity() // returns true if player has any velocity
     {
         if (movementVector.x == 0) // if there is no movement on the x, start taking away velocity
         {
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
 
         if (velocity == Vector3.zero && movementVector == Vector3.zero) // if both are zero, we dont need to caculate any movement
-            return;
+            return false;
 
         // caculate the new velocity based off player input
 
@@ -78,15 +79,15 @@ public class PlayerController : MonoBehaviour
         else if (velocity.z < -1)
             velocity.z = -1;
 
-
-        DoMovement(); // caculate movement
+        return true;
+        
     }
 
     void DoMovement()
     {
-        Vector3 move = transform.right * velocity.x + transform.forward * velocity.z;
-        transform.position += move * moveSpeed * Time.deltaTime;
-        print(move);
+      Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
+      controller.Move(moveVector * moveSpeed * Time.deltaTime);
+    
     }
 
     float verticalRotation = 0;
