@@ -9,6 +9,10 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected float currentAmmoInMagazine;// how many bullets ready to fire
     [SerializeField] protected float totalRemainingAmmo; // remaining ammo not in magazine
     [SerializeField] protected float reloadTime;
+    [SerializeField] protected float damage;
+
+    [SerializeField] GameObject decal;
+    [SerializeField] GameObject hitParticle;
 
     protected bool gunCanFire = true;
     protected bool canReload = true;
@@ -29,13 +33,12 @@ public class BaseGun : MonoBehaviour
      
     }
 
-    protected GameObject HitScan(Vector3 rayStart, Vector3 rayDirection)
+    protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
     {
         RaycastHit hit;
-        if(Physics.Raycast(rayStart, rayDirection, out hit))
-            return hit.transform.gameObject;
-        else
-            return null;
+        Physics.Raycast(rayStart, rayDirection, out hit);
+        return hit;
+
     }
 
     protected void FireAudio()
@@ -53,6 +56,13 @@ public class BaseGun : MonoBehaviour
 
     }
 
+    protected void DecalSpawn(Vector3 hitPos)
+    {
+        Instantiate(decal, hitPos, Quaternion.identity);
+        Instantiate(hitParticle, hitPos, Quaternion.identity).transform.LookAt(transform);
+        
+    }
+
     protected void Reload()
     {
         if (totalRemainingAmmo <= 0)
@@ -66,9 +76,10 @@ public class BaseGun : MonoBehaviour
 
     protected IEnumerator ReloadEvent()
     {
-        yield return new WaitForSeconds(reloadTime);
         gunCanFire = false;
         reloading = true;
+        yield return new WaitForSeconds(reloadTime);
+       
         totalRemainingAmmo += currentAmmoInMagazine;
         if (totalRemainingAmmo >= magazineSize)
         {
@@ -88,14 +99,19 @@ public class BaseGun : MonoBehaviour
     protected void FireEvent() // everything that should happen when the gun fires
     {
         print("Shooting!");
-        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
         if(hitObject != null)
             print(hitObject);
-        // damage handler 
+
+        if (hitObject.GetComponent<DamageHandler>())
+            hitObject.GetComponent<DamageHandler>().Damage(damage);
+        
 
         FireAudio();
         FireFVX();
         ShellEject();
+        DecalSpawn(hit.point);
 
         animator.SetTrigger("Fire");
 
