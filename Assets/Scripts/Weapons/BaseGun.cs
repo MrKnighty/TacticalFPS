@@ -116,20 +116,10 @@ public class BaseGun : MonoBehaviour
 
     protected void FireEvent() // everything that should happen when the gun fires
     {
-        print("Shooting!");
-        RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
-        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-        if(hitObject != null)
-            print(hitObject);
-
-        if (hitObject.GetComponent<DamageHandler>())
-            hitObject.GetComponent<DamageHandler>().Damage(damage);
-        
-
         FireAudio();
         FireFVX();
         ShellEject();
-        DecalSpawn(hit.point);
+        
         Recoil();
 
         animator.SetTrigger("Fire");
@@ -137,13 +127,32 @@ public class BaseGun : MonoBehaviour
         currentAmmoInMagazine -= 1;
         if (currentAmmoInMagazine <= 0)
             gunCanFire = false;
+
+        print("Shooting!");
+        RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+
+
+try{
+      
+            GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
+            DecalSpawn(hit.point);
+
+
+            if (hitObject.GetComponent<DamageHandler>())
+                hitObject.GetComponent<DamageHandler>().Damage(damage);
+
+        }
+        catch { }
+      
     }
 
     protected void Recoil()
     {
-        PlayerController.playerInstance.AddCameraRotation(-recoilPoints[currentRecoilStage], recoilEffectTime, 0.01f); ///sssh ill make this magic nuber go away someday
-        if (currentRecoilStage < recoilPoints.Length)
+        PlayerController.playerInstance.AddCameraRotation(recoilPoints[currentRecoilStage], recoilEffectTime, 25f); ///sssh ill make this magic nuber go away someday
+        if (currentRecoilStage < recoilPoints.Length - 1)
             currentRecoilStage++;
+        else
+            currentRecoilStage--; // start looping
         recoilTimer = timeBetweeenRecoilPointDecay;
 
 

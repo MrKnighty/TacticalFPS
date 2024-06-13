@@ -1036,6 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 1121756252}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Entries: []
 --- !u!4 &485546229
 Transform:
   m_ObjectHideFlags: 19
@@ -4386,12 +4387,87 @@ PrefabInstance:
     - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
         type: 3}
       propertyPath: recoilEffectTime
-      value: 0.01
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[0].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[0].y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[1].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[1].y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[2].x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[2].y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[3].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[3].y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[4].x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[4].y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[5].x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[5].y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[6].x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
+        type: 3}
+      propertyPath: recoilPoints.Array.data[6].y
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101,
         type: 3}
       propertyPath: timeBetweeenRecoilPointDecay
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2201988794315717669, guid: 4d77777a845dc664aa08e11ff4abd101,
         type: 3}
