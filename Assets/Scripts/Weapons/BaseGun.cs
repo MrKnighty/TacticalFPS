@@ -13,6 +13,7 @@ public class BaseGun : MonoBehaviour
 
     [SerializeField] GameObject decal;
     [SerializeField] GameObject hitParticle;
+    [SerializeField] GameObject mainCam;
 
     protected bool gunCanFire = true;
     protected bool canReload = true;
@@ -26,19 +27,82 @@ public class BaseGun : MonoBehaviour
 
     [Header("ADS Settings")]
     [SerializeField] Animator animator;
-   
 
+    [Header("Recoil Settings")]
+    [SerializeField] Vector2[] recoilPoints; // Array of recoil points representing the amount of recoil per stage
+    [SerializeField] float timeBeforeRecoilResets; // Time before recoil starts resetting
+    [SerializeField] float recoilEffectTime; // Duration of the recoil effect
+
+    // Internal state variables
+    int currentRecoilStage = 0; // Current stage of the recoil
+    float currentRecoilEffectTime; // Current time left for recoil effect
+    float timer;
+  
+
+ 
     protected void Start()
     {
-     
+      
     }
 
+   
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
     {
         RaycastHit hit;
         Physics.Raycast(rayStart, rayDirection, out hit);
         return hit;
+    }
 
+  
+    protected void Recoil(bool justShot)
+    {
+        // If the weapon was just shot, initiate recoil
+       
+        if (justShot)
+        {
+            currentRecoilStage++;
+            currentRecoilEffectTime = recoilEffectTime;
+         
+        }
+
+
+        if (currentRecoilStage <= 0)
+            return;
+     
+        if (currentRecoilEffectTime > 0)
+        {
+            currentRecoilEffectTime -= Time.deltaTime;
+          
+            // Calculate the recoil vector and apply it to the camera rotation
+            Vector3 recoilVector = new Vector3(-recoilPoints[currentRecoilStage].x, recoilPoints[currentRecoilStage].y, 0) * Time.fixedDeltaTime;
+            mainCam.transform.Rotate(recoilVector);
+
+            // Explicitly reset the Z rotation to 0 to prevent unintended Z-axis rotation
+            Vector3 eulerAngles = mainCam.transform.eulerAngles;
+            mainCam.transform.eulerAngles = new Vector3(eulerAngles.x, eulerAngles.y, 0);
+            return;
+        }
+        else if(timer <= 0 && currentRecoilStage > 0)
+        {
+            timer = timeBeforeRecoilResets;
+            currentRecoilStage--;
+        }
+        else
+        {
+            timer -= Time.deltaTime;
+        }
+
+        DebugManager.DisplayInfo("RecoilStage", "RecoilStage: " + currentRecoilStage);
+      
+    }
+
+
+    protected void FixedUpdate()
+    {
+        Recoil(false);
+
+        DebugManager.DisplayInfo("cAmmo", "AmmoInMag" + currentAmmoInMagazine);
+        DebugManager.DisplayInfo("rAmmo", "TotalAmmo" + totalRemainingAmmo);
     }
 
     protected void FireAudio()
@@ -112,6 +176,7 @@ public class BaseGun : MonoBehaviour
         FireFVX();
         ShellEject();
         DecalSpawn(hit.point);
+        Recoil(true);
 
         animator.SetTrigger("Fire");
 
@@ -126,8 +191,6 @@ public class BaseGun : MonoBehaviour
     {
         yield break;    
     }
-
-  
 
     protected void Update()
     {
