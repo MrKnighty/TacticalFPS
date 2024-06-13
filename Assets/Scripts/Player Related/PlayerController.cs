@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject cameraGameObject;
 
     [SerializeField] float mouseSencitivity;
-    [SerializeField] TextMeshProUGUI debugUI;
 
     [SerializeField] CharacterController controller;
     Vector3 velocity;
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-      
+
     }
     void Update()
     {
@@ -29,12 +28,12 @@ public class PlayerController : MonoBehaviour
         movementVector.z = Input.GetAxisRaw("Vertical");
         print(movementVector);
 
-        if(CaculateVelocity()) // caculate velocity, and only move if the player has any
+        if (CaculateVelocity()) // caculate velocity, and only move if the player has any
             DoMovement(); // caculate movement
 
         CameraRotation();
 
-        debugUI.text = "Vel: " + velocity;
+        DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
     }
 
     bool CaculateVelocity() // returns true if player has any velocity
@@ -51,7 +50,7 @@ public class PlayerController : MonoBehaviour
         // same as above but for the foward movement
         if (movementVector.z == 0)
         {
-           
+
             if (velocity.z > 0)
                 velocity.z -= velocityFallOff * Time.deltaTime;
             else if (velocity.z < 0)
@@ -80,30 +79,46 @@ public class PlayerController : MonoBehaviour
             velocity.z = -1;
 
         return true;
-        
+
     }
 
     void DoMovement()
     {
-      Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
-      controller.Move(moveVector * moveSpeed * Time.deltaTime);
-    
+        Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
+        controller.Move(moveVector * moveSpeed * Time.deltaTime);
+
     }
 
-    float verticalRotation = 0;
+
     void CameraRotation()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSencitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSencitivity * Time.deltaTime;
 
-  
+        if (mouseX == 0 && mouseY == 0)
+            return;
+
+
         transform.Rotate(Vector3.up * mouseX);
 
-        
-        verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f); 
+       
+        Vector3 cameraRotation = cameraGameObject.transform.localEulerAngles;
+        float desiredXRotation = cameraRotation.x - mouseY;
+        float desiredYRotation = cameraRotation.y + mouseX;
 
-        cameraGameObject.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+
+
+        if (desiredXRotation > 90 && desiredXRotation < 270)
+        {
+            if (desiredXRotation < 180)
+                desiredXRotation = 90;
+            else
+                desiredXRotation = 270;
+        }
+
+
+       
+        cameraGameObject.transform.localEulerAngles = new Vector3(desiredXRotation, cameraRotation.y, cameraRotation.z);
     }
-    
+
 }
