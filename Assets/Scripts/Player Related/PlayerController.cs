@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,9 +17,15 @@ public class PlayerController : MonoBehaviour
 
     Vector3 movementVector;
 
+    Vector2 cameraRotateVelocity;
+
+    static public PlayerController playerInstance;
+
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        playerInstance = this;
 
     }
     void Update()
@@ -34,6 +41,28 @@ public class PlayerController : MonoBehaviour
         CameraRotation();
 
         DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
+
+        if(cameraRotateVelocity != Vector2.zero)
+        {
+
+            transform.Rotate(Vector3.up * cameraRotateVelocity.x );
+
+            Vector3 cameraRotation = cameraGameObject.transform.localEulerAngles;
+          
+            float desiredXRotation = cameraRotation.x + cameraRotateVelocity.x;
+
+            if (cameraRotation.x > 90 && cameraRotation.x < 270)
+            {
+                if (cameraRotation.x < 180)
+                    desiredXRotation = 90;
+                else
+                    desiredXRotation = 270;
+            }
+
+            cameraGameObject.transform.localEulerAngles = new Vector3(desiredXRotation, cameraRotation.y, cameraRotation.z);
+            cameraRotateVelocity = Vector2.zero;
+
+        }
     }
 
     bool CaculateVelocity() // returns true if player has any velocity
@@ -120,5 +149,22 @@ public class PlayerController : MonoBehaviour
        
         cameraGameObject.transform.localEulerAngles = new Vector3(desiredXRotation, cameraRotation.y, cameraRotation.z);
     }
+    
+    public void AddCameraRotation(Vector2 vector, float duration, float magnitude)
+    {
+        StartCoroutine(CameraRotate(vector, duration, magnitude));
+    }
+    IEnumerator CameraRotate(Vector2 vector, float duration, float magnitude)
+    {
+        float timer = duration;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            cameraRotateVelocity += vector;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return null;
+    }
+    
 
 }
