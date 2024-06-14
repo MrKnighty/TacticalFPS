@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,9 +17,15 @@ public class PlayerController : MonoBehaviour
 
     Vector3 movementVector;
 
+    Vector2 cameraRotateVelocity;
+
+    static public PlayerController playerInstance;
+
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        playerInstance = this;
 
     }
     void Update()
@@ -26,7 +33,7 @@ public class PlayerController : MonoBehaviour
         movementVector = Vector3.zero;
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.z = Input.GetAxisRaw("Vertical");
-        print(movementVector);
+        DebugManager.DisplayInfo("CamRotateVel", "CamRotateVel" + cameraRotateVelocity.ToString());
 
         if (CaculateVelocity()) // caculate velocity, and only move if the player has any
             DoMovement(); // caculate movement
@@ -34,6 +41,33 @@ public class PlayerController : MonoBehaviour
         CameraRotation();
 
         DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
+
+        if (cameraRotateVelocity != Vector2.zero)
+        {
+            // Rotate the player on the Y-axis based on horizontal mouse movement
+            transform.Rotate(Vector3.up * cameraRotateVelocity.y);
+
+            // Get the current local rotation of the camera
+            Vector3 cameraRotation = cameraGameObject.transform.localEulerAngles;
+
+            // Calculate the desired X rotation for the camera based on vertical mouse movement
+            float desiredXRotation = cameraRotation.x - cameraRotateVelocity.x;
+
+            // Clamp the X rotation to prevent the camera from flipping over
+            if (desiredXRotation > 90 && desiredXRotation < 270)
+            {
+                if (desiredXRotation < 180)
+                    desiredXRotation = 90;
+                else
+                    desiredXRotation = 270;
+            }
+
+            // Apply the clamped X rotation to the camera, keeping Y and Z rotations unchanged
+            cameraGameObject.transform.localEulerAngles = new Vector3(desiredXRotation, cameraRotation.y, cameraRotation.z);
+
+            // Reset cameraRotateVelocity after applying the rotation
+            cameraRotateVelocity = Vector2.zero;
+        }
     }
 
     bool CaculateVelocity() // returns true if player has any velocity
@@ -120,5 +154,22 @@ public class PlayerController : MonoBehaviour
        
         cameraGameObject.transform.localEulerAngles = new Vector3(desiredXRotation, cameraRotation.y, cameraRotation.z);
     }
+    
+    public void AddCameraRotation(Vector2 vector, float duration, float magnitude)
+    {
+        StartCoroutine(CameraRotate(vector, duration, magnitude));
+    }
+    IEnumerator CameraRotate(Vector2 vector, float duration, float magnitude)
+    {
+        float timer = duration;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            cameraRotateVelocity += vector * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return null;
+    }
+    
 
 }
