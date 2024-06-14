@@ -30,19 +30,19 @@ public class BaseGun : MonoBehaviour
 
     [Header("Recoil Settings")]
     [SerializeField] Vector2[] recoilPoints; // Array of recoil points representing the amount of recoil per stage
+    [SerializeField] int subPoints;
     [SerializeField] float timeBetweeenRecoilPointDecay; // how much time it takes between each recoil point going down
     [SerializeField] float recoilEffectTime; // Duration of the recoil effect
 
+    [SerializeField] bool isAutomatic;
+    [SerializeField] float fireRate;
+
+    float lastTimeSinceFired;
+
     // Internal state variables
+    int currentSubRecoilStage = 0;
     int currentRecoilStage = 0; // Current stage of the recoil
 
-  
-
- 
-    protected void Start()
-    {
-      
-    }
 
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
@@ -57,6 +57,9 @@ public class BaseGun : MonoBehaviour
 
         DebugManager.DisplayInfo("cAmmo", "AmmoInMag" + currentAmmoInMagazine);
         DebugManager.DisplayInfo("rAmmo", "TotalAmmo" + totalRemainingAmmo);
+
+        DebugManager.DisplayInfo("rStage", "rStage" + currentRecoilStage);
+        DebugManager.DisplayInfo("rSubStage", "rSubStage" + currentSubRecoilStage);
     }
 
     protected void FireAudio()
@@ -116,6 +119,7 @@ public class BaseGun : MonoBehaviour
 
     protected void FireEvent() // everything that should happen when the gun fires
     {
+        lastTimeSinceFired = fireRate;
         FireAudio();
         FireFVX();
         ShellEject();
@@ -134,25 +138,35 @@ public class BaseGun : MonoBehaviour
 
 try{
       
-            GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-            DecalSpawn(hit.point);
+        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
+        DecalSpawn(hit.point);
 
 
-            if (hitObject.GetComponent<DamageHandler>())
-                hitObject.GetComponent<DamageHandler>().Damage(damage);
+        if (hitObject.GetComponent<BodyPartDamageHandler>())
+            hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
 
         }
         catch { }
       
     }
 
+
     protected void Recoil()
     {
-        PlayerController.playerInstance.AddCameraRotation(recoilPoints[currentRecoilStage], recoilEffectTime, 25f); ///sssh ill make this magic nuber go away someday
-        if (currentRecoilStage < recoilPoints.Length - 1)
-            currentRecoilStage++;
-        else
-            currentRecoilStage--; // start looping
+        currentSubRecoilStage++;
+        if(currentSubRecoilStage >= subPoints)
+        {
+            currentSubRecoilStage = 0;
+            if (currentRecoilStage < recoilPoints.Length - 2)
+                currentRecoilStage++;
+            else
+                currentRecoilStage -= 2;
+
+
+        }
+        Vector2 recoilVector = Vector2.Lerp(recoilPoints[currentRecoilStage], recoilPoints[currentRecoilStage + 1], currentSubRecoilStage / subPoints);
+        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, 300f); ///sssh ill make this magic nuber go away someday
+      
         recoilTimer = timeBetweeenRecoilPointDecay;
 
 
@@ -160,15 +174,29 @@ try{
     float recoilTimer;
     protected void RecoilDecay()
     {
-        if (currentRecoilStage <= 0)
+        if (currentRecoilStage < 0 && currentSubRecoilStage <= 0)
             return;
 
         recoilTimer -= Time.deltaTime;
 
         if(recoilTimer <= 0)
         {
+
+            currentSubRecoilStage--;
+            if(currentSubRecoilStage <= 0)
+            {
+                if(currentRecoilStage > 0)
+                     currentRecoilStage--;
+                if (currentRecoilStage > 0)
+                    currentSubRecoilStage = subPoints;
+                else
+                {
+                    currentSubRecoilStage = 0;
+                    return;
+                }
+            }
             recoilTimer = timeBetweeenRecoilPointDecay;
-            currentRecoilStage--;
+     
         }
 
     }
@@ -185,14 +213,22 @@ try{
         if (reloading)
             return;
 
+        lastTimeSinceFired -= Time.deltaTime;
+
         RecoilDecay();
 
         if (Input.GetKeyDown(KeyCode.R) && canReload)
         {
             Reload();
         }
-        if (Input.GetMouseButtonDown(0) && gunCanFire)
-            FireEvent();
+        if (lastTimeSinceFired <= 0)
+        {
+            if (Input.GetMouseButton(0) && isAutomatic)
+                FireEvent();
+            else if (Input.GetMouseButtonDown(0))
+                FireEvent();
+        }
+            
 
         if (Input.GetMouseButtonDown(1))
         {

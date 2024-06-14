@@ -33,7 +33,7 @@ public class DebugManager : MonoBehaviour
         {
             GameObject ui =  Instantiate(debugUIGO);
             TextMeshProUGUI tmpro = ui.GetComponent<TextMeshProUGUI>();
-            ui.transform.parent = canvas.transform;
+            ui.transform.SetParent(  canvas.transform,false);
             debugUI.Add(identifyer, tmpro);
             tmpro.rectTransform.localPosition = new Vector3(10, positionOffset, 0);
             positionOffset -= 40;
