@@ -25,13 +25,16 @@ public class DamageHandler : MonoBehaviour
     {
         currentHealth -= damageAmount * bodyPartMultiplier[(int)bodyPart] * bodyPartArmour[(int)bodyPart];
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
             DeathEvent();
     }
     protected void DeathEvent()
     {
+        print(gameObject.name);
         if(useRagDoll)
+        {
             Instantiate(ragdollObject, transform.position, transform.rotation).GetComponent<Rigidbody>().AddForce(10,10,10);
+        }
         Destroy(gameObject);
     }
     
