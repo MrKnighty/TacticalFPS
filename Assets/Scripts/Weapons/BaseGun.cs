@@ -34,6 +34,11 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float timeBetweeenRecoilPointDecay; // how much time it takes between each recoil point going down
     [SerializeField] float recoilEffectTime; // Duration of the recoil effect
 
+    [SerializeField] bool isAutomatic;
+    [SerializeField] float fireRate;
+
+    float lastTimeSinceFired;
+
     // Internal state variables
     int currentSubRecoilStage = 0;
     int currentRecoilStage = 0; // Current stage of the recoil
@@ -114,6 +119,7 @@ public class BaseGun : MonoBehaviour
 
     protected void FireEvent() // everything that should happen when the gun fires
     {
+        lastTimeSinceFired = fireRate;
         FireAudio();
         FireFVX();
         ShellEject();
@@ -151,15 +157,15 @@ try{
         if(currentSubRecoilStage >= subPoints)
         {
             currentSubRecoilStage = 0;
-            if (currentRecoilStage < recoilPoints.Length - 1)
+            if (currentRecoilStage < recoilPoints.Length - 2)
                 currentRecoilStage++;
             else
-                currentRecoilStage -= 1;
+                currentRecoilStage -= 2;
 
 
         }
         Vector2 recoilVector = Vector2.Lerp(recoilPoints[currentRecoilStage], recoilPoints[currentRecoilStage + 1], currentSubRecoilStage / subPoints);
-        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, 75f); ///sssh ill make this magic nuber go away someday
+        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, 300f); ///sssh ill make this magic nuber go away someday
       
         recoilTimer = timeBetweeenRecoilPointDecay;
 
@@ -168,24 +174,29 @@ try{
     float recoilTimer;
     protected void RecoilDecay()
     {
-        if (currentRecoilStage <= 0)
+        if (currentRecoilStage < 0 && currentSubRecoilStage <= 0)
             return;
 
         recoilTimer -= Time.deltaTime;
 
         if(recoilTimer <= 0)
         {
+
             currentSubRecoilStage--;
             if(currentSubRecoilStage <= 0)
             {
-                currentRecoilStage--;
+                if(currentRecoilStage > 0)
+                     currentRecoilStage--;
                 if (currentRecoilStage > 0)
                     currentSubRecoilStage = subPoints;
                 else
+                {
+                    currentSubRecoilStage = 0;
                     return;
+                }
             }
             recoilTimer = timeBetweeenRecoilPointDecay;
-            currentRecoilStage--;
+     
         }
 
     }
@@ -202,14 +213,22 @@ try{
         if (reloading)
             return;
 
+        lastTimeSinceFired -= Time.deltaTime;
+
         RecoilDecay();
 
         if (Input.GetKeyDown(KeyCode.R) && canReload)
         {
             Reload();
         }
-        if (Input.GetMouseButtonDown(0) && gunCanFire)
-            FireEvent();
+        if (lastTimeSinceFired <= 0)
+        {
+            if (Input.GetMouseButton(0) && isAutomatic)
+                FireEvent();
+            else if (Input.GetMouseButtonDown(0))
+                FireEvent();
+        }
+            
 
         if (Input.GetMouseButtonDown(1))
         {
