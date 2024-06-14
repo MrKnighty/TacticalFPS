@@ -30,19 +30,14 @@ public class BaseGun : MonoBehaviour
 
     [Header("Recoil Settings")]
     [SerializeField] Vector2[] recoilPoints; // Array of recoil points representing the amount of recoil per stage
+    [SerializeField] int subPoints;
     [SerializeField] float timeBetweeenRecoilPointDecay; // how much time it takes between each recoil point going down
     [SerializeField] float recoilEffectTime; // Duration of the recoil effect
 
     // Internal state variables
+    int currentSubRecoilStage = 0;
     int currentRecoilStage = 0; // Current stage of the recoil
 
-  
-
- 
-    protected void Start()
-    {
-      
-    }
 
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
@@ -57,6 +52,9 @@ public class BaseGun : MonoBehaviour
 
         DebugManager.DisplayInfo("cAmmo", "AmmoInMag" + currentAmmoInMagazine);
         DebugManager.DisplayInfo("rAmmo", "TotalAmmo" + totalRemainingAmmo);
+
+        DebugManager.DisplayInfo("rStage", "rStage" + currentRecoilStage);
+        DebugManager.DisplayInfo("rSubStage", "rSubStage" + currentSubRecoilStage);
     }
 
     protected void FireAudio()
@@ -134,25 +132,35 @@ public class BaseGun : MonoBehaviour
 
 try{
       
-            GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-            DecalSpawn(hit.point);
+        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
+        DecalSpawn(hit.point);
 
 
-            if (hitObject.GetComponent<DamageHandler>())
-                hitObject.GetComponent<DamageHandler>().Damage(damage);
+        if (hitObject.GetComponent<BodyPartDamageHandler>())
+            hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
 
         }
         catch { }
       
     }
 
+
     protected void Recoil()
     {
-        PlayerController.playerInstance.AddCameraRotation(recoilPoints[currentRecoilStage], recoilEffectTime, 25f); ///sssh ill make this magic nuber go away someday
-        if (currentRecoilStage < recoilPoints.Length - 1)
-            currentRecoilStage++;
-        else
-            currentRecoilStage--; // start looping
+        currentSubRecoilStage++;
+        if(currentSubRecoilStage >= subPoints)
+        {
+            currentSubRecoilStage = 0;
+            if (currentRecoilStage < recoilPoints.Length - 1)
+                currentRecoilStage++;
+            else
+                currentRecoilStage -= 1;
+
+
+        }
+        Vector2 recoilVector = Vector2.Lerp(recoilPoints[currentRecoilStage], recoilPoints[currentRecoilStage + 1], currentSubRecoilStage / subPoints);
+        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, 75f); ///sssh ill make this magic nuber go away someday
+      
         recoilTimer = timeBetweeenRecoilPointDecay;
 
 
@@ -167,6 +175,15 @@ try{
 
         if(recoilTimer <= 0)
         {
+            currentSubRecoilStage--;
+            if(currentSubRecoilStage <= 0)
+            {
+                currentRecoilStage--;
+                if (currentRecoilStage > 0)
+                    currentSubRecoilStage = subPoints;
+                else
+                    return;
+            }
             recoilTimer = timeBetweeenRecoilPointDecay;
             currentRecoilStage--;
         }

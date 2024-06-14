@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float accelerationSpeed;
     [SerializeField] float velocityFallOff;
 
+    [SerializeField] float jumpVel;
+    [SerializeField] float jumpEffectTime;
+    [SerializeField] float gravity;
+
     [SerializeField] GameObject cameraGameObject;
 
     [SerializeField] float mouseSencitivity;
@@ -19,7 +23,11 @@ public class PlayerController : MonoBehaviour
 
     Vector2 cameraRotateVelocity;
 
+    float yVelocity;
+
     static public PlayerController playerInstance;
+
+    bool justJumped = false;
 
 
     private void Start()
@@ -30,44 +38,57 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (GroundCheck() && !justJumped)
+        {
+            yVelocity = 0f;
+        }
+        else
+        {
+            yVelocity -= gravity * Time.deltaTime;
+        }
+
+        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0));
+        DebugManager.DisplayInfo("PGrounded", "Grounded: " + GroundCheck());
+        DebugManager.DisplayInfo("YVel", "Y Velocity: " + yVelocity.ToString());
+        DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
+            StartCoroutine(Jump());
+
+
         movementVector = Vector3.zero;
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.z = Input.GetAxisRaw("Vertical");
-        DebugManager.DisplayInfo("CamRotateVel", "CamRotateVel" + cameraRotateVelocity.ToString());
+       
 
         if (CaculateVelocity()) // caculate velocity, and only move if the player has any
             DoMovement(); // caculate movement
 
-        CameraRotation();
+        if (Time.deltaTime <= 0.2f) // dirty fix to stop camera from snapping down during scene start
+            CameraRotation();
 
-        DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
+        
 
         if (cameraRotateVelocity != Vector2.zero)
         {
-            // Rotate the player on the Y-axis based on horizontal mouse movement
             transform.Rotate(Vector3.up * cameraRotateVelocity.y);
 
-            // Get the current local rotation of the camera
             Vector3 cameraRotation = cameraGameObject.transform.localEulerAngles;
 
-            // Calculate the desired X rotation for the camera based on vertical mouse movement
+
             float desiredXRotation = cameraRotation.x - cameraRotateVelocity.x;
+            if (desiredXRotation > 180f) desiredXRotation -= 360f;
+            if (desiredXRotation < -180f) desiredXRotation += 360f;
 
-            // Clamp the X rotation to prevent the camera from flipping over
-            if (desiredXRotation > 90 && desiredXRotation < 270)
-            {
-                if (desiredXRotation < 180)
-                    desiredXRotation = 90;
-                else
-                    desiredXRotation = 270;
-            }
+            cameraGameObject.transform.localEulerAngles = new Vector3(Mathf.Clamp(desiredXRotation, -45, 45), cameraRotation.y, cameraRotation.z);
 
-            // Apply the clamped X rotation to the camera, keeping Y and Z rotations unchanged
-            cameraGameObject.transform.localEulerAngles = new Vector3(desiredXRotation, cameraRotation.y, cameraRotation.z);
-
-            // Reset cameraRotateVelocity after applying the rotation
             cameraRotateVelocity = Vector2.zero;
         }
+
+    }
+
+    bool GroundCheck()
+    {
+        return (Physics.Raycast(transform.position, Vector3.down, 1.09f));
     }
 
     bool CaculateVelocity() // returns true if player has any velocity
@@ -122,39 +143,40 @@ public class PlayerController : MonoBehaviour
         controller.Move(moveVector * moveSpeed * Time.deltaTime);
 
     }
+    IEnumerator Jump()
+    {
+        yVelocity = jumpVel;
+        justJumped = true;
+        float timer = jumpEffectTime;
+        while (timer > 0)
+        {
+            print("Jumping");
+            timer -= Time.deltaTime;
+            if (timer >= 0.1)
+                justJumped = false;
+
+            yVelocity += jumpVel * timer * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield break;
+    }
 
 
     void CameraRotation()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSencitivity * Time.deltaTime;
+        float mouseX = -Input.GetAxis("Mouse X") * mouseSencitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSencitivity * Time.deltaTime;
 
         if (mouseX == 0 && mouseY == 0)
             return;
 
-
-        transform.Rotate(Vector3.up * mouseX);
-
-       
-        Vector3 cameraRotation = cameraGameObject.transform.localEulerAngles;
-        float desiredXRotation = cameraRotation.x - mouseY;
-        float desiredYRotation = cameraRotation.y + mouseX;
-
-
-
-        if (desiredXRotation > 90 && desiredXRotation < 270)
-        {
-            if (desiredXRotation < 180)
-                desiredXRotation = 90;
-            else
-                desiredXRotation = 270;
-        }
-
+        cameraRotateVelocity.x += mouseY;
+        cameraRotateVelocity.y -= mouseX;
 
        
-        cameraGameObject.transform.localEulerAngles = new Vector3(desiredXRotation, cameraRotation.y, cameraRotation.z);
+     
     }
-    
+
     public void AddCameraRotation(Vector2 vector, float duration, float magnitude)
     {
         StartCoroutine(CameraRotate(vector, duration, magnitude));
@@ -169,6 +191,12 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         yield return null;
+    }
+
+
+    float EaseOut(float x)
+    {
+        return 1 - (1 - x) * (1 - x);
     }
     
 
