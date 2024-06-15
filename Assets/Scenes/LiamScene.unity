@@ -4433,6 +4433,18 @@ PrefabInstance:
       value: 7.058
       objectReference: {fileID: 0}
     - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: fireRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: subPoints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: isAutomatic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: recoilEffectTime
       value: 0.05
       objectReference: {fileID: 0}
@@ -4498,7 +4510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: timeBetweeenRecoilPointDecay
-      value: 0.3
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 2201988794315717669, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: m_IsActive
