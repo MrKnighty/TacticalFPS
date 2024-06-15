@@ -45,6 +45,9 @@ public class BaseGun : MonoBehaviour
     int currentSubRecoilStage = 0;
     int currentRecoilStage = 0; // Current stage of the recoil
 
+    float shotsFired;
+    float shotsHit;
+
 
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
@@ -121,6 +124,7 @@ public class BaseGun : MonoBehaviour
 
     protected void FireEvent() // everything that should happen when the gun fires
     {
+        shotsFired++;
         lastTimeSinceFired = fireRate;
         FireAudio();
         FireFVX();
@@ -146,9 +150,11 @@ try{
 
         if (hitObject.GetComponent<BodyPartDamageHandler>())
             hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
-
+            shotsHit++;
         }
         catch { }
+
+        DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
       
     }
 
