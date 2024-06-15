@@ -33,6 +33,8 @@ public class BaseGun : MonoBehaviour
     [SerializeField] int subPoints;
     [SerializeField] float timeBetweeenRecoilPointDecay; // how much time it takes between each recoil point going down
     [SerializeField] float recoilEffectTime; // Duration of the recoil effect
+    [SerializeField] float recoilMultiplyer; // fast way to increase recoil without having to rewrite numbers
+    [SerializeField] float notADSingRecoilMultiplyer; // this is a addative recoil, not a adtional multiplyer
 
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
@@ -42,6 +44,9 @@ public class BaseGun : MonoBehaviour
     // Internal state variables
     int currentSubRecoilStage = 0;
     int currentRecoilStage = 0; // Current stage of the recoil
+
+    float shotsFired;
+    float shotsHit;
 
 
    
@@ -119,6 +124,7 @@ public class BaseGun : MonoBehaviour
 
     protected void FireEvent() // everything that should happen when the gun fires
     {
+        shotsFired++;
         lastTimeSinceFired = fireRate;
         FireAudio();
         FireFVX();
@@ -144,9 +150,11 @@ try{
 
         if (hitObject.GetComponent<BodyPartDamageHandler>())
             hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
-
+            shotsHit++;
         }
         catch { }
+
+        DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
       
     }
 
@@ -165,7 +173,7 @@ try{
 
         }
         Vector2 recoilVector = Vector2.Lerp(recoilPoints[currentRecoilStage], recoilPoints[currentRecoilStage + 1], currentSubRecoilStage / subPoints);
-        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, 300f); ///sssh ill make this magic nuber go away someday
+        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, recoilMultiplyer + (isADSing ? 0 : notADSingRecoilMultiplyer)); ///sssh ill make this magic nuber go away someday // i did it :-) 
       
         recoilTimer = timeBetweeenRecoilPointDecay;
 
@@ -232,11 +240,13 @@ try{
 
         if (Input.GetMouseButtonDown(1))
         {
+            isADSing = true;
             animator.SetBool("ADS", true);
           
         }
         else if (Input.GetMouseButtonUp(1))
         {
+            isADSing = false;
             animator.SetBool("ADS", false);
 
         }
