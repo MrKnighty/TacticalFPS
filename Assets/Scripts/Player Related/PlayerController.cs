@@ -58,10 +58,10 @@ public class PlayerController : MonoBehaviour
         movementVector = Vector3.zero;
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.z = Input.GetAxisRaw("Vertical");
-       
 
-        if (CaculateVelocity()) // caculate velocity, and only move if the player has any
-            DoMovement(); // caculate movement
+
+        CaculateVelocity(); // caculate velocity, and only move if the player has any
+        DoMovement(); // caculate movement
 
         if (Time.deltaTime <= 0.2f) // dirty fix to stop camera from snapping down during scene start
             CameraRotation();
@@ -173,6 +173,7 @@ public class PlayerController : MonoBehaviour
         cameraRotateVelocity.x += mouseY;
         cameraRotateVelocity.y -= mouseX;
 
+        
        
      
     }
@@ -187,7 +188,7 @@ public class PlayerController : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            cameraRotateVelocity += vector * Time.deltaTime;
+            cameraRotateVelocity += vector * Time.deltaTime * magnitude;
             yield return new WaitForEndOfFrame();
         }
         yield return null;
