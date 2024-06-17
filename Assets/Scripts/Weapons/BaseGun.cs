@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using Unity.Mathematics;
 
 public class BaseGun : MonoBehaviour
 {
@@ -39,6 +40,19 @@ public class BaseGun : MonoBehaviour
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
 
+    [Header("EffectSettings")]
+    
+    [SerializeField] GameObject lightObject;
+    [SerializeField] float lightStayOnTime;
+    [SerializeField] GameObject bulletCasingSpawnPoint;
+    [SerializeField] GameObject bulletCasingToSpawn;
+    [SerializeField] float maxShells;
+    [SerializeField] float shellEjectVelocity;
+    [SerializeField] float ShellEjectVelocityRandomOffset;
+
+    GameObject[] shells;
+    int currentShellIndex;
+
     float lastTimeSinceFired;
 
     // Internal state variables
@@ -48,7 +62,16 @@ public class BaseGun : MonoBehaviour
     float shotsFired;
     float shotsHit;
 
+   
+    void Start()
+    {
+        shells = new GameObject[subPoints];
 
+        for (int i = 0; i < subPoints; i++)
+        {
+            shells[i] = Instantiate(bulletCasingToSpawn, new Vector3(-1000, -1000,-1000), quaternion.identity);
+        }
+    }
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
     {
@@ -74,12 +97,27 @@ public class BaseGun : MonoBehaviour
 
     protected void FireFVX()
     {
-
+        lightObject.SetActive(true);
+        Invoke("StopLight", lightStayOnTime);
     }
 
-    protected void ShellEject()
+    void StopLight()
     {
+        lightObject.SetActive(false);
+    }
 
+    protected void BulletCasingEject()
+    {
+        GameObject shell = shells[currentShellIndex];
+        shell.transform.position = bulletCasingSpawnPoint.transform.position;
+        shell.GetComponent<Rigidbody>().linearVelocity = bulletCasingSpawnPoint.transform.forward * (shellEjectVelocity + UnityEngine.Random.Range(-ShellEjectVelocityRandomOffset, ShellEjectVelocityRandomOffset));
+       
+        currentShellIndex ++;
+        if(currentShellIndex >= shells.Length -1)
+           currentShellIndex = 0;
+
+        if(Input.GetKey(KeyCode.LeftShift))
+            Debug.Break();
     }
 
     protected void DecalSpawn(Vector3 hitPos)
@@ -128,7 +166,7 @@ public class BaseGun : MonoBehaviour
         lastTimeSinceFired = fireRate;
         FireAudio();
         FireFVX();
-        ShellEject();
+        BulletCasingEject();
         
         Recoil();
 
@@ -140,6 +178,7 @@ public class BaseGun : MonoBehaviour
 
         print("Shooting!");
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+        
 
 
 try{
@@ -250,5 +289,12 @@ try{
             animator.SetBool("ADS", false);
 
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+    
+        Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 1000);
     }
 }
