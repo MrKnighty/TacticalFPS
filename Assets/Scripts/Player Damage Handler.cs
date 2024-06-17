@@ -1,7 +1,4 @@
 using System;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,7 +24,7 @@ public class PlayerDamageHandler : MonoBehaviour
         }
         catch 
         {
-            Warning.Caution("No Audio Source On Player: " + this.name);
+            print("No Audio Source On Player: " + this.name);
         }
     }
 
@@ -41,7 +38,7 @@ public class PlayerDamageHandler : MonoBehaviour
         ChangeHealth(amount);
         if (audioSource)
             try {audioSource.PlayOneShot(healAudioClips[UnityEngine.Random.Range(0, healAudioClips.Length)]); }
-            catch { Warning.Caution("No Heal Audio Clips in Array: " + this.name); }
+            catch { print("No Heal Audio Clips in Array: " + this.name); }
             
     }
     public void Damage(float amount)
@@ -49,7 +46,7 @@ public class PlayerDamageHandler : MonoBehaviour
         ChangeHealth(-amount);
         if (audioSource)
             try {audioSource.PlayOneShot(healAudioClips[UnityEngine.Random.Range(0, hurtAudioClips.Length)]); }
-            catch { Warning.Caution("No Hurt Audio Clips in Array: " + this.name); }
+            catch { print("No Hurt Audio Clips in Array: " + this.name); }
     }
     void ChangeHealth(float amount)
     {
@@ -72,7 +69,7 @@ public class PlayerDamageHandler : MonoBehaviour
         }
         else
         {
-            Warning.Caution("No Death Screen UI Assigned");
+            print("No Death Screen UI Assigned");
         }
     }
 }
