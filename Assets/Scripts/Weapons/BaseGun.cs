@@ -85,7 +85,7 @@ public class BaseGun : MonoBehaviour
 
         DebugManager.DisplayInfo("cAmmo", "AmmoInMag" + currentAmmoInMagazine);
         DebugManager.DisplayInfo("rAmmo", "TotalAmmo" + totalRemainingAmmo);
-
+        
         DebugManager.DisplayInfo("rStage", "rStage" + currentRecoilStage);
         DebugManager.DisplayInfo("rSubStage", "rSubStage" + currentSubRecoilStage);
     }

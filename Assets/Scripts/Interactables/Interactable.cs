@@ -11,12 +11,14 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] GameObject interactionPopup;
     [SerializeField] float distanceFromPivot;
+    bool interactionUiActive;
 
     int stoppedInteractingTick;
 
     private void Start()
     {
-       
+        
+
         if(detectionMode == DectectionMode.Distance)
             StartCoroutine("CheckDistanceTick");
     }
@@ -25,7 +27,9 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         stoppedInteractingTick ++;
-  
+        if(!interactionUiActive)
+             return;
+             
         if(stoppedInteractingTick >= 3)
            StopDisplayingInteractionUI();
            
@@ -62,9 +66,15 @@ public class Interactable : MonoBehaviour
 
     void BaseTriggerEvents()
     {
+        
         stoppedInteractingTick=0;
         DisplayInteractionUI();
+
+        if(!Input.GetKeyDown(KeyCode.E))
+             return;
+
         TriggerEvent();
+        
     }
 
     protected void TriggerEvent()
@@ -75,6 +85,8 @@ public class Interactable : MonoBehaviour
     {
         if(interactionPopup.gameObject == null)
             return;
+            
+        interactionUiActive = true;
         interactionPopup.gameObject.SetActive(true);
         interactionPopup.transform.LookAt(PlayerController.playerInstance.transform.position);
         interactionPopup.transform.position = transform.position + (interactionPopup.transform.forward * distanceFromPivot);
@@ -82,7 +94,7 @@ public class Interactable : MonoBehaviour
     
     protected void StopDisplayingInteractionUI()
     {
-        print("stopped interaction");
+        interactionUiActive = false;
         interactionPopup.gameObject.SetActive(false);
     }
 }

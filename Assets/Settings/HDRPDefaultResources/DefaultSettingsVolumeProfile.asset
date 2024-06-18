@@ -257,8 +257,7 @@ MonoBehaviour:
     m_Value: 0
   material:
     m_OverrideState: 1
-    m_Value: {fileID: -876546973899608171, guid: 02532cbb810fb404db49da84f1efe41e,
-      type: 3}
+    m_Value: {fileID: -876546973899608171, guid: 02532cbb810fb404db49da84f1efe41e, type: 3}
   airDensityR:
     m_OverrideState: 1
     m_Value: 0.04534
@@ -1599,13 +1598,13 @@ MonoBehaviour:
   active: 1
   quality:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 3
   enable:
     m_OverrideState: 1
     m_Value: 0
   tracing:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2
   rayMiss:
     m_OverrideState: 1
     m_Value: 3
@@ -1672,7 +1671,7 @@ MonoBehaviour:
     m_Value: 1
   m_HalfResolutionDenoiser:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   m_DenoiserRadius:
     m_OverrideState: 1
     m_Value: 0.6
@@ -1767,7 +1766,7 @@ MonoBehaviour:
     m_Value: 50
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 400
+    m_Value: 50
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 0

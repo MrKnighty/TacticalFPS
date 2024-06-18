@@ -13,6 +13,9 @@ public class GizmosDrawer : MonoBehaviour
         Gizmos.color = color;
         Gizmos.DrawSphere(transform.position, radius);
     }
+
+  
+    
 }
 
 #endif
