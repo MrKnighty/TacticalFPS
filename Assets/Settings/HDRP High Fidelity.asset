@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HDRP High Fidelity
   m_EditorClassIdentifier: 
   m_RenderPipelineSettings:
-    supportShadowMask: 0
+    supportShadowMask: 1
     supportSSR: 0
     supportSSRTransparent: 0
     supportSSAO: 1
@@ -119,8 +119,8 @@ MonoBehaviour:
     hdShadowInitParams:
       maxShadowRequests: 128
       directionalShadowsDepthBits: 16
-      punctualShadowFilteringQuality: 2
-      directionalShadowFilteringQuality: 2
+      punctualShadowFilteringQuality: 0
+      directionalShadowFilteringQuality: 0
       areaShadowFilteringQuality: 0
       punctualLightShadowAtlas:
         shadowAtlasResolution: 4096
@@ -134,7 +134,7 @@ MonoBehaviour:
       cachedAreaLightShadowAtlas: 4096
       allowDirectionalMixedCachedShadows: 0
       shadowResolutionDirectional:
-        m_Values: 00020000000400000008000000100000
+        m_Values: 00020000000400000008000000200000
         m_SchemaId:
           m_Id: With4Levels
       shadowResolutionPunctual:
@@ -145,8 +145,8 @@ MonoBehaviour:
         m_Values: 00020000000400000008000000100000
         m_SchemaId:
           m_Id: With4Levels
-      maxDirectionalShadowMapResolution: 4096
-      maxPunctualShadowMapResolution: 4096
+      maxDirectionalShadowMapResolution: 8192
+      maxPunctualShadowMapResolution: 8192
       maxAreaShadowMapResolution: 4096
       supportScreenSpaceShadows: 0
       maxScreenSpaceShadowSlots: 4
@@ -482,8 +482,7 @@ MonoBehaviour:
       enableBigTilePrepass: 0
       isFptlEnabled: 0
   m_ObsoleteDefaultVolumeProfile: {fileID: 0}
-  m_ObsoleteDefaultLookDevProfile: {fileID: 11400000, guid: 254c4fe87beb7be4fa72e1681edbed02,
-    type: 2}
+  m_ObsoleteDefaultLookDevProfile: {fileID: 11400000, guid: 254c4fe87beb7be4fa72e1681edbed02, type: 2}
   m_ObsoleteFrameSettingsMovedToDefaultSettings:
     bitDatas:
       data1: 140666621394781
