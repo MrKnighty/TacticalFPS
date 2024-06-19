@@ -29,11 +29,16 @@ public class PlayerController : MonoBehaviour
 
     bool justJumped = false;
 
+    [SerializeField] float distanceBetweenFootstep;
+    Vector3 lastPos;
+    float lastFootStepDistance;
+
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerInstance = this;
+        lastPos = transform.position;   
 
     }
     void Update()
@@ -141,6 +146,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
         controller.Move(moveVector * moveSpeed * Time.deltaTime);
+        lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
+        if(lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
+        {
+            Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.09f);
+            AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
+            AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f);
+            lastFootStepDistance = 0;
+        }
+          
+        lastPos = transform.position;
 
     }
     IEnumerator Jump()

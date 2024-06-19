@@ -186,7 +186,7 @@ public class BaseGun : MonoBehaviour
 
         print("Shooting!");
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
-        FireAudio(hit);
+        Recoil();
 
 
         try

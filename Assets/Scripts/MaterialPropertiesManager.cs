@@ -18,6 +18,7 @@ public class MaterialPropertiesManager : MonoBehaviour
     public static AudioClip[] GetFootStepSounds(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
+        print(i);
         if (i == -1)
            return sFallbackMat.stepSounds;
         return sMaterialProperties[i].stepSounds; 
@@ -66,7 +67,8 @@ public class MaterialPropertiesManager : MonoBehaviour
 
         foreach (MaterialProperty prop in sMaterialProperties) 
         {
-            if(prop.material == mat)
+            print(prop.material.name + " " + mat.name);
+            if(prop.material.name + " (Instance)" == mat.name) // for some reason the material we dynamically get has (instance) at the end of it, making this comparison impossible without this bodge, findd a better way me!
                 return i;   
         }
 
