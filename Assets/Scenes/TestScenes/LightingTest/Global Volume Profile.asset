@@ -48,13 +48,13 @@ MonoBehaviour:
     m_Value: 131.9
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 100000000
+    m_Value: 3.402823e+19
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 0
     m_Value: 0
@@ -90,6 +90,50 @@ MonoBehaviour:
     m_Value: 0.534
   directionalLightsOnly:
     m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &-4344915977367692254
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddcec8a8eb2d684d833ac8f5d26aebd, type: 3}
+  m_Name: HDShadowSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  interCascadeBorders: 1
+  maxShadowDistance:
+    m_OverrideState: 1
+    m_Value: 200
+  directionalTransmissionMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  cascadeShadowSplitCount:
+    m_OverrideState: 0
+    m_Value: 4
+  cascadeShadowSplit0:
+    m_OverrideState: 0
+    m_Value: 0.05
+  cascadeShadowSplit1:
+    m_OverrideState: 0
+    m_Value: 0.15
+  cascadeShadowSplit2:
+    m_OverrideState: 0
+    m_Value: 0.3
+  cascadeShadowBorder0:
+    m_OverrideState: 0
+    m_Value: 0
+  cascadeShadowBorder1:
+    m_OverrideState: 0
+    m_Value: 0
+  cascadeShadowBorder2:
+    m_OverrideState: 0
+    m_Value: 0
+  cascadeShadowBorder3:
+    m_OverrideState: 0
     m_Value: 0
 --- !u!114 &-2931724053467273587
 MonoBehaviour:
@@ -286,22 +330,6 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   m_Version: 1
---- !u!114 &-431199216785345133
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e17fad69ea181b4483974138b566975, type: 3}
-  m_Name: ScreenSpaceRefraction
-  m_EditorClassIdentifier: 
-  active: 0
-  screenFadeDistance:
-    m_OverrideState: 1
-    m_Value: 0.1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +351,8 @@ MonoBehaviour:
   - {fileID: -2931724053467273587}
   - {fileID: 8873198745956042618}
   - {fileID: 2399235016353972854}
-  - {fileID: -431199216785345133}
+  - {fileID: 3704350130360468308}
+  - {fileID: -4344915977367692254}
 --- !u!114 &2399235016353972854
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -532,6 +561,149 @@ MonoBehaviour:
   m_ObsoleteScrollSpeed:
     m_OverrideState: 0
     m_Value: 1
+--- !u!114 &3704350130360468308
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d877ec3e844f2ca46830012e8e79319b, type: 3}
+  m_Name: PhysicallyBasedSky
+  m_EditorClassIdentifier: 
+  active: 0
+  rotation:
+    m_OverrideState: 0
+    m_Value: 0
+  skyIntensityMode:
+    m_OverrideState: 0
+    m_Value: 0
+  exposure:
+    m_OverrideState: 0
+    m_Value: 0
+  multiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  upperHemisphereLuxValue:
+    m_OverrideState: 0
+    m_Value: 1
+  upperHemisphereLuxColor:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  desiredLuxValue:
+    m_OverrideState: 0
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 0
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 0
+    m_Value: 0
+  includeSunInBaking:
+    m_OverrideState: 0
+    m_Value: 0
+  type:
+    m_OverrideState: 0
+    m_Value: 1
+  atmosphericScattering:
+    m_OverrideState: 0
+    m_Value: 1
+  renderingMode:
+    m_OverrideState: 0
+    m_Value: 0
+  material:
+    m_OverrideState: 0
+    m_Value: {fileID: -876546973899608171, guid: 02532cbb810fb404db49da84f1efe41e, type: 3}
+  airDensityR:
+    m_OverrideState: 0
+    m_Value: 0.04534
+  airDensityG:
+    m_OverrideState: 0
+    m_Value: 0.10237241
+  airDensityB:
+    m_OverrideState: 0
+    m_Value: 0.23264056
+  airTint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  airMaximumAltitude:
+    m_OverrideState: 0
+    m_Value: 55261.973
+  aerosolDensity:
+    m_OverrideState: 0
+    m_Value: 0.01192826
+  aerosolTint:
+    m_OverrideState: 0
+    m_Value: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  aerosolMaximumAltitude:
+    m_OverrideState: 0
+    m_Value: 8289.296
+  aerosolAnisotropy:
+    m_OverrideState: 0
+    m_Value: 0.8
+  ozoneDensityDimmer:
+    m_OverrideState: 0
+    m_Value: 1
+  ozoneMinimumAltitude:
+    m_OverrideState: 0
+    m_Value: 20000
+  ozoneLayerWidth:
+    m_OverrideState: 0
+    m_Value: 20000
+  groundTint:
+    m_OverrideState: 0
+    m_Value: {r: 0.12, g: 0.1, b: 0.09, a: 1}
+  groundColorTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  groundEmissionTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  groundEmissionMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  planetRotation:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  spaceEmissionTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  spaceEmissionMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  spaceRotation:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  colorSaturation:
+    m_OverrideState: 0
+    m_Value: 1
+  alphaSaturation:
+    m_OverrideState: 0
+    m_Value: 1
+  alphaMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  horizonTint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  zenithTint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  horizonZenithShift:
+    m_OverrideState: 0
+    m_Value: 0
+  m_SkyVersion: 3
+  m_ObsoleteEarthPreset:
+    m_OverrideState: 0
+    m_Value: 1
+  planetaryRadius:
+    m_OverrideState: 0
+    m_Value: 6378100
+  planetCenterPosition:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: -6378100, z: 0}
 --- !u!114 &8023515482089078687
 MonoBehaviour:
   m_ObjectHideFlags: 3

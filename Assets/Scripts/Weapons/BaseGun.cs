@@ -12,8 +12,6 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected float reloadTime;
     [SerializeField] protected float damage;
 
-    [SerializeField] GameObject decal;
-    [SerializeField] GameObject hitParticle;
     [SerializeField] GameObject mainCam;
 
     protected bool gunCanFire = true;
@@ -90,9 +88,10 @@ public class BaseGun : MonoBehaviour
         DebugManager.DisplayInfo("rSubStage", "rSubStage" + currentSubRecoilStage);
     }
 
-    protected void FireAudio()
+    protected void FireAudio(RaycastHit hit)
     {
-        source.PlayOneShot(fireSound);
+        AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
+        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 0.5f);
     }
 
     protected void FireFVX()
@@ -120,11 +119,13 @@ public class BaseGun : MonoBehaviour
             Debug.Break();
     }
 
-    protected void DecalSpawn(Vector3 hitPos)
+    protected void DecalSpawn(RaycastHit hit)
     {
-        Instantiate(decal, hitPos, Quaternion.identity);
-        Instantiate(hitParticle, hitPos, Quaternion.identity).transform.LookAt(transform);
-        
+        GameObject decal = MaterialPropertiesManager.GetDecal(hit.transform.gameObject);
+        GameObject hitParticle = MaterialPropertiesManager.GetDecal(hit.transform.gameObject);
+
+        Instantiate(decal, hit.point, Quaternion.identity);
+        Instantiate(hitParticle, hit.point, Quaternion.identity).transform.LookAt(transform);
     }
 
     protected void Reload()
@@ -160,15 +161,22 @@ public class BaseGun : MonoBehaviour
         yield return null;
     }
 
+    protected void BulletInpact(RaycastHit hit)
+    {
+        DecalSpawn(hit);
+        FireAudio(hit);
+    
+    }
+
     protected void FireEvent() // everything that should happen when the gun fires
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-        FireAudio();
+       
         FireFVX();
         BulletCasingEject();
         
-        Recoil();
+      
 
         animator.SetTrigger("Fire");
 
@@ -178,19 +186,25 @@ public class BaseGun : MonoBehaviour
 
         print("Shooting!");
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+        FireAudio(hit);
+
+
+        try
+        {
+            BulletInpact(hit);
+        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
         
 
 
-try{
-      
-        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-        DecalSpawn(hit.point);
-
-
         if (hitObject.GetComponent<BodyPartDamageHandler>())
+        {
             hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
             shotsHit++;
         }
+        
+      
+        }
+        
         catch { }
 
         DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
