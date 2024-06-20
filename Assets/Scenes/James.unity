@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485c949cf1282474887cab8602d88e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   bulletSparkFX: {fileID: 6599165949420749886, guid: 9dfa530b8dbcd03439166900db1f96a3, type: 3}
   shootRadius: 2
   attackSpeed: 0.1
@@ -360,15 +361,38 @@ MonoBehaviour:
   playerBodyPoint: {fileID: 156243741}
   playerHeadPoint: {fileID: 571175810}
   inCover: 0
-  closestDistanceToCoverXZ: 0
-  closestDistanceToCoverY: 0
-  maximumDistanceToCoverXZ: 0
-  maximumDistanceToCoverY: 0
+  closestDistanceToCoverXZ: 15
+  closestDistanceToCoverY: 15
+  maximumDistanceToCoverXZ: 100
+  maximumDistanceToCoverY: 100
+  guardTime: 10
   coverLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  patrolPoints: []
+    m_Bits: 64
+  patrolPoints:
+  - {x: -49.982395, y: -0.53366566, z: 330.38147}
+  - {x: -43.94539, y: -0.53366566, z: 330.46442}
+  - {x: -43.466507, y: -0.53366566, z: 336.45383}
+  - {x: -43.182926, y: -0.53366566, z: 342.6468}
+  - {x: -54.818634, y: -0.53366566, z: 344.45306}
+  - {x: -58.87954, y: -0.53366566, z: 341.96918}
+  - {x: -57.252792, y: -0.53366566, z: 336.70682}
+  - {x: -57.535732, y: -0.53366566, z: 331.4325}
+  - {x: -53.769337, y: -0.53366566, z: 329.83838}
+  patrolDirections:
+  - {x: -0.027683258, y: 0, z: -1.4074707}
+  - {x: 0.15332794, y: 0, z: -1.6670227}
+  - {x: 2.0444527, y: 0, z: -0.16571045}
+  - {x: 0.35084534, y: 0, z: 2.187561}
+  - {x: -2.1852112, y: 0, z: 0.19873047}
+  - {x: -0.63313293, y: 0, z: -2.8306885}
+  - {x: 2.3855057, y: 0, z: -0.18258667}
+  - {x: -2.092144, y: 0, z: -1.4385071}
+  - {x: 0.4734764, y: 0, z: -1.5373535}
   onClickCreatePatrolPoint: 1
+  patrolWaitTimer: 2
+  patrolTurnSpeed: 1
+  isPaused: 0
 --- !u!1 &142272563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,12 +1239,12 @@ GameObject:
   - component: {fileID: 588838554}
   - component: {fileID: 588838553}
   - component: {fileID: 588838552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CoverExample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &588838552
 MonoBehaviour:
@@ -2228,7 +2252,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1241583895
 BoxCollider:
@@ -2760,7 +2784,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 1
@@ -4266,7 +4290,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &2114654971
 BoxCollider:
@@ -4591,7 +4615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 143190840817738661, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 332.9
+      value: 337.7
       objectReference: {fileID: 0}
     - target: {fileID: 143190840817738661, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: m_LocalRotation.w
