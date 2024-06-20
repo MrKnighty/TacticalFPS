@@ -47,6 +47,9 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float maxShells;
     [SerializeField] float shellEjectVelocity;
     [SerializeField] float ShellEjectVelocityRandomOffset;
+    [SerializeField] GameObject flashLight;
+
+   
 
     GameObject[] shells;
     int currentShellIndex;
@@ -70,6 +73,7 @@ public class BaseGun : MonoBehaviour
             shells[i] = Instantiate(bulletCasingToSpawn, new Vector3(-1000, -1000,-1000), quaternion.identity);
         }
     }
+
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
     {
@@ -91,7 +95,9 @@ public class BaseGun : MonoBehaviour
     protected void FireAudio(RaycastHit hit)
     {
         AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
-        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 0.5f);
+        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 2f);
+        print("Fired!");
+      
     }
 
     protected void FireFVX()
@@ -172,7 +178,7 @@ public class BaseGun : MonoBehaviour
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-       
+        source.PlayOneShot(fireSound, 0.5f);
         FireFVX();
         BulletCasingEject();
         
@@ -187,11 +193,11 @@ public class BaseGun : MonoBehaviour
         print("Shooting!");
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
         Recoil();
-
+        BulletInpact(hit);
 
         try
         {
-            BulletInpact(hit);
+            
         GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
         
 
@@ -303,6 +309,9 @@ public class BaseGun : MonoBehaviour
             animator.SetBool("ADS", false);
 
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+            flashLight.SetActive(!flashLight.activeSelf);
     }
 
     private void OnDrawGizmos()

@@ -13,20 +13,22 @@ public class MaterialPropertiesManager : MonoBehaviour
     void Start()
     {
         sMaterialProperties = materialProperties;
+        sFallbackMat = fallbackMat;
     }
 
     public static AudioClip[] GetFootStepSounds(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
-        print(i);
-        if (i == -1)
+     
+        if (i == -1 || sMaterialProperties[i].stepSounds == null)
            return sFallbackMat.stepSounds;
         return sMaterialProperties[i].stepSounds; 
     }
     public static AudioClip[] GetBulletImpactSounds(GameObject hitObject)
     {
-   int i = GetIndex(hitObject);
-        if (i == -1)
+        int i = GetIndex(hitObject);
+        print(i + " " + sMaterialProperties[i].shotSounds == null);
+        if (i == -1 || sMaterialProperties[i].shotSounds == null)
            return sFallbackMat.shotSounds;
         return sMaterialProperties[i].shotSounds; 
     }
@@ -34,7 +36,7 @@ public class MaterialPropertiesManager : MonoBehaviour
     public static GameObject GetHitParticle(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
-        if (i == -1)
+        if (i == -1 || sMaterialProperties[i].hitParticle == null)
            return sFallbackMat.hitParticle;
         return sMaterialProperties[i].hitParticle; 
     }
@@ -42,8 +44,9 @@ public class MaterialPropertiesManager : MonoBehaviour
     public static GameObject GetDecal(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
-        if (i == -1)
-           return sFallbackMat.decal;
+        if (i == -1 || sMaterialProperties[i].decal == null)
+            return sFallbackMat.decal;
+          
         return sMaterialProperties[i].decal; 
     }
 
@@ -59,17 +62,22 @@ public class MaterialPropertiesManager : MonoBehaviour
         {
             mat = null;
             print("No material found on root object or child!");
+            return -1;
+            
         }
-        if (mat != null)
-             DebugManager.DisplayInfo("LHOBJ", "Texture: " + mat.ToString());
+        DebugManager.DisplayInfo("LHOBJ", "Texture: " + mat.ToString());
         
          int i = 0;
 
         foreach (MaterialProperty prop in sMaterialProperties) 
         {
-            print(prop.material.name + " " + mat.name);
-            if(prop.material.name + " (Instance)" == mat.name) // for some reason the material we dynamically get has (instance) at the end of it, making this comparison impossible without this bodge, findd a better way me!
-                return i;   
+            print("loop");
+            
+                if (prop.material.name + " (Instance)" == mat.name) // for some reason the material we dynamically get has (instance) at the end of it, making this comparison impossible without this bodge, findd a better way me!
+                    return i;
+            
+
+            i++;
         }
 
         DebugManager.DisplayInfo("HOBJERR", "Hit Object does not have material properties set! " + mat.ToString());

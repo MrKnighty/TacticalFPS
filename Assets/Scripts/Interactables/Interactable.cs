@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class Interactable : MonoBehaviour
 {
     [SerializeField] protected enum DectectionMode {Trigger, Distance, Raycast}
     [SerializeField] protected DectectionMode detectionMode;
 
     [SerializeField] float minDistance;
-
+    
     [SerializeField] GameObject interactionPopup;
     [SerializeField] float distanceFromPivot;
     bool interactionUiActive;
