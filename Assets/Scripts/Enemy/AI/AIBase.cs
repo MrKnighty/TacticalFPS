@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 
 using UnityEditor.TerrainTools;
-public enum AIStates {Patrol, Gaurd, Aggro} 
+public enum AIStates {Patrol, Gaurd, Aggro, Chase} 
 public class AIBase : MonoBehaviour
 {
     protected Transform playerTransform;
@@ -16,6 +16,7 @@ public class AIBase : MonoBehaviour
     [SerializeField] GameObject bulletSparkFX;
     [SerializeField] protected float shootRadius = 2f;
     [SerializeField] protected float attackSpeed = 0.1f;
+    [SerializeField] protected float reactionSpeed = 0.25f;
     [SerializeField] protected int ammoCap = 20;
     protected int ammo;
     [SerializeField] protected float reloadTime = 2f;
@@ -50,7 +51,7 @@ public class AIBase : MonoBehaviour
         return hits[0].transform;
     }
 
-    virtual protected Transform FindClosestCover()
+    virtual protected Transform FindClosestCover(Transform currentCover = null, bool canSeePlayer = true)
     {
         for (int i = 0; i < 2; i++) //loop 1 = close area check - if no cover - loop 2 = max area check
         { 
@@ -62,7 +63,7 @@ public class AIBase : MonoBehaviour
                 float check;
                 foreach (Collider c in hits) // Distance Check for all hits
                 {
-                    if (Vector3.Dot((hits[0].transform.position - playerTransform.position).normalized, hits[0].transform.position) < 0) //Check if the player is infront of the cover
+                    if (canSeePlayer && Vector3.Dot(playerTransform.position, hits[0].transform.position) < 0) //Check if the player is infront of the cover
                         continue;
                     check = Vector3.Distance(transform.position, c.transform.position);
                     if (check < closestDistance)
@@ -182,12 +183,19 @@ public class AIBase : MonoBehaviour
 
     protected IEnumerator Timer(float duration)
     {
-        float timer = 0;
-        while (timer < duration)
+        if(duration == 0)
         {
-            if (isPaused) yield return null;
-            timer += Time.deltaTime;
             yield return null;
+        }
+        else
+        {
+            float timer = 0;
+            while (timer < duration)
+            {
+                if (isPaused) yield return null;
+                timer += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 #if UNITY_EDITOR
