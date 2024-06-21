@@ -30,13 +30,12 @@ public class BaseGun : MonoBehaviour
 
     [Header("Recoil Settings")]
     [SerializeField] Vector2[] recoilPoints; // Array of recoil points representing the amount of recoil per stage
-    [SerializeField] float timeBeforeRecoilResets; // Time before recoil starts resetting
+    [SerializeField] float timeBetweeenRecoilPointDecay; // how much time it takes between each recoil point going down
     [SerializeField] float recoilEffectTime; // Duration of the recoil effect
 
     // Internal state variables
     int currentRecoilStage = 0; // Current stage of the recoil
-    float currentRecoilEffectTime; // Current time left for recoil effect
-    float timer;
+
   
 
  
@@ -53,53 +52,8 @@ public class BaseGun : MonoBehaviour
         return hit;
     }
 
-  
-    protected void Recoil(bool justShot)
-    {
-        // If the weapon was just shot, initiate recoil
-       
-        if (justShot)
-        {
-            currentRecoilStage++;
-            currentRecoilEffectTime = recoilEffectTime;
-         
-        }
-
-
-        if (currentRecoilStage <= 0)
-            return;
-     
-        if (currentRecoilEffectTime > 0)
-        {
-            currentRecoilEffectTime -= Time.deltaTime;
-          
-            // Calculate the recoil vector and apply it to the camera rotation
-            Vector3 recoilVector = new Vector3(-recoilPoints[currentRecoilStage].x, recoilPoints[currentRecoilStage].y, 0) * Time.fixedDeltaTime;
-            mainCam.transform.Rotate(recoilVector);
-
-            // Explicitly reset the Z rotation to 0 to prevent unintended Z-axis rotation
-            Vector3 eulerAngles = mainCam.transform.eulerAngles;
-            mainCam.transform.eulerAngles = new Vector3(eulerAngles.x, eulerAngles.y, 0);
-            return;
-        }
-        else if(timer <= 0 && currentRecoilStage > 0)
-        {
-            timer = timeBeforeRecoilResets;
-            currentRecoilStage--;
-        }
-        else
-        {
-            timer -= Time.deltaTime;
-        }
-
-        DebugManager.DisplayInfo("RecoilStage", "RecoilStage: " + currentRecoilStage);
-      
-    }
-
-
     protected void FixedUpdate()
     {
-        Recoil(false);
 
         DebugManager.DisplayInfo("cAmmo", "AmmoInMag" + currentAmmoInMagazine);
         DebugManager.DisplayInfo("rAmmo", "TotalAmmo" + totalRemainingAmmo);
@@ -162,27 +116,61 @@ public class BaseGun : MonoBehaviour
 
     protected void FireEvent() // everything that should happen when the gun fires
     {
-        print("Shooting!");
-        RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
-        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-        if(hitObject != null)
-            print(hitObject);
-
-        if (hitObject.GetComponent<DamageHandler>())
-            hitObject.GetComponent<DamageHandler>().Damage(damage);
-        
-
         FireAudio();
         FireFVX();
         ShellEject();
-        DecalSpawn(hit.point);
-        Recoil(true);
+        
+        Recoil();
 
         animator.SetTrigger("Fire");
 
         currentAmmoInMagazine -= 1;
         if (currentAmmoInMagazine <= 0)
             gunCanFire = false;
+
+        print("Shooting!");
+        RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+
+
+try{
+      
+            GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
+            DecalSpawn(hit.point);
+
+
+            if (hitObject.GetComponent<DamageHandler>())
+                hitObject.GetComponent<DamageHandler>().Damage(damage);
+
+        }
+        catch { }
+      
+    }
+
+    protected void Recoil()
+    {
+        PlayerController.playerInstance.AddCameraRotation(recoilPoints[currentRecoilStage], recoilEffectTime, 25f); ///sssh ill make this magic nuber go away someday
+        if (currentRecoilStage < recoilPoints.Length - 1)
+            currentRecoilStage++;
+        else
+            currentRecoilStage--; // start looping
+        recoilTimer = timeBetweeenRecoilPointDecay;
+
+
+    }
+    float recoilTimer;
+    protected void RecoilDecay()
+    {
+        if (currentRecoilStage <= 0)
+            return;
+
+        recoilTimer -= Time.deltaTime;
+
+        if(recoilTimer <= 0)
+        {
+            recoilTimer = timeBetweeenRecoilPointDecay;
+            currentRecoilStage--;
+        }
+
     }
 
     float ADSprogress = 0;
@@ -196,6 +184,8 @@ public class BaseGun : MonoBehaviour
     {
         if (reloading)
             return;
+
+        RecoilDecay();
 
         if (Input.GetKeyDown(KeyCode.R) && canReload)
         {
