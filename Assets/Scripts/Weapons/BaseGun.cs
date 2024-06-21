@@ -96,7 +96,7 @@ public class BaseGun : MonoBehaviour
     {
         AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
         AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 2f);
-        print("Fired!");
+  
       
     }
 
@@ -178,7 +178,7 @@ public class BaseGun : MonoBehaviour
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-        source.PlayOneShot(fireSound, 0.5f);
+        source.PlayOneShot(fireSound, 0.2f);
         FireFVX();
         BulletCasingEject();
         
