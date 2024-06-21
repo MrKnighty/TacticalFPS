@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpVel;
     [SerializeField] float jumpEffectTime;
     [SerializeField] float gravity;
+    [SerializeField] float airMovementPunishmentMultiplyer;
 
     [SerializeField] GameObject cameraGameObject;
 
@@ -29,15 +30,23 @@ public class PlayerController : MonoBehaviour
 
     bool justJumped = false;
 
+    [SerializeField] float distanceBetweenFootstep;
+    Vector3 lastPos;
+    float lastFootStepDistance;
+
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerInstance = this;
+        lastPos = transform.position;   
 
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
+            StartCoroutine(Jump());
+
         if (GroundCheck() && !justJumped)
         {
             yVelocity = 0f;
@@ -47,12 +56,13 @@ public class PlayerController : MonoBehaviour
             yVelocity -= gravity * Time.deltaTime;
         }
 
-        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0));
+        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0)); // caculate falling velocity
+
+
         DebugManager.DisplayInfo("PGrounded", "Grounded: " + GroundCheck());
         DebugManager.DisplayInfo("YVel", "Y Velocity: " + yVelocity.ToString());
         DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
-            StartCoroutine(Jump());
+       
 
 
         movementVector = Vector3.zero;
@@ -120,7 +130,12 @@ public class PlayerController : MonoBehaviour
 
         // caculate the new velocity based off player input
 
-        velocity += movementVector * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
+        float airMultiplyer = 1;
+        if (!GroundCheck())
+            airMultiplyer = airMovementPunishmentMultiplyer;
+
+
+        velocity += (movementVector * airMultiplyer) * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
 
         //ensure that the velocity does not go over 1
         if (velocity.x > 1)
@@ -140,19 +155,36 @@ public class PlayerController : MonoBehaviour
     void DoMovement()
     {
         Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
+       
+
         controller.Move(moveVector * moveSpeed * Time.deltaTime);
+        lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
+        if(lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.09f))
+            {
+                AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
+                AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f);
+                lastFootStepDistance = 0;
+            } 
+        }
+          
+        lastPos = transform.position;
 
     }
     IEnumerator Jump()
     {
+        Vector3 currentPos = transform.position;
+        currentPos.y += 0.3f;
+        transform.position = currentPos;
         yVelocity = jumpVel;
         justJumped = true;
         float timer = jumpEffectTime;
         while (timer > 0)
         {
-            print("Jumping");
+           
             timer -= Time.deltaTime;
-            if (timer >= 0.1)
+            if (timer >= 0.05)
                 justJumped = false;
 
             yVelocity += jumpVel * timer * Time.deltaTime;

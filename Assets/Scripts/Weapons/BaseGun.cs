@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using Unity.Mathematics;
 
 public class BaseGun : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected float reloadTime;
     [SerializeField] protected float damage;
 
-    [SerializeField] GameObject decal;
-    [SerializeField] GameObject hitParticle;
     [SerializeField] GameObject mainCam;
 
     protected bool gunCanFire = true;
@@ -39,6 +38,22 @@ public class BaseGun : MonoBehaviour
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
 
+    [Header("EffectSettings")]
+    
+    [SerializeField] GameObject lightObject;
+    [SerializeField] float lightStayOnTime;
+    [SerializeField] GameObject bulletCasingSpawnPoint;
+    [SerializeField] GameObject bulletCasingToSpawn;
+    [SerializeField] float maxShells;
+    [SerializeField] float shellEjectVelocity;
+    [SerializeField] float ShellEjectVelocityRandomOffset;
+    [SerializeField] GameObject flashLight;
+
+   
+
+    GameObject[] shells;
+    int currentShellIndex;
+
     float lastTimeSinceFired;
 
     // Internal state variables
@@ -48,6 +63,16 @@ public class BaseGun : MonoBehaviour
     float shotsFired;
     float shotsHit;
 
+   
+    void Start()
+    {
+        shells = new GameObject[subPoints];
+
+        for (int i = 0; i < subPoints; i++)
+        {
+            shells[i] = Instantiate(bulletCasingToSpawn, new Vector3(-1000, -1000,-1000), quaternion.identity);
+        }
+    }
 
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
@@ -62,31 +87,51 @@ public class BaseGun : MonoBehaviour
 
         DebugManager.DisplayInfo("cAmmo", "AmmoInMag" + currentAmmoInMagazine);
         DebugManager.DisplayInfo("rAmmo", "TotalAmmo" + totalRemainingAmmo);
-
+        
         DebugManager.DisplayInfo("rStage", "rStage" + currentRecoilStage);
         DebugManager.DisplayInfo("rSubStage", "rSubStage" + currentSubRecoilStage);
     }
 
-    protected void FireAudio()
+    protected void FireAudio(RaycastHit hit)
     {
-        source.PlayOneShot(fireSound);
+        AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
+        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 2f);
+  
+      
     }
 
     protected void FireFVX()
     {
-
+        lightObject.SetActive(true);
+        Invoke("StopLight", lightStayOnTime);
     }
 
-    protected void ShellEject()
+    void StopLight()
     {
-
+        lightObject.SetActive(false);
     }
 
-    protected void DecalSpawn(Vector3 hitPos)
+    protected void BulletCasingEject()
     {
-        Instantiate(decal, hitPos, Quaternion.identity);
-        Instantiate(hitParticle, hitPos, Quaternion.identity).transform.LookAt(transform);
-        
+        GameObject shell = shells[currentShellIndex];
+        shell.transform.position = bulletCasingSpawnPoint.transform.position;
+        shell.GetComponent<Rigidbody>().linearVelocity = bulletCasingSpawnPoint.transform.forward * (shellEjectVelocity + UnityEngine.Random.Range(-ShellEjectVelocityRandomOffset, ShellEjectVelocityRandomOffset));
+       
+        currentShellIndex ++;
+        if(currentShellIndex >= shells.Length -1)
+           currentShellIndex = 0;
+
+        if(Input.GetKey(KeyCode.LeftShift))
+            Debug.Break();
+    }
+
+    protected void DecalSpawn(RaycastHit hit)
+    {
+        GameObject decal = MaterialPropertiesManager.GetDecal(hit.transform.gameObject);
+        GameObject hitParticle = MaterialPropertiesManager.GetDecal(hit.transform.gameObject);
+
+        Instantiate(decal, hit.point, Quaternion.identity);
+        Instantiate(hitParticle, hit.point, Quaternion.identity).transform.LookAt(transform);
     }
 
     protected void Reload()
@@ -122,15 +167,22 @@ public class BaseGun : MonoBehaviour
         yield return null;
     }
 
+    protected void BulletInpact(RaycastHit hit)
+    {
+        DecalSpawn(hit);
+        FireAudio(hit);
+    
+    }
+
     protected void FireEvent() // everything that should happen when the gun fires
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-        FireAudio();
+        source.PlayOneShot(fireSound, 0.2f);
         FireFVX();
-        ShellEject();
+        BulletCasingEject();
         
-        Recoil();
+      
 
         animator.SetTrigger("Fire");
 
@@ -140,18 +192,25 @@ public class BaseGun : MonoBehaviour
 
         print("Shooting!");
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+        Recoil();
+        BulletInpact(hit);
 
-
-try{
-      
+        try
+        {
+            
         GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-        DecalSpawn(hit.point);
+        
 
 
         if (hitObject.GetComponent<BodyPartDamageHandler>())
+        {
             hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
             shotsHit++;
         }
+        
+      
+        }
+        
         catch { }
 
         DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
@@ -250,5 +309,15 @@ try{
             animator.SetBool("ADS", false);
 
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+            flashLight.SetActive(!flashLight.activeSelf);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+    
+        Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 1000);
     }
 }
