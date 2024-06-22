@@ -3,7 +3,7 @@ using UnityEditor;
 using Unity.AI;
 using UnityEngine.AI;
 using System;
-using UnityEditor.TerrainTools;
+
 
 public class AIBase : MonoBehaviour
 {

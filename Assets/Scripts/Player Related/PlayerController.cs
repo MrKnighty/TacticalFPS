@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float tiltSpeed;
     bool tiltingLeft;
     bool tiltingRight;
-    public bool isAdsIng;
+    [HideInInspector] public bool isAdsIng;
 
 
     private void Start()
@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (UICommunicator.gamePaused)
+            return;
 
         VerticalMovement();
 

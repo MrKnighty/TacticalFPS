@@ -51,6 +51,7 @@ public class PlayerDamageHandler : MonoBehaviour
     void ChangeHealth(float amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UICommunicator.UpdateUI("Hp Text", "HP: " + (int)currentHealth);
         if(currentHealth == 0) 
         {
             Death();
