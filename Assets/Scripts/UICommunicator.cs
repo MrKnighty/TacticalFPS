@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 
 public class UICommunicator : MonoBehaviour
 {
@@ -9,9 +10,11 @@ public class UICommunicator : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] uiElemets;
 
     [SerializeField] GameObject pauseMenu, gameOverMenu;
+    [SerializeField] Slider audioSlider;
 
     static UICommunicator refrence;
     public static bool gamePaused = false;
+    public static float audioLevel = 1f;
     void Start()
     {
         ui = new Dictionary<string, TextMeshProUGUI>();
@@ -61,6 +64,12 @@ public class UICommunicator : MonoBehaviour
     public void MainMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    public void UpdateAudio()
+    {
+        audioLevel = audioSlider.value;
+        print(audioLevel);
     }
    
 

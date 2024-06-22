@@ -25,8 +25,10 @@ public class PlayerSyringe : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.H))
         {
             healing = true;
+            BaseGun.adsForbidden = true;
             animator.Play();
             StartCoroutine("Heal");
+            
         }
     }
 
@@ -34,7 +36,7 @@ public class PlayerSyringe : MonoBehaviour
     {
         float timer = healTime;
         yield return new WaitForSeconds(delayToHeal);
-
+        BaseGun.adsForbidden = false;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -44,6 +46,7 @@ public class PlayerSyringe : MonoBehaviour
 
         amountOfSyringes--;
         healing = false;
+        
     }
 
 

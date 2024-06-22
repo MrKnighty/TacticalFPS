@@ -49,7 +49,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float ShellEjectVelocityRandomOffset;
     [SerializeField] GameObject flashLight;
 
-    static bool adsForbidden;
+    public static bool adsForbidden;
 
    
 
@@ -99,7 +99,7 @@ public class BaseGun : MonoBehaviour
     protected void FireAudio(RaycastHit hit)
     {
         AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
-        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 2f);
+        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 1.5f * UICommunicator.audioLevel);
   
       
     }
@@ -170,7 +170,7 @@ public class BaseGun : MonoBehaviour
         }
         gunCanFire = true;
         reloading = false;
-        UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " " + totalRemainingAmmo);
+        UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
         yield return null;
     }
 
@@ -185,7 +185,7 @@ public class BaseGun : MonoBehaviour
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-        source.PlayOneShot(fireSound, 0.2f);
+        source.PlayOneShot(fireSound, 0.5f * UICommunicator.audioLevel);
         FireFVX();
         BulletCasingEject();
         UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
@@ -195,9 +195,7 @@ public class BaseGun : MonoBehaviour
         animator.SetTrigger("Fire");
 
         currentAmmoInMagazine -= 1;
-        if (currentAmmoInMagazine <= 0)
-            gunCanFire = false;
-
+      
         print("Shooting!");
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
         Recoil();
@@ -222,6 +220,14 @@ public class BaseGun : MonoBehaviour
         catch { }
 
         DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
+       
+        if(currentAmmoInMagazine < 0)
+        {
+            if (canReload)
+                Reload();
+            else
+                 gunCanFire = false;
+        }
       
     }
 
@@ -296,7 +302,7 @@ public class BaseGun : MonoBehaviour
         {
             Reload();
         }
-        if (lastTimeSinceFired <= 0)
+        if (lastTimeSinceFired <= 0 && gunCanFire)
         {
             if (Input.GetMouseButton(0) && isAutomatic)
                 FireEvent();
