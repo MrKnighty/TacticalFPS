@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpEffectTime;
     [SerializeField] float gravity;
     [SerializeField] float airMovementPunishmentMultiplyer;
+    [SerializeField] float adsMoveSpeedPunishment;
 
     [SerializeField] GameObject cameraGameObject;
 
@@ -34,6 +35,12 @@ public class PlayerController : MonoBehaviour
     Vector3 lastPos;
     float lastFootStepDistance;
 
+    [SerializeField] float tiltAngle;
+    [SerializeField] float tiltSpeed;
+    bool tiltingLeft;
+    bool tiltingRight;
+    public bool isAdsIng;
+
 
     private void Start()
     {
@@ -44,20 +51,8 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
-            StartCoroutine(Jump());
 
-        if (GroundCheck() && !justJumped)
-        {
-            yVelocity = 0f;
-        }
-        else
-        {
-            yVelocity -= gravity * Time.deltaTime;
-        }
-
-        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0)); // caculate falling velocity
-
+        VerticalMovement();
 
         DebugManager.DisplayInfo("PGrounded", "Grounded: " + GroundCheck());
         DebugManager.DisplayInfo("YVel", "Y Velocity: " + yVelocity.ToString());
@@ -76,7 +71,70 @@ public class PlayerController : MonoBehaviour
         if (Time.deltaTime <= 0.2f) // dirty fix to stop camera from snapping down during scene start
             CameraRotation();
 
-        
+        MoveCameraFromVelocity();
+        TacticalTilt();
+
+
+    }
+
+    void TacticalTilt()
+    {
+        float zRotation = transform.localEulerAngles.z;
+
+        if (zRotation > 180)
+        {
+            zRotation -= 360;
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            zRotation -= tiltSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.Q))
+        {
+            zRotation += tiltSpeed * Time.deltaTime;
+        }
+        else
+        {
+            if (zRotation > 0)
+            {
+                zRotation -= tiltSpeed * Time.deltaTime;
+            }
+            else if (zRotation < 0)
+            {
+                zRotation += tiltSpeed * Time.deltaTime;
+            }
+
+            if (Mathf.Abs(zRotation) <= 1)
+            {
+                zRotation = 0;
+            }
+        }
+
+        zRotation = Mathf.Clamp(zRotation, -tiltAngle, tiltAngle);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, zRotation);
+    }
+
+    void VerticalMovement()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
+            StartCoroutine(Jump());
+
+        if (GroundCheck() && !justJumped)
+        {
+            yVelocity = 0f;
+        }
+        else
+        {
+            yVelocity -= gravity * Time.deltaTime;
+        }
+
+        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0)); // caculate falling velocity
+    }
+
+
+    void MoveCameraFromVelocity()
+    {
 
         if (cameraRotateVelocity != Vector2.zero)
         {
@@ -93,13 +151,14 @@ public class PlayerController : MonoBehaviour
 
             cameraRotateVelocity = Vector2.zero;
         }
-
     }
 
     bool GroundCheck()
     {
         return (Physics.Raycast(transform.position, Vector3.down, 1.09f));
     }
+    float targetMaxVelocity;
+    float velocityEaser = 1;
 
     bool CaculateVelocity() // returns true if player has any velocity
     {
@@ -134,8 +193,22 @@ public class PlayerController : MonoBehaviour
         if (!GroundCheck())
             airMultiplyer = airMovementPunishmentMultiplyer;
 
+        
+        if (!isAdsIng)
+        {
+            targetMaxVelocity = 1;
+            velocityEaser += Time.deltaTime;
+        }  
+        else
+        {
+            targetMaxVelocity = adsMoveSpeedPunishment;
+            velocityEaser -= Time.deltaTime;
+        }
+        velocityEaser = Mathf.Clamp(velocityEaser, targetMaxVelocity, 1);
 
         velocity += (movementVector * airMultiplyer) * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
+        velocity = Vector3.ClampMagnitude(velocity, velocityEaser);
+
 
         //ensure that the velocity does not go over 1
         if (velocity.x > 1)

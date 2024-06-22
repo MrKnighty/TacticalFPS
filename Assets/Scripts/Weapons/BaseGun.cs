@@ -18,7 +18,7 @@ public class BaseGun : MonoBehaviour
     protected bool canReload = true;
     protected bool reloading;
 
-    protected bool isADSing;
+    public bool isADSing;
 
     [Header("Audio")]
     [SerializeField] protected AudioSource source;
@@ -309,6 +309,7 @@ public class BaseGun : MonoBehaviour
             animator.SetBool("ADS", false);
 
         }
+        PlayerController.playerInstance.isAdsIng = isADSing;
 
         if (Input.GetKeyDown(KeyCode.F))
             flashLight.SetActive(!flashLight.activeSelf);
