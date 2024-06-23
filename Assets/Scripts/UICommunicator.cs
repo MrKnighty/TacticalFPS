@@ -69,7 +69,7 @@ public class UICommunicator : MonoBehaviour
     public void UpdateAudio()
     {
         audioLevel = audioSlider.value;
-        print(audioLevel);
+     
     }
    
 
