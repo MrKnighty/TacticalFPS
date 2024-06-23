@@ -440,6 +440,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 1
+  dropItem: 0
+  itemToDrop: {fileID: 0}
   bodyPartArmour:
   - 1
   - 1
@@ -484,26 +486,8 @@ MonoBehaviour:
   coverLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  patrolPoints:
-  - {x: -49.982395, y: -0.53366566, z: 330.38147}
-  - {x: -43.94539, y: -0.53366566, z: 330.46442}
-  - {x: -43.466507, y: -0.53366566, z: 336.45383}
-  - {x: -43.182926, y: -0.53366566, z: 342.6468}
-  - {x: -54.818634, y: -0.53366566, z: 344.45306}
-  - {x: -58.87954, y: -0.53366566, z: 341.96918}
-  - {x: -57.252792, y: -0.53366566, z: 336.70682}
-  - {x: -57.535732, y: -0.53366566, z: 331.4325}
-  - {x: -53.769337, y: -0.53366566, z: 329.83838}
-  patrolDirections:
-  - {x: -0.027683258, y: 0, z: -1.4074707}
-  - {x: 0.15332794, y: 0, z: -1.6670227}
-  - {x: 2.0444527, y: 0, z: -0.16571045}
-  - {x: 0.35084534, y: 0, z: 2.187561}
-  - {x: -2.1852112, y: 0, z: 0.19873047}
-  - {x: -0.63313293, y: 0, z: -2.8306885}
-  - {x: 2.3855057, y: 0, z: -0.18258667}
-  - {x: -2.092144, y: 0, z: -1.4385071}
-  - {x: 0.4734764, y: 0, z: -1.5373535}
+  patrolPoints: []
+  patrolDirections: []
   onClickCreatePatrolPoint: 1
   patrolWaitTimer: 2
   patrolTurnSpeed: 1
