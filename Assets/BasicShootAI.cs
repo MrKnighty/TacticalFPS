@@ -135,7 +135,7 @@ public class BasicShootAI : AIBase
             }
             if(ShootAtTarget(playerPoint.position, shootRadius))
             {
-                //damage PlayerDamageHandler
+                playerDamageHandler.Damage(damage);
             }
             ammo--;
             yield return Timer(attackSpeed);
@@ -158,13 +158,8 @@ public class BasicShootAI : AIBase
             Vector3 point = new Vector3(playerTransform.position.x + Random.Range(-searchRange, searchRange), playerTransform.position.y + Random.Range(-searchRange, searchRange), playerTransform.position.z + Random.Range(-searchRange, searchRange));
             if(NavMesh.SamplePosition(point, out hit, 5, NavMesh.AllAreas))
             {
-                print("why");
                 yield return MoveToDestination(hit.position);
                 searchIterations--;
-            }
-            else
-            {
-                print("Npe");
             }
            yield return null;
         }

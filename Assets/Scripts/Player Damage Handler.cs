@@ -52,7 +52,7 @@ public class PlayerDamageHandler : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UICommunicator.UpdateUI("Hp Text", "HP: " + (int)currentHealth);
-        if(currentHealth == 0) 
+        if(currentHealth <= 0) 
         {
             Death();
         }

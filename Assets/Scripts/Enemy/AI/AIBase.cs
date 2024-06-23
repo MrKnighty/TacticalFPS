@@ -10,6 +10,7 @@ public enum AIStates {Patrol, Gaurd, Aggro, Chase}
 public class AIBase : MonoBehaviour
 {
     protected Transform playerTransform;
+    protected PlayerDamageHandler playerDamageHandler;
     protected NavMeshAgent agent;
     [SerializeField] protected AIStates currentState;
     [Header("Shooting")]
@@ -18,6 +19,7 @@ public class AIBase : MonoBehaviour
     [SerializeField] protected float attackSpeed = 0.1f;
     [SerializeField] protected float reactionSpeed = 0.25f;
     [SerializeField] protected int ammoCap = 20;
+    [SerializeField] protected float damage = 1;
     protected int ammo;
     [SerializeField] protected float reloadTime = 2f;
     [Header("Raycast Points")]
@@ -42,7 +44,8 @@ public class AIBase : MonoBehaviour
     virtual protected void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        playerTransform = FindAnyObjectByType<PlayerDamageHandler>().transform;
+        playerDamageHandler = FindAnyObjectByType<PlayerDamageHandler>();
+        playerTransform = playerDamageHandler.transform;
     }
 
     virtual protected Transform FindCover()

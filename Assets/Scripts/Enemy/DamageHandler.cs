@@ -30,12 +30,11 @@ public class DamageHandler : MonoBehaviour
     }
     protected void DeathEvent()
     {
-        print(gameObject.name);
+        Destroy(gameObject);
         if(useRagDoll)
         {
             Instantiate(ragdollObject, transform.position, transform.rotation).GetComponent<Rigidbody>().AddForce(10,10,10);
         }
-        Destroy(gameObject);
     }
     
 }
