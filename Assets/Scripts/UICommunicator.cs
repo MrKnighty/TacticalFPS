@@ -24,6 +24,7 @@ public class UICommunicator : MonoBehaviour
 
         }
         refrence = this;
+        SwitchToUI(false);
     }
 
     private void Update()
@@ -43,26 +44,46 @@ public class UICommunicator : MonoBehaviour
         ui[id].text = Message;
     }
 
-    public void PauseUI() // this will do all of the pausing for now, but ill move it to a proper game manager later
+    void SwitchToUI(bool toggle)
     {
-        if (gamePaused)
+        if (!toggle)
         {
             Time.timeScale = 1.0f;
-            pauseMenu.SetActive(false);
             gamePaused = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             Time.timeScale = 0.0f;
-            pauseMenu.SetActive(true);
             gamePaused = true;
             Cursor.lockState = CursorLockMode.None;
         }
     }
 
+    public void PauseUI() // this will do all of the pausing for now, but ill move it to a proper game manager later
+    {
+        if (gamePaused)
+        {
+            SwitchToUI(false);
+            pauseMenu.SetActive(false);
+       
+        }
+        else
+        {
+            SwitchToUI(true);
+            pauseMenu.SetActive(true);
+        
+        }
+    }
+    public void GameOverUI()
+    {
+        SwitchToUI(true);
+        gameOverMenu.SetActive(true);
+    }
+
     public void MainMenu()
     {
+        SwitchToUI(true);
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
@@ -70,6 +91,11 @@ public class UICommunicator : MonoBehaviour
     {
         audioLevel = audioSlider.value;
      
+    }
+    public void RestartLevel()
+    {
+        SwitchToUI(false);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
    
 
