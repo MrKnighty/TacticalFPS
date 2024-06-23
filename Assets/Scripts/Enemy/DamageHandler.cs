@@ -5,6 +5,8 @@ public class DamageHandler : MonoBehaviour
 {
     [SerializeField] float maxHealth;
     public float currentHealth;
+    [SerializeField] bool dropItem;
+    [SerializeField] GameObject itemToDrop;
 
     [SerializeField, Tooltip("Head, Body, Legs, Arms, calculation: damage = damageAmount * bodyPartMultiplier * bodyPartArmour")] 
     float[] bodyPartArmour = {1,1,1,1};
@@ -34,6 +36,10 @@ public class DamageHandler : MonoBehaviour
         if(useRagDoll)
         {
             Instantiate(ragdollObject, transform.position, transform.rotation).GetComponent<Rigidbody>().AddForce(10,10,10);
+        }
+        if(dropItem)
+        {
+            Instantiate(itemToDrop, transform.position, transform.rotation);
         }
     }
     

@@ -41,8 +41,12 @@ public class AIBase : MonoBehaviour
     [SerializeField] protected float patrolWaitTimer;
     [SerializeField] protected float patrolTurnSpeed;
     [SerializeField] protected bool isPaused = false;
+    [Header("Audio")]
+    [SerializeField] protected AudioClip shootSFX;
+    protected AudioSource audioSource;
     virtual protected void Start()
     {
+        audioSource = this?.GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         playerDamageHandler = FindAnyObjectByType<PlayerDamageHandler>();
         playerTransform = playerDamageHandler.transform;
@@ -138,11 +142,12 @@ public class AIBase : MonoBehaviour
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(aIHeadPoint.position, direction, out hit))
         {
-            Instantiate(bulletSparkFX, hit.point, Quaternion.identity).transform.LookAt(transform);
+            audioSource.PlayOneShot(shootSFX);
             if (hit.transform.tag == "Player")
             {
                 return true;
             }
+            Instantiate(bulletSparkFX, hit.point, Quaternion.identity).transform.LookAt(transform);
         }
         return false;
 
