@@ -9,6 +9,9 @@ public class BasicShootAI : AIBase
     Vector3 lastSeenPlayerPosition;
     Transform playerPoint;
     Transform currentCoverTransform;
+    [Header("Chase")]
+    [SerializeField] float searchIterations = 5;
+    [SerializeField] float searchRange = 5;
     protected override void Start()
     {
         base.Start();
@@ -22,6 +25,7 @@ public class BasicShootAI : AIBase
         {
             case AIStates.Patrol:
                 currentState = state;
+                if(patrolPoints.Length > 1)
                 StartCoroutine(Patrol());
                 break;
             case AIStates.Gaurd: 
@@ -43,6 +47,7 @@ public class BasicShootAI : AIBase
                 break;
             case AIStates.Chase:
                 currentState = state;
+
                 StartCoroutine(Chase());
                 break;
         }
@@ -143,7 +148,26 @@ public class BasicShootAI : AIBase
     }
     IEnumerator Chase()
     {
-        yield return null;
+        
+        NavMeshHit hit;
+        NavMesh.SamplePosition(lastSeenPlayerPosition, out hit, 5, NavMesh.AllAreas);
+        yield return MoveToDestination(hit.position);
+        searchIterations = 5;
+        while(searchIterations > 0)
+        {
+            Vector3 point = new Vector3(playerTransform.position.x + Random.Range(-searchRange, searchRange), playerTransform.position.y + Random.Range(-searchRange, searchRange), playerTransform.position.z + Random.Range(-searchRange, searchRange));
+            if(NavMesh.SamplePosition(point, out hit, 5, NavMesh.AllAreas))
+            {
+                print("why");
+                yield return MoveToDestination(hit.position);
+                searchIterations--;
+            }
+            else
+            {
+                print("Npe");
+            }
+           yield return null;
+        }
     }
     IEnumerator Search()
     {

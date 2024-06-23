@@ -146,6 +146,8 @@ public class AIBase : MonoBehaviour
     }
     protected IEnumerator Patrol()
     {
+        if (patrolPoints.Length == 0)
+            yield break;
         int i = 0;
         foreach (Vector3 p in patrolPoints)
         {
