@@ -813,6 +813,7 @@ MonoBehaviour:
   isADSing: 0
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 0}
+  reloadSound: {fileID: 0}
   animator: {fileID: 3945124339818780968}
   recoilPoints:
   - {x: 2, y: 1}
@@ -2912,7 +2913,7 @@ GameObject:
   - component: {fileID: 1559917364687715449}
   - component: {fileID: 3372212669756198383}
   m_Layer: 0
-  m_Name: Plane (4)
+  m_Name: Scope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11355,7 +11356,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1737
+  m_VersionIndex: 1740
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11883,12 +11884,13 @@ MonoBehaviour:
   muzzlePoint: {fileID: 0}
   magazineSize: 30
   totalRemainingAmmo: 120
-  reloadTime: 1.2
+  reloadTime: 2.2
   damage: 2
   mainCam: {fileID: 7615221839760034783}
   isADSing: 0
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 8300000, guid: 61299d5e0b2534b46843fd0aabba9deb, type: 3}
+  reloadSound: {fileID: 8300000, guid: 4d32f8c8ecf1663499452c02c3279de3, type: 3}
   animator: {fileID: 1846067306395836239}
   recoilPoints:
   - {x: 1.5, y: 0.3}

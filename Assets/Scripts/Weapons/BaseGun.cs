@@ -35,6 +35,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float recoilEffectTime; // Duration of the recoil effect
     [SerializeField] float recoilMultiplyer; // fast way to increase recoil without having to rewrite numbers
     [SerializeField] float notADSingRecoilMultiplyer; // this is a addative recoil, not a adtional multiplyer
+    [SerializeField] float midAirRecoilMultiplyer;
 
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
@@ -51,6 +52,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] GameObject flashLight;
 
     public static bool adsForbidden;
+    public static bool playerInMidAir;
 
    
 
