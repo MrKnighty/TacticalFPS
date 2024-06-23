@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerDamageHandler : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class PlayerDamageHandler : MonoBehaviour
 
     AudioSource audioSource;
 
+    [SerializeField]Image damageImage;
+    [SerializeField] float damageImageFadeSpeed;
 
     void Start()
     {
@@ -47,11 +51,30 @@ public class PlayerDamageHandler : MonoBehaviour
         if (audioSource)
             try {audioSource.PlayOneShot(healAudioClips[UnityEngine.Random.Range(0, hurtAudioClips.Length)]); }
             catch { print("No Hurt Audio Clips in Array: " + this.name); }
+        if(damageImage != null)
+        {
+            StopCoroutine(DamageImageFade());
+            StartCoroutine(DamageImageFade());
+        }
     }
+    IEnumerator DamageImageFade()
+    {
+        float alpha = 1;
+        Color color = damageImage.color;
+        while(alpha > 0)
+        {
+            alpha -= damageImageFadeSpeed * Time.deltaTime;
+            color.a = alpha;
+            damageImage.color = color;
+            yield return null;
+        }
+    }
+
     void ChangeHealth(float amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        if(currentHealth == 0) 
+        UICommunicator.UpdateUI("Hp Text", "HP: " + (int)currentHealth);
+        if(currentHealth <= 0) 
         {
             Death();
         }

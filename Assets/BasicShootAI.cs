@@ -1,42 +1,182 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BasicShootAI : AIBase
 {
-    Transform playerVisablePoint;
-    bool playerInSight;
+    [SerializeField]bool playerInSight;
+    [SerializeField] bool aggressive;
+    Vector3 lastSeenPlayerPosition;
+    Transform playerPoint;
+    Transform currentCoverTransform;
+    [Header("Chase")]
+    [SerializeField] float searchIterations = 5;
+    [SerializeField] float searchRange = 5;
     protected override void Start()
     {
-       base.Start();
-
+        base.Start();
+        SwitchStates(currentState);
     }
-    void mainLoop()
+    void SwitchStates(AIStates state)
     {
+        StopAllCoroutines();
+        agent.isStopped = true;
+        switch (state)
+        {
+            case AIStates.Patrol:
+                currentState = state;
+                if(patrolPoints.Length > 1)
+                StartCoroutine(Patrol());
+                break;
+            case AIStates.Gaurd: 
+                currentState = state;
+                if (!inCover)
+                {
+                    Vector3 point = GetCoverPointOnNavMesh(FindClosestCover());
+                    if (point != Vector3.zero)
+                    {
+                        MoveToDestination(GetCoverPointOnNavMesh(FindClosestCover()));
+                        inCover = true;
+                    }
+                }
+                break;
+            case AIStates.Aggro:
+                currentState = state;
+                StartCoroutine(Aggro());
+                StartCoroutine(Shoot());
+                break;
+            case AIStates.Chase:
+                currentState = state;
+
+                StartCoroutine(Chase());
+                break;
+        }
 
     }
-   
 
-    float aggroCheckTimer = 0;
-    float timer = 0;
     private void Update()
     {
-        print(CanSeePlayer());
-        if (timer < attackSpeed)
+        playerPoint = CanSeePlayer();
+        if(playerPoint)
         {
-            timer += Time.deltaTime;
-            return;
+            if(!playerInSight)
+            {
+                playerInSight = true;
+                agent.updateRotation = false;
+            }
+           if(currentState != AIStates.Aggro)
+            {
+                SwitchStates(AIStates.Aggro);
+            }
         }
-        timer = 0;
-        Transform point = CanSeePlayer();
-        if (point)
-            ShootAtTarget(point.position, shootRadius);
+        else if(playerInSight)
+        {
+            playerInSight = false;
+            agent.updateRotation = true;
+            lastSeenPlayerPosition = playerTransform.position;
 
-        if (aggroCheckTimer < 0.1f)
-        {
-            aggroCheckTimer += Time.deltaTime;
-            return;
         }
-        aggroCheckTimer = 0;
-        playerVisablePoint = CanSeePlayer();
     }
+
+    IEnumerator Aggro()
+    {
+        while(currentState == AIStates.Aggro)
+        {
+            if(!playerPoint)
+            {
+                yield return Timer(guardTime);
+                if(aggressive)
+                {
+                    SwitchStates(AIStates.Chase);
+                    yield break;
+                }
+                else
+                {
+                    SwitchStates(AIStates.Gaurd);
+                    yield break;
+                }
+            }
+            if (!inCover)
+            {
+                Vector3 point = GetCoverPointOnNavMesh(FindClosestCover());
+                print(point);
+                if(point != Vector3.zero)
+                {
+                    yield return MoveToDestination(GetCoverPointOnNavMesh(FindClosestCover()));
+                    inCover = true;
+                }
+            }
+            yield return null;
+        }
+    }
+    IEnumerator Shoot()
+    {
+        bool lostSight = true;
+        while(currentState == AIStates.Aggro)
+        {
+            Vector3 lookDir = playerTransform.position;
+            lookDir.y = transform.position.y;
+            transform.LookAt(lookDir);
+            if(lostSight)
+            {
+                lostSight = false;
+                yield return Timer(reactionSpeed);
+            }
+            if(ammo <= 0)
+            {
+                yield return Timer(reloadTime);
+                ammo = ammoCap;
+            }
+            if (!playerPoint)
+            {
+                lostSight = true;
+                yield return null;
+                continue;
+            }
+            if(ShootAtTarget(playerPoint.position, shootRadius))
+            {
+                playerDamageHandler.Damage(damage);
+            }
+            ammo--;
+            yield return Timer(attackSpeed);
+        }
+
+    }
+    IEnumerator Gaurd()
+    {
+        yield return null;
+    }
+    IEnumerator Chase()
+    {
+        
+        NavMeshHit hit;
+        NavMesh.SamplePosition(lastSeenPlayerPosition, out hit, 5, NavMesh.AllAreas);
+        yield return MoveToDestination(hit.position);
+        searchIterations = 5;
+        while(searchIterations > 0)
+        {
+            Vector3 point = new Vector3(playerTransform.position.x + Random.Range(-searchRange, searchRange), playerTransform.position.y + Random.Range(-searchRange, searchRange), playerTransform.position.z + Random.Range(-searchRange, searchRange));
+            if(NavMesh.SamplePosition(point, out hit, 5, NavMesh.AllAreas))
+            {
+                yield return MoveToDestination(hit.position);
+                searchIterations--;
+            }
+           yield return null;
+        }
+    }
+    IEnumerator Search()
+    {
+        yield return null;
+    }
+    IEnumerator MoveToDestination(Vector3 point)
+    {
+        agent.isStopped = false;
+        agent.destination = point;
+        while (Vector3.Distance(transform.position, point) > 0.2f)
+        {
+            yield return null;
+        }
+        agent.isStopped = true;
+    }
+
 }

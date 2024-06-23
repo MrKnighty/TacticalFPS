@@ -27,7 +27,7 @@ public class MaterialPropertiesManager : MonoBehaviour
     public static AudioClip[] GetBulletImpactSounds(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
-        print(i + " " + sMaterialProperties[i].shotSounds == null);
+      
         if (i == -1 || sMaterialProperties[i].shotSounds == null)
            return sFallbackMat.shotSounds;
         return sMaterialProperties[i].shotSounds; 

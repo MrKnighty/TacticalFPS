@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpEffectTime;
     [SerializeField] float gravity;
     [SerializeField] float airMovementPunishmentMultiplyer;
+    [SerializeField] float adsMoveSpeedPunishment;
 
     [SerializeField] GameObject cameraGameObject;
 
@@ -34,30 +35,36 @@ public class PlayerController : MonoBehaviour
     Vector3 lastPos;
     float lastFootStepDistance;
 
+    [SerializeField] float tiltAngle;
+    [SerializeField] float tiltSpeed;
+    bool tiltingLeft;
+    bool tiltingRight;
+    [HideInInspector] public bool isAdsIng;
+
+    CapsuleCollider capsualCol;
+    [SerializeField] float height, crouchHeight;
+    [SerializeField] float crouchSpeed;
+    [SerializeField] float crouchMoveSpeedMultiplyer;
+    
+
+    float currentHeight;
+
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerInstance = this;
-        lastPos = transform.position;   
+        lastPos = transform.position;
+        capsualCol = GetComponent<CapsuleCollider>();
+        currentHeight = height;
 
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
-            StartCoroutine(Jump());
+        if (UICommunicator.gamePaused)
+            return;
 
-        if (GroundCheck() && !justJumped)
-        {
-            yVelocity = 0f;
-        }
-        else
-        {
-            yVelocity -= gravity * Time.deltaTime;
-        }
-
-        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0)); // caculate falling velocity
-
+        VerticalMovement();
 
         DebugManager.DisplayInfo("PGrounded", "Grounded: " + GroundCheck());
         DebugManager.DisplayInfo("YVel", "Y Velocity: " + yVelocity.ToString());
@@ -76,7 +83,102 @@ public class PlayerController : MonoBehaviour
         if (Time.deltaTime <= 0.2f) // dirty fix to stop camera from snapping down during scene start
             CameraRotation();
 
+        MoveCameraFromVelocity();
+        TacticalTilt();
+        Crouch();
+
+     
         
+
+
+    }
+
+    void Crouch()
+    {
+        if(Input.GetKey(KeyCode.LeftControl))
+        {
+            currentHeight -= crouchSpeed * Time.deltaTime;
+            if (currentHeight <= crouchHeight)
+                currentHeight = crouchHeight;
+
+            controller.height = currentHeight;
+            capsualCol.height = currentHeight;
+        }
+        else if(currentHeight < height)
+        {
+            currentHeight += crouchSpeed * Time.deltaTime;
+            if(currentHeight >= height)
+                currentHeight = height;
+            controller.height = currentHeight;
+            capsualCol.height = currentHeight;
+            Vector3 pos = transform.position;
+            pos.y += crouchSpeed * Time.deltaTime;
+            transform.position = pos;
+        }
+
+        DebugManager.DisplayInfo("heigh", "Height" + currentHeight);
+
+
+    }
+
+    void TacticalTilt()
+    {
+        float zRotation = transform.localEulerAngles.z;
+
+        if (zRotation > 180)
+        {
+            zRotation -= 360;
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            zRotation -= tiltSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.Q))
+        {
+            zRotation += tiltSpeed * Time.deltaTime;
+        }
+        else
+        {
+            if (zRotation > 0)
+            {
+                zRotation -= tiltSpeed * Time.deltaTime;
+            }
+            else if (zRotation < 0)
+            {
+                zRotation += tiltSpeed * Time.deltaTime;
+            }
+
+            if (Mathf.Abs(zRotation) <= 1)
+            {
+                zRotation = 0;
+            }
+        }
+
+        zRotation = Mathf.Clamp(zRotation, -tiltAngle, tiltAngle);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, zRotation);
+    }
+
+    void VerticalMovement()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck() )
+            StartCoroutine(Jump());
+
+        if (GroundCheck() && !justJumped)
+        {
+            yVelocity = 0f;
+        }
+        else
+        {
+            yVelocity -= gravity * Time.deltaTime;
+        }
+
+        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0)); // caculate falling velocity
+    }
+
+
+    void MoveCameraFromVelocity()
+    {
 
         if (cameraRotateVelocity != Vector2.zero)
         {
@@ -93,13 +195,14 @@ public class PlayerController : MonoBehaviour
 
             cameraRotateVelocity = Vector2.zero;
         }
-
     }
 
     bool GroundCheck()
     {
-        return (Physics.Raycast(transform.position, Vector3.down, 1.09f));
+        return (Physics.Raycast(transform.position, Vector3.down, currentHeight / 2 + 0.1f));
     }
+    float targetMaxVelocity;
+    float velocityEaser = 1;
 
     bool CaculateVelocity() // returns true if player has any velocity
     {
@@ -134,8 +237,22 @@ public class PlayerController : MonoBehaviour
         if (!GroundCheck())
             airMultiplyer = airMovementPunishmentMultiplyer;
 
+        
+        if (!isAdsIng)
+        {
+            targetMaxVelocity = 1;
+            velocityEaser += Time.deltaTime;
+        }  
+        else
+        {
+            targetMaxVelocity = adsMoveSpeedPunishment;
+            velocityEaser -= Time.deltaTime;
+        }
+        velocityEaser = Mathf.Clamp(velocityEaser, targetMaxVelocity, 1);
 
         velocity += (movementVector * airMultiplyer) * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
+        velocity = Vector3.ClampMagnitude(velocity, velocityEaser);
+
 
         //ensure that the velocity does not go over 1
         if (velocity.x > 1)
@@ -157,7 +274,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
        
 
-        controller.Move(moveVector * moveSpeed * Time.deltaTime);
+        controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * Time.deltaTime);
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
         if(lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
         {
