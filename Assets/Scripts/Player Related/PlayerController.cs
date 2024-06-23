@@ -41,12 +41,22 @@ public class PlayerController : MonoBehaviour
     bool tiltingRight;
     [HideInInspector] public bool isAdsIng;
 
+    CapsuleCollider capsualCol;
+    [SerializeField] float height, crouchHeight;
+    [SerializeField] float crouchSpeed;
+    [SerializeField] float crouchMoveSpeedMultiplyer;
+    
+
+    float currentHeight;
+
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerInstance = this;
-        lastPos = transform.position;   
+        lastPos = transform.position;
+        capsualCol = GetComponent<CapsuleCollider>();
+        currentHeight = height;
 
     }
     void Update()
@@ -75,6 +85,38 @@ public class PlayerController : MonoBehaviour
 
         MoveCameraFromVelocity();
         TacticalTilt();
+        Crouch();
+
+     
+        
+
+
+    }
+
+    void Crouch()
+    {
+        if(Input.GetKey(KeyCode.LeftControl))
+        {
+            currentHeight -= crouchSpeed * Time.deltaTime;
+            if (currentHeight <= crouchHeight)
+                currentHeight = crouchHeight;
+
+            controller.height = currentHeight;
+            capsualCol.height = currentHeight;
+        }
+        else if(currentHeight < height)
+        {
+            currentHeight += crouchSpeed * Time.deltaTime;
+            if(currentHeight >= height)
+                currentHeight = height;
+            controller.height = currentHeight;
+            capsualCol.height = currentHeight;
+            Vector3 pos = transform.position;
+            pos.y += crouchSpeed * Time.deltaTime;
+            transform.position = pos;
+        }
+
+        DebugManager.DisplayInfo("heigh", "Height" + currentHeight);
 
 
     }
@@ -119,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
     void VerticalMovement()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck() )
             StartCoroutine(Jump());
 
         if (GroundCheck() && !justJumped)
@@ -157,7 +199,7 @@ public class PlayerController : MonoBehaviour
 
     bool GroundCheck()
     {
-        return (Physics.Raycast(transform.position, Vector3.down, 1.09f));
+        return (Physics.Raycast(transform.position, Vector3.down, currentHeight / 2 + 0.1f));
     }
     float targetMaxVelocity;
     float velocityEaser = 1;
@@ -232,7 +274,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
        
 
-        controller.Move(moveVector * moveSpeed * Time.deltaTime);
+        controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * Time.deltaTime);
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
         if(lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
         {
