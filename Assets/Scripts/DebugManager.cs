@@ -4,7 +4,7 @@ using System;
 using TMPro;
 public class DebugManager : MonoBehaviour 
 {
-    public static bool DebugMode = true;
+    public static bool DebugMode = false;
 
     static Dictionary<string, TextMeshProUGUI> debugUI = new Dictionary<string, TextMeshProUGUI>();
     [SerializeField] GameObject spawnableDebugUI;
@@ -20,6 +20,13 @@ public class DebugManager : MonoBehaviour
     {
         debugUIGO = spawnableDebugUI;
         canvas = canvasObject;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F3))
+            DebugMode = !DebugMode;
+       
+            
     }
     public static void DisplayInfo(string identifyer, string message)
     {

@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpVel;
     [SerializeField] float jumpEffectTime;
     [SerializeField] float gravity;
+    [SerializeField] float airMovementPunishmentMultiplyer;
+    [SerializeField] float adsMoveSpeedPunishment;
 
     [SerializeField] GameObject cameraGameObject;
 
@@ -33,6 +35,12 @@ public class PlayerController : MonoBehaviour
     Vector3 lastPos;
     float lastFootStepDistance;
 
+    [SerializeField] float tiltAngle;
+    [SerializeField] float tiltSpeed;
+    bool tiltingLeft;
+    bool tiltingRight;
+    [HideInInspector] public bool isAdsIng;
+
 
     private void Start()
     {
@@ -43,21 +51,15 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (GroundCheck() && !justJumped)
-        {
-            yVelocity = 0f;
-        }
-        else
-        {
-            yVelocity -= gravity * Time.deltaTime;
-        }
+        if (UICommunicator.gamePaused)
+            return;
 
-        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0));
+        VerticalMovement();
+
         DebugManager.DisplayInfo("PGrounded", "Grounded: " + GroundCheck());
         DebugManager.DisplayInfo("YVel", "Y Velocity: " + yVelocity.ToString());
         DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
-            StartCoroutine(Jump());
+       
 
 
         movementVector = Vector3.zero;
@@ -71,7 +73,70 @@ public class PlayerController : MonoBehaviour
         if (Time.deltaTime <= 0.2f) // dirty fix to stop camera from snapping down during scene start
             CameraRotation();
 
-        
+        MoveCameraFromVelocity();
+        TacticalTilt();
+
+
+    }
+
+    void TacticalTilt()
+    {
+        float zRotation = transform.localEulerAngles.z;
+
+        if (zRotation > 180)
+        {
+            zRotation -= 360;
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            zRotation -= tiltSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.Q))
+        {
+            zRotation += tiltSpeed * Time.deltaTime;
+        }
+        else
+        {
+            if (zRotation > 0)
+            {
+                zRotation -= tiltSpeed * Time.deltaTime;
+            }
+            else if (zRotation < 0)
+            {
+                zRotation += tiltSpeed * Time.deltaTime;
+            }
+
+            if (Mathf.Abs(zRotation) <= 1)
+            {
+                zRotation = 0;
+            }
+        }
+
+        zRotation = Mathf.Clamp(zRotation, -tiltAngle, tiltAngle);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, zRotation);
+    }
+
+    void VerticalMovement()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
+            StartCoroutine(Jump());
+
+        if (GroundCheck() && !justJumped)
+        {
+            yVelocity = 0f;
+        }
+        else
+        {
+            yVelocity -= gravity * Time.deltaTime;
+        }
+
+        controller.Move(new Vector3(0, yVelocity * Time.deltaTime, 0)); // caculate falling velocity
+    }
+
+
+    void MoveCameraFromVelocity()
+    {
 
         if (cameraRotateVelocity != Vector2.zero)
         {
@@ -88,13 +153,14 @@ public class PlayerController : MonoBehaviour
 
             cameraRotateVelocity = Vector2.zero;
         }
-
     }
 
     bool GroundCheck()
     {
         return (Physics.Raycast(transform.position, Vector3.down, 1.09f));
     }
+    float targetMaxVelocity;
+    float velocityEaser = 1;
 
     bool CaculateVelocity() // returns true if player has any velocity
     {
@@ -125,7 +191,26 @@ public class PlayerController : MonoBehaviour
 
         // caculate the new velocity based off player input
 
-        velocity += movementVector * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
+        float airMultiplyer = 1;
+        if (!GroundCheck())
+            airMultiplyer = airMovementPunishmentMultiplyer;
+
+        
+        if (!isAdsIng)
+        {
+            targetMaxVelocity = 1;
+            velocityEaser += Time.deltaTime;
+        }  
+        else
+        {
+            targetMaxVelocity = adsMoveSpeedPunishment;
+            velocityEaser -= Time.deltaTime;
+        }
+        velocityEaser = Mathf.Clamp(velocityEaser, targetMaxVelocity, 1);
+
+        velocity += (movementVector * airMultiplyer) * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
+        velocity = Vector3.ClampMagnitude(velocity, velocityEaser);
+
 
         //ensure that the velocity does not go over 1
         if (velocity.x > 1)
@@ -145,14 +230,18 @@ public class PlayerController : MonoBehaviour
     void DoMovement()
     {
         Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
+       
+
         controller.Move(moveVector * moveSpeed * Time.deltaTime);
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
         if(lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
         {
-            Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.09f);
-            AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
-            AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f);
-            lastFootStepDistance = 0;
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.09f))
+            {
+                AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
+                AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f);
+                lastFootStepDistance = 0;
+            } 
         }
           
         lastPos = transform.position;
@@ -160,14 +249,17 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Jump()
     {
+        Vector3 currentPos = transform.position;
+        currentPos.y += 0.3f;
+        transform.position = currentPos;
         yVelocity = jumpVel;
         justJumped = true;
         float timer = jumpEffectTime;
         while (timer > 0)
         {
-            print("Jumping");
+           
             timer -= Time.deltaTime;
-            if (timer >= 0.1)
+            if (timer >= 0.05)
                 justJumped = false;
 
             yVelocity += jumpVel * timer * Time.deltaTime;

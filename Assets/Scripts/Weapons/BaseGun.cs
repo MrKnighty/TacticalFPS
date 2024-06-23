@@ -7,7 +7,7 @@ public class BaseGun : MonoBehaviour
 {
     [SerializeField] protected GameObject muzzlePoint;
     [SerializeField] protected float magazineSize; // max amount of ammo that can be in magazine
-    [SerializeField] protected float currentAmmoInMagazine;// how many bullets ready to fire
+     protected float currentAmmoInMagazine;// how many bullets ready to fire
     [SerializeField] protected float totalRemainingAmmo; // remaining ammo not in magazine
     [SerializeField] protected float reloadTime;
     [SerializeField] protected float damage;
@@ -18,7 +18,7 @@ public class BaseGun : MonoBehaviour
     protected bool canReload = true;
     protected bool reloading;
 
-    protected bool isADSing;
+    public bool isADSing;
 
     [Header("Audio")]
     [SerializeField] protected AudioSource source;
@@ -49,6 +49,8 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float ShellEjectVelocityRandomOffset;
     [SerializeField] GameObject flashLight;
 
+    public static bool adsForbidden;
+
    
 
     GameObject[] shells;
@@ -72,6 +74,8 @@ public class BaseGun : MonoBehaviour
         {
             shells[i] = Instantiate(bulletCasingToSpawn, new Vector3(-1000, -1000,-1000), quaternion.identity);
         }
+
+        currentAmmoInMagazine = magazineSize;
     }
 
    
@@ -95,8 +99,8 @@ public class BaseGun : MonoBehaviour
     protected void FireAudio(RaycastHit hit)
     {
         AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
-        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 2f);
-        print("Fired!");
+        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 1.5f * UICommunicator.audioLevel);
+  
       
     }
 
@@ -128,10 +132,12 @@ public class BaseGun : MonoBehaviour
     protected void DecalSpawn(RaycastHit hit)
     {
         GameObject decal = MaterialPropertiesManager.GetDecal(hit.transform.gameObject);
-        GameObject hitParticle = MaterialPropertiesManager.GetDecal(hit.transform.gameObject);
+        GameObject hitParticle = MaterialPropertiesManager.GetHitParticle(hit.transform.gameObject);
 
-        Instantiate(decal, hit.point, Quaternion.identity);
-        Instantiate(hitParticle, hit.point, Quaternion.identity).transform.LookAt(transform);
+        Instantiate(decal, hit.point, Quaternion.identity).transform.LookAt(transform);
+        Instantiate(hitParticle, hit.point, Quaternion.identity);
+
+
     }
 
     protected void Reload()
@@ -164,6 +170,7 @@ public class BaseGun : MonoBehaviour
         }
         gunCanFire = true;
         reloading = false;
+        UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
         yield return null;
     }
 
@@ -178,18 +185,17 @@ public class BaseGun : MonoBehaviour
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-        source.PlayOneShot(fireSound, 0.5f);
+        source.PlayOneShot(fireSound, 0.5f * UICommunicator.audioLevel);
         FireFVX();
         BulletCasingEject();
+        UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
         
       
 
         animator.SetTrigger("Fire");
 
         currentAmmoInMagazine -= 1;
-        if (currentAmmoInMagazine <= 0)
-            gunCanFire = false;
-
+      
         print("Shooting!");
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
         Recoil();
@@ -214,6 +220,14 @@ public class BaseGun : MonoBehaviour
         catch { }
 
         DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
+       
+        if(currentAmmoInMagazine < 0)
+        {
+            if (canReload)
+                Reload();
+            else
+                 gunCanFire = false;
+        }
       
     }
 
@@ -277,7 +291,7 @@ public class BaseGun : MonoBehaviour
 
     protected void Update()
     {
-        if (reloading)
+        if (reloading || UICommunicator.gamePaused)
             return;
 
         lastTimeSinceFired -= Time.deltaTime;
@@ -288,7 +302,7 @@ public class BaseGun : MonoBehaviour
         {
             Reload();
         }
-        if (lastTimeSinceFired <= 0)
+        if (lastTimeSinceFired <= 0 && gunCanFire)
         {
             if (Input.GetMouseButton(0) && isAutomatic)
                 FireEvent();
@@ -297,18 +311,19 @@ public class BaseGun : MonoBehaviour
         }
             
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !adsForbidden)
         {
             isADSing = true;
             animator.SetBool("ADS", true);
           
         }
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1) || adsForbidden)
         {
             isADSing = false;
             animator.SetBool("ADS", false);
 
         }
+        PlayerController.playerInstance.isAdsIng = isADSing;
 
         if (Input.GetKeyDown(KeyCode.F))
             flashLight.SetActive(!flashLight.activeSelf);

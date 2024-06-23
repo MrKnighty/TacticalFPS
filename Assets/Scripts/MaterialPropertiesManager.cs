@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MaterialPropertiesManager : MonoBehaviour
 {
-    [System.Serializable] public struct MaterialProperty{public Material material; public AudioClip[] stepSounds, shotSounds; public GameObject hitParticle, decal;}
+    [System.Serializable] public struct MaterialProperty{ public Material[] material;public AudioClip[] stepSounds, shotSounds; public GameObject hitParticle, decal;}
 
 
     [SerializeField] MaterialProperty[] materialProperties;
@@ -19,7 +19,7 @@ public class MaterialPropertiesManager : MonoBehaviour
     public static AudioClip[] GetFootStepSounds(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
-     
+   
         if (i == -1 || sMaterialProperties[i].stepSounds == null)
            return sFallbackMat.stepSounds;
         return sMaterialProperties[i].stepSounds; 
@@ -27,7 +27,7 @@ public class MaterialPropertiesManager : MonoBehaviour
     public static AudioClip[] GetBulletImpactSounds(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
-        print(i + " " + sMaterialProperties[i].shotSounds == null);
+      
         if (i == -1 || sMaterialProperties[i].shotSounds == null)
            return sFallbackMat.shotSounds;
         return sMaterialProperties[i].shotSounds; 
@@ -71,12 +71,12 @@ public class MaterialPropertiesManager : MonoBehaviour
 
         foreach (MaterialProperty prop in sMaterialProperties) 
         {
-            print("loop");
-            
-                if (prop.material.name + " (Instance)" == mat.name) // for some reason the material we dynamically get has (instance) at the end of it, making this comparison impossible without this bodge, findd a better way me!
+            foreach(Material material in prop.material)
+            {
+                if (material.name + " (Instance)" == mat.name) // for some reason the material we dynamically get has (instance) at the end of it, making this comparison impossible without this bodge, findd a better way me!
                     return i;
-            
-
+            }
+       
             i++;
         }
 
