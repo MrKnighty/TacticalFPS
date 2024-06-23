@@ -22,7 +22,8 @@ public class BaseGun : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] protected AudioSource source;
-    [SerializeField] protected AudioClip fireSound;
+    [SerializeField] AudioClip fireSound;
+    [SerializeField] AudioClip reloadSound;
 
     [Header("ADS Settings")]
     [SerializeField] Animator animator;
@@ -44,7 +45,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float lightStayOnTime;
     [SerializeField] GameObject bulletCasingSpawnPoint;
     [SerializeField] GameObject bulletCasingToSpawn;
-    [SerializeField] float maxShells;
+    [SerializeField] int maxShells;
     [SerializeField] float shellEjectVelocity;
     [SerializeField] float ShellEjectVelocityRandomOffset;
     [SerializeField] GameObject flashLight;
@@ -68,11 +69,12 @@ public class BaseGun : MonoBehaviour
    
     void Start()
     {
-        shells = new GameObject[subPoints];
+        shells = new GameObject[maxShells];
 
-        for (int i = 0; i < subPoints; i++)
+        for (int i = 0; i < maxShells; i++)
         {
-            shells[i] = Instantiate(bulletCasingToSpawn, new Vector3(-1000, -1000,-1000), quaternion.identity);
+      
+            shells[i] = Instantiate(bulletCasingToSpawn, new Vector3(UnityEngine.Random.Range(-1000, -10050), UnityEngine.Random.Range(-1000, -10050), UnityEngine.Random.Range(-1000, -10050)), quaternion.identity);
         }
 
         currentAmmoInMagazine = magazineSize;
@@ -142,11 +144,14 @@ public class BaseGun : MonoBehaviour
 
     protected void Reload()
     {
+        if (currentAmmoInMagazine >= magazineSize)
+            return;
         if (totalRemainingAmmo <= 0)
         {
             canReload = false;
             return;
         }
+        source.PlayOneShot(reloadSound, UICommunicator.audioLevel);
         animator.SetTrigger("Reload");
         StartCoroutine(ReloadEvent());
     }
@@ -196,7 +201,7 @@ public class BaseGun : MonoBehaviour
 
         currentAmmoInMagazine -= 1;
       
-        print("Shooting!");
+       
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
         Recoil();
         BulletInpact(hit);
@@ -282,7 +287,7 @@ public class BaseGun : MonoBehaviour
 
     }
 
-    float ADSprogress = 0;
+  
 
     protected IEnumerator ADS()
     {
