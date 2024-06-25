@@ -81,18 +81,20 @@ public class PlayerDamageHandler : MonoBehaviour
     }
     void Death()
     {
-        if(loadSceneOnDeath)
-        {
-            SceneManager.LoadScene(0);
-            return;
-        }
-        if(DeathScreenUIGameObject)
-        {
-            DeathScreenUIGameObject.SetActive(true);
-        }
-        else
-        {
-            print("No Death Screen UI Assigned");
-        }
+        /* if(loadSceneOnDeath)
+         {
+             SceneManager.LoadScene(0);
+             return;
+         }
+         if(DeathScreenUIGameObject)
+         {
+             DeathScreenUIGameObject.SetActive(true);
+         }
+         else
+         {
+             print("No Death Screen UI Assigned");
+         }*/
+
+        UICommunicator.refrence.GameOverUI();
     }
 }

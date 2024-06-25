@@ -5,7 +5,6 @@ using UnityEngine.AI;
 using System;
 using System.Collections;
 
-using UnityEditor.TerrainTools;
 public enum AIStates {Patrol, Gaurd, Aggro, Chase} 
 public class AIBase : MonoBehaviour
 {

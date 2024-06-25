@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 385732df3e411e8409f8c2bd78d0e4b1
   - enabled: 1
+    path: Assets/Scenes/TestScenes/MainLevel.unity
+    guid: 4c932f4e78f524949b96213be1b716cd
+  - enabled: 0
     path: Assets/Scenes/TestScenes/LightingTest.unity
     guid: 43d9a86dea0b5a240837038d54ac10a9
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/EndScreen.unity
+    guid: cf94c54831d55d348a9ab24ea0e5637f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b9ed176a1dbf9ff45b47a56e806ef399, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 51b8b9f3d4707144198204d978ffe8e7, type: 3}

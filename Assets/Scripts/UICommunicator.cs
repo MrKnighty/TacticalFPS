@@ -12,7 +12,7 @@ public class UICommunicator : MonoBehaviour
     [SerializeField] GameObject pauseMenu, gameOverMenu;
     [SerializeField] Slider audioSlider;
 
-    static UICommunicator refrence;
+    public static UICommunicator refrence;
     public static bool gamePaused = false;
     public static float audioLevel = 1f;
     void Start()
