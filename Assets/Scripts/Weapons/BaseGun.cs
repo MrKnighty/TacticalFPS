@@ -5,12 +5,13 @@ using Unity.Mathematics;
 
 public class BaseGun : MonoBehaviour
 {
-    [SerializeField] protected GameObject muzzlePoint;
-    [SerializeField] protected float magazineSize; // max amount of ammo that can be in magazine
-     protected float currentAmmoInMagazine;// how many bullets ready to fire
-    [SerializeField] protected float totalRemainingAmmo; // remaining ammo not in magazine
-    [SerializeField] protected float reloadTime;
-    [SerializeField] protected float damage;
+    [SerializeField]  GameObject muzzlePoint;
+    [SerializeField]  float magazineSize; // max amount of ammo that can be in magazine
+    float currentAmmoInMagazine;// how many bullets ready to fire
+    [SerializeField]  float totalRemainingAmmo; // remaining ammo not in magazine
+    [SerializeField] float maxAmmo;
+    [SerializeField]  float reloadTime;
+    [SerializeField]  float damage;
 
     [SerializeField] GameObject mainCam;
 
@@ -18,7 +19,7 @@ public class BaseGun : MonoBehaviour
     protected bool canReload = true;
     protected bool reloading;
 
-    public bool isADSing;
+    public static bool isADSing;
 
     [Header("Audio")]
     [SerializeField] protected AudioSource source;
@@ -54,6 +55,7 @@ public class BaseGun : MonoBehaviour
 
     public static bool adsForbidden;
     public static bool playerInMidAir;
+    public static bool fireForbidden;
 
    
 
@@ -69,9 +71,11 @@ public class BaseGun : MonoBehaviour
     float shotsFired;
     float shotsHit;
 
+ 
    
     void Start()
     {
+      
         shells = new GameObject[maxShells];
 
         for (int i = 0; i < maxShells; i++)
@@ -83,6 +87,22 @@ public class BaseGun : MonoBehaviour
         currentAmmoInMagazine = magazineSize;
     }
 
+
+    public void ReceiveAmmo(float count)
+    {
+        totalRemainingAmmo += count;
+        if (totalRemainingAmmo < maxAmmo + (magazineSize - currentAmmoInMagazine)) // temporarily increase max ammo if player does not have full mag
+            totalRemainingAmmo = maxAmmo;
+        UpdateUI();
+    }
+
+
+    public void UpdateUI()
+    {
+     
+        UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
+
+    }
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
     {
@@ -180,7 +200,7 @@ public class BaseGun : MonoBehaviour
         }
         gunCanFire = true;
         reloading = false;
-        UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
+        UpdateUI();
         yield return null;
     }
 
@@ -198,7 +218,7 @@ public class BaseGun : MonoBehaviour
         source.PlayOneShot(fireSound, 0.5f * UICommunicator.audioLevel);
         FireFVX();
         BulletCasingEject();
-        UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
+        UpdateUI();
         
       
 
@@ -292,6 +312,11 @@ public class BaseGun : MonoBehaviour
 
     }
 
+    public bool ReadyToSwitch()
+    {
+        return !reloading;
+    }
+
   
 
     protected IEnumerator ADS()
@@ -301,7 +326,7 @@ public class BaseGun : MonoBehaviour
 
     protected void Update()
     {
-        if (reloading || UICommunicator.gamePaused)
+        if (reloading || UICommunicator.gamePaused || fireForbidden)
             return;
 
         lastTimeSinceFired -= Time.deltaTime;

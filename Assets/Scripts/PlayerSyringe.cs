@@ -12,9 +12,11 @@ public class PlayerSyringe : MonoBehaviour
 
     bool healing;
     [SerializeField]Animation animator;
+
+    static public PlayerSyringe instance;
     private void Start()
     {
-       
+        instance = this;
         damageHandler = GetComponent<PlayerDamageHandler>();
     }
     void Update()
@@ -47,6 +49,11 @@ public class PlayerSyringe : MonoBehaviour
         amountOfSyringes--;
         healing = false;
         
+    }
+
+    public void GainSyringe(float count)
+    {
+        amountOfSyringes += count;
     }
 
 

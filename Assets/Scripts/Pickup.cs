@@ -1,20 +1,13 @@
 using UnityEngine;
-
+public enum PickupType { SMG_AMMO, RIFLE_AMMO, HEAL_SYRINGE }
 public class Pickup : Interactable
 {
-    public enum PickupType { SMG_AMMO, RIFLE_AMMO, HEAL_SYRINGE} 
+  
     [SerializeField] PickupType type;
+    [SerializeField] int amount;
 
     protected override void TriggerEvent()
     {
-        switch (type)
-        {
-            case PickupType.SMG_AMMO:
-                break;
-            case PickupType.RIFLE_AMMO:
-                break;
-            case PickupType.HEAL_SYRINGE:
-                break;
-        }
+        GunManager.instance.GiveAmmo(type, amount);
     }
 }
