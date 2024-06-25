@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         lastPos = transform.position;
         capsualCol = GetComponent<CapsuleCollider>();
         currentHeight = height;
-
+      
     }
     void Update()
     {
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
                 zRotation += tiltSpeed * Time.deltaTime;
             }
 
-            if (Mathf.Abs(zRotation) <= 1)
+            if (Mathf.Abs(zRotation) <= 1.5)
             {
                 zRotation = 0;
             }
@@ -167,6 +167,10 @@ public class PlayerController : MonoBehaviour
         if (GroundCheck() && !justJumped)
         {
             yVelocity = 0f;
+            Vector3 pos = transform.position;
+            Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit);
+            pos.y = hit.point.y;
+            transform.position = pos;
         }
         else
         {
@@ -199,7 +203,24 @@ public class PlayerController : MonoBehaviour
 
     bool GroundCheck()
     {
-        return (Physics.Raycast(transform.position, Vector3.down, currentHeight / 2 + 0.1f));
+        bool hit = Physics.Raycast(transform.position, Vector3.down, currentHeight / 2 + 0.12f);
+        if (hit)
+            return true;
+        Vector3 offset = transform.position;
+        offset.z += controller.radius / 3; // do slightly infront of the collider
+
+        hit = Physics.Raycast(offset, Vector3.down, currentHeight / 2 + 0.15f);
+        if (hit)
+            return true;
+
+        offset.z -= controller.radius / 3; // revert the last move
+
+        offset.z -= controller.radius / 3; // do slightly behind the collider
+
+        hit = Physics.Raycast(offset, Vector3.down, currentHeight / 2 + 0.15f);
+        if (hit)
+            return true;
+        return false;
     }
     float targetMaxVelocity;
     float velocityEaser = 1;
@@ -212,7 +233,7 @@ public class PlayerController : MonoBehaviour
                 velocity.x -= velocityFallOff * Time.deltaTime;
             else if (velocity.x < 0) // inversely, if the velocity is posotive (going right) we need to lower it
                 velocity.x += velocityFallOff * Time.deltaTime;
-            if (Mathf.Abs(velocity.x) <= 0.01) // if the velocity is close to zero, snap it to zero
+            if (Mathf.Abs(velocity.x) <= 0.09) // if the velocity is close to zero, snap it to zero
                 velocity.x = 0;
         }
         // same as above but for the foward movement
@@ -223,7 +244,7 @@ public class PlayerController : MonoBehaviour
                 velocity.z -= velocityFallOff * Time.deltaTime;
             else if (velocity.z < 0)
                 velocity.z += velocityFallOff * Time.deltaTime;
-            if (Mathf.Abs(velocity.z) <= 0.01)
+            if (Mathf.Abs(velocity.z) <= 0.09)
                 velocity.z = 0;
         }
 

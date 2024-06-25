@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour
     bool interactionUiActive;
 
     int stoppedInteractingTick;
+    [SerializeField] bool askForInteract;
 
     private void Start()
     {
@@ -66,18 +67,21 @@ public class Interactable : MonoBehaviour
 
     void BaseTriggerEvents()
     {
-        
-        stoppedInteractingTick=0;
-        DisplayInteractionUI();
+        if(askForInteract)
+        {
+            stoppedInteractingTick = 0;
+            DisplayInteractionUI();
 
-        if(!Input.GetKeyDown(KeyCode.E))
-             return;
+            if (!Input.GetKeyDown(KeyCode.E))
+                return;
+
+        }
 
         TriggerEvent();
         
     }
 
-    protected void TriggerEvent()
+    protected virtual void TriggerEvent()
     {
         print("Base Trigger Event!");
     }
