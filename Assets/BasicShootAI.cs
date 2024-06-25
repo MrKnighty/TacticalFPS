@@ -53,7 +53,13 @@ public class BasicShootAI : AIBase
         }
 
     }
-
+    public override void DamageTrigger()
+    {
+        if(currentState != AIStates.Aggro)
+        {
+            SwitchStates(AIStates.Aggro);
+        }
+    }
     private void Update()
     {
         playerPoint = CanSeePlayer();

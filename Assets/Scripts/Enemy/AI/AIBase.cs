@@ -50,6 +50,10 @@ public class AIBase : MonoBehaviour
         playerDamageHandler = FindAnyObjectByType<PlayerDamageHandler>();
         playerTransform = playerDamageHandler.transform;
     }
+    virtual public void DamageTrigger()
+    {
+        
+    }
 
     virtual protected Transform FindCover()
     {

@@ -15,17 +15,22 @@ public class DamageHandler : MonoBehaviour
    
     [SerializeField] GameObject ragdollObject;
     [SerializeField] bool useRagDoll = true;
-
+    AIBase aiBase;
 
 
 
     protected void Start()
     {
+        aiBase = GetComponent<AIBase>();
         currentHealth = maxHealth;
     }
     public void Damage(float damageAmount, BodyParts bodyPart = BodyParts.Body)
     {
         currentHealth -= damageAmount * bodyPartMultiplier[(int)bodyPart] * bodyPartArmour[(int)bodyPart];
+        if (aiBase)
+        {
+            aiBase.DamageTrigger();
+        }
 
         if (currentHealth <= 0)
             DeathEvent();
