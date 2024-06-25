@@ -50,6 +50,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float shellEjectVelocity;
     [SerializeField] float ShellEjectVelocityRandomOffset;
     [SerializeField] GameObject flashLight;
+    [SerializeField] ParticleSystem muzzleFlashFX;
 
     public static bool adsForbidden;
     public static bool playerInMidAir;
@@ -112,6 +113,8 @@ public class BaseGun : MonoBehaviour
     {
         lightObject.SetActive(true);
         Invoke("StopLight", lightStayOnTime);
+        muzzleFlashFX.Play(true);
+
     }
 
     void StopLight()
