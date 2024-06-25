@@ -20,16 +20,20 @@ public class MaterialPropertiesManager : MonoBehaviour
     {
         int i = GetIndex(hitObject);
    
-        if (i == -1 || sMaterialProperties[i].stepSounds == null)
+        if (i == -1)
            return sFallbackMat.stepSounds;
+        if(sMaterialProperties[i].stepSounds.Length == 0)
+            return sFallbackMat.stepSounds;
         return sMaterialProperties[i].stepSounds; 
     }
     public static AudioClip[] GetBulletImpactSounds(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
       
-        if (i == -1 || sMaterialProperties[i].shotSounds == null)
+        if (i == -1)
            return sFallbackMat.shotSounds;
+        if (sMaterialProperties[i].shotSounds.Length == 0)
+            return sFallbackMat.shotSounds;
         return sMaterialProperties[i].shotSounds; 
     }
 
@@ -44,9 +48,11 @@ public class MaterialPropertiesManager : MonoBehaviour
     public static GameObject GetDecal(GameObject hitObject)
     {
         int i = GetIndex(hitObject);
-        if (i == -1 || sMaterialProperties[i].decal == null)
+        if (i == -1 )
             return sFallbackMat.decal;
-          
+        if(sMaterialProperties[i].decal == null)
+            return sFallbackMat.decal;
+
         return sMaterialProperties[i].decal; 
     }
 
