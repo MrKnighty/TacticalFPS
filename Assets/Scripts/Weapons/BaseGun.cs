@@ -76,7 +76,7 @@ public class BaseGun : MonoBehaviour
     float shotsFired;
     float shotsHit;
 
- 
+    public static bool holdADS = true;
    
     void Start()
     {
@@ -361,19 +361,30 @@ public class BaseGun : MonoBehaviour
                 FireEvent();
         }
             
-
-        if (Input.GetMouseButtonDown(1) && !adsForbidden)
+        if(!holdADS)
         {
-            isADSing = true;
-            animator.SetBool("ADS", true);
-          
-        }
-        else if (Input.GetMouseButtonUp(1) || adsForbidden)
-        {
-            isADSing = false;
-            animator.SetBool("ADS", false);
+            if (Input.GetMouseButtonDown(1) && !adsForbidden)
+            {
+                isADSing = true;
+                animator.SetBool("ADS", true);
 
+            }
+            else if (Input.GetMouseButtonUp(1) || adsForbidden)
+            {
+                isADSing = false;
+                animator.SetBool("ADS", false);
+
+            }
         }
+        else
+        {
+            if(Input.GetMouseButtonDown(1) && !adsForbidden)
+            {
+                isADSing = !isADSing;
+                animator.SetBool("ADS", isADSing);
+            }
+        }
+        
         PlayerController.playerInstance.isAdsIng = isADSing;
 
         if (Input.GetKeyDown(KeyCode.F))
