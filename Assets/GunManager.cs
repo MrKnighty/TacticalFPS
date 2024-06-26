@@ -42,6 +42,7 @@ public class GunManager : MonoBehaviour
             return;
         if (BaseGun.isADSing)
             return;
+
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (activeWeapon == 0)
@@ -49,6 +50,8 @@ public class GunManager : MonoBehaviour
 
             if (!guns[0].ReadyToSwitch())
                 return;
+
+            guns[0].StopReloading();
 
             animator.enabled = true;
             BaseGun.fireForbidden = true;
@@ -67,6 +70,8 @@ public class GunManager : MonoBehaviour
 
             if (!guns[1].ReadyToSwitch())
                 return;
+
+            guns[1].StopReloading();
             animator.enabled = true;
             BaseGun.fireForbidden = true;
             animator.SetTrigger("FromSmg");

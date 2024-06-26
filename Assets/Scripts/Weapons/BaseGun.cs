@@ -185,6 +185,11 @@ public class BaseGun : MonoBehaviour
         animator.SetTrigger("Reload");
         StartCoroutine(ReloadEvent());
     }
+    public void StopReloading()
+    {
+        StopAllCoroutines();
+        reloading = false;
+    }
 
     protected IEnumerator ReloadEvent()
     {
