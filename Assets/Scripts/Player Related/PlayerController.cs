@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
     float currentHeight;
 
 
+
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
         lastPos = transform.position;
         capsualCol = GetComponent<CapsuleCollider>();
         currentHeight = height;
+       
       
     }
     void Update()
@@ -149,7 +152,14 @@ public class PlayerController : MonoBehaviour
                 zRotation += tiltSpeed * Time.deltaTime;
             }
 
-            if (Mathf.Abs(zRotation) <= 1.5)
+            float frameRateOffset = 0;
+
+            if (Time.deltaTime >= 0.04)
+                frameRateOffset = 1;
+            else if (Time.deltaTime >= 0.07)
+                frameRateOffset = 2;
+
+            if (Mathf.Abs(zRotation) <= 1f + Time.deltaTime + frameRateOffset)
             {
                 zRotation = 0;
             }
