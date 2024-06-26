@@ -16,6 +16,11 @@ public class GunManager : MonoBehaviour
         animator = GetComponent<Animator>();
         instance = this;
 
+        //reset static gun values
+        BaseGun.isADSing = false;
+        BaseGun.playerInMidAir = false;
+        BaseGun.fireForbidden = false;
+
         StartCoroutine(PrepairWeapons());
     }
 

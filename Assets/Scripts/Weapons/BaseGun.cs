@@ -13,6 +13,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField]  float reloadTime;
     [SerializeField]  float damage;
 
+
     [SerializeField] GameObject mainCam;
 
     protected bool gunCanFire = true;
@@ -37,6 +38,8 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float recoilMultiplyer; // fast way to increase recoil without having to rewrite numbers
     [SerializeField] float notADSingRecoilMultiplyer; // this is a addative recoil, not a adtional multiplyer
     [SerializeField] float midAirRecoilMultiplyer;
+    [SerializeField] bool randomHipFire;
+    [SerializeField] float randomHitRadius;
 
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
@@ -56,6 +59,8 @@ public class BaseGun : MonoBehaviour
     public static bool adsForbidden;
     public static bool playerInMidAir;
     public static bool fireForbidden;
+
+    
 
    
 
@@ -218,16 +223,21 @@ public class BaseGun : MonoBehaviour
         source.PlayOneShot(fireSound, 0.5f * UICommunicator.audioLevel);
         FireFVX();
         BulletCasingEject();
-        UpdateUI();
+      
         
       
 
         animator.SetTrigger("Fire");
 
         currentAmmoInMagazine -= 1;
-      
-       
-        RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward);
+        Vector3 offset = Vector3.zero;
+        if (randomHipFire && !isADSing)
+        {
+            offset.x = UnityEngine.Random.Range(-randomHitRadius, randomHitRadius);
+            offset.y = UnityEngine.Random.Range(-randomHitRadius, randomHitRadius);
+        }
+
+        RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward + offset);
         Recoil();
         BulletInpact(hit);
 
@@ -251,14 +261,15 @@ public class BaseGun : MonoBehaviour
 
         DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
        
-        if(currentAmmoInMagazine < 0)
+        if(currentAmmoInMagazine <= 0)
         {
             if (canReload)
                 Reload();
             else
                  gunCanFire = false;
         }
-      
+
+        UpdateUI();
     }
 
 

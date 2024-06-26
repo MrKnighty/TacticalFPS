@@ -835,7 +835,8 @@ PlayerSettings:
     Standalone: 0
   il2cppCompilerConfiguration:
     Standalone: 2
-  il2cppCodeGeneration: {}
+  il2cppCodeGeneration:
+    Standalone: 1
   il2cppStacktraceInformation:
     Standalone: 0
   managedStrippingLevel:
@@ -847,7 +848,7 @@ PlayerSettings:
     PS4: 1
     PS5: 1
     QNX: 1
-    Standalone: 3
+    Standalone: 0
     WebGL: 1
     Windows Store Apps: 1
     XboxOne: 1
@@ -939,7 +940,7 @@ PlayerSettings:
   hmiCpuConfiguration: 
   hmiLogStartupTiming: 0
   qnxGraphicConfPath: 
-  apiCompatibilityLevel: 3
+  apiCompatibilityLevel: 6
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0

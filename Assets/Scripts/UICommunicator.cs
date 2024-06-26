@@ -126,7 +126,7 @@ public class UICommunicator : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             element.rectTransform.position = Vector3.Lerp(startMessageSpot, endMessageSpot, currentTime / messageTime);
-            print(currentTime / messageTime);
+    
            
                 textColor.a = Mathf.Lerp(1,0, currentTime / messageTime);
                 alphaLerp += Time.deltaTime; 

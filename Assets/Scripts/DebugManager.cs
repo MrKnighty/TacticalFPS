@@ -14,6 +14,9 @@ public class DebugManager : MonoBehaviour
   
     static GameObject canvas;
     static int positionOffset = -10;
+
+    float fpsUpdateTime = 0.05f;
+    float timer;
     
 
     private void Start()
@@ -25,25 +28,44 @@ public class DebugManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F3))
             DebugMode = !DebugMode;
+
+        if(Input.GetKeyDown(KeyCode.F4))
+        {
+            Application.targetFrameRate = 999;
+            UICommunicator.refrence.PopupText("FPS UNCAPPED", 2);
+        }
+        timer -= Time.deltaTime;
+        if(timer <=0)
+        {
+            timer = fpsUpdateTime;
+            DisplayInfo("FPS",((int)(1.0f / Time.deltaTime)).ToString(), true);
+        }
        
             
     }
-    public static void DisplayInfo(string identifyer, string message)
+
+ 
+    public static void DisplayInfo(string identifyer, string message, bool ignoreDebugMode)
     {
-        if (!DebugMode)
-            return;
-        if(debugUI.ContainsKey(identifyer))
+        if (debugUI.ContainsKey(identifyer))
         {
             debugUI[identifyer].text = message;
         }
         else
         {
-            GameObject ui =  Instantiate(debugUIGO);
+            GameObject ui = Instantiate(debugUIGO);
             TextMeshProUGUI tmpro = ui.GetComponent<TextMeshProUGUI>();
-            ui.transform.SetParent(  canvas.transform,false);
+            ui.transform.SetParent(canvas.transform, false);
             debugUI.Add(identifyer, tmpro);
             tmpro.rectTransform.localPosition = new Vector3(10, positionOffset, 0);
             positionOffset -= 40;
         }
+    }
+    public static void DisplayInfo(string identifyer, string message)
+    {
+        if (!DebugMode)
+            return;
+
+        DisplayInfo(identifyer, message, true);
     }
 }
