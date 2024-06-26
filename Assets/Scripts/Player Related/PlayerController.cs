@@ -204,18 +204,9 @@ public class PlayerController : MonoBehaviour
             }
             else if (zRotation < 0)
             {
-               
                 zRotation += tiltSpeed * Time.deltaTime;
             }
         }
-
-       
-
- 
-
-    
-        
-
 
         if (canterDirL && zRotation <= 0)
         {
@@ -225,7 +216,8 @@ public class PlayerController : MonoBehaviour
         {
             zRotation = 0;
         }
-      
+        if (zRotation == 0)
+            return;
 
         zRotation = Mathf.Clamp(zRotation, -tiltAngle, tiltAngle);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, zRotation);
