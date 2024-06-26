@@ -19,7 +19,8 @@ public class PlayerDamageHandler : MonoBehaviour
 
     [SerializeField]Image damageImage;
     [SerializeField] float damageImageFadeSpeed;
-
+    [SerializeField] bool godMode = false;
+    [SerializeField] AudioClip godModeAudioClip;
     void Start()
     {
         try
@@ -35,7 +36,20 @@ public class PlayerDamageHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            godMode = !godMode;
+            if (godMode)
+            {
+                audioSource.PlayOneShot(godModeAudioClip);
+                UICommunicator.refrence.PopupText("Phuong Mode Actiavted", 2f);
+            }
+            else
+            {
+                UICommunicator.refrence.PopupText("Phuong Mode Deactiavted", 2f);
+            }
 
+        }
     }
     public void Heal(float amount)
     {
@@ -47,6 +61,8 @@ public class PlayerDamageHandler : MonoBehaviour
     }
     public void Damage(float amount)
     {
+        if (godMode)
+            return;
         ChangeHealth(-amount);
         if (audioSource)
             try {audioSource.PlayOneShot(healAudioClips[UnityEngine.Random.Range(0, hurtAudioClips.Length)]); }

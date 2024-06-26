@@ -62,6 +62,11 @@ public class BasicShootAI : AIBase
     }
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Destroy(gameObject);
+            return;
+        }
         playerPoint = CanSeePlayer();
         if(playerPoint)
         {
