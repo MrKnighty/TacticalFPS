@@ -45,10 +45,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float height, crouchHeight;
     [SerializeField] float crouchSpeed;
     [SerializeField] float crouchMoveSpeedMultiplyer;
-    
+
 
     float currentHeight;
-
+    public static bool toggleCanter = true;
 
 
 
@@ -59,8 +59,8 @@ public class PlayerController : MonoBehaviour
         lastPos = transform.position;
         capsualCol = GetComponent<CapsuleCollider>();
         currentHeight = height;
-       
-      
+
+
     }
     void Update()
     {
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         DebugManager.DisplayInfo("PGrounded", "Grounded: " + GroundCheck());
         DebugManager.DisplayInfo("YVel", "Y Velocity: " + yVelocity.ToString());
         DebugManager.DisplayInfo("PlayerVelocity", "Player Vel:" + velocity.ToString());
-       
+
 
 
         movementVector = Vector3.zero;
@@ -90,15 +90,15 @@ public class PlayerController : MonoBehaviour
         TacticalTilt();
         Crouch();
 
-     
-        
+
+
 
 
     }
 
     void Crouch()
     {
-        if(Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             currentHeight -= crouchSpeed * Time.deltaTime;
             if (currentHeight <= crouchHeight)
@@ -107,10 +107,10 @@ public class PlayerController : MonoBehaviour
             controller.height = currentHeight;
             capsualCol.height = currentHeight;
         }
-        else if(currentHeight < height)
+        else if (currentHeight < height)
         {
             currentHeight += crouchSpeed * Time.deltaTime;
-            if(currentHeight >= height)
+            if (currentHeight >= height)
                 currentHeight = height;
             controller.height = currentHeight;
             capsualCol.height = currentHeight;
@@ -123,6 +123,9 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    bool isCantering;
+    bool canterLeft;
+    bool canterDirL;
 
     void TacticalTilt()
     {
@@ -132,38 +135,97 @@ public class PlayerController : MonoBehaviour
         {
             zRotation -= 360;
         }
+        DebugManager.DisplayInfo("ISCantering", "Is Cantering" + isCantering.ToString());
 
-        if (Input.GetKey(KeyCode.E))
+        if (toggleCanter)
         {
-            zRotation -= tiltSpeed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.Q))
-        {
-            zRotation += tiltSpeed * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.E))
+            {   
+                isCantering = !isCantering;
+                canterLeft = true;
+    
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                isCantering = !isCantering;
+                canterLeft = false;
+            }
+           
+            if(isCantering)
+            {
+                if(canterLeft)
+                    zRotation -= tiltSpeed * Time.deltaTime;
+                else
+                    zRotation += tiltSpeed * Time.deltaTime;
+
+               
+                if (zRotation > 0)
+                    canterDirL = true;
+                else
+                    canterDirL = false;
+            }
         }
         else
         {
+            if (Input.GetKey(KeyCode.E))
+            {
+                zRotation -= tiltSpeed * Time.deltaTime;
+                isCantering = true;
+                if (zRotation > 0)
+                    canterDirL = true;
+                else
+                    canterDirL = false;
+
+            }
+            else if (Input.GetKey(KeyCode.Q))
+            {
+                zRotation += tiltSpeed * Time.deltaTime;
+                isCantering = true;
+                if (zRotation > 0)
+                    canterDirL = true;
+                else
+                    canterDirL = false;
+
+            }
+            else
+            {
+                isCantering = false;
+            }
+        }
+        
+
+        if(!isCantering)
+        {
+            print("oi");
             if (zRotation > 0)
             {
+                
                 zRotation -= tiltSpeed * Time.deltaTime;
             }
             else if (zRotation < 0)
             {
+               
                 zRotation += tiltSpeed * Time.deltaTime;
             }
-
-            float frameRateOffset = 0;
-
-            if (Time.deltaTime >= 0.04)
-                frameRateOffset = 1;
-            else if (Time.deltaTime >= 0.07)
-                frameRateOffset = 2;
-
-            if (Mathf.Abs(zRotation) <= 1f + Time.deltaTime + frameRateOffset)
-            {
-                zRotation = 0;
-            }
         }
+
+       
+
+ 
+
+    
+        
+
+
+        if (canterDirL && zRotation <= 0)
+        {
+            zRotation = 0;
+        }
+        else if (!canterDirL && zRotation >= 0)
+        {
+            zRotation = 0;
+        }
+      
 
         zRotation = Mathf.Clamp(zRotation, -tiltAngle, tiltAngle);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, zRotation);
@@ -171,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
     void VerticalMovement()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck() )
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
             StartCoroutine(Jump());
 
         if (GroundCheck() && !justJumped)
@@ -268,12 +330,12 @@ public class PlayerController : MonoBehaviour
         if (!GroundCheck())
             airMultiplyer = airMovementPunishmentMultiplyer;
 
-        
+
         if (!isAdsIng)
         {
             targetMaxVelocity = 1;
             velocityEaser += Time.deltaTime;
-        }  
+        }
         else
         {
             targetMaxVelocity = adsMoveSpeedPunishment;
@@ -303,20 +365,20 @@ public class PlayerController : MonoBehaviour
     void DoMovement()
     {
         Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
-       
+
 
         controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * Time.deltaTime);
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
-        if(lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
+        if (lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
         {
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.09f))
             {
                 AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
                 AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f);
                 lastFootStepDistance = 0;
-            } 
+            }
         }
-          
+
         lastPos = transform.position;
 
     }
@@ -330,7 +392,7 @@ public class PlayerController : MonoBehaviour
         float timer = jumpEffectTime;
         while (timer > 0)
         {
-           
+
             timer -= Time.deltaTime;
             if (timer >= 0.05)
                 justJumped = false;
@@ -353,9 +415,9 @@ public class PlayerController : MonoBehaviour
         cameraRotateVelocity.x += mouseY;
         cameraRotateVelocity.y -= mouseX;
 
-        
-       
-     
+
+
+
     }
 
     public void AddCameraRotation(Vector2 vector, float duration, float magnitude)
@@ -379,6 +441,6 @@ public class PlayerController : MonoBehaviour
     {
         return 1 - (1 - x) * (1 - x);
     }
-    
+
 
 }
