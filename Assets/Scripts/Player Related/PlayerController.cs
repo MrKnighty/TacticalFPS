@@ -88,8 +88,8 @@ public class PlayerController : MonoBehaviour
 
         MoveCameraFromVelocity();
         TacticalTilt();
-        Crouch();
 
+        Crouch();
 
 
 
@@ -125,11 +125,13 @@ public class PlayerController : MonoBehaviour
     }
     bool isCantering;
     bool canterLeft;
+    bool canterRight;
     bool canterDirL;
 
     void TacticalTilt()
     {
-        float zRotation = transform.localEulerAngles.z;
+
+        float zRotation = Camera.main.transform.localEulerAngles.z;
 
         if (zRotation > 180)
         {
@@ -140,25 +142,25 @@ public class PlayerController : MonoBehaviour
         if (toggleCanter)
         {
             if (Input.GetKeyDown(KeyCode.E))
-            {   
+            {
                 isCantering = !isCantering;
                 canterLeft = true;
-    
+
             }
             else if (Input.GetKeyDown(KeyCode.Q))
             {
                 isCantering = !isCantering;
                 canterLeft = false;
             }
-           
-            if(isCantering)
+
+            if (isCantering)
             {
-                if(canterLeft)
+                if (canterLeft)
                     zRotation -= tiltSpeed * Time.deltaTime;
                 else
                     zRotation += tiltSpeed * Time.deltaTime;
 
-               
+
                 if (zRotation > 0)
                     canterDirL = true;
                 else
@@ -192,14 +194,14 @@ public class PlayerController : MonoBehaviour
                 isCantering = false;
             }
         }
-        
 
-        if(!isCantering)
+
+        if (!isCantering)
         {
             print("oi");
             if (zRotation > 0)
             {
-                
+
                 zRotation -= tiltSpeed * Time.deltaTime;
             }
             else if (zRotation < 0)
@@ -220,7 +222,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         zRotation = Mathf.Clamp(zRotation, -tiltAngle, tiltAngle);
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, zRotation);
+        Camera.main.transform.localEulerAngles = new Vector3(Camera.main.transform.localEulerAngles.x, Camera.main.transform.localEulerAngles.y, zRotation);
     }
 
     void VerticalMovement()
