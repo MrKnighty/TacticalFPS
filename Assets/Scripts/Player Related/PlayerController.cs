@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
 
     float currentHeight;
-    public static bool toggleCanter = true;
+ 
 
 
 
@@ -95,10 +95,29 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
+    bool crouching = false;
     void Crouch()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if(GameControllsManager.toggleCrouch)
+        {
+            if(Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                crouching = !crouching;
+            }
+        }
+        else
+        {
+            if(Input.GetKey(KeyCode.LeftControl))
+            {
+                crouching = true;
+            }
+            if(Input.GetKeyUp(KeyCode.LeftControl))
+            {
+                crouching = false;
+            }
+        }
+
+        if (crouching)
         {
             currentHeight -= crouchSpeed * Time.deltaTime;
             if (currentHeight <= crouchHeight)
@@ -139,7 +158,7 @@ public class PlayerController : MonoBehaviour
         }
         DebugManager.DisplayInfo("ISCantering", "Is Cantering" + isCantering.ToString());
 
-        if (toggleCanter)
+        if (GameControllsManager.toggleCanter)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -368,7 +387,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.09f))
             {
                 AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
-                AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f * GameControllsManager.audioVolume);
                 lastFootStepDistance = 0;
             }
         }
@@ -400,8 +419,8 @@ public class PlayerController : MonoBehaviour
 
     void CameraRotation()
     {
-        float mouseX = -Input.GetAxis("Mouse X") * mouseSencitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSencitivity * Time.deltaTime;
+        float mouseX = -Input.GetAxis("Mouse X") * mouseSencitivity * GameControllsManager.mouseSense * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSencitivity * GameControllsManager.mouseSense * Time.deltaTime;
 
         if (mouseX == 0 && mouseY == 0)
             return;

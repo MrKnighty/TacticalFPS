@@ -129,7 +129,7 @@ public class BaseGun : MonoBehaviour
     protected void FireAudio(RaycastHit hit)
     {
         AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
-        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 1.5f * UICommunicator.audioLevel);
+        AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 1.5f * GameControllsManager.audioVolume);
   
       
     }
@@ -181,7 +181,7 @@ public class BaseGun : MonoBehaviour
             canReload = false;
             return;
         }
-        source.PlayOneShot(reloadSound, UICommunicator.audioLevel);
+        source.PlayOneShot(reloadSound, GameControllsManager.audioVolume);
         animator.SetTrigger("Reload");
         StartCoroutine(ReloadEvent());
     }
@@ -225,7 +225,7 @@ public class BaseGun : MonoBehaviour
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-        source.PlayOneShot(fireSound, 0.5f * UICommunicator.audioLevel);
+        source.PlayOneShot(fireSound, 0.5f * GameControllsManager.audioVolume);
         FireFVX();
         BulletCasingEject();
       
@@ -361,7 +361,7 @@ public class BaseGun : MonoBehaviour
                 FireEvent();
         }
             
-        if(!holdADS)
+        if(!GameControllsManager.toggleADS)
         {
             if (Input.GetMouseButtonDown(1) && !adsForbidden)
             {

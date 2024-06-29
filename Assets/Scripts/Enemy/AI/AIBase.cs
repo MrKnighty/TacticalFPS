@@ -145,7 +145,7 @@ public class AIBase : MonoBehaviour
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(aIHeadPoint.position, direction, out hit))
         {
-            audioSource.PlayOneShot(shootSFX, 1 * UICommunicator.audioLevel);
+            audioSource.PlayOneShot(shootSFX, 1 * GameControllsManager.audioVolume);
             if (hit.transform.tag == "Player")
             {
                 return true;

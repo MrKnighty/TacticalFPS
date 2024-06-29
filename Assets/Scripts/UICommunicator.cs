@@ -10,12 +10,12 @@ public class UICommunicator : MonoBehaviour
     static Dictionary<string, TextMeshProUGUI> ui;
     [SerializeField] TextMeshProUGUI[] uiElemets;
 
-    [SerializeField] GameObject pauseMenu, gameOverMenu;
-    [SerializeField] Slider audioSlider;
+    [SerializeField] GameObject pauseMenu, gameOverMenu, debugControlls;
+    
+
 
     public static UICommunicator refrence;
     public static bool gamePaused = false;
-    public static float audioLevel = 1f;
 
     [SerializeField] GameObject popupTextObject;
     [SerializeField] Vector2 startMessageSpot, endMessageSpot;
@@ -76,12 +76,16 @@ public class UICommunicator : MonoBehaviour
         {
             SwitchToUI(false);
             pauseMenu.SetActive(false);
-       
+            debugControlls.SetActive(false);
+            PlayerPrefs.Save();
+
         }
         else
         {
             SwitchToUI(true);
             pauseMenu.SetActive(true);
+            if(DebugManager.DebugMode)
+            debugControlls.SetActive(true);
         
         }
     }
@@ -94,17 +98,15 @@ public class UICommunicator : MonoBehaviour
     public void MainMenu()
     {
         SwitchToUI(true);
+        PlayerPrefs.Save();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
-    public void UpdateAudio()
-    {
-        audioLevel = audioSlider.value;
-     
-    }
+
     public void RestartLevel()
     {
         SwitchToUI(false);
+        PlayerPrefs.Save();
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
     public void PopupText(string message, float messageTime)

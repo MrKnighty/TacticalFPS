@@ -8,6 +8,6 @@ public class BulletCasingNoise : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
      
-       source.PlayOneShot(inpactSounds[Random.Range(0, inpactSounds.Length - 1)],UICommunicator.audioLevel * 0.7f);
+       source.PlayOneShot(inpactSounds[Random.Range(0, inpactSounds.Length - 1)], GameControllsManager.audioVolume * 0.7f);
     }
 }
