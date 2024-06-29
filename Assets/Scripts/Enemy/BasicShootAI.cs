@@ -12,6 +12,7 @@ public class BasicShootAI : AIBase
     [Header("Chase")]
     [SerializeField] float searchIterations = 5;
     [SerializeField] float searchRange = 5;
+    [SerializeField] ParticleSystem muzzleFX;
     protected override void Start()
     {
         base.Start();
@@ -148,6 +149,8 @@ public class BasicShootAI : AIBase
             {
                 playerDamageHandler.Damage(damage);
             }
+            if (muzzleFX)
+                muzzleFX.Play(true);
             ammo--;
             yield return Timer(attackSpeed);
         }

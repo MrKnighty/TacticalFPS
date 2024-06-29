@@ -86,7 +86,8 @@ public class BaseGun : MonoBehaviour
         for (int i = 0; i < maxShells; i++)
         {
       
-            shells[i] = Instantiate(bulletCasingToSpawn, new Vector3(UnityEngine.Random.Range(-1000, -10050), UnityEngine.Random.Range(-1000, -10050), UnityEngine.Random.Range(-1000, -10050)), quaternion.identity);
+            shells[i] = Instantiate(bulletCasingToSpawn, Vector3.zero, quaternion.identity);
+            shells[i].SetActive(false);
         }
 
         currentAmmoInMagazine = magazineSize;
@@ -151,9 +152,11 @@ public class BaseGun : MonoBehaviour
     {
         GameObject shell = shells[currentShellIndex];
         shell.transform.position = bulletCasingSpawnPoint.transform.position;
+        shell.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         shell.GetComponent<Rigidbody>().linearVelocity = bulletCasingSpawnPoint.transform.forward * (shellEjectVelocity + UnityEngine.Random.Range(-ShellEjectVelocityRandomOffset, ShellEjectVelocityRandomOffset));
-       
+        shell.SetActive(true);
         currentShellIndex ++;
+        
         if(currentShellIndex >= shells.Length -1)
            currentShellIndex = 0;
 
