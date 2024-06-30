@@ -4,52 +4,49 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Walking Running Settings")]
     [SerializeField] float moveSpeed;
     [SerializeField] float accelerationSpeed;
     [SerializeField] float velocityFallOff;
-
+    [SerializeField] float adsMoveSpeedPunishment;
+    [SerializeField] float sprintingSpeedMultiplyer;
+    [SerializeField] CharacterController controller;
+    [Header("Jumping")]
     [SerializeField] float jumpVel;
     [SerializeField] float jumpEffectTime;
     [SerializeField] float gravity;
     [SerializeField] float airMovementPunishmentMultiplyer;
-    [SerializeField] float adsMoveSpeedPunishment;
 
+    [Header("Camera")]
     [SerializeField] GameObject cameraGameObject;
 
     [SerializeField] float mouseSencitivity;
-
-    [SerializeField] CharacterController controller;
-    Vector3 velocity;
-
-    Vector3 movementVector;
-
-    Vector2 cameraRotateVelocity;
-
-    float yVelocity;
-
-    static public PlayerController playerInstance;
-
-    bool justJumped = false;
-
+    [Header("Audio")]
     [SerializeField] float distanceBetweenFootstep;
-    Vector3 lastPos;
-    float lastFootStepDistance;
-
+    [Header("Canter")]
     [SerializeField] float tiltAngle;
     [SerializeField] float tiltSpeed;
-    bool tiltingLeft;
-    bool tiltingRight;
-    [HideInInspector] public bool isAdsIng;
-
-    CapsuleCollider capsualCol;
+    [Header("Crouching")]
     [SerializeField] float height, crouchHeight;
     [SerializeField] float crouchSpeed;
     [SerializeField] float crouchMoveSpeedMultiplyer;
 
+    Vector3 velocity;
+    Vector3 movementVector;
+    Vector2 cameraRotateVelocity;
+    float yVelocity;
+    static public PlayerController playerInstance;
+    bool justJumped = false;
+    Vector3 lastPos;
+    float lastFootStepDistance;
+    [HideInInspector] public bool isAdsIng;
+    CapsuleCollider capsualCol;
+
+
 
     float currentHeight;
- 
 
+    public static bool isSprinting;
 
 
     private void Start()
@@ -79,39 +76,63 @@ public class PlayerController : MonoBehaviour
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.z = Input.GetAxisRaw("Vertical");
 
-
-        CaculateVelocity(); // caculate velocity, and only move if the player has any
+        TrySprint();
+        CaculateVelocity(); // caculate velocity
         DoMovement(); // caculate movement
 
-        if (Time.deltaTime <= 0.2f) // dirty fix to stop camera from snapping down during scene start
-            CameraRotation();
-
-        MoveCameraFromVelocity();
+        CameraRotation();
         TacticalTilt();
+        MoveCameraFromVelocity();
+       
 
         Crouch();
 
-
-
-
     }
     bool crouching = false;
+    float currentSprintMultiplyer;
+    void TrySprint()
+    {
+        DebugManager.DisplayInfo("sprint", "Sprint: " + currentSprintMultiplyer);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isSprinting = true;
+            GetComponent<GunManager>().CancelADS();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isSprinting = false;
+        }
+
+        if (isSprinting)
+        {
+            currentSprintMultiplyer += accelerationSpeed * Time.deltaTime;
+            if (currentSprintMultiplyer >= sprintingSpeedMultiplyer)
+                currentSprintMultiplyer = sprintingSpeedMultiplyer;
+        }
+        else
+        {
+            currentSprintMultiplyer -= velocityFallOff * Time.deltaTime;
+            if (currentSprintMultiplyer <= 1)
+                currentSprintMultiplyer = 1;
+        }
+
+    }
     void Crouch()
     {
-        if(GameControllsManager.toggleCrouch)
+        if (GameControllsManager.toggleCrouch)
         {
-            if(Input.GetKeyDown(KeyCode.LeftControl))
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 crouching = !crouching;
             }
         }
         else
         {
-            if(Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftControl))
             {
                 crouching = true;
             }
-            if(Input.GetKeyUp(KeyCode.LeftControl))
+            if (Input.GetKeyUp(KeyCode.LeftControl))
             {
                 crouching = false;
             }
@@ -144,13 +165,12 @@ public class PlayerController : MonoBehaviour
     }
     bool isCantering;
     bool canterLeft;
-    bool canterRight;
     bool canterDirL;
 
     void TacticalTilt()
     {
 
-        float zRotation = Camera.main.transform.localEulerAngles.z;
+        float zRotation = transform.localEulerAngles.z;
 
         if (zRotation > 180)
         {
@@ -213,11 +233,9 @@ public class PlayerController : MonoBehaviour
                 isCantering = false;
             }
         }
-
-
         if (!isCantering)
         {
-            print("oi");
+
             if (zRotation > 0)
             {
 
@@ -241,7 +259,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         zRotation = Mathf.Clamp(zRotation, -tiltAngle, tiltAngle);
-        Camera.main.transform.localEulerAngles = new Vector3(Camera.main.transform.localEulerAngles.x, Camera.main.transform.localEulerAngles.y, zRotation);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y, zRotation);
     }
 
     void VerticalMovement()
@@ -268,19 +286,23 @@ public class PlayerController : MonoBehaviour
 
     void MoveCameraFromVelocity()
     {
-
         if (cameraRotateVelocity != Vector2.zero)
         {
-            transform.Rotate(Vector3.up * cameraRotateVelocity.y);
+         
+            float newRotationY = transform.localEulerAngles.y + cameraRotateVelocity.y;
 
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, newRotationY, transform.localEulerAngles.z);
+
+         
             Vector3 cameraRotation = cameraGameObject.transform.localEulerAngles;
 
-
+        
             float desiredXRotation = cameraRotation.x - cameraRotateVelocity.x;
             if (desiredXRotation > 180f) desiredXRotation -= 360f;
             if (desiredXRotation < -180f) desiredXRotation += 360f;
 
-            cameraGameObject.transform.localEulerAngles = new Vector3(Mathf.Clamp(desiredXRotation, -45, 45), cameraRotation.y, cameraRotation.z);
+         
+            cameraGameObject.transform.localEulerAngles = new Vector3(Mathf.Clamp(desiredXRotation, -45, 45), cameraRotation.y, cameraRotation.z );
 
             cameraRotateVelocity = Vector2.zero;
         }
@@ -357,7 +379,7 @@ public class PlayerController : MonoBehaviour
         velocityEaser = Mathf.Clamp(velocityEaser, targetMaxVelocity, 1);
 
         velocity += (movementVector * airMultiplyer) * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
-        velocity = Vector3.ClampMagnitude(velocity, velocityEaser);
+        velocity = Vector3.ClampMagnitude(velocity, velocityEaser) ;
 
 
         //ensure that the velocity does not go over 1
@@ -377,10 +399,16 @@ public class PlayerController : MonoBehaviour
 
     void DoMovement()
     {
-        Vector3 moveVector = transform.right * velocity.x + transform.forward * velocity.z;
+        Vector3 playerRot = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
+
+        Quaternion playerQaut = Quaternion.Euler(playerRot);
+        
+        Vector3 newFoward = playerQaut * Vector3.forward;
+
+        Vector3 moveVector = transform.right * velocity.x + newFoward * velocity.z;
 
 
-        controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * Time.deltaTime);
+        controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * currentSprintMultiplyer * Time.deltaTime);
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
         if (lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
         {
@@ -427,8 +455,6 @@ public class PlayerController : MonoBehaviour
 
         cameraRotateVelocity.x += mouseY;
         cameraRotateVelocity.y -= mouseX;
-
-
 
 
     }

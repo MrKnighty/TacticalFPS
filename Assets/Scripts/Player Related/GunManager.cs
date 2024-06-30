@@ -35,13 +35,16 @@ public class GunManager : MonoBehaviour
             gun.gameObject.SetActive(false);
         }
     }
+    public void CancelADS()
+    {
+        guns[activeWeapon].CancelADS();
+    }
 
     private void Update()
     {
         if (switchingWeapon)
             return;
-        if (BaseGun.isADSing)
-            return;
+       
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -61,6 +64,8 @@ public class GunManager : MonoBehaviour
             switchingWeapon = true;
             activeWeapon = 0;
 
+            CancelADS();
+
   
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
@@ -79,7 +84,8 @@ public class GunManager : MonoBehaviour
             switchingWeapon = true;
             lastGunIndex = activeWeapon;
             activeWeapon = 1;
-        
+
+            CancelADS();
         }
     }
   

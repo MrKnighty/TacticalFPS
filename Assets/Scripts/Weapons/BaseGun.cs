@@ -40,6 +40,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float midAirRecoilMultiplyer;
     [SerializeField] bool randomHipFire;
     [SerializeField] float randomHitRadius;
+    [SerializeField] float sprintingRecoilModifyer;
 
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
@@ -60,9 +61,6 @@ public class BaseGun : MonoBehaviour
     public static bool playerInMidAir;
     public static bool fireForbidden;
 
-    
-
-   
 
     GameObject[] shells;
     int currentShellIndex;
@@ -94,6 +92,12 @@ public class BaseGun : MonoBehaviour
     }
 
 
+    public void CancelADS()
+    {
+        isADSing = false;
+        animator.SetBool("ADS", false);
+    }
+
     public void ReceiveAmmo(float count)
     {
         totalRemainingAmmo += count;
@@ -105,9 +109,7 @@ public class BaseGun : MonoBehaviour
 
     public void UpdateUI()
     {
-     
         UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
-
     }
    
     protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
@@ -152,16 +154,16 @@ public class BaseGun : MonoBehaviour
     {
         GameObject shell = shells[currentShellIndex];
         shell.transform.position = bulletCasingSpawnPoint.transform.position;
+        shell.transform.rotation = bulletCasingSpawnPoint.transform.rotation;
         shell.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         shell.GetComponent<Rigidbody>().linearVelocity = bulletCasingSpawnPoint.transform.forward * (shellEjectVelocity + UnityEngine.Random.Range(-ShellEjectVelocityRandomOffset, ShellEjectVelocityRandomOffset));
         shell.SetActive(true);
+    //    shell.transform.parent = this.transform;
         currentShellIndex ++;
         
         if(currentShellIndex >= shells.Length -1)
            currentShellIndex = 0;
 
-        if(Input.GetKey(KeyCode.LeftShift))
-            Debug.Break();
     }
 
     protected void DecalSpawn(RaycastHit hit)
@@ -171,8 +173,6 @@ public class BaseGun : MonoBehaviour
 
         Instantiate(decal, hit.point, Quaternion.identity).transform.LookAt(transform);
         Instantiate(hitParticle, hit.point, Quaternion.identity);
-
-
     }
 
     protected void Reload()
@@ -231,9 +231,6 @@ public class BaseGun : MonoBehaviour
         source.PlayOneShot(fireSound, 0.5f * GameControllsManager.audioVolume);
         FireFVX();
         BulletCasingEject();
-      
-        
-      
 
         animator.SetTrigger("Fire");
 
@@ -250,19 +247,14 @@ public class BaseGun : MonoBehaviour
         BulletInpact(hit);
 
         try
-        {
-            
-        GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-        
-
-
-        if (hitObject.GetComponent<BodyPartDamageHandler>())
-        {
-            hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
-            shotsHit++;
-        }
-        
-      
+        {  
+            GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
+ 
+            if (hitObject.GetComponent<BodyPartDamageHandler>())
+            {
+                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
+                shotsHit++;
+            }
         }
         
         catch { }
@@ -295,7 +287,7 @@ public class BaseGun : MonoBehaviour
 
         }
         Vector2 recoilVector = Vector2.Lerp(recoilPoints[currentRecoilStage], recoilPoints[currentRecoilStage + 1], currentSubRecoilStage / subPoints);
-        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, recoilMultiplyer + (isADSing ? 0 : notADSingRecoilMultiplyer)); ///sssh ill make this magic nuber go away someday // i did it :-) 
+        PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, recoilMultiplyer + (isADSing ? 0 : notADSingRecoilMultiplyer) * (PlayerController.isSprinting ? 1 : sprintingRecoilModifyer)); ///sssh ill make this magic nuber go away someday // i did it :-) 
       
         recoilTimer = timeBetweeenRecoilPointDecay;
 
@@ -311,7 +303,6 @@ public class BaseGun : MonoBehaviour
 
         if(recoilTimer <= 0)
         {
-
             currentSubRecoilStage--;
             if(currentSubRecoilStage <= 0)
             {
@@ -326,23 +317,46 @@ public class BaseGun : MonoBehaviour
                 }
             }
             recoilTimer = timeBetweeenRecoilPointDecay;
-     
         }
-
     }
 
     public bool ReadyToSwitch()
     {
         return !reloading;
     }
-
-  
-
-    protected IEnumerator ADS()
+ /*   protected IEnumerator ADS()
     {
         yield break;    
     }
+*/
+    void ADS()
+    {
+        if (PlayerController.isSprinting)
+            return;
+        if (!GameControllsManager.toggleADS)
+        {
+            if (Input.GetMouseButtonDown(1) && !adsForbidden)
+            {
+                isADSing = true;
+                animator.SetBool("ADS", true);
 
+            }
+            else if (Input.GetMouseButtonUp(1) || adsForbidden)
+            {
+                isADSing = false;
+                animator.SetBool("ADS", false);
+
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(1) && !adsForbidden)
+            {
+                isADSing = !isADSing;
+                animator.SetBool("ADS", isADSing);
+            }
+        }
+    }
     protected void Update()
     {
         if (reloading || UICommunicator.gamePaused || fireForbidden)
@@ -363,30 +377,8 @@ public class BaseGun : MonoBehaviour
             else if (Input.GetMouseButtonDown(0))
                 FireEvent();
         }
-            
-        if(!GameControllsManager.toggleADS)
-        {
-            if (Input.GetMouseButtonDown(1) && !adsForbidden)
-            {
-                isADSing = true;
-                animator.SetBool("ADS", true);
 
-            }
-            else if (Input.GetMouseButtonUp(1) || adsForbidden)
-            {
-                isADSing = false;
-                animator.SetBool("ADS", false);
-
-            }
-        }
-        else
-        {
-            if(Input.GetMouseButtonDown(1) && !adsForbidden)
-            {
-                isADSing = !isADSing;
-                animator.SetBool("ADS", isADSing);
-            }
-        }
+        ADS();
         
         PlayerController.playerInstance.isAdsIng = isADSing;
 
