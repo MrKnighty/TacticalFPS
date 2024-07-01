@@ -28,7 +28,6 @@ public class GameControllsManager : MonoBehaviour
         audioSlider.value = audioVolume;
         mouseSlider.value = mouseSense;
 
-        print(toggleCrouch);
     }
 
     private void Update()
