@@ -172,7 +172,7 @@ public class BaseGun : MonoBehaviour
         GameObject hitParticle = MaterialPropertiesManager.GetHitParticle(hit.transform.gameObject);
 
         Instantiate(decal, hit.point, Quaternion.identity).transform.LookAt(transform);
-        Instantiate(hitParticle, hit.point, Quaternion.identity);
+        Instantiate(hitParticle, hit.point, Quaternion.identity).transform.LookAt(transform);
     }
 
     protected void Reload()
@@ -184,7 +184,6 @@ public class BaseGun : MonoBehaviour
             canReload = false;
             return;
         }
-        source.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
         source.PlayOneShot(reloadSound, GameControllsManager.audioVolume);
         animator.SetTrigger("Reload");
         StartCoroutine(ReloadEvent());
