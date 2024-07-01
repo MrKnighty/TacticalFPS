@@ -18,6 +18,7 @@ public class PlayerSyringe : MonoBehaviour
     {
         instance = this;
         damageHandler = GetComponent<PlayerDamageHandler>();
+      //  UICommunicator.UpdateUI("Syringe Text", "Syringe: " + amountOfSyringes);
     }
     void Update()
     {
@@ -32,6 +33,8 @@ public class PlayerSyringe : MonoBehaviour
             StartCoroutine("Heal");
             
         }
+
+        UICommunicator.UpdateUI("Syringe Text", "Syringe: " + amountOfSyringes);
     }
 
     IEnumerator Heal()
@@ -39,6 +42,7 @@ public class PlayerSyringe : MonoBehaviour
         float timer = healTime;
         yield return new WaitForSeconds(delayToHeal);
         BaseGun.adsForbidden = false;
+        amountOfSyringes--;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -46,7 +50,7 @@ public class PlayerSyringe : MonoBehaviour
             yield return null;
         }
 
-        amountOfSyringes--;
+       
         healing = false;
         
     }
@@ -54,6 +58,7 @@ public class PlayerSyringe : MonoBehaviour
     public void GainSyringe(float count)
     {
         amountOfSyringes += count;
+        UICommunicator.UpdateUI("Syringe Text", "Syringe: " + amountOfSyringes);
     }
 
 

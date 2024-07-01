@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float adsMoveSpeedPunishment;
     [SerializeField] float sprintingSpeedMultiplyer;
     [SerializeField] CharacterController controller;
+    [SerializeField] Vector2 cameraShakePerFootstep;
     [Header("Jumping")]
     [SerializeField] float jumpVel;
     [SerializeField] float jumpEffectTime;
@@ -417,7 +418,7 @@ public class PlayerController : MonoBehaviour
         
 
     }
-
+    bool steppedLeft = false;
     void FootStep()
     {
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
@@ -429,7 +430,11 @@ public class PlayerController : MonoBehaviour
                 AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
                 AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f * GameControllsManager.audioVolume);
                 lastFootStepDistance = 0;
+               
+                steppedLeft = !steppedLeft;
             }
+
+
         }
 
         lastPos = transform.position;

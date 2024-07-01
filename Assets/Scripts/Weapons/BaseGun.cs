@@ -57,6 +57,11 @@ public class BaseGun : MonoBehaviour
     [SerializeField] GameObject flashLight;
     [SerializeField] ParticleSystem muzzleFlashFX;
 
+
+    [Header("Misc")]
+
+    [SerializeField] bool autoReloadAfterMagEmpty;
+
     public static bool adsForbidden;
     public static bool playerInMidAir;
     public static bool fireForbidden;
@@ -103,7 +108,11 @@ public class BaseGun : MonoBehaviour
         totalRemainingAmmo += count;
         if (totalRemainingAmmo < maxAmmo + (magazineSize - currentAmmoInMagazine)) // temporarily increase max ammo if player does not have full mag
             totalRemainingAmmo = maxAmmo;
-        UpdateUI();
+
+        if(isActiveAndEnabled)
+             UpdateUI();
+
+        canReload = true;
     }
 
 
@@ -153,12 +162,11 @@ public class BaseGun : MonoBehaviour
     protected void BulletCasingEject()
     {
         GameObject shell = shells[currentShellIndex];
-        shell.transform.position = bulletCasingSpawnPoint.transform.position;
-        shell.transform.rotation = bulletCasingSpawnPoint.transform.rotation;
+        shell.transform.SetPositionAndRotation(bulletCasingSpawnPoint.transform.position, bulletCasingSpawnPoint.transform.rotation);
         shell.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         shell.GetComponent<Rigidbody>().linearVelocity = bulletCasingSpawnPoint.transform.forward * (shellEjectVelocity + UnityEngine.Random.Range(-ShellEjectVelocityRandomOffset, ShellEjectVelocityRandomOffset));
         shell.SetActive(true);
-    //    shell.transform.parent = this.transform;
+
         currentShellIndex ++;
         
         if(currentShellIndex >= shells.Length -1)
@@ -190,8 +198,18 @@ public class BaseGun : MonoBehaviour
     }
     public void StopReloading()
     {
-        StopAllCoroutines();
+        StopCoroutine(ReloadEvent());
         reloading = false;
+        source.Stop();
+
+        if(currentAmmoInMagazine > 0)
+        {
+            gunCanFire = true;
+        }
+        print(gameObject);
+        animator.CrossFade("Idle",0);
+        animator.SetTrigger("StopReload");
+        animator.ResetTrigger("Reload");
     }
 
     protected IEnumerator ReloadEvent()
@@ -235,6 +253,8 @@ public class BaseGun : MonoBehaviour
         animator.SetTrigger("Fire");
 
         currentAmmoInMagazine -= 1;
+        UpdateUI();
+
         Vector3 offset = Vector3.zero;
         if (randomHipFire && !isADSing)
         {
@@ -263,13 +283,13 @@ public class BaseGun : MonoBehaviour
        
         if(currentAmmoInMagazine <= 0)
         {
-            if (canReload)
+            if (canReload && autoReloadAfterMagEmpty)
                 Reload();
             else
                  gunCanFire = false;
         }
 
-        UpdateUI();
+        
     }
 
 
@@ -322,7 +342,7 @@ public class BaseGun : MonoBehaviour
 
     public bool ReadyToSwitch()
     {
-        return !reloading;
+        return true;
     }
  /*   protected IEnumerator ADS()
     {

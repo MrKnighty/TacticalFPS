@@ -51,16 +51,17 @@ public class GunManager : MonoBehaviour
             if (activeWeapon == 0)
                 return;
 
-            if (!guns[0].ReadyToSwitch())
+            if (!guns[1].ReadyToSwitch())
                 return;
 
-            guns[0].StopReloading();
+            guns[1].StopReloading();
 
             animator.enabled = true;
             BaseGun.fireForbidden = true;
             animator.SetTrigger("FromRifle");
             animator.SetTrigger("ToSmg");
             lastGunIndex = activeWeapon;
+           
             switchingWeapon = true;
             activeWeapon = 0;
 
@@ -73,10 +74,10 @@ public class GunManager : MonoBehaviour
             if (activeWeapon == 1)
                 return;
 
-            if (!guns[1].ReadyToSwitch())
+            if (!guns[0].ReadyToSwitch())
                 return;
 
-            guns[1].StopReloading();
+            guns[0].StopReloading();
             animator.enabled = true;
             BaseGun.fireForbidden = true;
             animator.SetTrigger("FromSmg");
