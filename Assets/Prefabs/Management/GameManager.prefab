@@ -44,10 +44,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee95b1b3448cc904ca1b427dd572812e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: []
-  fallbackMat:
-    material: {fileID: 0}
-    stepSounds: []
-    shotSounds: []
+  materialProperties:
+  - material:
+    - {fileID: 2100000, guid: 9fbaae1c8dd296446a2f91c1456019ac, type: 2}
+    - {fileID: 2100000, guid: c80340b34c8305940a1dead2f459500d, type: 2}
+    - {fileID: 2100000, guid: 7a834e35169d23a4aaa31c61ffb8622f, type: 2}
+    - {fileID: 2100000, guid: 3756af9ab3aa9294fb73c3826518819a, type: 2}
+    - {fileID: 2100000, guid: 8113a347ad185ac4fb03eb44227a3618, type: 2}
+    stepSounds:
+    - {fileID: 8300000, guid: 58c6eb527dbcbea48945c266397b968c, type: 3}
+    - {fileID: 8300000, guid: bc0003ca5f42a5544afc8bbfc6c9131d, type: 3}
+    - {fileID: 8300000, guid: 69fe38d1e1b4763489ecffae2e3770ff, type: 3}
+    - {fileID: 8300000, guid: 38a74da0ccbd93d4982b10daa53075f8, type: 3}
+    - {fileID: 8300000, guid: e78a028bda1ebd345a3ef9b96fa11a82, type: 3}
+    shotSounds:
+    - {fileID: 8300000, guid: 5d67c0f47f0a6874e84daedd198b532a, type: 3}
     hitParticle: {fileID: 0}
     decal: {fileID: 0}
+  - material:
+    - {fileID: 2100000, guid: c85860a191aee24458c6fdf49901dbd7, type: 2}
+    stepSounds:
+    - {fileID: 8300000, guid: a43e1a2fd6d8a4545a7ab644a2f8cdb7, type: 3}
+    - {fileID: 8300000, guid: 06a5604eada1b3c4f88aa5b3def0f1df, type: 3}
+    - {fileID: 8300000, guid: 0fb85220fa6f2c144bbf88565e9b1176, type: 3}
+    - {fileID: 8300000, guid: 93b9e58fcc99eee40bd8b0c80d77c883, type: 3}
+    shotSounds:
+    - {fileID: 8300000, guid: 072f85fe02cacec4bb2febc17d7c325b, type: 3}
+    hitParticle: {fileID: 0}
+    decal: {fileID: 0}
+  - material:
+    - {fileID: 2100000, guid: 6c643df1971f6b3409425d88f4270b8c, type: 2}
+    - {fileID: 2100000, guid: d9a1cced290a1f342ae8affe32a6f581, type: 2}
+    - {fileID: 2100000, guid: f17dbc3991a08cb42ad4951796056f0b, type: 2}
+    - {fileID: 2100000, guid: c50dae55b69e53149960d2bc82b3a63e, type: 2}
+    - {fileID: 2100000, guid: 43adeff2c436a6a4293df07ca971e5a4, type: 2}
+    stepSounds:
+    - {fileID: 8300000, guid: b239de3db74b0d244aa9d9f8655f7aa0, type: 3}
+    - {fileID: 8300000, guid: a464b105eaa420b4fad9f294a653f1ab, type: 3}
+    - {fileID: 8300000, guid: 91b66406ca5e6444191c6787ee57ab01, type: 3}
+    - {fileID: 8300000, guid: b2320447178784d4aad4e0145bb5305b, type: 3}
+    - {fileID: 8300000, guid: 2c8ea2aff573acb46a15ee76ddb50cff, type: 3}
+    - {fileID: 8300000, guid: 1f1ded08e3f5a5f4f9433bda539b8704, type: 3}
+    shotSounds:
+    - {fileID: 8300000, guid: 3a4e177af5786f346a3971ccea02cd76, type: 3}
+    hitParticle: {fileID: 0}
+    decal: {fileID: 0}
+  - material:
+    - {fileID: 2100000, guid: 29d1fc29de8b369429c0e73bc4477d54, type: 2}
+    stepSounds: []
+    shotSounds:
+    - {fileID: 8300000, guid: 69fe38d1e1b4763489ecffae2e3770ff, type: 3}
+    hitParticle: {fileID: 2711976420550248240, guid: aeb3b8f4969b04445a0cf0aee20d174e, type: 3}
+    decal: {fileID: 0}
+  fallbackMat:
+    material:
+    - {fileID: 2100000, guid: 0a1cbe1af42a1d54f950e39cb930454f, type: 2}
+    stepSounds:
+    - {fileID: 8300000, guid: 0fb85220fa6f2c144bbf88565e9b1176, type: 3}
+    shotSounds:
+    - {fileID: 8300000, guid: 072f85fe02cacec4bb2febc17d7c325b, type: 3}
+    hitParticle: {fileID: 6599165949420749886, guid: 9dfa530b8dbcd03439166900db1f96a3, type: 3}
+    decal: {fileID: 961899084977122069, guid: e8409d03cbb405744b6fbf7bf967d497, type: 3}

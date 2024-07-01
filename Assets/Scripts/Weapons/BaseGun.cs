@@ -184,6 +184,7 @@ public class BaseGun : MonoBehaviour
             canReload = false;
             return;
         }
+        source.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
         source.PlayOneShot(reloadSound, GameControllsManager.audioVolume);
         animator.SetTrigger("Reload");
         StartCoroutine(ReloadEvent());
