@@ -76,16 +76,19 @@ public class PlayerController : MonoBehaviour
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.z = Input.GetAxisRaw("Vertical");
 
+        Crouch();
         TrySprint();
         CaculateVelocity(); // caculate velocity
         DoMovement(); // caculate movement
+        FootStep();
 
+        MoveCameraFromVelocity();
         CameraRotation();
         TacticalTilt();
-        MoveCameraFromVelocity();
+        
        
-
-        Crouch();
+        
+        
 
     }
     bool crouching = false;
@@ -409,10 +412,19 @@ public class PlayerController : MonoBehaviour
 
 
         controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * currentSprintMultiplyer * Time.deltaTime);
+      
+
+        
+
+    }
+
+    void FootStep()
+    {
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
+        DebugManager.DisplayInfo("footstep", "FootStep:" + lastFootStepDistance);
         if (lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
         {
-            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.09f))
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, currentHeight / 2 + 0.15f))
             {
                 AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
                 AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f * GameControllsManager.audioVolume);
@@ -421,7 +433,6 @@ public class PlayerController : MonoBehaviour
         }
 
         lastPos = transform.position;
-
     }
     IEnumerator Jump()
     {
