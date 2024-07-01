@@ -86,7 +86,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
     - _Fill: 0.544
-    - _FillAmount: -0.41
+    - _FillAmount: -0.49
     - _MaterialID: 1
     - _MaterialTypeMask: 2
     - _OpaqueCullMode: 2
@@ -124,8 +124,8 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BackFaceColour: {r: 0.2729475, g: 1, b: 0.06132078, a: 0}
-    - _Color: {r: 0.048508406, g: 1, b: 0, a: 1}
+    - _BackFaceColour: {r: 0.7076656, g: 3.1320755, b: 0, a: 0}
+    - _Color: {r: 0.19403362, g: 4, b: 0, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

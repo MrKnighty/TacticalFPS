@@ -172,7 +172,7 @@ public class BaseGun : MonoBehaviour
         GameObject hitParticle = MaterialPropertiesManager.GetHitParticle(hit.transform.gameObject);
 
         Instantiate(decal, hit.point, Quaternion.identity).transform.LookAt(transform);
-        Instantiate(hitParticle, hit.point, Quaternion.identity).transform.LookAt(transform);
+        Instantiate(hitParticle, hit.point, Quaternion.LookRotation(hit.normal.normalized)); //Getting the normal from the raycast hit and creating a rotation from the normalized version of that
     }
 
     protected void Reload()
