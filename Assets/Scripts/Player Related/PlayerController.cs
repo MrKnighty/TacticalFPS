@@ -153,19 +153,21 @@ public class PlayerController : MonoBehaviour
         }
         else if (currentHeight < height)
         {
+            float previousHeight = currentHeight;
             currentHeight += crouchSpeed * Time.deltaTime;
             if (currentHeight >= height)
                 currentHeight = height;
+
             controller.height = currentHeight;
             capsualCol.height = currentHeight;
+
+            // Adjust the player's position to reflect the height change
             Vector3 pos = transform.position;
-            pos.y += crouchSpeed * Time.deltaTime;
-            transform.position = pos;
+            pos.y += (currentHeight - previousHeight); // Adjust position by the height difference
+            controller.Move(new Vector3(0, (currentHeight - previousHeight), 0)); // Ensure the position update
         }
 
-        DebugManager.DisplayInfo("heigh", "Height" + currentHeight);
-
-
+        DebugManager.DisplayInfo("heigh", "Height: " + currentHeight);
     }
     bool isCantering;
     bool canterLeft;
