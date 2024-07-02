@@ -160,6 +160,8 @@ public class BaseGun : MonoBehaviour
 
     protected void BulletCasingEject()
     {
+        if (bulletCasingSpawnPoint == null)
+            return;
         GameObject shell = shells[currentShellIndex];
         shell.transform.SetPositionAndRotation(bulletCasingSpawnPoint.transform.position, bulletCasingSpawnPoint.transform.rotation);
         shell.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
@@ -394,7 +396,7 @@ public class BaseGun : MonoBehaviour
     protected void Flashlight()
     {
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && flashLight != null)
         {
             flashLight.SetActive(!flashLight.activeSelf);
         }
