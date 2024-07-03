@@ -49,6 +49,7 @@ public class AIBase : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         playerDamageHandler = FindAnyObjectByType<PlayerDamageHandler>();
         playerTransform = playerDamageHandler.transform;
+        ammo = ammoCap;
     }
     virtual public void DamageTrigger()
     {
