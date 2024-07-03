@@ -34,6 +34,11 @@ public class DebugManager : MonoBehaviour
             Application.targetFrameRate = 999;
             UICommunicator.refrence.PopupText("FPS UNCAPPED", 2);
         }
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            Application.targetFrameRate = 20;
+            UICommunicator.refrence.PopupText("FPS Capped!", 2);
+        }
         timer -= Time.deltaTime;
         if(timer <=0)
         {

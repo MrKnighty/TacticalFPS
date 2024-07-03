@@ -85,9 +85,16 @@ public class BaseGun : MonoBehaviour
     float shotsHit;
 
     public static bool holdADS = true;
-
+    bool hasInit;
     void Start()
     {
+       Initilize();
+    }
+
+    public void Initilize()
+    {
+        if (hasInit)
+            return;
         shells = new GameObject[maxShells];
 
         for (int i = 0; i < maxShells; i++)
