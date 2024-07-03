@@ -22,8 +22,9 @@ public class GameControllsManager : MonoBehaviour
 
         crouchT.isOn = LoadBool("tCrouch");
         adsT.isOn = LoadBool("tADS");
-      
         canterT.isOn = LoadBool("tCanter");
+
+       
 
         audioSlider.value = audioVolume;
         mouseSlider.value = mouseSense;
@@ -45,46 +46,53 @@ public class GameControllsManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(key))
         {
-            return PlayerPrefs.GetInt(key) == 0 ? true : false;
+            return PlayerPrefs.GetInt(key) == 1;
         }
         else
         {
-            PlayerPrefs.SetInt(key, 0); 
-            return false; 
+            PlayerPrefs.SetInt(key, 0);
+            return false;
         }
     }
 
     float LoadFloat(string key)
     {
         if (PlayerPrefs.HasKey(key))
-            return (PlayerPrefs.GetFloat(key));
-        PlayerPrefs.SetFloat(key, 1);
-        return 1;
+        {
+            return PlayerPrefs.GetFloat(key);
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(key, 1f);
+            return 1f;
+        }
     }
 
-    void SetBool(string key, int value)
+    void SetBool(string key, bool value)
     {
-        PlayerPrefs.SetInt(key, value);
+        PlayerPrefs.SetInt(key, value ? 1 : 0);
+        PlayerPrefs.Save();
     }
-  
+
+
+
 
     public void ToggleADS()
     {
         toggleADS = !toggleADS;
-        SetBool("tADS", toggleADS == false ? 1 : 0);
- 
+        SetBool("tADS", toggleADS);
     }
+
     public void ToggleCrouch()
     {
         toggleCrouch = !toggleCrouch;
-        SetBool("tCrouch", toggleCrouch == false ? 1 : 0);
-      
+        SetBool("tCrouch", toggleCrouch);
     }
+
     public void ToggleCanter()
     {
         toggleCanter = !toggleCanter;
-        SetBool("tCanter", toggleCanter == false ? 1 : 0);
-
+        SetBool("tCanter", toggleCanter);
     }
 
     public void AudioSlider()
@@ -92,6 +100,7 @@ public class GameControllsManager : MonoBehaviour
         audioVolume = audioSlider.value;
         PlayerPrefs.SetFloat("Volume", audioVolume);
     }
+
     public void SenseSlider()
     {
         mouseSense = mouseSlider.value;

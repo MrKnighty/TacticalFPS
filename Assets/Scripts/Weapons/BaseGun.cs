@@ -5,16 +5,19 @@ using Unity.Mathematics;
 
 public class BaseGun : MonoBehaviour
 {
-    [SerializeField]  GameObject muzzlePoint;
-    [SerializeField]  float magazineSize; // max amount of ammo that can be in magazine
-    float currentAmmoInMagazine;// how many bullets ready to fire
-    [SerializeField]  float totalRemainingAmmo; // remaining ammo not in magazine
+    [Header("Standard Settings")]
+    [SerializeField] float magazineSize; // max amount of ammo that can be in magazine
+
+    [SerializeField] float totalRemainingAmmo; // remaining ammo not in magazine
     [SerializeField] float maxAmmo;
-    [SerializeField]  float reloadTime;
-    [SerializeField]  float damage;
+    [SerializeField] float reloadTime;
+    [SerializeField] float damage;
+    [SerializeField] bool isAutomatic;
+    [SerializeField] float fireRate;
+
+    float currentAmmoInMagazine;// how many bullets ready to fire
 
 
-    [SerializeField] GameObject mainCam;
 
     protected bool gunCanFire = true;
     protected bool canReload = true;
@@ -27,8 +30,6 @@ public class BaseGun : MonoBehaviour
     [SerializeField] AudioClip fireSound;
     [SerializeField] AudioClip reloadSound;
 
-    [Header("ADS Settings")]
-    [SerializeField] Animator animator;
 
     [Header("Recoil Settings")]
     [SerializeField] Vector2[] recoilPoints; // Array of recoil points representing the amount of recoil per stage
@@ -42,11 +43,10 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float randomHitRadius;
     [SerializeField] float sprintingRecoilModifyer;
 
-    [SerializeField] bool isAutomatic;
-    [SerializeField] float fireRate;
+
 
     [Header("EffectSettings")]
-    
+
     [SerializeField] GameObject lightObject;
     [SerializeField] float lightStayOnTime;
     [SerializeField] GameObject bulletCasingSpawnPoint;
@@ -57,6 +57,16 @@ public class BaseGun : MonoBehaviour
     [SerializeField] GameObject flashLight;
     [SerializeField] ParticleSystem muzzleFlashFX;
 
+
+
+    [Header("Misc")]
+
+    [SerializeField] bool autoReloadAfterMagEmpty;
+
+    [Header("Refrences")]
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject mainCam;
+
     public static bool adsForbidden;
     public static bool playerInMidAir;
     public static bool fireForbidden;
@@ -65,7 +75,7 @@ public class BaseGun : MonoBehaviour
     GameObject[] shells;
     int currentShellIndex;
 
-    float lastTimeSinceFired;
+    protected float lastTimeSinceFired;
 
     // Internal state variables
     int currentSubRecoilStage = 0;
@@ -75,15 +85,13 @@ public class BaseGun : MonoBehaviour
     float shotsHit;
 
     public static bool holdADS = true;
-   
+
     void Start()
     {
-      
         shells = new GameObject[maxShells];
 
         for (int i = 0; i < maxShells; i++)
         {
-      
             shells[i] = Instantiate(bulletCasingToSpawn, Vector3.zero, quaternion.identity);
             shells[i].SetActive(false);
         }
@@ -103,7 +111,11 @@ public class BaseGun : MonoBehaviour
         totalRemainingAmmo += count;
         if (totalRemainingAmmo < maxAmmo + (magazineSize - currentAmmoInMagazine)) // temporarily increase max ammo if player does not have full mag
             totalRemainingAmmo = maxAmmo;
-        UpdateUI();
+
+        if (isActiveAndEnabled)
+            UpdateUI();
+
+        canReload = true;
     }
 
 
@@ -111,20 +123,18 @@ public class BaseGun : MonoBehaviour
     {
         UICommunicator.UpdateUI("Ammo Text", currentAmmoInMagazine + " / " + totalRemainingAmmo);
     }
-   
-    protected RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
+
+    protected virtual RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
     {
-        RaycastHit hit;
-        Physics.Raycast(rayStart, rayDirection, out hit);
+        Physics.Raycast(rayStart, rayDirection, out RaycastHit hit);
         return hit;
     }
 
     protected void FixedUpdate()
     {
-
         DebugManager.DisplayInfo("cAmmo", "AmmoInMag" + currentAmmoInMagazine);
         DebugManager.DisplayInfo("rAmmo", "TotalAmmo" + totalRemainingAmmo);
-        
+
         DebugManager.DisplayInfo("rStage", "rStage" + currentRecoilStage);
         DebugManager.DisplayInfo("rSubStage", "rSubStage" + currentSubRecoilStage);
     }
@@ -133,8 +143,6 @@ public class BaseGun : MonoBehaviour
     {
         AudioClip[] sounds = MaterialPropertiesManager.GetBulletImpactSounds(hit.transform.gameObject);
         AudioSource.PlayClipAtPoint(sounds[UnityEngine.Random.Range(0, sounds.Length - 1)], hit.point, 1.5f * GameControllsManager.audioVolume);
-  
-      
     }
 
     protected void FireFVX()
@@ -152,17 +160,18 @@ public class BaseGun : MonoBehaviour
 
     protected void BulletCasingEject()
     {
+        if (bulletCasingSpawnPoint == null)
+            return;
         GameObject shell = shells[currentShellIndex];
-        shell.transform.position = bulletCasingSpawnPoint.transform.position;
-        shell.transform.rotation = bulletCasingSpawnPoint.transform.rotation;
+        shell.transform.SetPositionAndRotation(bulletCasingSpawnPoint.transform.position, bulletCasingSpawnPoint.transform.rotation);
         shell.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         shell.GetComponent<Rigidbody>().linearVelocity = bulletCasingSpawnPoint.transform.forward * (shellEjectVelocity + UnityEngine.Random.Range(-ShellEjectVelocityRandomOffset, ShellEjectVelocityRandomOffset));
         shell.SetActive(true);
-    //    shell.transform.parent = this.transform;
-        currentShellIndex ++;
-        
-        if(currentShellIndex >= shells.Length -1)
-           currentShellIndex = 0;
+
+        currentShellIndex++;
+
+        if (currentShellIndex >= shells.Length - 1)
+            currentShellIndex = 0;
 
     }
 
@@ -190,8 +199,18 @@ public class BaseGun : MonoBehaviour
     }
     public void StopReloading()
     {
-        StopAllCoroutines();
+        StopCoroutine(ReloadEvent());
         reloading = false;
+        source.Stop();
+
+        if (currentAmmoInMagazine > 0)
+        {
+            gunCanFire = true;
+        }
+        print(gameObject);
+        animator.CrossFade("Idle", 0);
+        animator.SetTrigger("StopReload");
+        animator.ResetTrigger("Reload");
     }
 
     protected IEnumerator ReloadEvent()
@@ -199,7 +218,7 @@ public class BaseGun : MonoBehaviour
         gunCanFire = false;
         reloading = true;
         yield return new WaitForSeconds(reloadTime);
-       
+
         totalRemainingAmmo += currentAmmoInMagazine;
         if (totalRemainingAmmo >= magazineSize)
         {
@@ -221,20 +240,28 @@ public class BaseGun : MonoBehaviour
     {
         DecalSpawn(hit);
         FireAudio(hit);
-    
+
     }
 
-    protected void FireEvent() // everything that should happen when the gun fires
+    protected void FireEvent(bool singleShot) // everything that should happen when the gun fires
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-        source.PlayOneShot(fireSound, 0.5f * GameControllsManager.audioVolume);
-        FireFVX();
-        BulletCasingEject();
+      
+        if (singleShot)
+        {
+            FireFVX();
+            BulletCasingEject();
+            source.PlayOneShot(fireSound, 0.5f * GameControllsManager.audioVolume);
+            currentAmmoInMagazine -= 1;
+        }
+
 
         animator.SetTrigger("Fire");
 
-        currentAmmoInMagazine -= 1;
+        
+        UpdateUI();
+
         Vector3 offset = Vector3.zero;
         if (randomHipFire && !isADSing)
         {
@@ -247,36 +274,36 @@ public class BaseGun : MonoBehaviour
         BulletInpact(hit);
 
         try
-        {  
+        {
             GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
- 
+
             if (hitObject.GetComponent<BodyPartDamageHandler>())
             {
                 hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
                 shotsHit++;
             }
         }
-        
+
         catch { }
 
         DebugManager.DisplayInfo("ACC", "Accuracy:" + shotsHit / shotsFired);
-       
-        if(currentAmmoInMagazine <= 0)
+
+        if (currentAmmoInMagazine <= 0)
         {
-            if (canReload)
+            if (canReload && autoReloadAfterMagEmpty)
                 Reload();
             else
-                 gunCanFire = false;
+                gunCanFire = false;
         }
 
-        UpdateUI();
+
     }
 
 
     protected void Recoil()
     {
         currentSubRecoilStage++;
-        if(currentSubRecoilStage >= subPoints)
+        if (currentSubRecoilStage >= subPoints)
         {
             currentSubRecoilStage = 0;
             if (currentRecoilStage < recoilPoints.Length - 2)
@@ -288,7 +315,7 @@ public class BaseGun : MonoBehaviour
         }
         Vector2 recoilVector = Vector2.Lerp(recoilPoints[currentRecoilStage], recoilPoints[currentRecoilStage + 1], currentSubRecoilStage / subPoints);
         PlayerController.playerInstance.AddCameraRotation(recoilVector, recoilEffectTime, recoilMultiplyer + (isADSing ? 0 : notADSingRecoilMultiplyer) * (PlayerController.isSprinting ? 1 : sprintingRecoilModifyer)); ///sssh ill make this magic nuber go away someday // i did it :-) 
-      
+
         recoilTimer = timeBetweeenRecoilPointDecay;
 
 
@@ -301,13 +328,13 @@ public class BaseGun : MonoBehaviour
 
         recoilTimer -= Time.deltaTime;
 
-        if(recoilTimer <= 0)
+        if (recoilTimer <= 0)
         {
             currentSubRecoilStage--;
-            if(currentSubRecoilStage <= 0)
+            if (currentSubRecoilStage <= 0)
             {
-                if(currentRecoilStage > 0)
-                     currentRecoilStage--;
+                if (currentRecoilStage > 0)
+                    currentRecoilStage--;
                 if (currentRecoilStage > 0)
                     currentSubRecoilStage = subPoints;
                 else
@@ -322,14 +349,10 @@ public class BaseGun : MonoBehaviour
 
     public bool ReadyToSwitch()
     {
-        return !reloading;
+        return true;
     }
- /*   protected IEnumerator ADS()
-    {
-        yield break;    
-    }
-*/
-    void ADS()
+
+    protected void ADS()
     {
         if (PlayerController.isSprinting)
             return;
@@ -357,39 +380,65 @@ public class BaseGun : MonoBehaviour
             }
         }
     }
-    protected void Update()
+
+    protected bool TryFire()
     {
-        if (reloading || UICommunicator.gamePaused || fireForbidden)
+        if (lastTimeSinceFired <= 0 && gunCanFire)
+        {
+            if (Input.GetMouseButton(0) && isAutomatic)
+                return true;
+            else if (Input.GetMouseButtonDown(0))
+                return true;
+        }
+        return false;
+    }
+
+    protected void Flashlight()
+    {
+
+        if (Input.GetKeyDown(KeyCode.F) && flashLight != null)
+        {
+            flashLight.SetActive(!flashLight.activeSelf);
+        }
+
+    }
+
+    protected bool TryReload()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && canReload)
+            return true;
+
+        return false;
+    }
+
+    protected virtual void Update()
+    {
+        if (UICommunicator.gamePaused)
             return;
 
         lastTimeSinceFired -= Time.deltaTime;
 
         RecoilDecay();
 
-        if (Input.GetKeyDown(KeyCode.R) && canReload)
-        {
+        if (reloading || fireForbidden)
+            return;
+
+        if (TryReload())
             Reload();
-        }
-        if (lastTimeSinceFired <= 0 && gunCanFire)
-        {
-            if (Input.GetMouseButton(0) && isAutomatic)
-                FireEvent();
-            else if (Input.GetMouseButtonDown(0))
-                FireEvent();
-        }
+
+        if (TryFire())
+            FireEvent(true);
 
         ADS();
-        
-        PlayerController.playerInstance.isAdsIng = isADSing;
 
-        if (Input.GetKeyDown(KeyCode.F))
-            flashLight.SetActive(!flashLight.activeSelf);
+        PlayerController.playerInstance.isAdsIng = isADSing;
+        Flashlight();
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-    
+
         Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 1000);
     }
 }

@@ -538,7 +538,7 @@ MonoBehaviour:
   active: 1
   indirectDiffuseLightingMultiplier:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 3
   indirectDiffuseLightingLayers:
     m_OverrideState: 0
     m_Value: 65535
@@ -549,5 +549,5 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 65535
   reflectionProbeIntensityMultiplier:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1

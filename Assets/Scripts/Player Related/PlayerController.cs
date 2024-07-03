@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float adsMoveSpeedPunishment;
     [SerializeField] float sprintingSpeedMultiplyer;
     [SerializeField] CharacterController controller;
+    [SerializeField] Vector2 cameraShakePerFootstep;
     [Header("Jumping")]
     [SerializeField] float jumpVel;
     [SerializeField] float jumpEffectTime;
@@ -152,19 +153,21 @@ public class PlayerController : MonoBehaviour
         }
         else if (currentHeight < height)
         {
+            float previousHeight = currentHeight;
             currentHeight += crouchSpeed * Time.deltaTime;
             if (currentHeight >= height)
                 currentHeight = height;
+
             controller.height = currentHeight;
             capsualCol.height = currentHeight;
+
+            // Adjust the player's position to reflect the height change
             Vector3 pos = transform.position;
-            pos.y += crouchSpeed * Time.deltaTime;
-            transform.position = pos;
+            pos.y += (currentHeight - previousHeight); // Adjust position by the height difference
+            controller.Move(new Vector3(0, (currentHeight - previousHeight), 0)); // Ensure the position update
         }
 
-        DebugManager.DisplayInfo("heigh", "Height" + currentHeight);
-
-
+        DebugManager.DisplayInfo("heigh", "Height: " + currentHeight);
     }
     bool isCantering;
     bool canterLeft;
@@ -417,7 +420,7 @@ public class PlayerController : MonoBehaviour
         
 
     }
-
+    bool steppedLeft = false;
     void FootStep()
     {
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
@@ -429,7 +432,11 @@ public class PlayerController : MonoBehaviour
                 AudioClip[] clips = MaterialPropertiesManager.GetFootStepSounds(hit.transform.gameObject);
                 AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f * GameControllsManager.audioVolume);
                 lastFootStepDistance = 0;
+               
+                steppedLeft = !steppedLeft;
             }
+
+
         }
 
         lastPos = transform.position;
