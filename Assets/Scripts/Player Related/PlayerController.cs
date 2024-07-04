@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
         capsualCol = GetComponent<CapsuleCollider>();
         currentHeight = height;
 
+       
+
 
     }
     void Update()

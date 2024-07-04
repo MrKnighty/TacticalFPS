@@ -66,12 +66,13 @@ public class BaseGun : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] Animator animator;
     [SerializeField] GameObject mainCam;
+    [SerializeField] GameObject modelObject;
 
     public static bool adsForbidden;
     public static bool playerInMidAir;
     public static bool fireForbidden;
 
-
+   
     GameObject[] shells;
     int currentShellIndex;
 
@@ -85,9 +86,27 @@ public class BaseGun : MonoBehaviour
     float shotsHit;
 
     public static bool holdADS = true;
-
+    bool hasInit;
     void Start()
     {
+       Initilize();
+    }
+
+    private void OnEnable()
+    {
+        modelObject.SetActive(false);
+        Invoke("EnableModel", 0.1f);
+    }
+
+    void EnableModel()
+    {
+        modelObject.SetActive(true);
+    }
+    
+    public void Initilize()
+    {
+        if (hasInit)
+            return;
         shells = new GameObject[maxShells];
 
         for (int i = 0; i < maxShells; i++)
