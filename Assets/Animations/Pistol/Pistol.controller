@@ -187,7 +187,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 44328a812fe102f49a78e4afa6a1c988, type: 2}
+  m_Motion: {fileID: 7400000, guid: f802c09e563c6ee44bfe0499202f751d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -325,6 +325,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -2523040367927760435}
     m_Position: {x: 740, y: 10, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 6013241516687431527}
+    m_Position: {x: 775, y: 75, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
@@ -433,6 +436,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 5816496d62711454ab938a96c5562d19, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &6013241516687431527
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pistol_idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 974e8b456532a6a448b61004065a4740, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
