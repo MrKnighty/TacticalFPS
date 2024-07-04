@@ -70,6 +70,13 @@ public class GunManager : MonoBehaviour
 
             SwitchWeapon(2);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (activeWeapon == 3)
+                return;
+
+            SwitchWeapon(3);
+        }
     }
 
     void SwitchWeapon(int newWeapon)
@@ -89,6 +96,7 @@ public class GunManager : MonoBehaviour
         switchingWeapon = true;
         lastGunIndex = activeWeapon;
         activeWeapon = newWeapon;
+        guns[activeWeapon].GetComponent<Animator>().StopPlayback();
 
         CancelADS();
     }
@@ -99,7 +107,7 @@ public class GunManager : MonoBehaviour
   
     public void SwitchGun() // controlled by animator
     {
-        
+        guns[lastGunIndex].GetComponent<Animator>().SetTrigger("StopADS");
         guns[lastGunIndex].gameObject.SetActive(false);
         guns[activeWeapon].gameObject.SetActive(true);
         guns[activeWeapon].UpdateUI();
