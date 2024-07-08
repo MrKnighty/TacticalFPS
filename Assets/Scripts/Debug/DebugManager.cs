@@ -21,6 +21,7 @@ public class DebugManager : MonoBehaviour
 
     private void Start()
     {
+        debugUI.Clear();
         debugUIGO = spawnableDebugUI;
         canvas = canvasObject;
     }
