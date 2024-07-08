@@ -167,11 +167,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: -1}
       index: 65
-      probeCount: 168768
+      probeCount: 168704
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 21
-      bricksCount: 2637
+      bricksCount: 2636
       indirectionEntryInfo:
       - positionInBricks: {x: -27, y: 0, z: -27}
         minSubdiv: 0
@@ -209,11 +209,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: -1, z: -5}
       index: 1
-      probeCount: 28992
+      probeCount: 28928
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 4
-      bricksCount: 453
+      bricksCount: 452
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: -27, z: -135}
         minSubdiv: 0
@@ -223,11 +223,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: -1, z: -4}
       index: 16
-      probeCount: 86912
+      probeCount: 86848
       minSubdiv: 0
       indexChunkCount: 91
       shChunkCount: 11
-      bricksCount: 1358
+      bricksCount: 1357
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: -27, z: -108}
         minSubdiv: 0
@@ -502,7 +502,7 @@ MonoBehaviour:
     m_Keys:
     - Default
     m_Values:
-    - sceneHash: 1675371028
+    - sceneHash: 1037566641
       cellDataAsset:
         m_AssetGUID: 829b7121b7636ac4b9d8b4f69d90076d
         m_StreamableAssetPath: APVStreamingAssets\068025252c8ccff44a89e24ee00ce7f6\829b7121b7636ac4b9d8b4f69d90076d.bytes
@@ -657,42 +657,42 @@ MonoBehaviour:
       - offset: 40432
         elementCount: 732
       - offset: 52144
-        elementCount: 2637
-      - offset: 94336
+        elementCount: 2636
+      - offset: 94320
         elementCount: 4449
-      - offset: 165520
+      - offset: 165504
         elementCount: 586
-      - offset: 174896
-        elementCount: 453
-      - offset: 182144
-        elementCount: 1358
-      - offset: 203872
+      - offset: 174880
+        elementCount: 452
+      - offset: 182112
+        elementCount: 1357
+      - offset: 203824
         elementCount: 261
-      - offset: 208048
+      - offset: 208000
         elementCount: 131
-      - offset: 210144
+      - offset: 210096
         elementCount: 392
-      - offset: 216416
+      - offset: 216368
         elementCount: 51
-      - offset: 217232
+      - offset: 217184
         elementCount: 38
-      - offset: 217840
+      - offset: 217792
         elementCount: 37
-      - offset: 218432
+      - offset: 218384
         elementCount: 1012
-      - offset: 234624
+      - offset: 234576
         elementCount: 119
-      - offset: 236528
+      - offset: 236480
         elementCount: 330
-      - offset: 241808
+      - offset: 241760
         elementCount: 28
-      - offset: 242256
+      - offset: 242208
         elementCount: 120
-      - offset: 244176
+      - offset: 244128
         elementCount: 770
-      - offset: 256496
+      - offset: 256448
         elementCount: 4
-      - offset: 256560
+      - offset: 256512
         elementCount: 286
     m_Asset: {fileID: 0}
   cellSupportDataAsset:

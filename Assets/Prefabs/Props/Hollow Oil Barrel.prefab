@@ -56,7 +56,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.97
+    m_NearPlane: 1.04
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -89,7 +89,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 2537
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 9.08e-43, y: 8.523379e-21, z: 9.05e-43, w: 370}
+  m_BoundingSphereOverride: {x: -0.002, y: 6e-45, z: 0, w: 7.9496e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
