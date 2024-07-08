@@ -290,10 +290,11 @@ public class BaseGun : MonoBehaviour
 
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward + offset);
         Recoil();
-        BulletInpact(hit);
+        
 
         try
         {
+          
             GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
 
             if (hitObject.GetComponent<BodyPartDamageHandler>())
@@ -301,6 +302,7 @@ public class BaseGun : MonoBehaviour
                 hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
                 shotsHit++;
             }
+            BulletInpact(hit);
         }
 
         catch { }
