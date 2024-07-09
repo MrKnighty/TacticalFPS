@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.stcost.autolod": {
-      "version": "file:AutoLOD",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.unity.ai.navigation": {
       "version": "2.0.0",
       "depth": 0,
