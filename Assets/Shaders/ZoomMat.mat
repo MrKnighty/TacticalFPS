@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _DISABLE_DECALS
   - _DISABLE_SSR_TRANSPARENT
   - _ENABLE_FOG_ON_TRANSPARENT
   - _SURFACE_TYPE_TRANSPARENT
@@ -24,11 +25,11 @@ Material:
     MotionVector: User
     RenderType: Transparent
   disabledShaderPasses:
-  - TransparentDepthPrepass
+  - RayTracingPrepass
   - TransparentDepthPostpass
   - TransparentBackface
   - MOTIONVECTORS
-  - RayTracingPrepass
+  - TransparentDepthPrepass
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -90,7 +91,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 15
     - _StencilWriteMaskMV: 41
-    - _SupportDecals: 1
+    - _SupportDecals: 0
     - _SurfaceType: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
@@ -107,9 +108,9 @@ Material:
     - _ZWrite: 0
     - _Zoom: 0.241
     m_Colors:
-    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ObjectScreenPosition: {r: 0.6354156, g: 0.47873673, b: 0, a: 0}
+    - _ObjectScreenPosition: {r: 0.453284, g: 0.3194303, b: 0, a: 0}
     - _Tiling: {r: 0.9, g: 0.9, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

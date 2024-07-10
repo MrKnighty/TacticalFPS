@@ -24,6 +24,12 @@ public class BaseGun : MonoBehaviour
     protected bool reloading;
 
     public static bool isADSing;
+    [Header("ADS Settings")]
+    [SerializeField] bool zoomFOV;
+    [SerializeField] float finalFOV;
+    [SerializeField] float zoomSpeed;
+
+    float initFOV;
 
     [Header("Audio")]
     [SerializeField] protected AudioSource source;
@@ -90,6 +96,7 @@ public class BaseGun : MonoBehaviour
     void Start()
     {
        Initilize();
+        initFOV = Camera.main.fieldOfView;
     }
 
     private void OnEnable()
@@ -399,6 +406,20 @@ public class BaseGun : MonoBehaviour
                 isADSing = !isADSing;
                 animator.SetBool("ADS", isADSing);
             }
+        }
+
+        if(isADSing && Camera.main.fieldOfView >= finalFOV)
+        {
+            Camera.main.fieldOfView -= zoomSpeed * Time.deltaTime;
+            if (Camera.main.fieldOfView <= finalFOV)
+                Camera.main.fieldOfView = finalFOV;
+        }
+        else if(Camera.main.fieldOfView <= initFOV)
+        {
+            Camera.main.fieldOfView += zoomSpeed * Time.deltaTime;
+
+            if (Camera.main.fieldOfView > initFOV)
+                Camera.main.fieldOfView = initFOV;
         }
     }
 

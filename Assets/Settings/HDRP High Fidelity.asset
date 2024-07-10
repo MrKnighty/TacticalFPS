@@ -330,8 +330,8 @@ MonoBehaviour:
     m_ObsoleteSupportRuntimeDebugDisplay: 0
   allowShaderVariantStripping: 1
   enableSRPBatcher: 1
-  availableMaterialQualityLevels: 2
-  m_DefaultMaterialQualityLevel: 2
+  availableMaterialQualityLevels: 6
+  m_DefaultMaterialQualityLevel: 4
   diffusionProfileSettings: {fileID: 0}
   m_VolumeProfile: {fileID: 0}
   virtualTexturingSettings:
