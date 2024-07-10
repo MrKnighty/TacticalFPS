@@ -49,6 +49,18 @@ public class AIBase : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         playerDamageHandler = FindAnyObjectByType<PlayerDamageHandler>();
         playerTransform = playerDamageHandler.transform;
+        ammo = ammoCap;
+        if (!playerBodyPoint)
+        { 
+            foreach(Transform t in playerTransform.GetComponentsInChildren<Transform>())
+            {
+                if (t.name == "BodyPoint")
+                    playerBodyPoint = t;
+                else if(t.name == "HeadPoint")
+                    playerHeadPoint = t;
+            }
+        }
+
     }
     virtual public void DamageTrigger()
     {

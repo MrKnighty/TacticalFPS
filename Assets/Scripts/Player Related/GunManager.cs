@@ -8,33 +8,35 @@ public class GunManager : MonoBehaviour
     [SerializeField] PlayerSyringe playerSyringe;
     static public GunManager instance;
     bool switchingWeapon;
-    Animator animator;
+
     [SerializeField] float switchSpeed;
     int activeWeapon = 0;
+    int lastGunIndex = 0;
+
+  
+    [SerializeField] Animation anim;
     private void Start()
     {
-        animator = GetComponent<Animator>();
+    
         instance = this;
 
-        //reset static gun values
+    
         BaseGun.isADSing = false;
         BaseGun.playerInMidAir = false;
         BaseGun.fireForbidden = false;
 
-        StartCoroutine(PrepairWeapons());
-    }
+        
 
-    IEnumerator PrepairWeapons()
-    {
         foreach (BaseGun gun in guns)
         {
             if (gun.gameObject.activeSelf)
                 continue;
-            gun.gameObject.SetActive(true);
-            yield return new WaitForEndOfFrame();
-            gun.gameObject.SetActive(false);
+
+            gun.Initilize();
         }
+
     }
+
     public void CancelADS()
     {
         guns[activeWeapon].CancelADS();
@@ -44,66 +46,81 @@ public class GunManager : MonoBehaviour
     {
         if (switchingWeapon)
             return;
-       
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        DebugManager.DisplayInfo("CWeaponI", "CWeaponI" + activeWeapon);
+        DebugManager.DisplayInfo("LWeaponI", "LWeaponI" + lastGunIndex);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (activeWeapon == 0)
                 return;
+            SwitchWeapon(0);
 
-            if (!guns[1].ReadyToSwitch())
-                return;
 
-            guns[1].StopReloading();
-
-            animator.enabled = true;
-            BaseGun.fireForbidden = true;
-            animator.SetTrigger("FromRifle");
-            animator.SetTrigger("ToSmg");
-            lastGunIndex = activeWeapon;
-           
-            switchingWeapon = true;
-            activeWeapon = 0;
-
-            CancelADS();
-
-  
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (activeWeapon == 1)
                 return;
-
-            if (!guns[0].ReadyToSwitch())
+            SwitchWeapon(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (activeWeapon == 2)
                 return;
 
-            guns[0].StopReloading();
-            animator.enabled = true;
-            BaseGun.fireForbidden = true;
-            animator.SetTrigger("FromSmg");
-            animator.SetTrigger("ToRifle");
-            switchingWeapon = true;
-            lastGunIndex = activeWeapon;
-            activeWeapon = 1;
+            SwitchWeapon(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (activeWeapon == 3)
+                return;
 
-            CancelADS();
+            SwitchWeapon(3);
         }
     }
+
+    void SwitchWeapon(int newWeapon)
+    {
+        if (activeWeapon == newWeapon)
+            return;
+
+        if (!guns[activeWeapon].ReadyToSwitch())
+            return;
+
+        guns[activeWeapon].StopReloading();
+
+        BaseGun.fireForbidden = true;
+
+
+        anim.Play(guns[activeWeapon].name + "Deaquip");
+        switchingWeapon = true;
+        lastGunIndex = activeWeapon;
+        activeWeapon = newWeapon;
+        guns[activeWeapon].GetComponent<Animator>().StopPlayback();
+
+        CancelADS();
+    }
+
+
+    
   
-    int lastGunIndex;
+  
     public void SwitchGun() // controlled by animator
     {
-        
+        guns[lastGunIndex].GetComponent<Animator>().SetTrigger("StopADS");
         guns[lastGunIndex].gameObject.SetActive(false);
         guns[activeWeapon].gameObject.SetActive(true);
         guns[activeWeapon].UpdateUI();
+
+        anim.Play(guns[activeWeapon].name + "Equip");
+        print("Switched gun");
         
     }
     public void SwitchFinished()//controlled by animator
     {
         switchingWeapon = false;
         BaseGun.fireForbidden = false;
-        animator.enabled = false;
+  
     }
     public void GiveAmmo(PickupType type, int count)
     {

@@ -92,6 +92,7 @@ public class BasicShootAI : AIBase
 
     IEnumerator Aggro()
     {
+        bool checkedForCover = false;
         while(currentState == AIStates.Aggro)
         {
             if(!playerPoint)
@@ -108,12 +109,15 @@ public class BasicShootAI : AIBase
                     yield break;
                 }
             }
-            if (!inCover)
+            if (!inCover && !checkedForCover)
             {
+                checkedForCover = true;
                 Vector3 point = GetCoverPointOnNavMesh(FindClosestCover());
                 print(point);
                 if(point != Vector3.zero)
                 {
+                    if(Vector3.Distance(transform.position, point) > Vector3.Distance(transform.position, playerDamageHandler.transform.position))
+
                     yield return MoveToDestination(GetCoverPointOnNavMesh(FindClosestCover()));
                     inCover = true;
                 }

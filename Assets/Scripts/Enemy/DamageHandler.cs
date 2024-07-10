@@ -7,6 +7,7 @@ public class DamageHandler : MonoBehaviour
     public float currentHealth;
     [SerializeField] bool dropItem;
     [SerializeField] GameObject itemToDrop;
+    bool isDead = false;
 
     [SerializeField, Tooltip("Head, Body, Legs, Arms, calculation: damage = damageAmount * bodyPartMultiplier * bodyPartArmour")] 
     float[] bodyPartArmour = {1,1,1,1};
@@ -17,8 +18,6 @@ public class DamageHandler : MonoBehaviour
     [SerializeField] bool useRagDoll = true;
     AIBase aiBase;
 
-
-
     protected void Start()
     {
         aiBase = GetComponent<AIBase>();
@@ -26,6 +25,8 @@ public class DamageHandler : MonoBehaviour
     }
     public void Damage(float damageAmount, BodyParts bodyPart = BodyParts.Body)
     {
+        if(isDead)
+            return;
         currentHealth -= damageAmount * bodyPartMultiplier[(int)bodyPart] * bodyPartArmour[(int)bodyPart];
         if (aiBase)
         {
@@ -33,7 +34,10 @@ public class DamageHandler : MonoBehaviour
         }
 
         if (currentHealth <= 0)
+        {
+            isDead = true;
             DeathEvent();
+        }
     }
     protected void DeathEvent()
     {

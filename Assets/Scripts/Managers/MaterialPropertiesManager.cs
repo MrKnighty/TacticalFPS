@@ -67,7 +67,7 @@ public class MaterialPropertiesManager : MonoBehaviour
         else
         {
             mat = null;
-            print("No material found on root object or child!");
+         
             return -1;
             
         }

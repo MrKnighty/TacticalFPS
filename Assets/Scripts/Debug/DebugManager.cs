@@ -21,8 +21,10 @@ public class DebugManager : MonoBehaviour
 
     private void Start()
     {
+        debugUI.Clear();
         debugUIGO = spawnableDebugUI;
         canvas = canvasObject;
+        positionOffset = 0;
     }
     private void Update()
     {
@@ -33,6 +35,11 @@ public class DebugManager : MonoBehaviour
         {
             Application.targetFrameRate = 999;
             UICommunicator.refrence.PopupText("FPS UNCAPPED", 2);
+        }
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            Application.targetFrameRate = 20;
+            UICommunicator.refrence.PopupText("FPS Capped!", 2);
         }
         timer -= Time.deltaTime;
         if(timer <=0)
