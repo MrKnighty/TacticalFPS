@@ -14,49 +14,59 @@ public static class PhysicsDropContextMenu
         Transform objTransform = menuCommand.context as Transform;
         if (objTransform != null)
         {
+            // Record the initial state for undo
+            Undo.RegisterFullObjectHierarchyUndo(objTransform.gameObject, "Drop Object with Physics");
+
+            // Start the coroutine to simulate physics
             EditorCoroutineUtility.StartCoroutine(SimulatePhysicsCoroutine(objTransform, defaultDropDuration), null);
         }
     }
 
+    [System.Obsolete]
     private static IEnumerator SimulatePhysicsCoroutine(Transform objTransform, float duration)
     {
+        // Temporarily disable automatic physics simulation
+        bool previousSimulationMode = Physics.autoSimulation;
+        Physics.autoSimulation = false;
+
         Rigidbody rb = objTransform.gameObject.GetComponent<Rigidbody>();
+        bool addedRigidbody = false;
 
         // If no Rigidbody, add one
-        bool addedRigidbody = false;
         if (rb == null)
         {
             rb = objTransform.gameObject.AddComponent<Rigidbody>();
             addedRigidbody = true;
         }
 
-     
-        Physics.simulationMode = SimulationMode.Script;
-
-      
         rb.isKinematic = false;
 
         float timeStep = Time.fixedDeltaTime;
         int steps = Mathf.CeilToInt(duration / timeStep);
 
-        for (int i = 0; i < steps; i++)
+        // Perform the simulation in steps
+        try
         {
-            Physics.Simulate(timeStep);
-            yield return new EditorWaitForSeconds(timeStep);
+            for (int i = 0; i < steps; i++)
+            {
+                Physics.Simulate(timeStep);
+                yield return new EditorWaitForSeconds(timeStep);
+            }
         }
-
-     
-
-      
-
-     
-        if (addedRigidbody)
+        finally
         {
-            Object.DestroyImmediate(rb);
-        }
+            // Clean up and restore physics simulation state
+            if (addedRigidbody)
+            {
+                Object.DestroyImmediate(rb);
+            }
 
-        // Mark the scene as dirty to ensure changes are saved
-        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            // Always restore autoSimulation to its previous state
+            Physics.autoSimulation = previousSimulationMode;
+
+            // Mark the scene as dirty to ensure changes are saved
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        }
     }
 }
 
