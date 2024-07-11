@@ -12,6 +12,7 @@ public class TextPopUp : MonoBehaviour
     [SerializeField] float fadeOutTime = 0;
     [SerializeField] bool onExit;
     [SerializeField] float duration = 5;
+    [SerializeField] bool destroy;
 
     bool trigger = false;
     bool exitTrigger = false;
@@ -49,7 +50,7 @@ public class TextPopUp : MonoBehaviour
         Color c = textMeshPro.color;
         Color colorNoAlpha = new Color (c.r, c.g, c.b, 0);
         Color colorAlpha = new Color (c.r, c.g, c.b, 1);
-        StartCoroutine(FadeBetweenText(colorAlpha, colorNoAlpha, fadeOutTime, false));
+        StartCoroutine(FadeBetweenText(colorAlpha, colorNoAlpha, fadeOutTime, false, destroy));
     }
     private void OnTriggerExit(Collider other) 
     {
@@ -62,12 +63,12 @@ public class TextPopUp : MonoBehaviour
             Color c = textMeshPro.color;
             Color colorNoAlpha = new Color (c.r, c.g, c.b, 0);
             Color colorAlpha = new Color (c.r, c.g, c.b, 1);
-            StartCoroutine(FadeBetweenText(colorAlpha, colorNoAlpha, fadeOutTime, false));
+            StartCoroutine(FadeBetweenText(colorAlpha, colorNoAlpha, fadeOutTime, false, destroy));
 
         }
     }
 
-    IEnumerator FadeBetweenText(Color a, Color b, float fadeTime, bool state)
+    IEnumerator FadeBetweenText(Color a, Color b, float fadeTime, bool state, bool destroyObject = false)
     {
         textMeshPro.text = text;
         
@@ -79,6 +80,8 @@ public class TextPopUp : MonoBehaviour
             yield return null;
         }
         textMeshPro.gameObject.SetActive(state);
+        if(destroyObject)
+        Destroy(gameObject);
     }
 
 }

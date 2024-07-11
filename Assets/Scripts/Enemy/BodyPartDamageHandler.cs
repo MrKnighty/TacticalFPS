@@ -5,7 +5,7 @@ public class BodyPartDamageHandler : MonoBehaviour
 {
     [SerializeField] BodyParts bodyPart;
     DamageHandler damageHandler;
-    void Start()
+    protected virtual void Start()
     {
         try 
         {
@@ -16,7 +16,7 @@ public class BodyPartDamageHandler : MonoBehaviour
             Console.Error.WriteLine("Damage Handler Not Found In Parent: " + transform.parent.name);
         }
     }
-    public void DealDamage(float damage)
+    public virtual void DealDamage(float damage, float force = 0)
     {
         damageHandler.Damage(damage, bodyPart);
     }

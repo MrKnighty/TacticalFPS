@@ -10,7 +10,7 @@ public class TriggerDrawer : MonoBehaviour
             return;
 
         Gizmos.color = color;
-
-        Gizmos.DrawCube(transform.position,Vector3.Scale( GetComponent<BoxCollider>().size,  transform.localScale));
+        Gizmos.matrix = transform.localToWorldMatrix; //Liam you need to set the matrix in order to get rotation :)
+        Gizmos.DrawCube(Vector3.zero, GetComponent<BoxCollider>().size); //Got rid of the the scaling since the local matrix is default now
     }
 }

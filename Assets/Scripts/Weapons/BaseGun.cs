@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using Unity.Mathematics;
+using UnityEditor.EditorTools;
 
 public class BaseGun : MonoBehaviour
 {
@@ -68,6 +69,7 @@ public class BaseGun : MonoBehaviour
     [Header("Misc")]
 
     [SerializeField] bool autoReloadAfterMagEmpty;
+    [SerializeField, Tooltip("Force to be applied to rigidbodies")] float force = 15;
 
     [Header("Refrences")]
     [SerializeField] Animator animator;
@@ -303,11 +305,15 @@ public class BaseGun : MonoBehaviour
         {
           
             GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-
+            Rigidbody rb;
             if (hitObject.GetComponent<BodyPartDamageHandler>())
             {
-                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
+                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage, force);
                 shotsHit++;
+            }
+            else if(TryGetComponent<Rigidbody>(out rb))
+            {
+                rb.AddForceAtPosition((Camera.main.transform.forward + offset) * force, hit.point, ForceMode.Force);
             }
             BulletInpact(hit);
         }
