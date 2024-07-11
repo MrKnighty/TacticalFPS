@@ -38,6 +38,8 @@ public class GunManager : MonoBehaviour
 
     }
 
+   
+
     public void CancelADS()
     {
         guns[activeWeapon].CancelADS();
@@ -45,6 +47,13 @@ public class GunManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F9) && DebugManager.DebugMode)
+        {
+            for(int i = 0; i < ownedGuns.Length; i++)
+            {
+                ownedGuns[i] = true;
+            }
+        }
         if (switchingWeapon)
             return;
 
