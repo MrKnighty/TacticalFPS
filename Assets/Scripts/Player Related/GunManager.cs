@@ -4,13 +4,14 @@ using System.Collections;
 
 public class GunManager : MonoBehaviour
 {
-    [SerializeField] BaseGun[] guns; // 0 is smg, 1 is rifle
+    [SerializeField] BaseGun[] guns; // 0 is pistol, 1 is rifle, 2 is smg, 3 is shotgun
+    bool[] ownedGuns = {false,false,false,false};
     [SerializeField] PlayerSyringe playerSyringe;
     static public GunManager instance;
     bool switchingWeapon;
 
     [SerializeField] float switchSpeed;
-    int activeWeapon = 0;
+    int activeWeapon = -1;
     int lastGunIndex = 0;
 
   
@@ -51,7 +52,7 @@ public class GunManager : MonoBehaviour
         DebugManager.DisplayInfo("LWeaponI", "LWeaponI" + lastGunIndex);
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (activeWeapon == 0)
+            if (activeWeapon == 0 || !ownedGuns[0])
                 return;
             SwitchWeapon(0);
 
@@ -59,20 +60,20 @@ public class GunManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (activeWeapon == 1)
+            if (activeWeapon == 1 || !ownedGuns[1])
                 return;
             SwitchWeapon(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (activeWeapon == 2)
+            if (activeWeapon == 2 || !ownedGuns[2])
                 return;
 
             SwitchWeapon(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (activeWeapon == 3)
+            if (activeWeapon == 3 || !ownedGuns[3])
                 return;
 
             SwitchWeapon(3);
@@ -81,6 +82,15 @@ public class GunManager : MonoBehaviour
 
     void SwitchWeapon(int newWeapon)
     {
+        if(activeWeapon == -1)
+        {
+            anim.Play(guns[0].name + "Equip");
+            guns[0].gameObject.SetActive(true);
+            activeWeapon = 0;
+            return;
+        }
+
+        
         if (activeWeapon == newWeapon)
             return;
 
@@ -101,10 +111,6 @@ public class GunManager : MonoBehaviour
         CancelADS();
     }
 
-
-    
-  
-  
     public void SwitchGun() // controlled by animator
     {
         guns[lastGunIndex].GetComponent<Animator>().SetTrigger("StopADS");
@@ -141,5 +147,11 @@ public class GunManager : MonoBehaviour
                 return;
         }
             
+    }
+
+    public void ObtainWeapon(int index)
+    {
+        ownedGuns[index] = true;
+        SwitchWeapon(index);
     }
 }

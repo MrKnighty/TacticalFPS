@@ -247,7 +247,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "77702bc1adf5417db18389a362c86b9d"
+                    "m_Id": "3038bb4b46f04150ba05389aed563e82"
                 },
                 "m_SlotId": 0
             }
@@ -278,20 +278,6 @@
                     "m_Id": "7fbf2e457c6a4eecb4247499c3b28530"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "a9061098fe5e44059a9feed14beb63c8"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "3038bb4b46f04150ba05389aed563e82"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -481,9 +467,9 @@
     "m_ShaderOutputName": "BaseColor",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 0.5,
-        "y": 0.5,
-        "z": 0.5
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -648,7 +634,7 @@
     "m_TessellationMaxDisplacement": 0.009999999776482582,
     "m_DebugSymbols": false,
     "m_Version": 2,
-    "inspectorFoldoutMask": 0
+    "inspectorFoldoutMask": 1
 }
 
 {
@@ -1663,10 +1649,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -280.0,
-            "y": 191.0,
-            "width": 138.0,
-            "height": 77.0
+            "x": -276.00006103515627,
+            "y": 205.00001525878907,
+            "width": 138.00001525878907,
+            "height": 76.99998474121094
         }
     },
     "m_Slots": [
@@ -1680,7 +1666,7 @@
     "synonyms": [
         "screen buffer"
     ],
-    "m_Precision": 0,
+    "m_Precision": 1,
     "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,

@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 139b530593218c449b14a1fa59a2f099, type: 3}
+        m_Texture: {fileID: 2800000, guid: 624a029676be4714483f3d5d2b43db26, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CoatMaskMap:
@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0e3e7410a524c0c4f81189c5e72aad31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4a165d21255bd3c4db099e00a6aaa170, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -120,7 +120,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: 006d4a9091f487049855058aea1d4bba, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b40d1c1ee66ee54a857aae99b034552, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularColorMap:
@@ -282,12 +282,12 @@ Material:
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UseAoMap: 0
-    - _UseColorMap: 0
+    - _UseColorMap: 1
     - _UseEmissiveIntensity: 0
     - _UseEmissiveMap: 0
     - _UseMetallicMap: 0
     - _UseNormalMap: 1
-    - _UseRoughnessMap: 0
+    - _UseRoughnessMap: 1
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
@@ -311,6 +311,6 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _UvTiling: {r: 0.25, g: 0.25, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

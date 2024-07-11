@@ -401,6 +401,9 @@ MonoBehaviour:
   damage: 3
   isAutomatic: 0
   fireRate: 0.1
+  zoomFOV: 1
+  finalFOV: 75
+  zoomSpeed: 20
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 8300000, guid: fcc4b2df3792f094a8a53ea0633a515b, type: 3}
   reloadSound: {fileID: 8300000, guid: 4d32f8c8ecf1663499452c02c3279de3, type: 3}
@@ -5322,6 +5325,9 @@ MonoBehaviour:
   damage: 2
   isAutomatic: 0
   fireRate: 0.1
+  zoomFOV: 1
+  finalFOV: 70
+  zoomSpeed: 25
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 8300000, guid: 61299d5e0b2534b46843fd0aabba9deb, type: 3}
   reloadSound: {fileID: 8300000, guid: 40eb88f3d9556a24fa69c7136d623944, type: 3}
@@ -13191,6 +13197,9 @@ MonoBehaviour:
   damage: 7
   isAutomatic: 0
   fireRate: 1
+  zoomFOV: 1
+  finalFOV: 50
+  zoomSpeed: 50
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 8300000, guid: 61299d5e0b2534b46843fd0aabba9deb, type: 3}
   reloadSound: {fileID: 8300000, guid: 4d32f8c8ecf1663499452c02c3279de3, type: 3}
@@ -13317,7 +13326,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 80.24961
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -14304,6 +14313,9 @@ MonoBehaviour:
   damage: 2
   isAutomatic: 1
   fireRate: 0.1
+  zoomFOV: 1
+  finalFOV: 70
+  zoomSpeed: 50
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 8300000, guid: 61299d5e0b2534b46843fd0aabba9deb, type: 3}
   reloadSound: {fileID: 8300000, guid: 4d32f8c8ecf1663499452c02c3279de3, type: 3}
