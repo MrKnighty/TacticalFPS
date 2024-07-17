@@ -19,7 +19,7 @@ public class AsyncSceneLoader : MonoBehaviour
     }
     IEnumerator LoadScene()
     {
-       AsyncOperation sceneLoader = SceneManager.LoadSceneAsync("MainLevel");
+       AsyncOperation sceneLoader = SceneManager.LoadSceneAsync("Level 2");
         sceneLoader.allowSceneActivation = false;
 
         while(!sceneLoader.isDone)

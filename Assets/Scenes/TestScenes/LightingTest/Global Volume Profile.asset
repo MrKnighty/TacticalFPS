@@ -286,6 +286,49 @@ MonoBehaviour:
   proceduralSoftness:
     m_OverrideState: 0
     m_Value: 0.5
+--- !u!114 &-2332642380221357511
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd486065ce11414fa40e631affc4900, type: 3}
+  m_Name: ProbeVolumesOptions
+  m_EditorClassIdentifier: 
+  active: 1
+  normalBias:
+    m_OverrideState: 1
+    m_Value: 2
+  viewBias:
+    m_OverrideState: 0
+    m_Value: 0.1
+  scaleBiasWithMinProbeDistance:
+    m_OverrideState: 0
+    m_Value: 0
+  samplingNoise:
+    m_OverrideState: 0
+    m_Value: 1
+  animateSamplingNoise:
+    m_OverrideState: 0
+    m_Value: 1
+  leakReductionMode:
+    m_OverrideState: 0
+    m_Value: 2
+  minValidDotProductValue:
+    m_OverrideState: 0
+    m_Value: 0.1
+  occlusionOnlyReflectionNormalization:
+    m_OverrideState: 0
+    m_Value: 1
+  intensityMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+  skyOcclusionIntensityMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &-2271263378076668960
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -397,6 +440,7 @@ MonoBehaviour:
   - {fileID: -4344915977367692254}
   - {fileID: -2221807877374605953}
   - {fileID: 4361914744582279140}
+  - {fileID: -2332642380221357511}
 --- !u!114 &2990958004638594585
 MonoBehaviour:
   m_ObjectHideFlags: 3

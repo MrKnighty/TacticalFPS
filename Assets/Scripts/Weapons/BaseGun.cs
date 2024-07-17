@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using Unity.Mathematics;
-using UnityEditor.EditorTools;
+
 
 public class BaseGun : MonoBehaviour
 {
@@ -357,7 +357,7 @@ public class BaseGun : MonoBehaviour
     float recoilTimer;
     protected void RecoilDecay()
     {
-        if (currentRecoilStage < 0 && currentSubRecoilStage <= 0)
+        if (currentRecoilStage <= 0 && currentSubRecoilStage <= 0)
             return;
 
         recoilTimer -= Time.deltaTime;

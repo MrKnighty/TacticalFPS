@@ -16,7 +16,7 @@ MonoBehaviour:
     supportShadowMask: 0
     supportSSR: 0
     supportSSRTransparent: 1
-    supportSSAO: 1
+    supportSSAO: 0
     supportSSGI: 0
     supportSubsurfaceScattering: 0
     sssSampleBudget:
@@ -47,11 +47,11 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
     supportDistortion: 0
-    supportTransparentBackface: 1
-    supportTransparentDepthPrepass: 1
-    supportTransparentDepthPostpass: 1
+    supportTransparentBackface: 0
+    supportTransparentDepthPrepass: 0
+    supportTransparentDepthPostpass: 0
     colorBufferFormat: 74
-    supportCustomPass: 1
+    supportCustomPass: 0
     customBufferFormat: 12
     supportedLitShaderMode: 2
     planarReflectionResolution:
@@ -98,7 +98,7 @@ MonoBehaviour:
       maxEnvLightsOnScreen: 32
       reflectionCacheCompressed: 1
       reflectionProbeFormat: 74
-      reflectionProbeTexCacheSize: 2048
+      reflectionProbeTexCacheSize: 536875008
       reflectionProbeTexLastValidCubeMip: 3
       reflectionProbeTexLastValidPlanarMip: 0
       reflectionProbeDecreaseResToFit: 1
@@ -195,8 +195,8 @@ MonoBehaviour:
       checkerboardDepthBuffer: 1
       upsampleType: 1
     xrSettings:
-      singlePass: 1
-      occlusionMesh: 1
+      singlePass: 0
+      occlusionMesh: 0
       cameraJitter: 0
       allowMotionBlur: 0
     postProcessQualitySettings:
@@ -330,7 +330,7 @@ MonoBehaviour:
     m_ObsoleteSupportRuntimeDebugDisplay: 0
   allowShaderVariantStripping: 1
   enableSRPBatcher: 1
-  availableMaterialQualityLevels: 6
+  availableMaterialQualityLevels: 4
   m_DefaultMaterialQualityLevel: 4
   diffusionProfileSettings: {fileID: 0}
   m_VolumeProfile: {fileID: 0}
