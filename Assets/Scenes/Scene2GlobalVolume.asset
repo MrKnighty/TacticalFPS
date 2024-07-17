@@ -301,10 +301,10 @@ MonoBehaviour:
   active: 1
   normalBias:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   viewBias:
     m_OverrideState: 0
-    m_Value: 0.1
+    m_Value: 2
   scaleBiasWithMinProbeDistance:
     m_OverrideState: 0
     m_Value: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   leakReductionMode:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2
   minValidDotProductValue:
     m_OverrideState: 0
@@ -324,11 +324,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   intensityMultiplier:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0.295
   skyOcclusionIntensityMultiplier:
     m_OverrideState: 1
     m_Value: 1
+  worldOffset:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 0, z: 0}
 --- !u!114 &-2271263378076668960
 MonoBehaviour:
   m_ObjectHideFlags: 3
