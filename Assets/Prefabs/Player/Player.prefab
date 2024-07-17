@@ -13085,7 +13085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416241100290428592, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
       propertyPath: m_Name
-      value: Glock17wFL
+      value: Glock17
       objectReference: {fileID: 0}
     - target: {fileID: 4416241100290428592, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
       propertyPath: m_IsActive
