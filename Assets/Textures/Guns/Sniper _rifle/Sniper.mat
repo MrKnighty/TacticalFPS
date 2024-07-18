@@ -266,7 +266,7 @@ Material:
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UseAoMap: 0
-    - _UseColorMap: 0
+    - _UseColorMap: 1
     - _UseEmissiveIntensity: 0
     - _UseEmissiveMap: 0
     - _UseMetallicMap: 1

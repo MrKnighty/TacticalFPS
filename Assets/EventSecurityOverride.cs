@@ -7,11 +7,13 @@ public class EventSecurityOverride : Interactable
     [SerializeField] float lightsOutTime;
     [SerializeField] GameObject[] newEnemiesToEnable;
     Light[] lights;
+    Animation anim;
 
-    private void Start()
+    protected override void Start()
     {
         lights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None);
-
+        base.Start();
+        anim = GetComponent<Animation>();
 
     }
     protected override void TriggerEvent()
@@ -21,6 +23,7 @@ public class EventSecurityOverride : Interactable
         {
             gate.GetComponent<AudioSource>().Play();
         }
+        anim.Play();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,8 +32,8 @@ public class EventSecurityOverride : Interactable
         {
             foreach (GameObject gate in Gates)
             {
-                
                 gate.GetComponent<Animation>().Play();
+                print(gate.name);
             }
 
             Invoke("LightsOut", lightsOutTime);
