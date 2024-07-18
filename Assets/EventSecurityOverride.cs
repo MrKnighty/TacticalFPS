@@ -5,6 +5,7 @@ public class EventSecurityOverride : Interactable
     bool ready = false;
     [SerializeField] GameObject[] Gates;
     [SerializeField] float lightsOutTime;
+    [SerializeField] GameObject[] newEnemiesToEnable;
     Light[] lights;
 
     private void Start()
@@ -42,6 +43,10 @@ public class EventSecurityOverride : Interactable
         {
             if (light.gameObject.isStatic)
                 light.enabled = false;
+        }
+        foreach(GameObject enemy in newEnemiesToEnable)
+        {
+            enemy.SetActive(true);
         }
 
         UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
