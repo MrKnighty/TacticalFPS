@@ -4,13 +4,14 @@ using System.Collections;
 
 public class GunManager : MonoBehaviour
 {
-    [SerializeField] BaseGun[] guns; // 0 is smg, 1 is rifle
+    [SerializeField] BaseGun[] guns; // 0 is pistol, 1 is rifle, 2 is smg, 3 is shotgun
+    bool[] ownedGuns = {false,false,false,false};
     [SerializeField] PlayerSyringe playerSyringe;
     static public GunManager instance;
     bool switchingWeapon;
 
     [SerializeField] float switchSpeed;
-    int activeWeapon = 0;
+    int activeWeapon = -1;
     int lastGunIndex = 0;
 
   
@@ -37,6 +38,8 @@ public class GunManager : MonoBehaviour
 
     }
 
+   
+
     public void CancelADS()
     {
         guns[activeWeapon].CancelADS();
@@ -44,6 +47,13 @@ public class GunManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F9) && DebugManager.DebugMode)
+        {
+            for(int i = 0; i < ownedGuns.Length; i++)
+            {
+                ownedGuns[i] = true;
+            }
+        }
         if (switchingWeapon)
             return;
 
@@ -51,7 +61,7 @@ public class GunManager : MonoBehaviour
         DebugManager.DisplayInfo("LWeaponI", "LWeaponI" + lastGunIndex);
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (activeWeapon == 0)
+            if (activeWeapon == 0 || !ownedGuns[0])
                 return;
             SwitchWeapon(0);
 
@@ -59,20 +69,20 @@ public class GunManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (activeWeapon == 1)
+            if (activeWeapon == 1 || !ownedGuns[1])
                 return;
             SwitchWeapon(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (activeWeapon == 2)
+            if (activeWeapon == 2 || !ownedGuns[2])
                 return;
 
             SwitchWeapon(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (activeWeapon == 3)
+            if (activeWeapon == 3 || !ownedGuns[3])
                 return;
 
             SwitchWeapon(3);
@@ -81,6 +91,15 @@ public class GunManager : MonoBehaviour
 
     void SwitchWeapon(int newWeapon)
     {
+        if(activeWeapon == -1)
+        {
+            anim.Play(guns[0].name + "Equip");
+            guns[0].gameObject.SetActive(true);
+            activeWeapon = 0;
+            return;
+        }
+
+        
         if (activeWeapon == newWeapon)
             return;
 
@@ -101,10 +120,6 @@ public class GunManager : MonoBehaviour
         CancelADS();
     }
 
-
-    
-  
-  
     public void SwitchGun() // controlled by animator
     {
         guns[lastGunIndex].GetComponent<Animator>().SetTrigger("StopADS");
@@ -128,7 +143,7 @@ public class GunManager : MonoBehaviour
         {
             case PickupType.SMG_AMMO:
                 UICommunicator.refrence.PopupText("SMG Ammo + " + count, 1);
-                guns[0].ReceiveAmmo(count);
+                guns[2].ReceiveAmmo(count);
                 return;
             case PickupType.RIFLE_AMMO:
                 UICommunicator.refrence.PopupText("Rifle Ammo + " + count, 1);
@@ -137,9 +152,24 @@ public class GunManager : MonoBehaviour
             case PickupType.HEAL_SYRINGE:
                 UICommunicator.refrence.PopupText("Gained + " + count + (count > 1 ? " Syringes" : "Syringe"), 1);
                 GetComponent<PlayerSyringe>().GainSyringe(count);
-
                 return;
+            case PickupType.PISTOL_AMMO:
+                UICommunicator.refrence.PopupText("Pistol Ammo + " + count, 1);
+                guns[0].ReceiveAmmo(count);
+                return;
+            case PickupType.SHOTGUN_AMMO:
+                UICommunicator.refrence.PopupText("Shotgun Ammo + " + count, 1);
+                guns[3].ReceiveAmmo(count);
+                return;
+
+
         }
             
+    }
+
+    public void ObtainWeapon(int index)
+    {
+        ownedGuns[index] = true;
+        SwitchWeapon(index);
     }
 }

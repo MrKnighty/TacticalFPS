@@ -18,12 +18,12 @@ public class DamageHandler : MonoBehaviour
     [SerializeField] bool useRagDoll = true;
     AIBase aiBase;
 
-    protected void Start()
+    protected virtual void Start()
     {
         aiBase = GetComponent<AIBase>();
         currentHealth = maxHealth;
     }
-    public void Damage(float damageAmount, BodyParts bodyPart = BodyParts.Body)
+    public virtual void Damage(float damageAmount, BodyParts bodyPart = BodyParts.Body)
     {
         if(isDead)
             return;

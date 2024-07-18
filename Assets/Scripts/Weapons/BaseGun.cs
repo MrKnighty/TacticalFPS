@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.Mathematics;
 
+
 public class BaseGun : MonoBehaviour
 {
     [Header("Standard Settings")]
@@ -24,6 +25,12 @@ public class BaseGun : MonoBehaviour
     protected bool reloading;
 
     public static bool isADSing;
+    [Header("ADS Settings")]
+    [SerializeField] bool zoomFOV;
+    [SerializeField] float finalFOV;
+    [SerializeField] float zoomSpeed;
+
+    float initFOV;
 
     [Header("Audio")]
     [SerializeField] protected AudioSource source;
@@ -62,6 +69,7 @@ public class BaseGun : MonoBehaviour
     [Header("Misc")]
 
     [SerializeField] bool autoReloadAfterMagEmpty;
+    [SerializeField, Tooltip("Force to be applied to rigidbodies")] float force = 15;
 
     [Header("Refrences")]
     [SerializeField] Animator animator;
@@ -90,6 +98,7 @@ public class BaseGun : MonoBehaviour
     void Start()
     {
        Initilize();
+        initFOV = Camera.main.fieldOfView;
     }
 
     private void OnEnable()
@@ -296,11 +305,15 @@ public class BaseGun : MonoBehaviour
         {
           
             GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
-
+            Rigidbody rb;
             if (hitObject.GetComponent<BodyPartDamageHandler>())
             {
-                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage);
+                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage, force);
                 shotsHit++;
+            }
+            else if(TryGetComponent<Rigidbody>(out rb))
+            {
+                rb.AddForceAtPosition((Camera.main.transform.forward + offset) * force, hit.point, ForceMode.Force);
             }
             BulletInpact(hit);
         }
@@ -344,7 +357,7 @@ public class BaseGun : MonoBehaviour
     float recoilTimer;
     protected void RecoilDecay()
     {
-        if (currentRecoilStage < 0 && currentSubRecoilStage <= 0)
+        if (currentRecoilStage <= 0 && currentSubRecoilStage <= 0)
             return;
 
         recoilTimer -= Time.deltaTime;
@@ -399,6 +412,20 @@ public class BaseGun : MonoBehaviour
                 isADSing = !isADSing;
                 animator.SetBool("ADS", isADSing);
             }
+        }
+
+        if(isADSing && Camera.main.fieldOfView >= finalFOV)
+        {
+            Camera.main.fieldOfView -= zoomSpeed * Time.deltaTime;
+            if (Camera.main.fieldOfView <= finalFOV)
+                Camera.main.fieldOfView = finalFOV;
+        }
+        else if(Camera.main.fieldOfView <= initFOV)
+        {
+            Camera.main.fieldOfView += zoomSpeed * Time.deltaTime;
+
+            if (Camera.main.fieldOfView > initFOV)
+                Camera.main.fieldOfView = initFOV;
         }
     }
 
