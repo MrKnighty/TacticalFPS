@@ -93,12 +93,24 @@ public class BaseGun : MonoBehaviour
     float shotsFired;
     float shotsHit;
 
-    public static bool holdADS = true;
+    public static bool holdADS ;
     bool hasInit;
     void Start()
     {
+       
        Initilize();
         initFOV = Camera.main.fieldOfView;
+
+        //reset static values
+        adsForbidden = false;
+        playerInMidAir = false;
+        fireForbidden = false;
+        reloading = false;
+        if (currentAmmoInMagazine >= 1)
+            gunCanFire = true;
+        if (totalRemainingAmmo >= 1)
+            canReload = true;
+        
     }
 
     private void OnEnable()

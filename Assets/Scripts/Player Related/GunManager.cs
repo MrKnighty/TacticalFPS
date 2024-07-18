@@ -36,6 +36,12 @@ public class GunManager : MonoBehaviour
             gun.Initilize();
         }
 
+        foreach (AnimationState state in anim)
+        {
+            state.speed = 1.5f;
+        }
+
+
     }
 
    
@@ -126,7 +132,7 @@ public class GunManager : MonoBehaviour
         guns[lastGunIndex].gameObject.SetActive(false);
         guns[activeWeapon].gameObject.SetActive(true);
         guns[activeWeapon].UpdateUI();
-
+        
         anim.Play(guns[activeWeapon].name + "Equip");
         print("Switched gun");
         
@@ -143,7 +149,7 @@ public class GunManager : MonoBehaviour
         {
             case PickupType.SMG_AMMO:
                 UICommunicator.refrence.PopupText("SMG Ammo + " + count, 1);
-                guns[0].ReceiveAmmo(count);
+                guns[2].ReceiveAmmo(count);
                 return;
             case PickupType.RIFLE_AMMO:
                 UICommunicator.refrence.PopupText("Rifle Ammo + " + count, 1);
@@ -152,8 +158,17 @@ public class GunManager : MonoBehaviour
             case PickupType.HEAL_SYRINGE:
                 UICommunicator.refrence.PopupText("Gained + " + count + (count > 1 ? " Syringes" : "Syringe"), 1);
                 GetComponent<PlayerSyringe>().GainSyringe(count);
-
                 return;
+            case PickupType.PISTOL_AMMO:
+                UICommunicator.refrence.PopupText("Pistol Ammo + " + count, 1);
+                guns[0].ReceiveAmmo(count);
+                return;
+            case PickupType.SHOTGUN_AMMO:
+                UICommunicator.refrence.PopupText("Shotgun Ammo + " + count, 1);
+                guns[3].ReceiveAmmo(count);
+                return;
+
+
         }
             
     }

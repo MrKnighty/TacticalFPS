@@ -52,12 +52,15 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+       
         Cursor.lockState = CursorLockMode.Locked;
         playerInstance = this;
         lastPos = transform.position;
         capsualCol = GetComponent<CapsuleCollider>();
         currentHeight = height;
+        isSprinting = false;
 
+        print("PlayerStarting");
        
 
 
@@ -310,7 +313,7 @@ public class PlayerController : MonoBehaviour
             if (desiredXRotation < -180f) desiredXRotation += 360f;
 
          
-            cameraGameObject.transform.localEulerAngles = new Vector3(Mathf.Clamp(desiredXRotation, -45, 45), cameraRotation.y, cameraRotation.z );
+            cameraGameObject.transform.localEulerAngles = new Vector3(Mathf.Clamp(desiredXRotation, -60, 60), cameraRotation.y, cameraRotation.z );
 
             cameraRotateVelocity = Vector2.zero;
         }

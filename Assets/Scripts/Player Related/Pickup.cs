@@ -1,5 +1,5 @@
 using UnityEngine;
-public enum PickupType { SMG_AMMO, RIFLE_AMMO, HEAL_SYRINGE }
+public enum PickupType {PISTOL_AMMO, RIFLE_AMMO, SHOTGUN_AMMO, SMG_AMMO, HEAL_SYRINGE }
 public class Pickup : Interactable
 {
   
@@ -9,5 +9,6 @@ public class Pickup : Interactable
     protected override void TriggerEvent()
     {
         GunManager.instance.GiveAmmo(type, amount);
+        Destroy(gameObject);
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5464890247482238212}
   - component: {fileID: 6013827968356097335}
   - component: {fileID: 3483808225113232688}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletCasing
   m_TagString: BulletCasing
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3821964164720115325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08539236, y: 0.17820963, z: -0.11155328}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15728462, y: 0.65855885, z: 0.16689013}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,7 +97,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3821964164720115325}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1df5f95cd9fbbff4893bf09ce48d49cc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

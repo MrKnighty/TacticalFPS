@@ -359,7 +359,7 @@ Transform:
   m_Children:
   - {fileID: 2460546804554890448}
   m_Father: {fileID: 1600443155656881756}
-  m_LocalEulerAnglesHint: {x: -206.392, y: -11.085022, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5169274806172586828
 Animator:
   serializedVersion: 7
@@ -1772,13 +1772,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2654576668054007573}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018115005, y: 0.073690794, z: 0.2380302, w: 0.9682888}
-  m_LocalPosition: {x: 0.0467, y: 0.0691, z: 0.0302}
+  m_LocalRotation: {x: 0.123508945, y: -0.56804967, z: -0.3786276, w: -0.7202127}
+  m_LocalPosition: {x: 0.0339, y: 0.0949, z: 0.0446}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5630699725687452441}
-  m_LocalEulerAnglesHint: {x: -4.023, y: 7.725, z: 27.35}
+  m_LocalEulerAnglesHint: {x: -28.994, y: 129.093, z: 100.667}
 --- !u!1 &2798598780863885767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,18 +2964,18 @@ MonoBehaviour:
   sprintingSpeedMultiplyer: 1.4
   controller: {fileID: 4956643583194996890}
   cameraShakePerFootstep: {x: 0, y: 0}
-  jumpVel: 5
-  jumpEffectTime: 0.12
-  gravity: 20
-  airMovementPunishmentMultiplyer: 0.3
+  jumpVel: 6
+  jumpEffectTime: 0.15
+  gravity: 18
+  airMovementPunishmentMultiplyer: 0.5
   cameraGameObject: {fileID: 7615221839760034783}
   mouseSencitivity: 125
   distanceBetweenFootstep: 2.5
-  tiltAngle: 20
-  tiltSpeed: 45
+  tiltAngle: 37
+  tiltSpeed: 100
   height: 2
-  crouchHeight: 1
-  crouchSpeed: 2
+  crouchHeight: 0.8
+  crouchSpeed: 5
   crouchMoveSpeedMultiplyer: 0.5
   isAdsIng: 0
 --- !u!136 &6976179084503519390
@@ -3708,7 +3708,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4102,13 +4102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ade7d1521f2e4d8b3a48deea7eb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magazineSize: 12
+  magazineSize: 20
   totalRemainingAmmo: 62
   maxAmmo: 62
   reloadTime: 1.5
-  damage: 2
+  damage: 1.5
   isAutomatic: 0
-  fireRate: 0.1
+  fireRate: 0.08
   zoomFOV: 1
   finalFOV: 70
   zoomSpeed: 25
@@ -4116,17 +4116,17 @@ MonoBehaviour:
   fireSound: {fileID: 8300000, guid: 61299d5e0b2534b46843fd0aabba9deb, type: 3}
   reloadSound: {fileID: 8300000, guid: 40eb88f3d9556a24fa69c7136d623944, type: 3}
   recoilPoints:
-  - {x: 0.7, y: 0.3}
+  - {x: 0.5, y: 0.3}
   - {x: 0.8, y: 0.3}
   - {x: 1, y: -0.2}
-  - {x: 1, y: -0.55}
-  - {x: 1, y: -0.1}
-  - {x: 1, y: 0.3}
-  - {x: 1, y: 0.5}
-  subPoints: 2
-  timeBetweeenRecoilPointDecay: 0.2
-  recoilEffectTime: 0.1
-  recoilMultiplyer: 13
+  - {x: 1.2, y: -0.55}
+  - {x: 1.5, y: -0.1}
+  - {x: 1.5, y: 0.3}
+  - {x: 1.5, y: 0.5}
+  subPoints: 3
+  timeBetweeenRecoilPointDecay: 0.3
+  recoilEffectTime: 0.07
+  recoilMultiplyer: 16
   notADSingRecoilMultiplyer: 10
   midAirRecoilMultiplyer: 2
   randomHipFire: 1
@@ -4135,9 +4135,9 @@ MonoBehaviour:
   lightObject: {fileID: 5064624922504744280}
   lightStayOnTime: 0.05
   bulletCasingSpawnPoint: {fileID: 2654576668054007573}
-  bulletCasingToSpawn: {fileID: 3821964164720115325, guid: 8eca7397311ba094e999c459b76d4415, type: 3}
+  bulletCasingToSpawn: {fileID: 3821964164720115325, guid: 7cdb2807ef9f47f42bcc44d9a6cb2eee, type: 3}
   maxShells: 15
-  shellEjectVelocity: 5
+  shellEjectVelocity: 2
   ShellEjectVelocityRandomOffset: 0.1
   flashLight: {fileID: 944731150489805651}
   muzzleFlashFX: {fileID: 3338514465258570218}
@@ -11358,7 +11358,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1785
+  m_VersionIndex: 1788
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11571,7 +11571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6103356242899527345
 Transform:
   m_ObjectHideFlags: 0
@@ -11609,7 +11609,7 @@ MonoBehaviour:
   fireRate: 1
   zoomFOV: 1
   finalFOV: 50
-  zoomSpeed: 50
+  zoomSpeed: 70
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 8300000, guid: 61299d5e0b2534b46843fd0aabba9deb, type: 3}
   reloadSound: {fileID: 8300000, guid: 4d32f8c8ecf1663499452c02c3279de3, type: 3}
@@ -11699,7 +11699,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4377279667458826801}
   - {fileID: 1600443155656881756}
   - {fileID: 7730768726818296065}
   m_Father: {fileID: 143190840817738661}
@@ -11736,7 +11735,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 80
   orthographic: 0
   orthographic size: 5
@@ -12245,12 +12244,12 @@ MonoBehaviour:
   totalRemainingAmmo: 120
   maxAmmo: 120
   reloadTime: 2.2
-  damage: 2
+  damage: 1.5
   isAutomatic: 1
-  fireRate: 0.1
+  fireRate: 0.08
   zoomFOV: 1
-  finalFOV: 70
-  zoomSpeed: 50
+  finalFOV: 80
+  zoomSpeed: 70
   source: {fileID: 640483443028411733}
   fireSound: {fileID: 8300000, guid: 61299d5e0b2534b46843fd0aabba9deb, type: 3}
   reloadSound: {fileID: 8300000, guid: 4d32f8c8ecf1663499452c02c3279de3, type: 3}
@@ -12265,7 +12264,7 @@ MonoBehaviour:
   subPoints: 4
   timeBetweeenRecoilPointDecay: 0.11
   recoilEffectTime: 0.1
-  recoilMultiplyer: 13
+  recoilMultiplyer: 15
   notADSingRecoilMultiplyer: 10
   midAirRecoilMultiplyer: 2
   randomHipFire: 0
@@ -12275,7 +12274,7 @@ MonoBehaviour:
   lightStayOnTime: 0.05
   bulletCasingSpawnPoint: {fileID: 1222853226891724361}
   bulletCasingToSpawn: {fileID: 3821964164720115325, guid: 8eca7397311ba094e999c459b76d4415, type: 3}
-  maxShells: 15
+  maxShells: 20
   shellEjectVelocity: 2
   ShellEjectVelocityRandomOffset: 0.1
   flashLight: {fileID: 3451493973296171538}
@@ -12307,229 +12306,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &8416272509779670126
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4377279667458826801}
-  - component: {fileID: 9037293225289781129}
-  - component: {fileID: 5570403282871747127}
-  m_Layer: 7
-  m_Name: Scope Cazm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4377279667458826801
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8416272509779670126}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.797}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1020676886537227199}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &9037293225289781129
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8416272509779670126}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 1
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 62.31512
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.11
-  far clip plane: 1000
-  field of view: 5
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8600000, guid: 28dd4965f9e094a42806d6b30d7122b0, type: 2}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!114 &5570403282871747127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8416272509779670126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clearColorMode: 0
-  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
-  clearDepth: 1
-  volumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
-  SMAAQuality: 2
-  dithering: 0
-  stopNaNs: 0
-  taaSharpenStrength: 0.5
-  TAAQuality: 1
-  taaSharpenMode: 0
-  taaRingingReduction: 0
-  taaHistorySharpening: 0.35
-  taaAntiFlicker: 0.5
-  taaMotionVectorRejection: 0
-  taaAntiHistoryRinging: 0
-  taaBaseBlendFactor: 0.875
-  taaJitterScale: 1
-  physicalParameters:
-    m_Iso: 200
-    m_ShutterSpeed: 0.005
-    m_Aperture: 16
-    m_FocusDistance: 10
-    m_BladeCount: 5
-    m_Curvature: {x: 2, y: 11}
-    m_BarrelClipping: 0.25
-    m_Anamorphism: 0
-  flipYMode: 0
-  xrRendering: 1
-  fullscreenPassthrough: 0
-  allowDynamicResolution: 0
-  customRenderingSettings: 0
-  invertFaceCulling: 0
-  probeLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  hasPersistentHistory: 0
-  screenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  screenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  allowDeepLearningSuperSampling: 1
-  deepLearningSuperSamplingUseCustomQualitySettings: 0
-  deepLearningSuperSamplingQuality: 0
-  deepLearningSuperSamplingUseCustomAttributes: 0
-  deepLearningSuperSamplingUseOptimalSettings: 1
-  deepLearningSuperSamplingSharpening: 0
-  allowFidelityFX2SuperResolution: 1
-  fidelityFX2SuperResolutionUseCustomQualitySettings: 0
-  fidelityFX2SuperResolutionQuality: 0
-  fidelityFX2SuperResolutionUseCustomAttributes: 0
-  fidelityFX2SuperResolutionUseOptimalSettings: 1
-  fidelityFX2SuperResolutionEnableSharpening: 0
-  fidelityFX2SuperResolutionSharpening: 0
-  fsrOverrideSharpness: 0
-  fsrSharpness: 0.92
-  exposureTarget: {fileID: 0}
-  materialMipBias: 0
-  m_RenderingPathCustomFrameSettings:
-    bitDatas:
-      data1: 5770166122053453
-      data2: 12934340311651418136
-    lodBias: 1
-    lodBiasMode: 0
-    lodBiasQualityLevel: 0
-    maximumLODLevel: 0
-    maximumLODLevelMode: 0
-    maximumLODLevelQualityLevel: 0
-    sssQualityMode: 0
-    sssQualityLevel: 0
-    sssCustomSampleBudget: 20
-    sssCustomDownsampleSteps: 0
-    msaaMode: 1
-    materialQuality: 0
-  renderingPathCustomFrameSettingsOverrideMask:
-    mask:
-      data1: 0
-      data2: 0
-  defaultFrameSettings: 0
-  m_Version: 9
-  m_ObsoleteRenderingPath: 0
-  m_ObsoleteFrameSettings:
-    overrides: 0
-    enableShadow: 0
-    enableContactShadows: 0
-    enableShadowMask: 0
-    enableSSR: 0
-    enableSSAO: 0
-    enableSubsurfaceScattering: 0
-    enableTransmission: 0
-    enableAtmosphericScattering: 0
-    enableVolumetrics: 0
-    enableReprojectionForVolumetrics: 0
-    enableLightLayers: 0
-    enableExposureControl: 1
-    diffuseGlobalDimmer: 0
-    specularGlobalDimmer: 0
-    shaderLitMode: 0
-    enableDepthPrepassWithDeferredRendering: 0
-    enableTransparentPrepass: 0
-    enableMotionVectors: 0
-    enableObjectMotionVectors: 0
-    enableDecals: 0
-    enableRoughRefraction: 0
-    enableTransparentPostpass: 0
-    enableDistortion: 0
-    enablePostprocess: 0
-    enableOpaqueObjects: 0
-    enableTransparentObjects: 0
-    enableRealtimePlanarReflection: 0
-    enableMSAA: 0
-    enableAsyncCompute: 0
-    runLightListAsync: 0
-    runSSRAsync: 0
-    runSSAOAsync: 0
-    runContactShadowsAsync: 0
-    runVolumeVoxelizationAsync: 0
-    lightLoopSettings:
-      overrides: 0
-      enableDeferredTileAndCluster: 0
-      enableComputeLightEvaluation: 0
-      enableComputeLightVariants: 0
-      enableComputeMaterialVariants: 0
-      enableFptlForForwardOpaque: 0
-      enableBigTilePrepass: 0
-      isFptlEnabled: 0
 --- !u!1 &8954730056707739762
 GameObject:
   m_ObjectHideFlags: 0
