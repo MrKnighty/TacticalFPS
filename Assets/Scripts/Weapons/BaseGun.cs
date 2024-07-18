@@ -36,6 +36,8 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected AudioSource source;
     [SerializeField] AudioClip fireSound;
     [SerializeField] AudioClip reloadSound;
+    [SerializeField]AudioClip flashLightOn;
+    [SerializeField]AudioClip flashLightOff;
 
 
     [Header("Recoil Settings")]
@@ -452,15 +454,29 @@ public class BaseGun : MonoBehaviour
         }
         return false;
     }
+    
 
     protected void Flashlight()
     {
 
         if (Input.GetKeyDown(KeyCode.F) && flashLight != null)
         {
-            flashLight.SetActive(!flashLight.activeSelf);
+            if(flashLight.activeSelf == false)
+            {
+                source.PlayOneShot(flashLightOn);
+                Invoke("ChangeFlashLightState", flashLightOn.length);
+            }
+            else
+            {
+                source.PlayOneShot(flashLightOff);
+                Invoke("ChangeFlashLightState", flashLightOff.length);
+            }
         }
 
+    }
+    protected void ChangeFlashLightState()
+    {
+        flashLight.SetActive(!flashLight.activeSelf);
     }
 
     protected bool TryReload()
