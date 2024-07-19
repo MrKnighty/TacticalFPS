@@ -1779,14 +1779,10 @@ LODGroup:
     - renderer: {fileID: 2882586500701284494}
     - renderer: {fileID: 5154838199414712256}
     - renderer: {fileID: 1052153945464108672}
-  - screenRelativeHeight: 0.17
+  - screenRelativeHeight: 0.0059950417
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7781621427580697501}
-  - screenRelativeHeight: 0.02
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 920586651407292462}
   m_Enabled: 1
 --- !u!114 &2157010584849231335
 MonoBehaviour:
