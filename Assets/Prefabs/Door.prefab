@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4474792467414625426}
   - component: {fileID: 6637120267312172518}
   - component: {fileID: 4271063460112373283}
+  - component: {fileID: 4549291723474794779}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3514917304683037039}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.613811, y: 3.733927, z: 20.13319}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58,6 +59,7 @@ MonoBehaviour:
   source: {fileID: 4271063460112373283}
   openSound: {fileID: 8300000, guid: 11b67f702ee1a2943b02fed0104567bd, type: 3}
   lockedSound: {fileID: 8300000, guid: 42f69b092e6eadf4b9fcd58ba9e4761f, type: 3}
+  doorOpened: 0
 --- !u!82 &4271063460112373283
 AudioSource:
   m_ObjectHideFlags: 0
@@ -155,6 +157,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!41 &4549291723474794779
+OcclusionPortal:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514917304683037039}
+  m_Open: 1
+  m_Center: {x: -0.091047525, y: -1.345245, z: 0.014978409}
+  m_Size: {x: 2.1031003, y: 2.2495267, z: 0.12188339}
 --- !u!1001 &6675390175009785216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,15 +189,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ab0ee5fb52626fc41a99e7ea8823807f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.17562103
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ab0ee5fb52626fc41a99e7ea8823807f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9819267
+      value: -1.437
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ab0ee5fb52626fc41a99e7ea8823807f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.4408092
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ab0ee5fb52626fc41a99e7ea8823807f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -261,7 +273,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 239.56, y: 426.4, z: 84.77981}
+  m_Size: {x: 225.93, y: 388.1, z: 61.1}
   m_Center: {x: 0, y: 0, z: -0.001953125}
 --- !u!54 &5614995834384199147
 Rigidbody:
@@ -271,9 +283,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5792427567878928593}
   serializedVersion: 4
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 7
+  m_Drag: 2
+  m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -300,7 +312,7 @@ HingeJoint:
   serializedVersion: 3
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: -123.38, y: 0, z: 0}
+  m_Anchor: {x: -120.66, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
@@ -356,15 +368,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.17803001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43807292
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.3981934
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
       propertyPath: m_LocalRotation.w

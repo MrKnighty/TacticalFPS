@@ -112,6 +112,8 @@ public class BaseGun : MonoBehaviour
             gunCanFire = true;
         if (totalRemainingAmmo >= 1)
             canReload = true;
+
+        animator.keepAnimatorStateOnDisable = true;
         
     }
 
@@ -464,7 +466,7 @@ public class BaseGun : MonoBehaviour
     protected void Flashlight()
     {
 
-        if (Input.GetKeyDown(KeyCode.F) && flashLight != null)
+        if (Input.GetKeyDown(KeyCode.T) && flashLight != null)
         {
             if(flashLight.activeSelf == false)
             {

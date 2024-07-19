@@ -34,7 +34,8 @@ public class Interactable : MonoBehaviour
              
         if(stoppedInteractingTick >= 3)
            StopDisplayingInteractionUI();
-           
+
+       
     }
 
     
@@ -81,7 +82,7 @@ public class Interactable : MonoBehaviour
          
             DisplayInteractionUI();
 
-            if (!Input.GetKeyDown(KeyCode.G))
+            if (!Input.GetKeyDown(KeyCode.F))
                 return;
 
         }

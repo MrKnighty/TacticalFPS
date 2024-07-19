@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpEffectTime;
     [SerializeField] float gravity;
     [SerializeField] float airMovementPunishmentMultiplyer;
+    [SerializeField] float coyoteFrames;
+
+    float framesUntillGrounded;
 
     [Header("Camera")]
     [SerializeField] GameObject cameraGameObject;
@@ -53,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-       
+      
         Cursor.lockState = CursorLockMode.Locked;
         playerInstance = this;
         lastPos = transform.position;
@@ -322,24 +325,45 @@ public class PlayerController : MonoBehaviour
 
     bool GroundCheck()
     {
-        bool hit = Physics.Raycast(transform.position, Vector3.down, currentHeight / 2 + 0.12f);
+ 
+       
+        bool hit = Physics.Raycast(transform.position, Vector3.down, currentHeight / 2 + 0.10f);
         if (hit)
+        {
+            framesUntillGrounded = coyoteFrames;
             return true;
+        }
+            
+
         Vector3 offset = transform.position;
         offset.z += controller.radius / 3; // do slightly infront of the collider
 
-        hit = Physics.Raycast(offset, Vector3.down, currentHeight / 2 + 0.15f);
+        hit = Physics.Raycast(offset, Vector3.down, currentHeight / 2 + 0.12f);
+
         if (hit)
+        {
+            framesUntillGrounded = coyoteFrames;
             return true;
+        }
 
         offset.z -= controller.radius / 3; // revert the last move
 
         offset.z -= controller.radius / 3; // do slightly behind the collider
 
-        hit = Physics.Raycast(offset, Vector3.down, currentHeight / 2 + 0.15f);
+        hit = Physics.Raycast(offset, Vector3.down, currentHeight / 2 + 0.12f);
         if (hit)
+        {
+            framesUntillGrounded = coyoteFrames;
             return true;
-        return false;
+        }
+
+        print("Ground");
+
+        framesUntillGrounded -= 1;
+        if (framesUntillGrounded <= 0)
+            return false;
+        else
+            return true;
     }
     float targetMaxVelocity;
     float velocityEaser = 1;
@@ -447,11 +471,12 @@ public class PlayerController : MonoBehaviour
 
         lastPos = transform.position;
     }
+    Vector3 jumpVector = new(0, 0.1f, 0);
     IEnumerator Jump()
     {
-        Vector3 currentPos = transform.position;
-        currentPos.y += 0.3f;
-        transform.position = currentPos;
+        print("Just Jumped!");
+
+        controller.Move(jumpVector);
         yVelocity = jumpVel;
         justJumped = true;
         float timer = jumpEffectTime;
@@ -459,7 +484,7 @@ public class PlayerController : MonoBehaviour
         {
 
             timer -= Time.deltaTime;
-            if (timer >= 0.05)
+            if (timer <= 0.1)
                 justJumped = false;
 
             yVelocity += jumpVel * timer * Time.deltaTime;
