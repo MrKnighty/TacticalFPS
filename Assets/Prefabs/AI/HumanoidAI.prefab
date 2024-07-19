@@ -1259,6 +1259,7 @@ MonoBehaviour:
   aggressive: 0
   searchIterations: 5
   searchRange: 5
+  maxSnapRotateSpeed: 200
   muzzleFX: {fileID: 7305249743711542931}
 --- !u!82 &687864118135339657
 AudioSource:
@@ -1420,8 +1421,8 @@ Transform:
   m_GameObject: {fileID: 7670959825240434257}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710707, y: -0, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 0.0846, y: 1.6755, z: 0.5823}
-  m_LocalScale: {x: 0.038005587, y: 0.038005587, z: 0.038005587}
+  m_LocalPosition: {x: 0.1238, y: 1.5226, z: 0.6855}
+  m_LocalScale: {x: 0.038005587, y: 0.0057791295, z: 0.038005587}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7426311160834637766}
