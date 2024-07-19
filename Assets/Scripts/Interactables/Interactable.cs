@@ -48,7 +48,7 @@ public class Interactable : MonoBehaviour
             if (Vector3.Distance(transform.position, controller.transform.position) < minDistance)
                 BaseTriggerEvents();
 
-            yield return new WaitForSeconds(0.05f);
+            yield return null;
         }
        
     }
@@ -66,10 +66,16 @@ public class Interactable : MonoBehaviour
         
     }
 
+    protected virtual void PreInteract()
+    {
+        return;
+    }
+
 
     void BaseTriggerEvents()
     {
         stoppedInteractingTick = 0;
+        PreInteract();
         if (askForInteract)
         {
          

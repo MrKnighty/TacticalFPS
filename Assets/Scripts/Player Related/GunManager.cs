@@ -5,7 +5,7 @@ using System.Collections;
 public class GunManager : MonoBehaviour
 {
     [SerializeField] BaseGun[] guns; // 0 is pistol, 1 is rifle, 2 is smg, 3 is shotgun
-    bool[] ownedGuns = {false,false,false,false};
+    bool[] ownedGuns = { false, false, false, false };
     [SerializeField] PlayerSyringe playerSyringe;
     static public GunManager instance;
     bool switchingWeapon;
@@ -14,19 +14,19 @@ public class GunManager : MonoBehaviour
     int activeWeapon = -1;
     int lastGunIndex = 0;
 
-  
+
     [SerializeField] Animation anim;
     private void Start()
     {
-    
+
         instance = this;
 
-    
+
         BaseGun.isADSing = false;
         BaseGun.playerInMidAir = false;
         BaseGun.fireForbidden = false;
 
-        
+
 
         foreach (BaseGun gun in guns)
         {
@@ -38,13 +38,55 @@ public class GunManager : MonoBehaviour
 
         foreach (AnimationState state in anim)
         {
+
             state.speed = 1.5f;
         }
 
 
+
+
+    }
+    public void LoadPersistantData()
+    {
+
+        guns[0].LoadAmmoValue(PresistantPlayerData.pistolMag, PresistantPlayerData.pistolAmmo);
+        guns[1].LoadAmmoValue(PresistantPlayerData.rifleMag, PresistantPlayerData.rifleAmmo);
+        guns[2].LoadAmmoValue(PresistantPlayerData.smgMag, PresistantPlayerData.smgAmmo);
+        guns[3].LoadAmmoValue(PresistantPlayerData.shotgunShellsLoaded, PresistantPlayerData.shotgunAmmo);
+        ownedGuns[0] = PresistantPlayerData.pistolUnlocked;
+        ownedGuns[1] = PresistantPlayerData.rifleUnlocked;
+        ownedGuns[2] = PresistantPlayerData.smgUnlocked;
+        ownedGuns[3] = PresistantPlayerData.shotgunUnlocked;
+
+        activeWeapon = PresistantPlayerData.currentWeapon;
+        guns[activeWeapon].gameObject.SetActive(true); 
+        guns[activeWeapon].UpdateUI();
+
+       
+
+    }
+    public void WritePersistantData()
+    {
+        PresistantPlayerData.pistolMag = guns[0].currentAmmoInMagazine;
+        PresistantPlayerData.pistolAmmo = guns[0].totalRemainingAmmo;
+
+        PresistantPlayerData.rifleMag = guns[1].currentAmmoInMagazine;
+        PresistantPlayerData.rifleAmmo = guns[1].totalRemainingAmmo;
+
+        PresistantPlayerData.smgMag = guns[2].currentAmmoInMagazine;
+        PresistantPlayerData.smgAmmo = guns[2].totalRemainingAmmo;
+
+        PresistantPlayerData.shotgunShellsLoaded = guns[3].currentAmmoInMagazine;
+        PresistantPlayerData.shotgunAmmo = guns[3].totalRemainingAmmo;
+
+        PresistantPlayerData.pistolUnlocked = ownedGuns[0];
+        PresistantPlayerData.rifleUnlocked = ownedGuns[1];
+        PresistantPlayerData.smgUnlocked = ownedGuns[2];
+        PresistantPlayerData.shotgunUnlocked = ownedGuns[3];
+
+        PresistantPlayerData.currentWeapon = activeWeapon;
     }
 
-   
 
     public void CancelADS()
     {
@@ -53,9 +95,9 @@ public class GunManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F9) && DebugManager.DebugMode)
+        if (Input.GetKeyDown(KeyCode.F9) && DebugManager.DebugMode)
         {
-            for(int i = 0; i < ownedGuns.Length; i++)
+            for (int i = 0; i < ownedGuns.Length; i++)
             {
                 ownedGuns[i] = true;
             }
@@ -73,7 +115,7 @@ public class GunManager : MonoBehaviour
 
 
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (activeWeapon == 1 || !ownedGuns[1])
                 return;
@@ -97,7 +139,7 @@ public class GunManager : MonoBehaviour
 
     void SwitchWeapon(int newWeapon)
     {
-        if(activeWeapon == -1)
+        if (activeWeapon == -1)
         {
             anim.Play(guns[0].name + "Equip");
             guns[0].gameObject.SetActive(true);
@@ -105,7 +147,7 @@ public class GunManager : MonoBehaviour
             return;
         }
 
-        
+
         if (activeWeapon == newWeapon)
             return;
 
@@ -132,20 +174,20 @@ public class GunManager : MonoBehaviour
         guns[lastGunIndex].gameObject.SetActive(false);
         guns[activeWeapon].gameObject.SetActive(true);
         guns[activeWeapon].UpdateUI();
-        
+
         anim.Play(guns[activeWeapon].name + "Equip");
         print("Switched gun");
-        
+
     }
     public void SwitchFinished()//controlled by animator
     {
         switchingWeapon = false;
         BaseGun.fireForbidden = false;
-  
+
     }
     public void GiveAmmo(PickupType type, int count)
     {
-        switch(type)
+        switch (type)
         {
             case PickupType.SMG_AMMO:
                 UICommunicator.refrence.PopupText("SMG Ammo + " + count, 1);
@@ -170,7 +212,7 @@ public class GunManager : MonoBehaviour
 
 
         }
-            
+
     }
 
     public void ObtainWeapon(int index)

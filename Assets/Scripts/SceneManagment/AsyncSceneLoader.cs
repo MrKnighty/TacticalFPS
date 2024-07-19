@@ -19,7 +19,7 @@ public class AsyncSceneLoader : MonoBehaviour
     }
     IEnumerator LoadScene()
     {
-       AsyncOperation sceneLoader = SceneManager.LoadSceneAsync("Level 2");
+       AsyncOperation sceneLoader = SceneManager.LoadSceneAsync("MainLevel");
         sceneLoader.allowSceneActivation = false;
 
         while(!sceneLoader.isDone)
@@ -28,7 +28,9 @@ public class AsyncSceneLoader : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F6) && sceneLoader.progress >= 0.9f )
             {
+                FindAnyObjectByType<PresistantPlayerData>().Save();
                 sceneLoader.allowSceneActivation = true;
+
                 DebugManager.DisplayInfo("Asyunc", "Scene Primed!" + sceneLoader.progress);
             }
                 

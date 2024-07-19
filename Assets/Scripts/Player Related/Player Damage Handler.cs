@@ -31,6 +31,20 @@ public class PlayerDamageHandler : MonoBehaviour
         {
             print("No Audio Source On Player: " + this.name);
         }
+
+     
+       
+    }
+
+    public void LoadPersistantData()
+    {
+        currentHealth = PresistantPlayerData.health;
+        UICommunicator.UpdateUI("Hp Text", "HP: " + (int)currentHealth);
+    }
+
+    public void WritePersistantData()
+    {
+        PresistantPlayerData.health = currentHealth;
     }
 
     // Update is called once per frame
@@ -113,4 +127,5 @@ public class PlayerDamageHandler : MonoBehaviour
 
         UICommunicator.refrence.GameOverUI();
     }
+   
 }

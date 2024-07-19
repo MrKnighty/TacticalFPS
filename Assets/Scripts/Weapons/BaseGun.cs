@@ -7,16 +7,16 @@ using Unity.Mathematics;
 public class BaseGun : MonoBehaviour
 {
     [Header("Standard Settings")]
-    [SerializeField] float magazineSize; // max amount of ammo that can be in magazine
+    [SerializeField] int magazineSize; // max amount of ammo that can be in magazine
 
-    [SerializeField] float totalRemainingAmmo; // remaining ammo not in magazine
-    [SerializeField] float maxAmmo;
+    [HideInInspector] public int totalRemainingAmmo; // remaining ammo not in magazine
+    [SerializeField] int maxAmmo;
     [SerializeField] float reloadTime;
     [SerializeField] float damage;
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
 
-    float currentAmmoInMagazine;// how many bullets ready to fire
+    public int currentAmmoInMagazine;// how many bullets ready to fire
 
 
 
@@ -34,7 +34,7 @@ public class BaseGun : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] protected AudioSource source;
-    [SerializeField] AudioClip fireSound;
+    [SerializeField] AudioClip[] fireSound;
     [SerializeField] AudioClip reloadSound;
     [SerializeField]AudioClip flashLightOn;
     [SerializeField]AudioClip flashLightOff;
@@ -147,8 +147,13 @@ public class BaseGun : MonoBehaviour
         isADSing = false;
         animator.SetBool("ADS", false);
     }
+    public void LoadAmmoValue(int magVal, int totalAmmo)
+    {
+        totalRemainingAmmo = totalAmmo;
+        currentAmmoInMagazine = magVal;
+    }
 
-    public void ReceiveAmmo(float count)
+    public void ReceiveAmmo(int count)
     {
         totalRemainingAmmo += count;
         if (totalRemainingAmmo < maxAmmo + (magazineSize - currentAmmoInMagazine)) // temporarily increase max ammo if player does not have full mag
@@ -294,7 +299,7 @@ public class BaseGun : MonoBehaviour
         {
             FireFVX();
             BulletCasingEject();
-            source.PlayOneShot(fireSound, 0.5f * GameControllsManager.audioVolume);
+            source.PlayOneShot(fireSound[UnityEngine.Random.Range(0, fireSound.Length - 1)], 0.5f * GameControllsManager.audioVolume);
             currentAmmoInMagazine -= 1;
         }
 
