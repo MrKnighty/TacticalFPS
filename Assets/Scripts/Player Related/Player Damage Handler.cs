@@ -17,7 +17,7 @@ public class PlayerDamageHandler : MonoBehaviour
 
     AudioSource audioSource;
 
-    [SerializeField]Image damageImage;
+    [SerializeField] RawImage damageImage;
     [SerializeField] float damageImageFadeSpeed;
     [SerializeField] bool godMode = false;
     [SerializeField] AudioClip godModeAudioClip;

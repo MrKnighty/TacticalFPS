@@ -14,7 +14,8 @@ public class Door : Interactable
     {
         if (doorOpened)
             return;
-   
+
+        
 
         if(doorLocked)
         {
@@ -23,7 +24,7 @@ public class Door : Interactable
         }
 
         rb.isKinematic = false;
-        rb.AddForce(rb.transform.forward * 50);
+        rb.AddForce(PlayerController.playerInstance.transform.forward * 50);
         source.PlayOneShot(openSound, GameControllsManager.audioVolume);
         doorOpened = true;
       
@@ -32,6 +33,12 @@ public class Door : Interactable
     public void UnlockEvent()
     {
         doorLocked = false;
+    }
+
+    protected override void PreInteract()
+    {
+        base.PreInteract();
+        print("Im near a door");
     }
 
 }

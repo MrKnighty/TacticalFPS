@@ -207,7 +207,7 @@ MonoBehaviour:
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_FadeDistance: 50
+  m_FadeDistance: 100
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
@@ -3204,8 +3204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b993723dd3c3d1e4c8fb00801ff814bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
-  accelerationSpeed: 5
+  moveSpeed: 14
+  accelerationSpeed: 4
   velocityFallOff: 6
   adsMoveSpeedPunishment: 0.5
   sprintingSpeedMultiplyer: 1.4
@@ -3215,15 +3215,16 @@ MonoBehaviour:
   jumpEffectTime: 0.15
   gravity: 18
   airMovementPunishmentMultiplyer: 0.5
+  coyoteFrames: 2
   cameraGameObject: {fileID: 7615221839760034783}
   camBounds: {x: -70, y: 70}
   mouseSencitivity: 125
   distanceBetweenFootstep: 2.5
-  tiltAngle: 37
-  tiltSpeed: 100
-  height: 2
+  tiltAngle: 30
+  tiltSpeed: 70
+  height: 1.88
   crouchHeight: 0.8
-  crouchSpeed: 5
+  crouchSpeed: 4
   crouchMoveSpeedMultiplyer: 0.5
   isAdsIng: 0
 --- !u!136 &6976179084503519390
@@ -4366,7 +4367,7 @@ MonoBehaviour:
   totalRemainingAmmo: 62
   maxAmmo: 62
   reloadTime: 1.5
-  damage: 1.5
+  damage: 2.5
   isAutomatic: 0
   fireRate: 0.08
   currentAmmoInMagazine: 0
@@ -11902,7 +11903,7 @@ MonoBehaviour:
   totalRemainingAmmo: 5
   maxAmmo: 10
   reloadTime: 2.2
-  damage: 7
+  damage: 5
   isAutomatic: 0
   fireRate: 1.2
   currentAmmoInMagazine: 0
@@ -11997,7 +11998,7 @@ Transform:
   m_GameObject: {fileID: 7615221839760034783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.027666826, y: 0.49999988, z: 0.19674288}
+  m_LocalPosition: {x: -0.027666826, y: 0.6, z: 0.19674288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12633,7 +12634,7 @@ MonoBehaviour:
   totalRemainingAmmo: 120
   maxAmmo: 120
   reloadTime: 2.2
-  damage: 1.5
+  damage: 2
   isAutomatic: 1
   fireRate: 0.08
   currentAmmoInMagazine: 0
