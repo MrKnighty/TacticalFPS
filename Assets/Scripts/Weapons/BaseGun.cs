@@ -36,6 +36,8 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected AudioSource source;
     [SerializeField] AudioClip fireSound;
     [SerializeField] AudioClip reloadSound;
+    [SerializeField]AudioClip flashLightOn;
+    [SerializeField]AudioClip flashLightOff;
 
 
     [Header("Recoil Settings")]
@@ -93,12 +95,24 @@ public class BaseGun : MonoBehaviour
     float shotsFired;
     float shotsHit;
 
-    public static bool holdADS = true;
+    public static bool holdADS ;
     bool hasInit;
     void Start()
     {
+       
        Initilize();
         initFOV = Camera.main.fieldOfView;
+
+        //reset static values
+        adsForbidden = false;
+        playerInMidAir = false;
+        fireForbidden = false;
+        reloading = false;
+        if (currentAmmoInMagazine >= 1)
+            gunCanFire = true;
+        if (totalRemainingAmmo >= 1)
+            canReload = true;
+        
     }
 
     private void OnEnable()
@@ -440,15 +454,29 @@ public class BaseGun : MonoBehaviour
         }
         return false;
     }
+    
 
     protected void Flashlight()
     {
 
         if (Input.GetKeyDown(KeyCode.F) && flashLight != null)
         {
-            flashLight.SetActive(!flashLight.activeSelf);
+            if(flashLight.activeSelf == false)
+            {
+                source.PlayOneShot(flashLightOn);
+                Invoke("ChangeFlashLightState", flashLightOn.length);
+            }
+            else
+            {
+                source.PlayOneShot(flashLightOff);
+                Invoke("ChangeFlashLightState", flashLightOff.length);
+            }
         }
 
+    }
+    protected void ChangeFlashLightState()
+    {
+        flashLight.SetActive(!flashLight.activeSelf);
     }
 
     protected bool TryReload()

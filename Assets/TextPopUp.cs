@@ -10,6 +10,7 @@ public class TextPopUp : MonoBehaviour
     [SerializeField] string text;
     [SerializeField] float fadeInTime = 0;
     [SerializeField] float fadeOutTime = 0;
+    [SerializeField] bool autoFadeOut = false;
     [SerializeField] bool onExit;
     [SerializeField] float duration = 5;
     [SerializeField] bool destroy;
@@ -36,6 +37,7 @@ public class TextPopUp : MonoBehaviour
             StartCoroutine(FadeBetweenText(colorNoAlpha, colorAlpha, fadeInTime, true));
             textMeshPro.gameObject.SetActive(true);
         }
+        if(autoFadeOut)
         StartCoroutine(Timer());
     }
     

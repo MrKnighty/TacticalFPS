@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] GameObject cameraGameObject;
+    [SerializeField] Vector2 camBounds;
 
     [SerializeField] float mouseSencitivity;
     [Header("Audio")]
@@ -52,12 +53,15 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+       
         Cursor.lockState = CursorLockMode.Locked;
         playerInstance = this;
         lastPos = transform.position;
         capsualCol = GetComponent<CapsuleCollider>();
         currentHeight = height;
+        isSprinting = false;
 
+        print("PlayerStarting");
        
 
 
@@ -310,7 +314,7 @@ public class PlayerController : MonoBehaviour
             if (desiredXRotation < -180f) desiredXRotation += 360f;
 
          
-            cameraGameObject.transform.localEulerAngles = new Vector3(Mathf.Clamp(desiredXRotation, -45, 45), cameraRotation.y, cameraRotation.z );
+            cameraGameObject.transform.localEulerAngles = new Vector3(Mathf.Clamp(desiredXRotation, camBounds.x, camBounds.y), cameraRotation.y, cameraRotation.z );
 
             cameraRotateVelocity = Vector2.zero;
         }

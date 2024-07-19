@@ -43,7 +43,7 @@ public class Shotgun : BaseGun
         for(int i = 0; i < pelletCount - 1; i++)
         {
             FireEvent(false);
-            print(i);
+        ;
         }
     }
 

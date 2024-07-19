@@ -11,12 +11,13 @@ public class Interactable : MonoBehaviour
     
     [SerializeField] GameObject interactionPopup;
     [SerializeField] float distanceFromPivot;
+    [SerializeField] bool lookAtPlayer;
     bool interactionUiActive;
 
     int stoppedInteractingTick;
     [SerializeField] bool askForInteract;
 
-    private void Start()
+    protected virtual void Start()
     {
         
 
@@ -43,6 +44,7 @@ public class Interactable : MonoBehaviour
         PlayerController controller = PlayerController.playerInstance;
         while(true)
         {
+           
             if (Vector3.Distance(transform.position, controller.transform.position) < minDistance)
                 BaseTriggerEvents();
 
@@ -67,12 +69,13 @@ public class Interactable : MonoBehaviour
 
     void BaseTriggerEvents()
     {
-        if(askForInteract)
+        stoppedInteractingTick = 0;
+        if (askForInteract)
         {
-            stoppedInteractingTick = 0;
+         
             DisplayInteractionUI();
 
-            if (!Input.GetKeyDown(KeyCode.E))
+            if (!Input.GetKeyDown(KeyCode.G))
                 return;
 
         }
@@ -92,6 +95,8 @@ public class Interactable : MonoBehaviour
             
         interactionUiActive = true;
         interactionPopup.gameObject.SetActive(true);
+        if (!lookAtPlayer)
+            return;
         interactionPopup.transform.LookAt(PlayerController.playerInstance.transform.position);
         interactionPopup.transform.position = transform.position + (interactionPopup.transform.forward * distanceFromPivot);
     }

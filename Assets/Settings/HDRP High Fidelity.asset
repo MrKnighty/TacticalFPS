@@ -45,13 +45,13 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
     supportDistortion: 0
-    supportTransparentBackface: 0
-    supportTransparentDepthPrepass: 0
-    supportTransparentDepthPostpass: 0
+    supportTransparentBackface: 1
+    supportTransparentDepthPrepass: 1
+    supportTransparentDepthPostpass: 1
     colorBufferFormat: 74
     supportCustomPass: 0
     customBufferFormat: 12
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 1
     planarReflectionResolution:
       m_Values: 000100000002000000020000
       m_SchemaId:
@@ -68,15 +68,15 @@ MonoBehaviour:
     highQualityLineRenderingMemoryBudget: 128
     msaaSampleCount: 1
     supportMotionVectors: 0
-    supportScreenSpaceLensFlare: 1
-    supportDataDrivenLensFlare: 1
+    supportScreenSpaceLensFlare: 0
+    supportDataDrivenLensFlare: 0
     supportDitheringCrossFade: 1
     supportRuntimeAOVAPI: 0
     supportTerrainHole: 0
     lightProbeSystem: 1
     oldLightProbeSystem: 0
-    probeVolumeMemoryBudget: 2048
-    supportProbeVolumeGPUStreaming: 1
+    probeVolumeMemoryBudget: 512
+    supportProbeVolumeGPUStreaming: 0
     supportProbeVolumeDiskStreaming: 1
     probeVolumeSHBands: 1
     supportProbeVolumeScenarios: 1
@@ -105,15 +105,15 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 0
       supportFabricConvolution: 0
-      maxDirectionalLightsOnScreen: 16
-      maxPunctualLightsOnScreen: 512
-      maxAreaLightsOnScreen: 64
+      maxDirectionalLightsOnScreen: 2
+      maxPunctualLightsOnScreen: 25
+      maxAreaLightsOnScreen: 25
       maxCubeReflectionOnScreen: 32
       maxPlanarReflectionOnScreen: 16
       maxDecalsOnScreen: 512
       maxLightsPerClusterCell: 16
       maxLocalVolumetricFogSize: 32
-      maxLocalVolumetricFogOnScreen: 64
+      maxLocalVolumetricFogOnScreen: 32
     hdShadowInitParams:
       maxShadowRequests: 128
       directionalShadowsDepthBits: 16
@@ -136,11 +136,11 @@ MonoBehaviour:
         m_SchemaId:
           m_Id: With4Levels
       shadowResolutionPunctual:
-        m_Values: 00020000000400000008000000100000
+        m_Values: 00010000000400000008000000100000
         m_SchemaId:
           m_Id: With4Levels
       shadowResolutionArea:
-        m_Values: 00020000000400000008000000100000
+        m_Values: 00010000000400000008000000100000
         m_SchemaId:
           m_Id: With4Levels
       maxDirectionalShadowMapResolution: 8192
@@ -157,7 +157,7 @@ MonoBehaviour:
         m_Values: 000100000002000000040000
         m_SchemaId:
           m_Id: With3Levels
-      perChannelMask: 1
+      perChannelMask: 0
     postProcessSettings:
       m_LutSize: 32
       lutFormat: 48
@@ -219,7 +219,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000101
+        m_Values: 000000
         m_SchemaId:
           m_Id: 
     maximumLODLevel:

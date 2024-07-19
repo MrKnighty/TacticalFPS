@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - BulletCasing
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Cover
   - Player
   - NoCollidePlayer
-  - 
+  - Casing
   - 
   - 
   - 

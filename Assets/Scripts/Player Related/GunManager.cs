@@ -36,6 +36,12 @@ public class GunManager : MonoBehaviour
             gun.Initilize();
         }
 
+        foreach (AnimationState state in anim)
+        {
+            state.speed = 1.5f;
+        }
+
+
     }
 
    
@@ -126,7 +132,7 @@ public class GunManager : MonoBehaviour
         guns[lastGunIndex].gameObject.SetActive(false);
         guns[activeWeapon].gameObject.SetActive(true);
         guns[activeWeapon].UpdateUI();
-
+        
         anim.Play(guns[activeWeapon].name + "Equip");
         print("Switched gun");
         

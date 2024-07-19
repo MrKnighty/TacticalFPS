@@ -9,5 +9,6 @@ public class Pickup : Interactable
     protected override void TriggerEvent()
     {
         GunManager.instance.GiveAmmo(type, amount);
+        Destroy(gameObject);
     }
 }
