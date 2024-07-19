@@ -12,6 +12,7 @@ public class BasicShootAI : AIBase
     [Header("Chase")]
     [SerializeField] float searchIterations = 5;
     [SerializeField] float searchRange = 5;
+    [SerializeField, Tooltip("In Degrees")] float maxSnapRotateSpeed = 15;
     [SerializeField] ParticleSystem muzzleFX;
     protected override void Start()
     {
@@ -86,7 +87,10 @@ public class BasicShootAI : AIBase
             playerInSight = false;
             agent.updateRotation = true;
             lastSeenPlayerPosition = playerTransform.position;
-
+        }
+        if(currentState == AIStates.Aggro)
+        {
+            RotateTowardsTarget();
         }
     }
 
@@ -130,9 +134,6 @@ public class BasicShootAI : AIBase
         bool lostSight = true;
         while(currentState == AIStates.Aggro)
         {
-            Vector3 lookDir = playerTransform.position;
-            lookDir.y = transform.position.y;
-            transform.LookAt(lookDir);
             if(lostSight)
             {
                 lostSight = false;
@@ -159,6 +160,14 @@ public class BasicShootAI : AIBase
             yield return Timer(attackSpeed);
         }
 
+    }
+    void RotateTowardsTarget()
+    {
+        Vector3 lookDir = playerTransform.position;
+        lookDir.y = transform.position.y;
+        lookDir = lookDir - transform.position;
+        // transform.LookAt(lookDir);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir, Vector3.up), maxSnapRotateSpeed * Time.deltaTime);
     }
     IEnumerator Gaurd()
     {

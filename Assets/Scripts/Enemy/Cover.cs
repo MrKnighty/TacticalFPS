@@ -7,6 +7,7 @@ public class Cover : MonoBehaviour
     [SerializeField] bool setLayerMask = true;
     private void Start()
     {
+        
         if (gameObject.layer != LayerMask.NameToLayer("Cover"))
         {
             gameObject.layer = LayerMask.NameToLayer("Cover");
@@ -20,5 +21,7 @@ public class Cover : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(areaOffset + transform.position, size);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(areaOffset + transform.position, 0.1f);
     }
 }
