@@ -21,6 +21,7 @@ public class PlayerDamageHandler : MonoBehaviour
     [SerializeField] float damageImageFadeSpeed;
     [SerializeField] bool godMode = false;
     [SerializeField] AudioClip godModeAudioClip;
+    [SerializeField] Image hpImage;
     void Start()
     {
         try
@@ -32,14 +33,15 @@ public class PlayerDamageHandler : MonoBehaviour
             print("No Audio Source On Player: " + this.name);
         }
 
-     
-       
+    
+
     }
 
     public void LoadPersistantData()
     {
         currentHealth = PresistantPlayerData.health;
-        UICommunicator.UpdateUI("Hp Text", "HP: " + (int)currentHealth);
+        UICommunicator.UpdateUI("Hp Text", "" + (int)currentHealth);
+        hpImage.fillAmount = currentHealth / maxHealth;
     }
 
     public void WritePersistantData()
@@ -50,7 +52,8 @@ public class PlayerDamageHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        UICommunicator.UpdateUI("Hp Text", "" + (int)currentHealth);
+        if (Input.GetKeyDown(KeyCode.P))
         {
             godMode = !godMode;
             if (godMode)
@@ -103,8 +106,9 @@ public class PlayerDamageHandler : MonoBehaviour
     void ChangeHealth(float amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        UICommunicator.UpdateUI("Hp Text", "HP: " + (int)currentHealth);
-        if(currentHealth <= 0) 
+        UICommunicator.UpdateUI("Hp Text", "" + (int)currentHealth);
+        hpImage.fillAmount = currentHealth / maxHealth; 
+        if (currentHealth <= 0) 
         {
             Death();
         }

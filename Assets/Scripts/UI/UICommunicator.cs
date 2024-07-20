@@ -20,6 +20,7 @@ public class UICommunicator : MonoBehaviour
     [SerializeField] GameObject popupTextObject;
     [SerializeField] Vector2 startMessageSpot, endMessageSpot;
    
+    
     void Start()
     {
         ui = new Dictionary<string, TextMeshProUGUI>();

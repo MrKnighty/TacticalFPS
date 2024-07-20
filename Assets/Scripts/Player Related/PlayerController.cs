@@ -443,8 +443,9 @@ public class PlayerController : MonoBehaviour
         Quaternion playerQaut = Quaternion.Euler(playerRot);
         
         Vector3 newFoward = playerQaut * Vector3.forward;
+        Vector3 newRight = playerQaut * Vector3.right;
 
-        Vector3 moveVector = transform.right * velocity.x + newFoward * velocity.z;
+        Vector3 moveVector = newRight * velocity.x + newFoward * velocity.z;
 
 
         controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * currentSprintMultiplyer * Time.deltaTime);

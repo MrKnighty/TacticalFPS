@@ -20,10 +20,12 @@ public class PlayerSyringe : MonoBehaviour
     {
         instance = this;
         damageHandler = GetComponent<PlayerDamageHandler>();
-      //  UICommunicator.UpdateUI("Syringe Text", "Syringe: " + amountOfSyringes);
+      
     }
     void Update()
     {
+        UICommunicator.UpdateUI("Syringe Text", "" + amountOfSyringes);
+
         if (healing || amountOfSyringes <= 0|| damageHandler.currentHealth >= 100)
             return;
 
@@ -36,7 +38,7 @@ public class PlayerSyringe : MonoBehaviour
             
         }
 
-        UICommunicator.UpdateUI("Syringe Text", "Syringe: " + amountOfSyringes);
+        UICommunicator.UpdateUI("Syringe Text", "" + amountOfSyringes);
     }
 
     IEnumerator Heal()
