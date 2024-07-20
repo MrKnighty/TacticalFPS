@@ -45,9 +45,9 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
     supportDistortion: 0
-    supportTransparentBackface: 1
-    supportTransparentDepthPrepass: 1
-    supportTransparentDepthPostpass: 1
+    supportTransparentBackface: 0
+    supportTransparentDepthPrepass: 0
+    supportTransparentDepthPostpass: 0
     colorBufferFormat: 74
     supportCustomPass: 0
     customBufferFormat: 12
@@ -67,12 +67,12 @@ MonoBehaviour:
     supportHighQualityLineRendering: 0
     highQualityLineRenderingMemoryBudget: 128
     msaaSampleCount: 1
-    supportMotionVectors: 1
+    supportMotionVectors: 0
     supportScreenSpaceLensFlare: 0
     supportDataDrivenLensFlare: 0
     supportDitheringCrossFade: 1
-    supportRuntimeAOVAPI: 1
-    supportTerrainHole: 1
+    supportRuntimeAOVAPI: 0
+    supportTerrainHole: 0
     lightProbeSystem: 1
     oldLightProbeSystem: 0
     probeVolumeMemoryBudget: 512

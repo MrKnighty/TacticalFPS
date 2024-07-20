@@ -61,13 +61,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6959057187884029489, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6959057187884029489, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6959057187884029489, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8b019ebae78601e4b97145fa252e2898, type: 2}
     - target: {fileID: -1594759221229875694, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1594759221229875694, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1594759221229875694, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e9f1d2aa5093eb24e88c43c07bedf210, type: 2}
+    - target: {fileID: -1021654204405665559, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1021654204405665559, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -1021654204405665559, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -75,6 +99,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
       propertyPath: m_Name
       value: ComputerSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498248656186478200, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238715221626264924, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575567870914521055, guid: 0b91439925a5c0e4bb6309fd9b0e691d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

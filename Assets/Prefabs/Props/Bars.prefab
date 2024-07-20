@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 97202205765729089}
   - component: {fileID: 3151834753826645083}
   - component: {fileID: 6093153046029662542}
+  - component: {fileID: 2101652489855735671}
   m_Layer: 0
   m_Name: Bars
   m_TagString: Untagged
@@ -4621,3 +4622,13 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7803246344177188087}
   m_Mesh: {fileID: 0}
+--- !u!41 &2101652489855735671
+OcclusionPortal:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803246344177188087}
+  m_Open: 1
+  m_Center: {x: 2.350093, y: 0.16809916, z: -0.04534243}
+  m_Size: {x: 5.700185, y: 4.5996556, z: 0.27473068}
