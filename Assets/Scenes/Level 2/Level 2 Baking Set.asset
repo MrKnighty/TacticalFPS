@@ -112,11 +112,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: 2}
       index: 71
-      probeCount: 12416
+      probeCount: 12992
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 2
-      bricksCount: 194
+      bricksCount: 203
       indirectionEntryInfo:
       - positionInBricks: {x: -9, y: 0, z: 18}
         minSubdiv: 0
@@ -126,11 +126,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: 3}
       index: 92
-      probeCount: 14784
+      probeCount: 14208
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 2
-      bricksCount: 231
+      bricksCount: 222
       indirectionEntryInfo:
       - positionInBricks: {x: -9, y: 0, z: 27}
         minSubdiv: 0
@@ -252,11 +252,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: 2}
       index: 72
-      probeCount: 8000
+      probeCount: 7424
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 1
-      bricksCount: 125
+      bricksCount: 116
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: 18}
         minSubdiv: 0
@@ -266,11 +266,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: 3}
       index: 93
-      probeCount: 7936
+      probeCount: 7424
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 1
-      bricksCount: 124
+      bricksCount: 116
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: 27}
         minSubdiv: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
     - Default
     - lights_out
     m_Values:
-    - sceneHash: -81298811
+    - sceneHash: 1605398557
       cellDataAsset:
         m_AssetGUID: 1cd8f8a5d93798c4aa5234b7f9918e1f
         m_StreamableAssetPath: APVStreamingAssets\94b7de163f8c0214e85639015a8ea6b2\1cd8f8a5d93798c4aa5234b7f9918e1f.bytes
@@ -1032,9 +1032,9 @@ MonoBehaviour:
       - offset: 2448
         elementCount: 111
       - offset: 4224
-        elementCount: 194
-      - offset: 7328
-        elementCount: 231
+        elementCount: 203
+      - offset: 7472
+        elementCount: 222
       - offset: 11024
         elementCount: 295
       - offset: 15744
@@ -1052,38 +1052,38 @@ MonoBehaviour:
       - offset: 23888
         elementCount: 197
       - offset: 27040
-        elementCount: 125
-      - offset: 29040
-        elementCount: 124
-      - offset: 31024
+        elementCount: 116
+      - offset: 28896
+        elementCount: 116
+      - offset: 30752
         elementCount: 366
-      - offset: 36880
+      - offset: 36608
         elementCount: 89
-      - offset: 38304
+      - offset: 38032
         elementCount: 195
-      - offset: 41424
+      - offset: 41152
         elementCount: 120
-      - offset: 43344
+      - offset: 43072
         elementCount: 215
-      - offset: 46784
+      - offset: 46512
         elementCount: 376
-      - offset: 52800
+      - offset: 52528
         elementCount: 186
-      - offset: 55776
+      - offset: 55504
         elementCount: 186
-      - offset: 58752
+      - offset: 58480
         elementCount: 190
-      - offset: 61792
+      - offset: 61520
         elementCount: 41
-      - offset: 62448
+      - offset: 62176
         elementCount: 58
-      - offset: 63376
+      - offset: 63104
         elementCount: 146
-      - offset: 65712
+      - offset: 65440
         elementCount: 70
-      - offset: 66832
+      - offset: 66560
         elementCount: 19
-      - offset: 67136
+      - offset: 66864
         elementCount: 69
     m_Asset: {fileID: 0}
   cellSupportDataAsset:

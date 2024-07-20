@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MaterialPropertiesManager : MonoBehaviour
 {
@@ -6,14 +7,19 @@ public class MaterialPropertiesManager : MonoBehaviour
 
 
     [SerializeField] MaterialProperty[] materialProperties;
+    [SerializeField] MaterialProperty enemyMaterialProperties;
     [SerializeField] MaterialProperty fallbackMat;
 
     static MaterialProperty[] sMaterialProperties;
     static MaterialProperty sFallbackMat;
+    static MaterialProperty sEnemyMaterialProperties;
     void Start()
     {
         sMaterialProperties = materialProperties;
         sFallbackMat = fallbackMat;
+        sEnemyMaterialProperties = enemyMaterialProperties;
+
+
     }
 
     public static AudioClip[] GetFootStepSounds(GameObject hitObject)
@@ -28,6 +34,8 @@ public class MaterialPropertiesManager : MonoBehaviour
     }
     public static AudioClip[] GetBulletImpactSounds(GameObject hitObject)
     {
+        if (hitObject.transform.tag == "Enemy")
+            return sEnemyMaterialProperties.shotSounds;
         int i = GetIndex(hitObject);
       
         if (i == -1)
@@ -39,6 +47,8 @@ public class MaterialPropertiesManager : MonoBehaviour
 
     public static GameObject GetHitParticle(GameObject hitObject)
     {
+        if (hitObject.transform.tag == "Enemy")
+            return sEnemyMaterialProperties.hitParticle;
         int i = GetIndex(hitObject);
         if (i == -1 || sMaterialProperties[i].hitParticle == null)
            return sFallbackMat.hitParticle;
@@ -47,6 +57,8 @@ public class MaterialPropertiesManager : MonoBehaviour
 
     public static GameObject GetDecal(GameObject hitObject)
     {
+        if (hitObject.transform.tag == "Enemy")
+            return sEnemyMaterialProperties.decal;
         int i = GetIndex(hitObject);
         if (i == -1 )
             return sFallbackMat.decal;

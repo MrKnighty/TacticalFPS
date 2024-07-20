@@ -53,6 +53,7 @@ MonoBehaviour:
   interactionPopup: {fileID: 0}
   distanceFromPivot: 0
   lookAtPlayer: 0
+  showInteractionUI: 0
   askForInteract: 1
   doorLocked: 0
   rb: {fileID: 5614995834384199147}

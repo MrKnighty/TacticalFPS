@@ -51,7 +51,7 @@ MonoBehaviour:
     colorBufferFormat: 74
     supportCustomPass: 0
     customBufferFormat: 12
-    supportedLitShaderMode: 1
+    supportedLitShaderMode: 2
     planarReflectionResolution:
       m_Values: 000100000002000000020000
       m_SchemaId:
@@ -61,18 +61,18 @@ MonoBehaviour:
       m_SchemaId:
         m_Id: With3Levels
     supportDecals: 1
-    supportDecalLayers: 0
-    supportSurfaceGradient: 0
+    supportDecalLayers: 1
+    supportSurfaceGradient: 1
     decalNormalBufferHP: 0
     supportHighQualityLineRendering: 0
     highQualityLineRenderingMemoryBudget: 128
     msaaSampleCount: 1
-    supportMotionVectors: 0
+    supportMotionVectors: 1
     supportScreenSpaceLensFlare: 0
     supportDataDrivenLensFlare: 0
     supportDitheringCrossFade: 1
-    supportRuntimeAOVAPI: 0
-    supportTerrainHole: 0
+    supportRuntimeAOVAPI: 1
+    supportTerrainHole: 1
     lightProbeSystem: 1
     oldLightProbeSystem: 0
     probeVolumeMemoryBudget: 512
@@ -151,13 +151,13 @@ MonoBehaviour:
       screenSpaceShadowBufferFormat: 48
     decalSettings:
       drawDistance: 1000
-      atlasWidth: 2048
+      atlasWidth: 4096
       atlasHeight: 2048
       transparentTextureResolution:
         m_Values: 000100000002000000040000
         m_SchemaId:
           m_Id: With3Levels
-      perChannelMask: 0
+      perChannelMask: 1
     postProcessSettings:
       m_LutSize: 32
       lutFormat: 48

@@ -38,7 +38,7 @@ public class Door : Interactable
     protected override void PreInteract()
     {
         base.PreInteract();
-        print("Im near a door");
+   
     }
 
 }

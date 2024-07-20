@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5360284772531524801}
   - component: {fileID: 3496705028175270461}
+  - component: {fileID: 4870125391809869467}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -59,10 +60,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: e78a028bda1ebd345a3ef9b96fa11a82, type: 3}
     shotSounds:
     - {fileID: 8300000, guid: 5d67c0f47f0a6874e84daedd198b532a, type: 3}
-    hitParticle: {fileID: 0}
+    hitParticle: {fileID: 1609394842365697041, guid: b61e314599bb6f142ab466dfb8934613, type: 3}
     decal: {fileID: 0}
   - material:
     - {fileID: 2100000, guid: c85860a191aee24458c6fdf49901dbd7, type: 2}
+    - {fileID: 2100000, guid: 0a1cbe1af42a1d54f950e39cb930454f, type: 2}
     stepSounds:
     - {fileID: 8300000, guid: a43e1a2fd6d8a4545a7ab644a2f8cdb7, type: 3}
     - {fileID: 8300000, guid: 06a5604eada1b3c4f88aa5b3def0f1df, type: 3}
@@ -77,7 +79,6 @@ MonoBehaviour:
     - {fileID: 2100000, guid: d9a1cced290a1f342ae8affe32a6f581, type: 2}
     - {fileID: 2100000, guid: f17dbc3991a08cb42ad4951796056f0b, type: 2}
     - {fileID: 2100000, guid: c50dae55b69e53149960d2bc82b3a63e, type: 2}
-    - {fileID: 2100000, guid: 43adeff2c436a6a4293df07ca971e5a4, type: 2}
     stepSounds:
     - {fileID: 8300000, guid: b239de3db74b0d244aa9d9f8655f7aa0, type: 3}
     - {fileID: 8300000, guid: a464b105eaa420b4fad9f294a653f1ab, type: 3}
@@ -93,9 +94,18 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 29d1fc29de8b369429c0e73bc4477d54, type: 2}
     stepSounds: []
     shotSounds:
-    - {fileID: 8300000, guid: 69fe38d1e1b4763489ecffae2e3770ff, type: 3}
+    - {fileID: 8300000, guid: f6604e8fef5b65e4b89595fabe2cc3bd, type: 3}
     hitParticle: {fileID: 2711976420550248240, guid: aeb3b8f4969b04445a0cf0aee20d174e, type: 3}
     decal: {fileID: 0}
+  enemyMaterialProperties:
+    material:
+    - {fileID: 0}
+    stepSounds:
+    - {fileID: 8300000, guid: e78a028bda1ebd345a3ef9b96fa11a82, type: 3}
+    shotSounds:
+    - {fileID: 8300000, guid: f6604e8fef5b65e4b89595fabe2cc3bd, type: 3}
+    hitParticle: {fileID: 2711976420550248240, guid: aeb3b8f4969b04445a0cf0aee20d174e, type: 3}
+    decal: {fileID: 961899084977122069, guid: e8409d03cbb405744b6fbf7bf967d497, type: 3}
   fallbackMat:
     material:
     - {fileID: 2100000, guid: 0a1cbe1af42a1d54f950e39cb930454f, type: 2}
@@ -105,3 +115,15 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 072f85fe02cacec4bb2febc17d7c325b, type: 3}
     hitParticle: {fileID: 6599165949420749886, guid: 9dfa530b8dbcd03439166900db1f96a3, type: 3}
     decal: {fileID: 961899084977122069, guid: e8409d03cbb405744b6fbf7bf967d497, type: 3}
+--- !u!114 &4870125391809869467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718639368923131298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f58cd8141099584bb63ff377b18b833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

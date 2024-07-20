@@ -5,7 +5,7 @@ using System.Collections;
 public class GunManager : MonoBehaviour
 {
     [SerializeField] BaseGun[] guns; // 0 is pistol, 1 is rifle, 2 is smg, 3 is shotgun
-    bool[] ownedGuns = { true, true, true, false };
+    [SerializeField] bool[] ownedGuns = { false, false, false, false };
     [SerializeField] PlayerSyringe playerSyringe;
     static public GunManager instance;
     bool switchingWeapon;
@@ -139,13 +139,7 @@ public class GunManager : MonoBehaviour
 
     void SwitchWeapon(int newWeapon)
     {
-        if (activeWeapon == -1)
-        {
-            anim.Play(guns[0].name + "Equip");
-            guns[0].gameObject.SetActive(true);
-            activeWeapon = 0;
-            return;
-        }
+        
 
 
         if (activeWeapon == newWeapon)
@@ -217,7 +211,17 @@ public class GunManager : MonoBehaviour
 
     public void ObtainWeapon(int index)
     {
+
+        if (index == 0)
+        {
+            anim.Play(guns[0].name + "Equip");
+            guns[0].gameObject.SetActive(true);
+            activeWeapon = 0;
+            ownedGuns[0] = true;
+            return;
+        }
         ownedGuns[index] = true;
+        
         SwitchWeapon(index);
     }
 }

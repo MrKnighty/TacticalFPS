@@ -65,8 +65,11 @@ public class PlayerController : MonoBehaviour
         isSprinting = false;
 
         print("PlayerStarting");
-       
 
+/*#if !UNITY_EDITOR
+        print("this is not a unity editor moment");
+        Shader.WarmupAllShaders();
+#endif*/
 
     }
     void Update()
