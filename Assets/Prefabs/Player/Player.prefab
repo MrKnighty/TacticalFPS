@@ -3322,11 +3322,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2314ebcbaf175cb4498e30d5495f0afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfSyringes: 5
-  healAmount: 20
+  amountOfSyringes: 2
+  healAmount: 30
   healTime: 2
-  delayToHeal: 1.1
+  delayToHeal: 0.25
   animator: {fileID: 4566794522395294570}
+  source: {fileID: 0}
+  healStartSound: {fileID: 0}
+  healingSound: {fileID: 0}
+  healEndSound: {fileID: 0}
 --- !u!114 &8300568429405481221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3344,6 +3348,7 @@ MonoBehaviour:
   - {fileID: 7767471698255333722}
   - {fileID: 1735417265554458543}
   - {fileID: 4589889954184169461}
+  ownedGuns: 00000000
   playerSyringe: {fileID: 0}
   switchSpeed: 0
   anim: {fileID: 8088425586309883353}
@@ -4727,7 +4732,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1020676886537227199}
-  m_LocalEulerAnglesHint: {x: 0, y: -139.325, z: -106.163}
+  m_LocalEulerAnglesHint: {x: 0, y: -139.325, z: -58.654}
 --- !u!33 &743935654188749838
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13374,11 +13379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3d943dfbff830ae409abcac61b5758a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -139.325
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3d943dfbff830ae409abcac61b5758a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -58.654
       objectReference: {fileID: 0}
     - target: {fileID: -5648767689465423854, guid: 3d943dfbff830ae409abcac61b5758a3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

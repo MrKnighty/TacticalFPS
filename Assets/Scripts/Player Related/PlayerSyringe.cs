@@ -12,6 +12,8 @@ public class PlayerSyringe : MonoBehaviour
 
     bool healing;
     [SerializeField]Animation animator;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip healStartSound, healingSound, healEndSound;
 
     static public PlayerSyringe instance;
     private void Start()
@@ -22,7 +24,7 @@ public class PlayerSyringe : MonoBehaviour
     }
     void Update()
     {
-        if (healing || amountOfSyringes <= 0)
+        if (healing || amountOfSyringes <= 0|| damageHandler.currentHealth >= 100)
             return;
 
         if(Input.GetKeyDown(KeyCode.H))
@@ -41,8 +43,10 @@ public class PlayerSyringe : MonoBehaviour
     {
         float timer = healTime;
         yield return new WaitForSeconds(delayToHeal);
+        source.PlayOneShot(healStartSound);
         BaseGun.adsForbidden = false;
         amountOfSyringes--;
+        source.PlayOneShot(healingSound);
         while (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -50,7 +54,7 @@ public class PlayerSyringe : MonoBehaviour
             yield return null;
         }
 
-       
+        source.PlayOneShot(healEndSound);
         healing = false;
         
     }

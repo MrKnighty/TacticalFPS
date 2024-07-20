@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerDamageHandler : MonoBehaviour
 {
     [SerializeField] float maxHealth;
-    [SerializeField] float currentHealth;
+    public float currentHealth;
 
     [SerializeField] GameObject DeathScreenUIGameObject;
     [SerializeField] bool loadSceneOnDeath = false;
