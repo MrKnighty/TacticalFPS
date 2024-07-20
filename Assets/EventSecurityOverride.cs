@@ -6,12 +6,14 @@ public class EventSecurityOverride : Interactable
     [SerializeField] GameObject[] Gates;
     [SerializeField] float lightsOutTime;
     [SerializeField] GameObject[] newEnemiesToEnable;
-    Light[] lights;
+    [SerializeField] GameObject[] objectsToEnable;
+    [SerializeField] Light[] lights;
+   // Light[] lights;
     Animation anim;
 
     protected override void Start()
     {
-        lights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None);
+      //  lights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None);
         base.Start();
         anim = GetComponent<Animation>();
 
@@ -39,17 +41,21 @@ public class EventSecurityOverride : Interactable
             Invoke("LightsOut", lightsOutTime);
         }
     }
-
+    [ContextMenu("LightsOut")]
     void LightsOut()
     {
         foreach(Light light in lights)
         {
-            if (light.gameObject.isStatic)
+            
                 light.enabled = false;
         }
         foreach(GameObject enemy in newEnemiesToEnable)
         {
             enemy.SetActive(true);
+        }
+        foreach(GameObject obj in objectsToEnable)
+        {
+            obj.SetActive(true);
         }
 
         UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
