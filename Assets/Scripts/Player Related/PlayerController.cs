@@ -360,7 +360,7 @@ public class PlayerController : MonoBehaviour
             return true;
         }
 
-        print("Ground");
+       
 
         framesUntillGrounded -= 1;
         if (framesUntillGrounded <= 0)
