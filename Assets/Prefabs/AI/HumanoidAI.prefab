@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  viewDistance: 100000000
+  viewDistance: 50
   bulletSparkFX: {fileID: 6599165949420749886, guid: 9dfa530b8dbcd03439166900db1f96a3, type: 3}
   shootRadius: 2
   attackSpeed: 0.1
