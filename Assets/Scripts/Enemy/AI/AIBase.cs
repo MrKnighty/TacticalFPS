@@ -139,7 +139,7 @@ public class AIBase : MonoBehaviour
            if(hit.transform.tag == "Player")
                 return playerBodyPoint;
         }
-        if(Physics.Raycast(aIHeadPoint.position, (playerHeadPoint.position - aIHeadPoint.position), out hit))
+        if(Physics.Raycast(aIHeadPoint.position, (playerHeadPoint.position - aIHeadPoint.position), out hit, viewDistance))
         {
             if (hit.transform.tag == "Player")
                 return playerHeadPoint;
