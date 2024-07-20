@@ -13,6 +13,13 @@ public class AIBase : MonoBehaviour
     protected NavMeshAgent agent;
     [SerializeField] protected AIStates currentState;
     [SerializeField, Tooltip("The Distance in units at which the AI can detect the player")] protected float viewDistance = 100000000f;
+    [Header("Raycast Points")]
+    [SerializeField] Transform aIHeadPoint;
+    [SerializeField] Transform playerBodyPoint;
+    [SerializeField] Transform playerHeadPoint;
+    [Header("Audio")]
+    [SerializeField] protected AudioClip shootSFX;
+    
     [Header("Shooting")]
     [SerializeField] GameObject bulletSparkFX;
     [SerializeField] protected float shootRadius = 2f;
@@ -22,10 +29,6 @@ public class AIBase : MonoBehaviour
     [SerializeField] protected float damage = 1;
     protected int ammo;
     [SerializeField] protected float reloadTime = 2f;
-    [Header("Raycast Points")]
-    [SerializeField] Transform aIHeadPoint;
-    [SerializeField] Transform playerBodyPoint;
-    [SerializeField] Transform playerHeadPoint;
     [Header("Cover")]
     [SerializeField] protected bool inCover = false;
     [SerializeField] float closestDistanceToCoverXZ;
@@ -41,8 +44,6 @@ public class AIBase : MonoBehaviour
     [SerializeField] protected float patrolWaitTimer;
     [SerializeField] protected float patrolTurnSpeed;
     [SerializeField] protected bool isPaused = false;
-    [Header("Audio")]
-    [SerializeField] protected AudioClip shootSFX;
     protected AudioSource audioSource;
     virtual protected void Start()
     {
