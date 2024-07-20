@@ -12,6 +12,7 @@ public class AIBase : MonoBehaviour
     protected PlayerDamageHandler playerDamageHandler;
     protected NavMeshAgent agent;
     [SerializeField] protected AIStates currentState;
+    [SerializeField, Tooltip("The Distance in units at which the AI can detect the player")] protected float viewDistance = 100000000f;
     [Header("Shooting")]
     [SerializeField] GameObject bulletSparkFX;
     [SerializeField] protected float shootRadius = 2f;
@@ -133,7 +134,7 @@ public class AIBase : MonoBehaviour
         {
             return null;
         }
-        if (Physics.Raycast(aIHeadPoint.position, (bodyDir), out hit))
+        if (Physics.Raycast(aIHeadPoint.position, bodyDir, out hit, viewDistance))
         {
            if(hit.transform.tag == "Player")
                 return playerBodyPoint;
