@@ -291,7 +291,9 @@ public class PlayerController : MonoBehaviour
             Vector3 pos = transform.position;
             Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit);
             pos.y = hit.point.y;
-            transform.position = pos;
+            float dist = pos.y - transform.position.y;
+            controller.Move(new Vector3(0, dist, 0));
+            //transform.position = pos;
         }
         else
         {
@@ -390,7 +392,7 @@ public class PlayerController : MonoBehaviour
                 velocity.z -= velocityFallOff * Time.deltaTime;
             else if (velocity.z < 0)
                 velocity.z += velocityFallOff * Time.deltaTime;
-            if (Mathf.Abs(velocity.z) <= 0.09)
+            if (Mathf.Abs(velocity.z) <= 0.35)
                 velocity.z = 0;
         }
 
@@ -475,7 +477,7 @@ public class PlayerController : MonoBehaviour
 
         lastPos = transform.position;
     }
-    Vector3 jumpVector = new(0, 0.1f, 0);
+    Vector3 jumpVector = new(0, 0.3f, 0);
     IEnumerator Jump()
     {
         print("Just Jumped!");
@@ -488,7 +490,7 @@ public class PlayerController : MonoBehaviour
         {
 
             timer -= Time.deltaTime;
-            if (timer <= 0.1)
+            if (timer <= 0.05)
                 justJumped = false;
 
             yVelocity += jumpVel * timer * Time.deltaTime;
