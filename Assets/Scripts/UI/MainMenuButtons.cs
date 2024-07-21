@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class MainMenuButtons : MonoBehaviour
 {
-   public void StartButton()
+   public void StartButton(int index)
     {
      
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(index);
     }
     public void ExitButton()
     {

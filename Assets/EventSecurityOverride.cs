@@ -73,7 +73,7 @@ public class EventSecurityOverride : Interactable
         foreach (Light light in lights)
         {
 
-            light.enabled = false;
+            light.gameObject.SetActive(false);
         }
 
         for (int i =0; i< 8; i++)
@@ -82,14 +82,14 @@ public class EventSecurityOverride : Interactable
             foreach (Light light in lights)
             {
 
-                light.enabled = true;
+                light.gameObject.SetActive(true);
             }
             yield return new WaitForSeconds(Random.Range(0.1f, 0.2f));
             UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
             foreach (Light light in lights)
             {
 
-                light.enabled = false;
+                light.gameObject.SetActive(false);
             }
             yield return new WaitForSeconds(Random.Range(0.1f,0.2f));
 

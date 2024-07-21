@@ -15,6 +15,8 @@ public class PlayerSyringe : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip healStartSound, healingSound, healEndSound;
 
+    [SerializeField] Material healJuiceMat;
+
     static public PlayerSyringe instance;
     private void Start()
     {
@@ -43,6 +45,7 @@ public class PlayerSyringe : MonoBehaviour
 
     IEnumerator Heal()
     {
+        healJuiceMat.SetFloat("_Cutoff", 0.58f);
         float timer = healTime;
         yield return new WaitForSeconds(delayToHeal);
       //  source.PlayOneShot(healStartSound);
@@ -52,7 +55,8 @@ public class PlayerSyringe : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            damageHandler.Heal(healAmount * (Time.deltaTime / healTime));  
+            damageHandler.Heal(healAmount * (Time.deltaTime / healTime));
+            healJuiceMat.SetFloat("_Cutoff", Mathf.Lerp(0.53f, 0.56f, (timer / healTime)));
             yield return null;
         }
 

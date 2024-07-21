@@ -48,9 +48,9 @@ MonoBehaviour:
     m_Value: 131.9
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 3.402823e+19
+    m_Value: 30
   enableVolumetricFog:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   albedo:
     m_OverrideState: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   sliceDistributionUniformity:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.662
   multipleScatteringIntensity:
     m_OverrideState: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_Value: 0
   exposure:
     m_OverrideState: 1
-    m_Value: 5.8
+    m_Value: -100
   multiplier:
     m_OverrideState: 0
     m_Value: 1
