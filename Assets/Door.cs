@@ -23,7 +23,7 @@ public class Door : Interactable
         }
 
         rb.isKinematic = false;
-        rb.AddForce(PlayerController.playerInstance.transform.forward * 50);
+        rb.AddForce(PlayerController.playerInstance.transform.forward * 1050);
         source.PlayOneShot(openSound, GameControllsManager.audioVolume);
         doorOpened = true;
       

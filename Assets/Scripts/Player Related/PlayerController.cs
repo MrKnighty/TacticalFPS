@@ -31,11 +31,13 @@ public class PlayerController : MonoBehaviour
     [Header("Canter")]
     [SerializeField] float tiltAngle;
     [SerializeField] float tiltSpeed;
+    [SerializeField] float canterMoveSpeedMultiplyer;
     [Header("Crouching")]
     [SerializeField] float height, crouchHeight;
     [SerializeField] float crouchSpeed;
     [SerializeField] float crouchMoveSpeedMultiplyer;
 
+    [SerializeField] Animator sprintingAnimator;
     Vector3 velocity;
     Vector3 movementVector;
     Vector2 cameraRotateVelocity;
@@ -124,12 +126,16 @@ public class PlayerController : MonoBehaviour
             currentSprintMultiplyer += accelerationSpeed * Time.deltaTime;
             if (currentSprintMultiplyer >= sprintingSpeedMultiplyer)
                 currentSprintMultiplyer = sprintingSpeedMultiplyer;
+
+            sprintingAnimator.SetBool("sprinting", true);
         }
         else
         {
             currentSprintMultiplyer -= velocityFallOff * Time.deltaTime;
             if (currentSprintMultiplyer <= 1)
                 currentSprintMultiplyer = 1;
+
+            sprintingAnimator.SetBool("sprinting", false);
         }
 
     }
@@ -184,10 +190,11 @@ public class PlayerController : MonoBehaviour
     bool isCantering;
     bool canterLeft;
     bool canterDirL;
+  
 
     void TacticalTilt()
     {
-
+      
         float zRotation = transform.localEulerAngles.z;
 
         if (zRotation > 180)
@@ -198,13 +205,13 @@ public class PlayerController : MonoBehaviour
 
         if (GameControllsManager.toggleCanter)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !isSprinting)
             {
                 isCantering = !isCantering;
                 canterLeft = true;
 
             }
-            else if (Input.GetKeyDown(KeyCode.Q))
+            else if (Input.GetKeyDown(KeyCode.Q) && !isSprinting)
             {
                 isCantering = !isCantering;
                 canterLeft = false;
@@ -226,7 +233,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) && !isSprinting)
             {
                 zRotation -= tiltSpeed * Time.deltaTime;
                 isCantering = true;
@@ -236,7 +243,7 @@ public class PlayerController : MonoBehaviour
                     canterDirL = false;
 
             }
-            else if (Input.GetKey(KeyCode.Q))
+            else if (Input.GetKey(KeyCode.Q) && !isSprinting)
             {
                 zRotation += tiltSpeed * Time.deltaTime;
                 isCantering = true;
@@ -251,10 +258,12 @@ public class PlayerController : MonoBehaviour
                 isCantering = false;
             }
         }
+
+
         if (!isCantering)
         {
 
-            if (zRotation > 0)
+            if (zRotation > 0)  
             {
 
                 zRotation -= tiltSpeed * Time.deltaTime;
@@ -419,7 +428,7 @@ public class PlayerController : MonoBehaviour
         }
         velocityEaser = Mathf.Clamp(velocityEaser, targetMaxVelocity, 1);
 
-        velocity += (movementVector * airMultiplyer) * accelerationSpeed * Time.deltaTime; // add the current move vector to the velocity. 
+        velocity += (movementVector * airMultiplyer) * accelerationSpeed  * Time.deltaTime; // add the current move vector to the velocity. 
         velocity = Vector3.ClampMagnitude(velocity, velocityEaser) ;
 
 
@@ -450,7 +459,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveVector = newRight * velocity.x + newFoward * velocity.z;
 
 
-        controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * currentSprintMultiplyer * Time.deltaTime);
+        controller.Move(moveVector * moveSpeed * (currentHeight / height * crouchMoveSpeedMultiplyer) * currentSprintMultiplyer * (isCantering == false ? 1 : canterMoveSpeedMultiplyer) * Time.deltaTime);
       
 
         
