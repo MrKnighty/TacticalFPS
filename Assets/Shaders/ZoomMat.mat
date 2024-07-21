@@ -110,7 +110,7 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ObjectScreenPosition: {r: 0.6201836, g: 0.42730612, b: 0, a: 0}
+    - _ObjectScreenPosition: {r: 0.6201427, g: 0.42730483, b: 0, a: 0}
     - _Tiling: {r: 0.9, g: 0.9, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

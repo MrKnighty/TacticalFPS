@@ -112,8 +112,6 @@ public class GunManager : MonoBehaviour
             if (activeWeapon == 0 || !ownedGuns[0])
                 return;
             SwitchWeapon(0);
-
-
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -139,14 +137,15 @@ public class GunManager : MonoBehaviour
 
     void SwitchWeapon(int newWeapon)
     {
-        
-
+        #if UNITY_EDITOR
+        if(activeWeapon < 0)
+            activeWeapon = 0;
+        #endif
 
         if (activeWeapon == newWeapon)
             return;
-
-        if (!guns[activeWeapon].ReadyToSwitch())
-            return;
+            if (!guns[activeWeapon].ReadyToSwitch())
+                return;
 
         guns[activeWeapon].StopReloading();
 
