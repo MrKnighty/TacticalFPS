@@ -9,13 +9,12 @@ public class Door : Interactable
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip openSound, lockedSound;
     [SerializeField] bool doorOpened;
+    [SerializeField] bool unlockOpensDoor;
 
     protected override void TriggerEvent()
     {
         if (doorOpened)
             return;
-
-        
 
         if(doorLocked)
         {
@@ -32,6 +31,8 @@ public class Door : Interactable
 
     public void UnlockEvent()
     {
+        if(unlockOpensDoor)
+            TriggerEvent();
         doorLocked = false;
     }
 
