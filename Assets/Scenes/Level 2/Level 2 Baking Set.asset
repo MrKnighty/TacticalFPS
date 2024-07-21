@@ -35,8 +35,8 @@ MonoBehaviour:
   - cda724db88e319e4393170a449ad4085
   obsoleteScenesToNotBake: []
   m_LightingScenarios:
-  - Default
   - lights_out
+  - lights_on
   cellDescs:
     m_Keys: 5b000000700000006a0000000800000032000000470000005c000000710000002c00000041000000560000006b000000090000001e00000033000000480000005d000000720000001f00000034000000490000005e00000073000000880000009d000000b2000000c700000020000000350000004a0000007400000036000000
     m_Values:
@@ -565,7 +565,7 @@ MonoBehaviour:
     m_Asset: {fileID: 0}
   scenarios:
     m_Keys:
-    - Default
+    - lights_on
     - lights_out
     m_Values:
     - sceneHash: -1450597695
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   supportLayerMaskChunkSize: 0
   supportOffsetsChunkSize: 98304
   supportDataChunkSize: 262144
-  lightingScenario: Default
+  lightingScenario: lights_out
   version: 1
   freezePlacement: 1
   probeOffset: {x: 0, y: 0, z: 0}

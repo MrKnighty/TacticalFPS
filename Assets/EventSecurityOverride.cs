@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class EventSecurityOverride : Interactable
 {
@@ -44,11 +46,7 @@ public class EventSecurityOverride : Interactable
     [ContextMenu("LightsOut")]
     void LightsOut()
     {
-        foreach(Light light in lights)
-        {
-            
-                light.enabled = false;
-        }
+       
         foreach(GameObject enemy in newEnemiesToEnable)
         {
             enemy.SetActive(true);
@@ -57,9 +55,55 @@ public class EventSecurityOverride : Interactable
         {
             obj.SetActive(true);
         }
+        StartCoroutine("LightsFlicker");
+
+        
+    
+    }
+
+    IEnumerator LightsFlicker()
+    {
+        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
+        foreach (Light light in lights)
+        {
+
+            light.enabled = false;
+        }
+        yield return new WaitForSeconds(0.5f);
+
+        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_on";
+        foreach (Light light in lights)
+        {
+
+            light.enabled = true;
+        }
+
+        yield return new WaitForSeconds(0.2f);
 
         UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
-    
+        foreach (Light light in lights)
+        {
+
+            light.enabled = false;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_on";
+        foreach (Light light in lights)
+        {
+
+            light.enabled = true;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
+        foreach (Light light in lights)
+        {
+
+            light.enabled = false;
+        }
     }
 
 }
