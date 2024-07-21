@@ -971,7 +971,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4911679088620840543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -1076,9 +1076,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8db6b6e3afe800c418ea4894b313bd68, type: 3}
   - {fileID: 8300000, guid: dedfff8912c70d54d8101abc67844ea5, type: 3}
   timeBetweenIdleClips: 0
-  attackCooldown: 1
+  attackCooldown: 1.5
   attackDistance: 2
-  attackDamage: 20
+  attackDamage: 10
 --- !u!114 &9173487527371034591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.5
-  ragdollObject: {fileID: 0}
+  ragdollObject: {fileID: 2401499119809649401, guid: 4d696a31dca28db4ba92934c14676b5b, type: 3}
   useRagDoll: 1
 --- !u!82 &3235361647294315584
 AudioSource:
@@ -1164,7 +1164,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
