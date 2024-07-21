@@ -674,7 +674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7660688648844398129
 Transform:
   m_ObjectHideFlags: 0
@@ -684,7 +684,7 @@ Transform:
   m_GameObject: {fileID: 667842954136330625}
   serializedVersion: 2
   m_LocalRotation: {x: 2.2204458e-16, y: -0, z: -0.0000000067130963, w: 1}
-  m_LocalPosition: {x: 0.2655, y: 0.338, z: 1.0328}
+  m_LocalPosition: {x: -0.196, y: 0.338, z: 0.684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3350,7 +3350,7 @@ MonoBehaviour:
   - {fileID: 7767471698255333722}
   - {fileID: 1735417265554458543}
   - {fileID: 4589889954184169461}
-  ownedGuns: 00010100
+  ownedGuns: 01000000
   playerSyringe: {fileID: 0}
   switchSpeed: 0
   anim: {fileID: 8088425586309883353}
@@ -4376,7 +4376,7 @@ MonoBehaviour:
   reloadTime: 1.5
   damage: 2.5
   isAutomatic: 0
-  fireRate: 0.12
+  fireRate: 0.1
   currentAmmoInMagazine: 0
   zoomFOV: 1
   finalFOV: 70
@@ -4390,11 +4390,10 @@ MonoBehaviour:
   flashLightOn: {fileID: 8300000, guid: fcd3b6acda46ca143b03f910c393d550, type: 3}
   flashLightOff: {fileID: 8300000, guid: 4efeb46863a8a3145a44ba5f6a5e474c, type: 3}
   recoilPoints:
-  - {x: 0.5, y: 0.3}
-  - {x: 0.8, y: 0.7}
-  - {x: 1, y: -0.5}
-  - {x: 1.2, y: -0.55}
-  - {x: 1.5, y: -0.1}
+  - {x: 1, y: 0}
+  - {x: 0.5, y: 0.1}
+  - {x: 0.8, y: 0.2}
+  - {x: 0.8, y: 0.3}
   subPoints: 3
   timeBetweeenRecoilPointDecay: 0.3
   recoilEffectTime: 0.07
@@ -4402,7 +4401,7 @@ MonoBehaviour:
   notADSingRecoilMultiplyer: 10
   midAirRecoilMultiplyer: 2
   randomHipFire: 1
-  randomHitRadius: 0.1
+  randomHitRadius: 0.02
   sprintingRecoilModifyer: 2
   lightObject: {fileID: 5064624922504744280}
   lightStayOnTime: 0.05
@@ -11875,7 +11874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6103356242899527345
 Transform:
   m_ObjectHideFlags: 0
@@ -12692,7 +12691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6998950176411460998
 Transform:
   m_ObjectHideFlags: 0
@@ -12741,13 +12740,13 @@ MonoBehaviour:
   flashLightOn: {fileID: 8300000, guid: fcd3b6acda46ca143b03f910c393d550, type: 3}
   flashLightOff: {fileID: 8300000, guid: 4efeb46863a8a3145a44ba5f6a5e474c, type: 3}
   recoilPoints:
-  - {x: 0.8, y: 0.1}
-  - {x: 1, y: 0.1}
-  - {x: 1.3, y: -0.25}
-  - {x: 1, y: -0.55}
-  - {x: 1, y: -0.1}
-  - {x: 1, y: 0.3}
-  - {x: 1, y: 0.5}
+  - {x: 0.6, y: 0}
+  - {x: 0.6, y: -0.1}
+  - {x: 0.4, y: -0.2}
+  - {x: 0.4, y: -0.2}
+  - {x: 0.4, y: -0.3}
+  - {x: 0.2, y: -0.4}
+  - {x: 0.2, y: -0.3}
   subPoints: 4
   timeBetweeenRecoilPointDecay: 0.11
   recoilEffectTime: 0.1
@@ -13256,15 +13255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8312348368779129012, guid: 479659a0883f7144fa6193382d6dd66e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.03288373
+      value: 0.037826154
       objectReference: {fileID: 0}
     - target: {fileID: 8312348368779129012, guid: 479659a0883f7144fa6193382d6dd66e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.032883734
+      value: 0.037826158
       objectReference: {fileID: 0}
     - target: {fileID: 8312348368779129012, guid: 479659a0883f7144fa6193382d6dd66e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.03288374
+      value: 0.03782617
       objectReference: {fileID: 0}
     - target: {fileID: 8312348368779129012, guid: 479659a0883f7144fa6193382d6dd66e, type: 3}
       propertyPath: m_LocalPosition.x
