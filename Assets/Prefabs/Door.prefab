@@ -50,10 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionMode: 1
   minDistance: 3
-  interactionPopup: {fileID: 0}
-  distanceFromPivot: 0
-  lookAtPlayer: 0
-  showInteractionUI: 0
   askForInteract: 1
   doorLocked: 0
   rb: {fileID: 5614995834384199147}
@@ -274,8 +270,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 225.93, y: 388.1, z: 61.1}
-  m_Center: {x: 0, y: 0, z: -0.001953125}
+  m_Size: {x: 233.18, y: 441, z: 61.1}
+  m_Center: {x: 2.9, y: -5.6, z: -0.001953125}
 --- !u!54 &5614995834384199147
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -285,7 +281,7 @@ Rigidbody:
   m_GameObject: {fileID: 5792427567878928593}
   serializedVersion: 4
   m_Mass: 7
-  m_Drag: 2
+  m_Drag: 10
   m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -313,7 +309,7 @@ HingeJoint:
   serializedVersion: 3
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: -120.66, y: 0, z: 0}
+  m_Anchor: {x: -113.01, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
