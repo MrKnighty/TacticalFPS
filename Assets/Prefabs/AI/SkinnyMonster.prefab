@@ -1075,6 +1075,7 @@ MonoBehaviour:
   aggroAudioClips:
   - {fileID: 8300000, guid: 8db6b6e3afe800c418ea4894b313bd68, type: 3}
   - {fileID: 8300000, guid: dedfff8912c70d54d8101abc67844ea5, type: 3}
+  timeBetweenIdleClips: 0
   attackCooldown: 1
   attackDistance: 2
   attackDamage: 20
@@ -1128,7 +1129,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

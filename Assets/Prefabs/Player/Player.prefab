@@ -3592,9 +3592,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2314ebcbaf175cb4498e30d5495f0afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfSyringes: 2
-  healAmount: 30
-  healTime: 1.3
+  amountOfSyringes: 3
+  healAmount: 40
+  healTime: 1.6
   delayToHeal: 0.25
   animator: {fileID: 4566794522395294570}
   source: {fileID: 0}
