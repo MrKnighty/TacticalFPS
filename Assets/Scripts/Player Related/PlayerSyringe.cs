@@ -45,10 +45,10 @@ public class PlayerSyringe : MonoBehaviour
     {
         float timer = healTime;
         yield return new WaitForSeconds(delayToHeal);
-        source.PlayOneShot(healStartSound);
+      //  source.PlayOneShot(healStartSound);
         BaseGun.adsForbidden = false;
         amountOfSyringes--;
-        source.PlayOneShot(healingSound);
+    //    source.PlayOneShot(healingSound);
         while (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -56,7 +56,7 @@ public class PlayerSyringe : MonoBehaviour
             yield return null;
         }
 
-        source.PlayOneShot(healEndSound);
+     //   source.PlayOneShot(healEndSound);
         healing = false;
         
     }

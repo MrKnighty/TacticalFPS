@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 97202205765729089}
   - component: {fileID: 3151834753826645083}
   - component: {fileID: 6093153046029662542}
+  - component: {fileID: 5746353760066097250}
   - component: {fileID: 2101652489855735671}
   m_Layer: 0
   m_Name: Bars
@@ -4609,7 +4610,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4748
+  m_VersionIndex: 4751
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4622,6 +4623,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7803246344177188087}
   m_Mesh: {fileID: 0}
+--- !u!65 &5746353760066097250
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803246344177188087}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.2890024, y: 5, z: 0.20000005}
+  m_Center: {x: 2.5444975, y: 0, z: -0.00000047683716}
 --- !u!41 &2101652489855735671
 OcclusionPortal:
   m_ObjectHideFlags: 0
