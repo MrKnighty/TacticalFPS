@@ -10,6 +10,9 @@ public class EventSecurityOverride : Interactable
     [SerializeField] GameObject[] newEnemiesToEnable;
     [SerializeField] GameObject[] objectsToEnable;
     [SerializeField] Light[] lights;
+
+    [SerializeField] AudioSource gunshotSource;
+    [SerializeField] AudioClip[] gunshotSounds;
    // Light[] lights;
     Animation anim;
 
@@ -28,58 +31,44 @@ public class EventSecurityOverride : Interactable
             gate.GetComponent<AudioSource>().Play();
         }
         anim.Play();
+
+        LightsOut();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Player" && ready)
+      
+        
+    }
+    [ContextMenu("LightsOut")]
+    void LightsOut()
+    {
+
+        foreach (GameObject enemy in newEnemiesToEnable)
         {
+            enemy.SetActive(true);
+        }
+        foreach (GameObject obj in objectsToEnable)
+        {
+            obj.SetActive(true);
+        }
+        StartCoroutine("LightsFlicker");
+
+       
             foreach (GameObject gate in Gates)
             {
                 gate.GetComponent<Animation>().Play();
                 print(gate.name);
             }
 
-            Invoke("LightsOut", lightsOutTime);
-        }
-    }
-    [ContextMenu("LightsOut")]
-    void LightsOut()
-    {
-       
-        foreach(GameObject enemy in newEnemiesToEnable)
-        {
-            enemy.SetActive(true);
-        }
-        foreach(GameObject obj in objectsToEnable)
-        {
-            obj.SetActive(true);
-        }
-        StartCoroutine("LightsFlicker");
+         
 
         
-    
     }
 
     IEnumerator LightsFlicker()
     {
-        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
-        foreach (Light light in lights)
-        {
-
-            light.enabled = false;
-        }
-        yield return new WaitForSeconds(0.5f);
-
-        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_on";
-        foreach (Light light in lights)
-        {
-
-            light.enabled = true;
-        }
-
-        yield return new WaitForSeconds(0.2f);
-
+        yield return new WaitForSeconds(lightsOutTime);
         UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
         foreach (Light light in lights)
         {
@@ -87,22 +76,32 @@ public class EventSecurityOverride : Interactable
             light.enabled = false;
         }
 
-        yield return new WaitForSeconds(0.5f);
-
-        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_on";
-        foreach (Light light in lights)
+        for (int i =0; i< 8; i++)
         {
+            UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_on";
+            foreach (Light light in lights)
+            {
 
-            light.enabled = true;
+                light.enabled = true;
+            }
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.2f));
+            UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
+            foreach (Light light in lights)
+            {
+
+                light.enabled = false;
+            }
+            yield return new WaitForSeconds(Random.Range(0.1f,0.2f));
+
         }
+       
 
-        yield return new WaitForSeconds(0.5f);
+       
 
-        UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
-        foreach (Light light in lights)
+        for(int i = 0; i < 20; i++)
         {
-
-            light.enabled = false;
+            gunshotSource.PlayOneShot(gunshotSounds[Random.Range(0, gunshotSounds.Length -1)],GameControllsManager.audioVolume );
+            yield return new WaitForSeconds(Random.Range(0.1f,0.25f));
         }
     }
 
