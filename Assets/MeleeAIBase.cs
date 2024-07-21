@@ -5,19 +5,38 @@ public class MeleeAIBase : AIBase
 {
     Transform playerPoint;
     bool aggro;
+    [Header("Audio")]
+    [SerializeField]AudioClip[] idleAudioClips;
+    [SerializeField]AudioClip[] aggroAudioClips;
+    [SerializeField]float timeBetweenIdleClips = 0;
     [Header("MeleeAI")]
     [SerializeField] float attackCooldown = 1;
-  
     [SerializeField] float attackDistance = 2;
     [SerializeField] float attackDamage = 20;
     bool canAttack = true;
     
     Animator animator;
+    int currentIdleSound = 0;
 
     protected override void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
+        currentIdleSound = Random.Range(0, idleAudioClips.Length);
+        if(!aggro)
+            StartCoroutine(IdleSounds());
+    }
+
+    IEnumerator IdleSounds()
+    {
+        while(true)
+        {
+            currentIdleSound ++;
+            if(currentIdleSound == idleAudioClips.Length)
+                currentIdleSound = 0;
+            audioSource.PlayOneShot(idleAudioClips[currentIdleSound]);
+            yield return new WaitForSeconds(idleAudioClips[currentIdleSound].length + timeBetweenIdleClips);
+        }
     }
     private void Update() 
     {
@@ -28,6 +47,9 @@ public class MeleeAIBase : AIBase
             {
                 aggro = true;
                 animator.SetBool("Moving", true);
+                StopAllCoroutines();
+                audioSource.Stop();
+                audioSource.PlayOneShot(aggroAudioClips[Random.Range(0, aggroAudioClips.Length)]); //Play Audio Clip Randomly from Array
             }
             else
             return;
@@ -43,7 +65,10 @@ public class MeleeAIBase : AIBase
                 animator.SetTrigger("Attack");
                 canAttack = false;
             }
-        agent.SetDestination(playerTransform.position);
+        Vector3 dir = transform.position - playerTransform.position;
+        dir = dir.normalized;
+        Vector3 point = playerTransform.position + dir * (attackDistance - 0.1f);
+        agent.SetDestination(point);
     }
     [ContextMenu("AnimatorAttack")]
     void AnimatorAttack()
