@@ -430,13 +430,16 @@ PrefabInstance:
       addedObject: {fileID: 7446775771632980643}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51230762ebdf72848abae8476fdb8b9a, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 9173487527371034591}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51230762ebdf72848abae8476fdb8b9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3235361647294315584}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51230762ebdf72848abae8476fdb8b9a, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8450926083668278630}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51230762ebdf72848abae8476fdb8b9a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3297919008525680268}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51230762ebdf72848abae8476fdb8b9a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9173487527371034591}
     - targetCorrespondingSourceObject: {fileID: -2415762697093451107, guid: 51230762ebdf72848abae8476fdb8b9a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1546533860393543923}
@@ -1065,9 +1068,141 @@ MonoBehaviour:
   patrolWaitTimer: 0
   patrolTurnSpeed: 0
   isPaused: 0
+  idleAudioClips:
+  - {fileID: 8300000, guid: b6f64e2ca58957047acb210dde8938dc, type: 3}
+  - {fileID: 8300000, guid: 0120702906890ca47b036b3750662dc0, type: 3}
+  - {fileID: 8300000, guid: 6bb89542a00e0cd4aa8b86493298ef8e, type: 3}
+  aggroAudioClips:
+  - {fileID: 8300000, guid: 8db6b6e3afe800c418ea4894b313bd68, type: 3}
+  - {fileID: 8300000, guid: dedfff8912c70d54d8101abc67844ea5, type: 3}
   attackCooldown: 1
   attackDistance: 2
   attackDamage: 20
+--- !u!114 &9173487527371034591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4911679088620840543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4e7e44188a1b84a97468c72f190ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 25
+  currentHealth: 25
+  dropItem: 0
+  itemToDrop: {fileID: 0}
+  bodyPartArmour:
+  - 1
+  - 1
+  - 1
+  - 1
+  bodyPartMultiplier:
+  - 2
+  - 1
+  - 0.5
+  - 0.5
+  ragdollObject: {fileID: 0}
+  useRagDoll: 1
+--- !u!82 &3235361647294315584
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4911679088620840543}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!195 &8450926083668278630
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1078,7 +1213,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1112,34 +1247,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9173487527371034591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4911679088620840543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4e7e44188a1b84a97468c72f190ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 25
-  currentHealth: 25
-  dropItem: 0
-  itemToDrop: {fileID: 0}
-  bodyPartArmour:
-  - 1
-  - 1
-  - 1
-  - 1
-  bodyPartMultiplier:
-  - 2
-  - 1
-  - 0.5
-  - 0.5
-  ragdollObject: {fileID: 0}
-  useRagDoll: 1
 --- !u!1 &5020583063356292644 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 955909328912065834, guid: 51230762ebdf72848abae8476fdb8b9a, type: 3}
