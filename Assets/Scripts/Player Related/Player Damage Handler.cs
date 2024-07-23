@@ -22,8 +22,15 @@ public class PlayerDamageHandler : MonoBehaviour
     [SerializeField] bool godMode = false;
     [SerializeField] AudioClip godModeAudioClip;
     [SerializeField] Image hpImage;
+    [SerializeField] Color lowHPColor;
+    [SerializeField] float hpPingPongSpeed = 2;
+    [SerializeField] float hpImagePingPongSize = 1;
+    Color hpColor;
+    Vector3 hpImageScale;
     void Start()
     {
+        hpImageScale = hpImage.transform.localScale;
+        hpColor = hpImage.color;
         try
         {
             audioSource = GetComponent<AudioSource>();
@@ -50,6 +57,8 @@ public class PlayerDamageHandler : MonoBehaviour
     }
 
     // Update is called once per frame
+    float pingPongTime = 0;
+    bool lowHpTrigger = false;
     void Update()
     {
         UICommunicator.UpdateUI("Hp Text", "" + (int)currentHealth);
@@ -65,8 +74,24 @@ public class PlayerDamageHandler : MonoBehaviour
             {
                 UICommunicator.refrence.PopupText("Phuong Mode Deactiavted", 2f);
             }
+        }
+        if(currentHealth < 40)
+        {
+            pingPongTime += Time.deltaTime * hpPingPongSpeed;
+            hpImage.color = Color.Lerp(hpColor, lowHPColor, Mathf.PingPong(pingPongTime, 1));
+            hpImage.transform.localScale = Vector3.Lerp(hpImageScale, hpImageScale * hpImagePingPongSize, pingPongTime);
+            if(!lowHpTrigger)
+            {lowHpTrigger = true;}
+        }
+        else if(lowHpTrigger)
+        {
+            lowHpTrigger = false;
+            pingPongTime = 0;
+            hpImage.color = hpColor;
+            hpImage.transform.localScale = hpImageScale;
 
         }
+        
     }
     public void Heal(float amount)
     {

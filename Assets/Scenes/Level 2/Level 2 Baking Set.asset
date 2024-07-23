@@ -1179,7 +1179,7 @@ MonoBehaviour:
   supportLayerMaskChunkSize: 0
   supportOffsetsChunkSize: 98304
   supportDataChunkSize: 262144
-  lightingScenario: lights_on
+  lightingScenario: lights_out
   version: 1
   freezePlacement: 1
   probeOffset: {x: 0, y: 0, z: 0}
