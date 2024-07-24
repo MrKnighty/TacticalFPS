@@ -345,7 +345,7 @@ MonoBehaviour:
   playerHeadPoint: {fileID: 0}
   shootSFX: {fileID: 8300000, guid: fcc4b2df3792f094a8a53ea0633a515b, type: 3}
   bulletSparkFX: {fileID: 6599165949420749886, guid: 9dfa530b8dbcd03439166900db1f96a3, type: 3}
-  shootRadius: 2
+  shootRadius: 1
   attackSpeed: 0.1
   reactionSpeed: 0.32
   ammoCap: 20
