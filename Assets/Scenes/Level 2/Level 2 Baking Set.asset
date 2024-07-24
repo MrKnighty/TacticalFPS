@@ -70,11 +70,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: -1, z: 4}
       index: 106
-      probeCount: 704
+      probeCount: 1600
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 1
-      bricksCount: 11
+      bricksCount: 25
       indirectionEntryInfo:
       - positionInBricks: {x: -9, y: -9, z: 36}
         minSubdiv: 0
@@ -112,11 +112,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: 2}
       index: 71
-      probeCount: 12992
+      probeCount: 13376
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 2
-      bricksCount: 203
+      bricksCount: 209
       indirectionEntryInfo:
       - positionInBricks: {x: -9, y: 0, z: 18}
         minSubdiv: 0
@@ -126,11 +126,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: -1, y: 0, z: 3}
       index: 92
-      probeCount: 14208
+      probeCount: 14144
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 2
-      bricksCount: 222
+      bricksCount: 221
       indirectionEntryInfo:
       - positionInBricks: {x: -9, y: 0, z: 27}
         minSubdiv: 0
@@ -224,11 +224,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: 0}
       index: 30
-      probeCount: 6784
+      probeCount: 7616
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 1
-      bricksCount: 106
+      bricksCount: 119
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: 0}
         minSubdiv: 0
@@ -252,11 +252,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: 2}
       index: 72
-      probeCount: 7424
+      probeCount: 7488
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 1
-      bricksCount: 116
+      bricksCount: 117
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: 18}
         minSubdiv: 0
@@ -280,11 +280,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: 0, z: 4}
       index: 114
-      probeCount: 23424
+      probeCount: 23296
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 3
-      bricksCount: 366
+      bricksCount: 364
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: 0, z: 36}
         minSubdiv: 0
@@ -336,11 +336,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 1, y: 0, z: 3}
       index: 94
-      probeCount: 13760
+      probeCount: 13632
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 2
-      bricksCount: 215
+      bricksCount: 213
       indirectionEntryInfo:
       - positionInBricks: {x: 9, y: 0, z: 27}
         minSubdiv: 0
@@ -350,11 +350,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 1, y: 0, z: 4}
       index: 115
-      probeCount: 24064
+      probeCount: 23296
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 3
-      bricksCount: 376
+      bricksCount: 364
       indirectionEntryInfo:
       - positionInBricks: {x: 9, y: 0, z: 36}
         minSubdiv: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
     - lights_on
     - lights_out
     m_Values:
-    - sceneHash: -1450597695
+    - sceneHash: -366862416
       cellDataAsset:
         m_AssetGUID: 1cd8f8a5d93798c4aa5234b7f9918e1f
         m_StreamableAssetPath: APVStreamingAssets\94b7de163f8c0214e85639015a8ea6b2\1cd8f8a5d93798c4aa5234b7f9918e1f.bytes
@@ -1014,64 +1014,64 @@ MonoBehaviour:
       - offset: 752
         elementCount: 74
       - offset: 1936
-        elementCount: 11
-      - offset: 2112
+        elementCount: 25
+      - offset: 2336
         elementCount: 26
-      - offset: 2528
+      - offset: 2752
         elementCount: 111
-      - offset: 4304
-        elementCount: 203
-      - offset: 7552
-        elementCount: 222
-      - offset: 11104
+      - offset: 4528
+        elementCount: 209
+      - offset: 7872
+        elementCount: 221
+      - offset: 11408
         elementCount: 295
-      - offset: 15824
+      - offset: 16128
         elementCount: 6
-      - offset: 15920
+      - offset: 16224
         elementCount: 73
-      - offset: 17088
+      - offset: 17392
         elementCount: 127
-      - offset: 19120
+      - offset: 19424
         elementCount: 127
-      - offset: 21152
+      - offset: 21456
         elementCount: 70
-      - offset: 22272
-        elementCount: 106
-      - offset: 23968
+      - offset: 22576
+        elementCount: 119
+      - offset: 24480
         elementCount: 197
-      - offset: 27120
+      - offset: 27632
+        elementCount: 117
+      - offset: 29504
         elementCount: 116
-      - offset: 28976
-        elementCount: 116
-      - offset: 30832
-        elementCount: 366
-      - offset: 36688
+      - offset: 31360
+        elementCount: 364
+      - offset: 37184
         elementCount: 89
-      - offset: 38112
+      - offset: 38608
         elementCount: 195
-      - offset: 41232
+      - offset: 41728
         elementCount: 120
-      - offset: 43152
-        elementCount: 215
-      - offset: 46592
-        elementCount: 376
-      - offset: 52608
+      - offset: 43648
+        elementCount: 213
+      - offset: 47056
+        elementCount: 364
+      - offset: 52880
         elementCount: 186
-      - offset: 55584
+      - offset: 55856
         elementCount: 186
-      - offset: 58560
+      - offset: 58832
         elementCount: 190
-      - offset: 61600
+      - offset: 61872
         elementCount: 41
-      - offset: 62256
+      - offset: 62528
         elementCount: 58
-      - offset: 63184
+      - offset: 63456
         elementCount: 146
-      - offset: 65520
+      - offset: 65792
         elementCount: 70
-      - offset: 66640
+      - offset: 66912
         elementCount: 19
-      - offset: 66944
+      - offset: 67216
         elementCount: 69
     m_Asset: {fileID: 0}
   cellSupportDataAsset:
@@ -1179,9 +1179,9 @@ MonoBehaviour:
   supportLayerMaskChunkSize: 0
   supportOffsetsChunkSize: 98304
   supportDataChunkSize: 262144
-  lightingScenario: lights_out
+  lightingScenario: lights_on
   version: 1
-  freezePlacement: 1
+  freezePlacement: 0
   probeOffset: {x: 0, y: 0, z: 0}
   simplificationLevels: 2
   minDistanceBetweenProbes: 1

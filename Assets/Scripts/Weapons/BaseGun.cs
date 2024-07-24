@@ -8,7 +8,7 @@ public class BaseGun : MonoBehaviour
 {
     [Header("Standard Settings")]
     [SerializeField] int magazineSize; // max amount of ammo that can be in magazine
- public int totalRemainingAmmo; // remaining ammo not in magazine
+    public int totalRemainingAmmo; // remaining ammo not in magazine
     [SerializeField] int maxAmmo;
     [SerializeField] float reloadTime;
     [SerializeField] float damage;
@@ -35,8 +35,8 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected AudioSource source;
     [SerializeField] AudioClip[] fireSound;
     [SerializeField] AudioClip reloadSound;
-    [SerializeField]AudioClip flashLightOn;
-    [SerializeField]AudioClip flashLightOff;
+    [SerializeField] AudioClip flashLightOn;
+    [SerializeField] AudioClip flashLightOff;
 
 
     [Header("Recoil Settings")]
@@ -50,6 +50,10 @@ public class BaseGun : MonoBehaviour
     [SerializeField] bool randomHipFire;
     [SerializeField] float randomHitRadius;
     [SerializeField] float sprintingRecoilModifyer;
+
+    [Header("Range Settings")]
+    [SerializeField] float startFalloffRange;
+    [SerializeField] float maxRange;
 
 
 
@@ -174,7 +178,7 @@ public class BaseGun : MonoBehaviour
 
     protected virtual RaycastHit HitScan(Vector3 rayStart, Vector3 rayDirection)
     {
-        Physics.Raycast(rayStart, rayDirection, out RaycastHit hit);
+        Physics.Raycast(rayStart, rayDirection, out RaycastHit hit, maxRange);
         return hit;
     }
 
@@ -290,7 +294,8 @@ public class BaseGun : MonoBehaviour
         FireAudio(hit);
 
     }
-
+    float distanceFromTarget;
+    float distanceDamageMultiplyer;
     protected void FireEvent(bool singleShot) // everything that should happen when the gun fires
     {
         shotsFired++;
@@ -328,7 +333,13 @@ public class BaseGun : MonoBehaviour
             Rigidbody rb;
             if (hitObject.GetComponent<BodyPartDamageHandler>())
             {
-                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage, force);
+                 distanceFromTarget = Vector3.Distance(transform.position, hitObject.transform.position);
+                 distanceDamageMultiplyer = 1;
+                DebugManager.DisplayInfo("quick", "Shot Distace: " + distanceFromTarget.ToString(), true);
+                if (distanceFromTarget > startFalloffRange)
+                    distanceDamageMultiplyer =  (1 - (distanceFromTarget  / maxRange) ) * 2;
+                print(damage * distanceDamageMultiplyer);
+                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage * distanceDamageMultiplyer, force);
                 shotsHit++;
             }
             else if(TryGetComponent<Rigidbody>(out rb))
