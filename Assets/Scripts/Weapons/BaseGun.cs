@@ -337,7 +337,7 @@ public class BaseGun : MonoBehaviour
                  distanceDamageMultiplyer = 1;
                 DebugManager.DisplayInfo("quick", "Shot Distace: " + distanceFromTarget.ToString(), true);
                 if (distanceFromTarget > startFalloffRange)
-                    distanceDamageMultiplyer =  (1 - (distanceFromTarget  / maxRange) ) * 2;
+                    distanceDamageMultiplyer = Mathf.Clamp( (1 - (distanceFromTarget  / maxRange) ) * 2,0,damage);
                 print(damage * distanceDamageMultiplyer);
                 hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage * distanceDamageMultiplyer, force);
                 shotsHit++;
