@@ -14,10 +14,20 @@ public class BasicShootAI : AIBase
     [SerializeField] float searchRange = 5;
     [SerializeField, Tooltip("In Degrees")] float maxSnapRotateSpeed = 15;
     [SerializeField] ParticleSystem muzzleFX;
+    [SerializeField] Animator rigAnimator;
     protected override void Start()
     {
         base.Start();
         SwitchStates(currentState);
+    }
+    void ExitState()
+    {
+        switch (currentState)
+        {
+            case AIStates.Aggro:
+                rigAnimator.SetBool("Aggro", false);
+            break;
+        }
     }
     void SwitchStates(AIStates state)
     {
@@ -44,6 +54,7 @@ public class BasicShootAI : AIBase
                 break;
             case AIStates.Aggro:
                 currentState = state;
+                rigAnimator.SetBool("Aggro", true);
                 StartCoroutine(Aggro());
                 StartCoroutine(Shoot());
                 break;
@@ -64,11 +75,11 @@ public class BasicShootAI : AIBase
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            //Destroy(gameObject);
-            return;
-        }
+        // if(Input.GetKeyDown(KeyCode.K))
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
         playerPoint = CanSeePlayer();
         if(playerPoint)
         {
@@ -91,6 +102,14 @@ public class BasicShootAI : AIBase
         if(currentState == AIStates.Aggro)
         {
             RotateTowardsTarget();
+        }
+        if(agent.isStopped)
+        {
+            rigAnimator.SetBool("Walking", false);
+        }
+        else
+        {
+            rigAnimator.SetBool("Walking", true);
         }
     }
 

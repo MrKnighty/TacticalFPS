@@ -345,7 +345,7 @@ MonoBehaviour:
   playerHeadPoint: {fileID: 0}
   shootSFX: {fileID: 8300000, guid: fcc4b2df3792f094a8a53ea0633a515b, type: 3}
   bulletSparkFX: {fileID: 6599165949420749886, guid: 9dfa530b8dbcd03439166900db1f96a3, type: 3}
-  shootRadius: 2
+  shootRadius: 1
   attackSpeed: 0.1
   reactionSpeed: 0.32
   ammoCap: 20
@@ -363,15 +363,16 @@ MonoBehaviour:
   patrolPoints: []
   patrolDirections: []
   onClickCreatePatrolPoint: 1
-  patrolWaitTimer: 2
+  patrolWaitTimer: 0
   patrolTurnSpeed: 1
   isPaused: 0
   playerInSight: 0
-  aggressive: 0
+  aggressive: 1
   searchIterations: 5
   searchRange: 5
   maxSnapRotateSpeed: 200
   muzzleFX: {fileID: 7305249743711542931}
+  rigAnimator: {fileID: 1782924851216853764}
 --- !u!82 &687864118135339657
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2381,15 +2382,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7552764947678790046, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000012516975
+      value: 0.027
       objectReference: {fileID: 0}
     - target: {fileID: 7552764947678790046, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12199998
+      value: 0.122
       objectReference: {fileID: 0}
     - target: {fileID: 7552764947678790046, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6900034
+      value: 1.284
       objectReference: {fileID: 0}
     - target: {fileID: 7552764947678790046, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_LocalRotation.w
