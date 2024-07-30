@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float tiltSpeed;
     [SerializeField] float canterMoveSpeedMultiplyer;
     [Header("Crouching")]
-    [SerializeField] float height, crouchHeight;
+    [SerializeField] float height;
+    [SerializeField] float crouchHeight;
     [SerializeField] float crouchSpeed;
     [SerializeField] float timeToCrouch;
     [SerializeField] float crouchMoveSpeedMultiplyer;
@@ -83,8 +84,8 @@ public class PlayerController : MonoBehaviour
 
         Crouch();
         TrySprint();
-        CaculateVelocity(); // caculate velocity
-        DoMovement(); // caculate movement
+        CaculateVelocity(); 
+        DoMovement(); 
         FootStep();
 
         MoveCameraFromVelocity();
@@ -92,14 +93,11 @@ public class PlayerController : MonoBehaviour
         TacticalTilt();
 
 
-
-
-
     }
     bool crouching = false;
     float currentSprintMultiplyer;
     float crouchVel;
-    float unCrouchVel;
+   
     void Crouch()
     {
         if (GameControllsManager.toggleCrouch)
@@ -454,10 +452,12 @@ public class PlayerController : MonoBehaviour
 #region FootSteps
     void FootStep()
     {
-        bool steppedLeft = false;
+        if (!GroundCheck() || movementVector == Vector3.zero)
+            return;
+
         lastFootStepDistance += Vector3.Distance(transform.position, lastPos);
         DebugManager.DisplayInfo("footstep", "FootStep:" + lastFootStepDistance);
-        if (lastFootStepDistance >= distanceBetweenFootstep && GroundCheck())
+        if (lastFootStepDistance >= distanceBetweenFootstep)
         {
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, currentHeight / 2 + 0.15f))
             {
@@ -465,7 +465,7 @@ public class PlayerController : MonoBehaviour
                 AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length - 1)], transform.position, 0.5f * GameControllsManager.audioVolume);
                 lastFootStepDistance = 0;
 
-                steppedLeft = !steppedLeft;
+                
             }
 
 

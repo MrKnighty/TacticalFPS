@@ -151,6 +151,7 @@ public class BaseGun : MonoBehaviour
     {
         isADSing = false;
         animator.SetBool("ADS", false);
+        StartCoroutine(ZoomOut());
     }
     public void LoadAmmoValue(int magVal, int totalAmmo)
     {
@@ -263,8 +264,21 @@ public class BaseGun : MonoBehaviour
         animator.CrossFade("Idle", 0);
         animator.SetTrigger("StopReload");
         animator.ResetTrigger("Reload");
+        StartCoroutine("ZoomOut");
     }
 
+    IEnumerator ZoomOut()
+    {
+         while (Camera.main.fieldOfView <= initFOV)
+        {
+            Camera.main.fieldOfView += zoomSpeed * Time.deltaTime;
+
+            if (Camera.main.fieldOfView > initFOV)
+                Camera.main.fieldOfView = initFOV;
+
+            yield return null;
+        }
+    }
     protected IEnumerator ReloadEvent()
     {
         gunCanFire = false;
