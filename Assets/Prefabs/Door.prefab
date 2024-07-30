@@ -405,12 +405,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a3b20d3ebd9870541835f1ef98e2be0d, type: 2}
     - target: {fileID: 919132149155446097, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
       propertyPath: m_Name
       value: Doorframe
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c66d7cbd0addfb44a562f9e2230fd84, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

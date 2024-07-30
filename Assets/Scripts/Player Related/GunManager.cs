@@ -105,6 +105,9 @@ public class GunManager : MonoBehaviour
         if (switchingWeapon)
             return;
 
+        if(Input.GetKeyDown(KeyCode.F6))
+            LightmapSettings.lightmaps = new LightmapData[0];
+
         DebugManager.DisplayInfo("CWeaponI", "CWeaponI" + activeWeapon);
         DebugManager.DisplayInfo("LWeaponI", "LWeaponI" + lastGunIndex);
         if (Input.GetKeyDown(KeyCode.Alpha1))
