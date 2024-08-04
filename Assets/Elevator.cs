@@ -5,11 +5,13 @@ public class Elevator : MonoBehaviour
 {
     [SerializeField] GameObject target;
     [SerializeField] float speed;
+    [SerializeField] bool autoStart;
 
 
     private void Start()
     {
-        StartCoroutine("Elevate");
+        if(autoStart)
+         StartCoroutine("Elevate");
     }
     IEnumerator Elevate()
     { 
@@ -20,6 +22,11 @@ public class Elevator : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    public void StartElevator()
+    {
+        StartCoroutine("Elevate");
     }
     
 }

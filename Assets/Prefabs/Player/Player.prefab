@@ -395,6 +395,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371f1b7f3213b834cb961744d3f792fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: a
+      Entry: 6
+      Data: 
   magazineSize: 2
   totalRemainingAmmo: 6
   maxAmmo: 12
@@ -10031,6 +10043,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ade7d1521f2e4d8b3a48deea7eb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: a
+      Entry: 6
+      Data: 
   magazineSize: 12
   totalRemainingAmmo: 62
   maxAmmo: 62
@@ -17566,6 +17590,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ade7d1521f2e4d8b3a48deea7eb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: a
+      Entry: 6
+      Data: 
   magazineSize: 5
   totalRemainingAmmo: 5
   maxAmmo: 10
@@ -18494,6 +18530,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ade7d1521f2e4d8b3a48deea7eb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: a
+      Entry: 6
+      Data: 
   magazineSize: 30
   totalRemainingAmmo: 120
   maxAmmo: 120
