@@ -13,6 +13,8 @@ public class Elevator : MonoBehaviour
         if(autoStart)
          StartCoroutine("Elevate");
     }
+   
+  
     IEnumerator Elevate()
     { 
         while(Vector3.Distance(transform.position, target.transform.position) > 0.2f)
@@ -23,7 +25,7 @@ public class Elevator : MonoBehaviour
 
         yield return null;
     }
-
+    [ContextMenu("StartElevator")]
     public void StartElevator()
     {
         StartCoroutine("Elevate");

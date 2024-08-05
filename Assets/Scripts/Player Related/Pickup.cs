@@ -15,35 +15,41 @@ public class Pickup : Interactable
 
     private void OnValidate()
     {
-        pistol.SetActive(false);
-        rifle.SetActive(false);
-        smg.SetActive(false);
-        shotgun.SetActive(false);
-        health.SetActive(false);
 
-        switch (type)
-        {
-            
-            case PickupType.PISTOL_AMMO:
-                pistol.SetActive(true);
-                break;
-            case PickupType.RIFLE_AMMO:
-                rifle.SetActive(true); 
-                break;
-            case PickupType.SHOTGUN_AMMO:
-                shotgun.SetActive(true); 
-                break;
-            case PickupType.SMG_AMMO:
-                smg.SetActive(true); 
-                break;
-            case PickupType.HEAL_SYRINGE:
-                health.SetActive(true); 
-                break;
+        try {
+            pistol.SetActive(false);
+            rifle.SetActive(false);
+            smg.SetActive(false);
+            shotgun.SetActive(false);
+            health.SetActive(false);
 
+            switch (type)
+            {
+
+                case PickupType.PISTOL_AMMO:
+                    pistol.SetActive(true);
+                    break;
+                case PickupType.RIFLE_AMMO:
+                    rifle.SetActive(true);
+                    break;
+                case PickupType.SHOTGUN_AMMO:
+                    shotgun.SetActive(true);
+                    break;
+                case PickupType.SMG_AMMO:
+                    smg.SetActive(true);
+                    break;
+                case PickupType.HEAL_SYRINGE:
+                    health.SetActive(true);
+                    break;
+
+
+
+
+            }
 
 
 
         }
-
-    }
+        catch { }
+        }
 }
