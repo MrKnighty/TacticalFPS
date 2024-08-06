@@ -40,7 +40,7 @@ public class MeleeAIBase : AIBase
     }
     private void Update() 
     {
-        playerPoint = CanSeePlayer();
+        playerPoint = GetSeenPlayerPoint();
         if(!aggro)
         {
             if(playerPoint)

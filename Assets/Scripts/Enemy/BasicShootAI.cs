@@ -4,21 +4,43 @@ using UnityEngine.AI;
 
 public class BasicShootAI : AIBase
 {
-    [SerializeField]bool playerInSight;
+    [Header("SideStepping")]
+    [SerializeField] float sideStepMaxDistance;
+    [SerializeField, Range(0, 100)] float sideStepChance = 50;
+    [SerializeField] float sideStepCoolDownTime = 15f;
+    bool sideStepping;
     [SerializeField] bool aggressive;
     Vector3 lastSeenPlayerPosition;
-    Transform playerPoint;
     Transform currentCoverTransform;
     [Header("Chase")]
     [SerializeField] float searchIterations = 5;
     [SerializeField] float searchRange = 5;
     [SerializeField, Tooltip("In Degrees")] float maxSnapRotateSpeed = 15;
     [SerializeField] ParticleSystem muzzleFX;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] Animator rigAnimator;
+    //Triggers
+    bool playerInSightTrigger;
+>>>>>>> Stashed changes
     protected override void Start()
     {
         base.Start();
         SwitchStates(currentState);
     }
+<<<<<<< Updated upstream
+=======
+    void ExitState()
+    {
+        switch (currentState)
+        {
+            case AIStates.Aggro:
+                rigAnimator.SetBool("Aggro", false);
+            break;
+            
+        }
+    }
+>>>>>>> Stashed changes
     void SwitchStates(AIStates state)
     {
         StopAllCoroutines();
@@ -61,9 +83,18 @@ public class BasicShootAI : AIBase
         {
             SwitchStates(AIStates.Aggro);
         }
+        if(!inCover && canSideStep) //SideStep Trigger
+        {
+            if(Random.Range(0, 100.1f) < sideStepChance)
+            {
+                print("0");
+                SideStepCheck();
+            }
+        }
     }
     private void Update()
     {
+<<<<<<< Updated upstream
         if(Input.GetKeyDown(KeyCode.K))
         {
             //Destroy(gameObject);
@@ -71,10 +102,20 @@ public class BasicShootAI : AIBase
         }
         playerPoint = CanSeePlayer();
         if(playerPoint)
+=======
+        // if(Input.GetKeyDown(KeyCode.K))
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
+        playerPoint = GetSeenPlayerPoint();
+        canSeePlayer = playerPoint;
+        if(canSeePlayer)
+>>>>>>> Stashed changes
         {
-            if(!playerInSight)
+            if(!playerInSightTrigger)
             {
-                playerInSight = true;
+                playerInSightTrigger = true;
                 agent.updateRotation = false;
             }
            if(currentState != AIStates.Aggro)
@@ -82,9 +123,9 @@ public class BasicShootAI : AIBase
                 SwitchStates(AIStates.Aggro);
             }
         }
-        else if(playerInSight)
+        else if(playerInSightTrigger)
         {
-            playerInSight = false;
+            playerInSightTrigger = false;
             agent.updateRotation = true;
             lastSeenPlayerPosition = playerTransform.position;
         }
@@ -92,6 +133,17 @@ public class BasicShootAI : AIBase
         {
             RotateTowardsTarget();
         }
+<<<<<<< Updated upstream
+=======
+        if(agent.isStopped && rigAnimator.GetBool("Walking"))
+        {
+            rigAnimator.SetBool("Walking", false);
+        }
+        else if(!agent.isStopped && !rigAnimator.GetBool("Walking"))
+        {
+            rigAnimator.SetBool("Walking", true);
+        }
+>>>>>>> Stashed changes
     }
 
     IEnumerator Aggro()
@@ -169,6 +221,7 @@ public class BasicShootAI : AIBase
         // transform.LookAt(lookDir);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir, Vector3.up), maxSnapRotateSpeed * Time.deltaTime);
     }
+    
     IEnumerator Gaurd()
     {
         yield return null;
@@ -190,6 +243,61 @@ public class BasicShootAI : AIBase
             }
            yield return null;
         }
+    }
+    void SideStepCheck()
+    {
+        if(sideStepping)
+        {
+            print("SideStepBug");
+            return;
+        }
+        int direction;
+        direction = Random.Range(0, 2) == 0 ? -1 : 1; //returns -1 or 1
+        if(SideStepRayCastCheck(direction))
+        {
+            print("2");
+            NavMeshHit hit;  
+            if(!NavMesh.SamplePosition(transform.right * direction + transform.position, out hit, 1, NavMesh.AllAreas))
+            {
+                print("3");
+                return;
+            }
+            StartCoroutine(SideStep(hit, direction));
+        }
+    }
+    bool SideStepRayCastCheck(int dir)
+    {
+        if(Physics.Raycast(transform.position, transform.right * dir, sideStepMaxDistance))
+        {
+            if(Physics.Raycast(transform.position, transform.right * -dir, sideStepMaxDistance))
+                return false;
+        }
+        return true;
+        
+    }
+    IEnumerator SideStep(NavMeshHit hit, int dir)
+    {
+       print("SideStepping");
+        sideStepping = true;
+        
+        if(dir == 1)
+            rigAnimator.SetTrigger("StepRight");
+        else
+            rigAnimator.SetTrigger("StepLeft");
+        float clipLength = rigAnimator.GetCurrentAnimatorStateInfo(1).length;
+        float _time = 0;
+        Vector3 startPos = transform.position;
+        Vector3 endPos = hit.position; 
+        canSideStep = false;
+        while(_time < 1)
+        {
+            yield return null;
+            _time += Time.deltaTime / clipLength;
+            transform.position = Vector3.Lerp(startPos, endPos, _time);
+        }
+        sideStepping = false;
+        yield return Timer(sideStepCoolDownTime);
+        canSideStep = true;
     }
     IEnumerator Search()
     {

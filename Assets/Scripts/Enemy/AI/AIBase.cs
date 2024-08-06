@@ -30,7 +30,6 @@ public class AIBase : MonoBehaviour
     protected int ammo;
     [SerializeField] protected float reloadTime = 2f;
     [Header("Cover")]
-    [SerializeField] protected bool inCover = false;
     [SerializeField] float closestDistanceToCoverXZ;
     [SerializeField] float closestDistanceToCoverY;
     [SerializeField] float maximumDistanceToCoverXZ;
@@ -43,7 +42,12 @@ public class AIBase : MonoBehaviour
     [SerializeField] bool onClickCreatePatrolPoint = true;
     [SerializeField] protected float patrolWaitTimer;
     [SerializeField] protected float patrolTurnSpeed;
+    [Header("Truths")]
+    [SerializeField] protected bool canSeePlayer = false;
+    [SerializeField] protected bool inCover = false;
+    [SerializeField] protected bool canSideStep = false;
     [SerializeField] protected bool isPaused = false;
+    protected Transform playerPoint;
     protected AudioSource audioSource;
     virtual protected void Start()
     {
@@ -77,9 +81,9 @@ public class AIBase : MonoBehaviour
 
     virtual protected Transform FindClosestCover(Transform currentCover = null, bool canSeePlayer = true)
     {
-        for (int i = 0; i < 2; i++) //loop 1 = close area check - if no cover - loop 2 = max area check
-        { 
-            Collider[] hits = Physics.OverlapBox(transform.position, new Vector3(maximumDistanceToCoverXZ * i + closestDistanceToCoverXZ, maximumDistanceToCoverXZ * i + closestDistanceToCoverXZ, maximumDistanceToCoverY * i + closestDistanceToCoverY), Quaternion.identity, coverLayerMask);
+        // for (int i = 0; i < 2; i++) //loop 1 = close area check - if no cover - loop 2 = max area check
+        // { 
+            Collider[] hits = Physics.OverlapBox(transform.position, new Vector3(closestDistanceToCoverXZ,  closestDistanceToCoverXZ, closestDistanceToCoverY), Quaternion.identity, coverLayerMask);
             if(hits.Length > 1) 
             {
                 Collider closestCollider = null;
@@ -105,7 +109,7 @@ public class AIBase : MonoBehaviour
                 if (Vector3.Dot((hits[0].transform.position - playerTransform.position).normalized, hits[0].transform.position) > 0) //Check if the player is infront of the cover
                     return hits[0].transform;
             }
-        }
+        // }
         return null;
     }
 
@@ -127,7 +131,7 @@ public class AIBase : MonoBehaviour
         //Vector3 pos = NavMesh.SamplePosition()
     }
 
-    virtual protected Transform CanSeePlayer() // Returns an int based on if the AI can see the players head(2) body(1), cant see them (0), not in their 180deg view(3)
+    virtual protected Transform GetSeenPlayerPoint() // Returns an int based on if the AI can see the players head(2) body(1), cant see them (0), not in their 180deg view(3)
     {
         RaycastHit hit = new RaycastHit();
         Vector3 bodyDir = playerBodyPoint.position - aIHeadPoint.position;
