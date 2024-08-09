@@ -110,11 +110,7 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-<<<<<<< Updated upstream
-    - _ObjectScreenPosition: {r: 0.620134, g: 0.42731336, b: 0, a: 0}
-=======
-    - _ObjectScreenPosition: {r: 0.25250414, g: 0.90730524, b: 0, a: 0}
->>>>>>> Stashed changes
+    - _ObjectScreenPosition: {r: -0.83481205, g: 3.2033136, b: 0, a: 0}
     - _Tiling: {r: 0.9, g: 0.9, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

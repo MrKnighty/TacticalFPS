@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using System;
 using System.Collections;
 
-public enum AIStates {Patrol, Gaurd, Aggro, Chase} 
+public enum AIStates {Patrol, Gaurd, Aggro, Chase, Melee} 
 public class AIBase : MonoBehaviour
 {
     protected Transform playerTransform;
@@ -15,7 +15,7 @@ public class AIBase : MonoBehaviour
     [SerializeField, Tooltip("The Distance in units at which the AI can detect the player")] protected float viewDistance = 100000000f;
     [Header("Raycast Points")]
     [SerializeField] Transform aIHeadPoint;
-    [SerializeField] Transform playerBodyPoint;
+    [SerializeField] protected Transform playerBodyPoint;
     [SerializeField] Transform playerHeadPoint;
     [Header("Audio")]
     [SerializeField] protected AudioClip shootSFX;
@@ -42,15 +42,20 @@ public class AIBase : MonoBehaviour
     [SerializeField] bool onClickCreatePatrolPoint = true;
     [SerializeField] protected float patrolWaitTimer;
     [SerializeField] protected float patrolTurnSpeed;
+    [Header("Movement")]
+    [SerializeField] protected float movemnetRadius = 5f;
     [Header("Truths")]
     [SerializeField] protected bool canSeePlayer = false;
     [SerializeField] protected bool inCover = false;
-    [SerializeField] protected bool canSideStep = false;
+    [SerializeField] protected bool canSideStep = true;
     [SerializeField] protected bool isPaused = false;
+    [SerializeField] protected bool isCrouched = false;
+    protected DamageHandler damageHandler;
     protected Transform playerPoint;
     protected AudioSource audioSource;
     virtual protected void Start()
     {
+        damageHandler = GetComponent<DamageHandler>();
         audioSource = this?.GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         playerDamageHandler = FindAnyObjectByType<PlayerDamageHandler>();
@@ -129,6 +134,26 @@ public class AIBase : MonoBehaviour
         return Vector3.zero;
               
         //Vector3 pos = NavMesh.SamplePosition()
+    }
+    virtual protected Vector3 GetNavmeshPointInRadiusTowardsPlayer(float radius, bool towardsPlayer = true)
+    {
+        Vector3 dir;
+        if(towardsPlayer) //Which direction to move towards
+        {
+            dir = (playerTransform.position - transform.position).normalized; //dir towards player| AI --> Player
+        }
+        else
+        {
+            dir = (transform.position - playerTransform.position).normalized; // dir away from player| AI <-- Player
+        }
+        Vector3 center = transform.position + radius * dir;
+        Vector3 point = new Vector3(UnityEngine.Random.Range(-radius, radius), transform.position.y, UnityEngine.Random.Range(-radius, radius)) + new Vector3(center.x, 0, center.z);
+        NavMeshHit hit;
+        if(NavMesh.SamplePosition(point, out hit, radius, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        return Vector3.zero;
     }
 
     virtual protected Transform GetSeenPlayerPoint() // Returns an int based on if the AI can see the players head(2) body(1), cant see them (0), not in their 180deg view(3)

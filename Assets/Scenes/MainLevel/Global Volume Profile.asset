@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d08ce26990eb1a4a9177b860541e702, type: 3}
   m_Name: Exposure
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mode:
     m_OverrideState: 1
     m_Value: 1
@@ -224,10 +224,10 @@ MonoBehaviour:
     m_Value: 1
   upperHemisphereLuxValue:
     m_OverrideState: 1
-    m_Value: 3.14159
+    m_Value: 2.9364023
   upperHemisphereLuxColor:
     m_OverrideState: 1
-    m_Value: {x: 0.28919223, y: 0.2461824, z: 0.5}
+    m_Value: {x: 0.3460843, y: 0.41038188, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 0
     m_Value: 20000
@@ -242,10 +242,10 @@ MonoBehaviour:
     m_Value: 0
   hdriSky:
     m_OverrideState: 1
-    m_Value: {fileID: 8900000, guid: 28466cdbb7f5a774c81df80866cc14f6, type: 3}
+    m_Value: {fileID: 8900000, guid: b1e3906a24d828648b6b2d7ef858468c, type: 3}
   distortionMode:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
   flowmap:
     m_OverrideState: 0
     m_Value: {fileID: 0}

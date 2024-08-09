@@ -4,6 +4,11 @@ using UnityEngine.AI;
 
 public class BasicShootAI : AIBase
 {
+    [Header("Melee")]
+    [SerializeField] float meleeCooldownTime = 2f;
+    [SerializeField] int meleeDamage = 10;
+    [SerializeField] float meleeDistance = 2;
+    bool canMelee = true;
     [Header("SideStepping")]
     [SerializeField] float sideStepMaxDistance;
     [SerializeField, Range(0, 100)] float sideStepChance = 50;
@@ -17,34 +22,31 @@ public class BasicShootAI : AIBase
     [SerializeField] float searchRange = 5;
     [SerializeField, Tooltip("In Degrees")] float maxSnapRotateSpeed = 15;
     [SerializeField] ParticleSystem muzzleFX;
-<<<<<<< Updated upstream
-=======
     [SerializeField] Animator rigAnimator;
+    
     //Triggers
     bool playerInSightTrigger;
->>>>>>> Stashed changes
     protected override void Start()
     {
         base.Start();
         SwitchStates(currentState);
     }
-<<<<<<< Updated upstream
-=======
     void ExitState()
     {
+        rigAnimator.SetBool("Walking", false);
+        rigAnimator.SetBool("Aggro", false);
         switch (currentState)
         {
             case AIStates.Aggro:
-                rigAnimator.SetBool("Aggro", false);
             break;
             
         }
     }
->>>>>>> Stashed changes
     void SwitchStates(AIStates state)
     {
         StopAllCoroutines();
         agent.isStopped = true;
+        ExitState();
         switch (state)
         {
             case AIStates.Patrol:
@@ -65,7 +67,10 @@ public class BasicShootAI : AIBase
                 }
                 break;
             case AIStates.Aggro:
+                UICommunicator.refrence.PopupText("Switch>Aggro", 2f);
+
                 currentState = state;
+                rigAnimator.SetBool("Aggro", true);
                 StartCoroutine(Aggro());
                 StartCoroutine(Shoot());
                 break;
@@ -74,51 +79,56 @@ public class BasicShootAI : AIBase
 
                 StartCoroutine(Chase());
                 break;
+            case AIStates.Melee:
+                UICommunicator.refrence.PopupText("Switch>Melee", 2f);
+                StartCoroutine(MeleeAttack());
+            break;
         }
 
     }
+    IEnumerator MeleeAttack()
+    {
+        canMelee = false; 
+        rigAnimator.SetTrigger("Melee");
+        yield return Timer(0.6f);
+        yield return Relocate(false);
+        SwitchStates(AIStates.Aggro);
+        yield return Timer(meleeCooldownTime);
+        canMelee = true; 
+    }
     public override void DamageTrigger()
     {
-        if(currentState != AIStates.Aggro)
-        {
-            SwitchStates(AIStates.Aggro);
-        }
         if(!inCover && canSideStep) //SideStep Trigger
         {
             if(Random.Range(0, 100.1f) < sideStepChance)
             {
-                print("0");
                 SideStepCheck();
             }
         }
+        if(currentState != AIStates.Aggro)
+        {
+            SwitchStates(AIStates.Aggro);
+        }
     }
+    float frames = 0;
     private void Update()
     {
-<<<<<<< Updated upstream
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            //Destroy(gameObject);
-            return;
-        }
-        playerPoint = CanSeePlayer();
-        if(playerPoint)
-=======
         // if(Input.GetKeyDown(KeyCode.K))
         // {
         //     Destroy(gameObject);
         //     return;
         // }
+       
         playerPoint = GetSeenPlayerPoint();
         canSeePlayer = playerPoint;
         if(canSeePlayer)
->>>>>>> Stashed changes
         {
             if(!playerInSightTrigger)
             {
                 playerInSightTrigger = true;
                 agent.updateRotation = false;
             }
-           if(currentState != AIStates.Aggro)
+           if(currentState != AIStates.Aggro && currentState != AIStates.Melee)
             {
                 SwitchStates(AIStates.Aggro);
             }
@@ -133,8 +143,6 @@ public class BasicShootAI : AIBase
         {
             RotateTowardsTarget();
         }
-<<<<<<< Updated upstream
-=======
         if(agent.isStopped && rigAnimator.GetBool("Walking"))
         {
             rigAnimator.SetBool("Walking", false);
@@ -143,12 +151,28 @@ public class BasicShootAI : AIBase
         {
             rigAnimator.SetBool("Walking", true);
         }
->>>>>>> Stashed changes
+        if(frames > 15 && currentState == AIStates.Aggro)//Stop distance check from lagging
+        {
+            frames = 0;
+            if(!canMelee)
+                return;
+            if(Vector3.Distance(transform.position, playerTransform.position) < meleeDistance)
+            {
+                print("Switching to melee");
+                SwitchStates(AIStates.Melee);
+            }
+        }
+        else
+        {
+            frames ++;
+        }
     }
 
     IEnumerator Aggro()
     {
         bool checkedForCover = false;
+        if(!playerPoint)
+            playerPoint = playerBodyPoint;
         while(currentState == AIStates.Aggro)
         {
             if(!playerPoint)
@@ -169,16 +193,30 @@ public class BasicShootAI : AIBase
             {
                 checkedForCover = true;
                 Vector3 point = GetCoverPointOnNavMesh(FindClosestCover());
-                print(point);
                 if(point != Vector3.zero)
                 {
                     if(Vector3.Distance(transform.position, point) > Vector3.Distance(transform.position, playerDamageHandler.transform.position))
 
-                    yield return MoveToDestination(GetCoverPointOnNavMesh(FindClosestCover()));
+                    yield return MoveToDestination(point);
                     inCover = true;
+                }
+                else 
+                {
+                    StartCoroutine(Relocate(true));
                 }
             }
             yield return null;
+        }
+    }
+    IEnumerator Relocate(bool dir) //Move Slightly Towards / away from player
+    {
+        UICommunicator.refrence.PopupText("Relocating", 2f);
+        Vector3 point = GetNavmeshPointInRadiusTowardsPlayer(movemnetRadius, dir);
+        if(point != Vector3.zero)
+        {
+            yield return MoveToDestination(point);
+            rigAnimator.SetBool("Crouch", true);
+            isCrouched = true;
         }
     }
     IEnumerator Shoot()
@@ -193,8 +231,7 @@ public class BasicShootAI : AIBase
             }
             if(ammo <= 0)
             {
-                yield return Timer(reloadTime);
-                ammo = ammoCap;
+                yield return StartCoroutine(Reload());
             }
             if (!playerPoint)
             {
@@ -204,6 +241,8 @@ public class BasicShootAI : AIBase
             }
             if(ShootAtTarget(playerPoint.position, shootRadius))
             {
+                UICommunicator.refrence.PopupText("ShootingPlayer", 0.1f);
+
                 playerDamageHandler.Damage(damage);
             }
             if (muzzleFX)
@@ -212,6 +251,32 @@ public class BasicShootAI : AIBase
             yield return Timer(attackSpeed);
         }
 
+    }
+    IEnumerator Reload()
+    {
+        UICommunicator.refrence.PopupText("Reloading", 2f);
+        rigAnimator.SetTrigger("Reload");
+        if(damageHandler.currentHealth > damageHandler.maxHealth * 0.5f) // HP is greater than half == high confidence
+        {
+            StartCoroutine(Relocate(true)); //advnace towards player
+        }
+        else
+        {
+            Vector3 destination;
+            if((destination = GetCoverPointOnNavMesh(FindClosestCover())) != Vector3.zero) // Go to cover
+            {
+                MoveToDestination(destination);
+                UICommunicator.refrence.PopupText("Moving To Cover", 2f);
+
+            }
+            else
+            {
+                StartCoroutine(Relocate(false));//Retreat away from player
+            }
+        }
+        yield return Timer(reloadTime);
+         UICommunicator.refrence.PopupText("FinReloading", 2f);
+        ammo = ammoCap;
     }
     void RotateTowardsTarget()
     {
@@ -246,24 +311,36 @@ public class BasicShootAI : AIBase
     }
     void SideStepCheck()
     {
-        if(sideStepping)
+        
+        if(sideStepping || !agent.isStopped || currentState != AIStates.Aggro)
         {
-            print("SideStepBug");
             return;
         }
         int direction;
         direction = Random.Range(0, 2) == 0 ? -1 : 1; //returns -1 or 1
         if(SideStepRayCastCheck(direction))
         {
-            print("2");
             NavMeshHit hit;  
             if(!NavMesh.SamplePosition(transform.right * direction + transform.position, out hit, 1, NavMesh.AllAreas))
             {
-                print("3");
                 return;
+            }
+            if(isCrouched == true)
+            {
+                UnCrouch();
             }
             StartCoroutine(SideStep(hit, direction));
         }
+    }
+    void Crouch()
+    {
+        isCrouched = true;
+        rigAnimator.SetBool("Crouch", true);
+    }
+    void UnCrouch()
+    {
+        isCrouched = false;
+        rigAnimator.SetBool("Crouch", false);
     }
     bool SideStepRayCastCheck(int dir)
     {
@@ -284,20 +361,29 @@ public class BasicShootAI : AIBase
             rigAnimator.SetTrigger("StepRight");
         else
             rigAnimator.SetTrigger("StepLeft");
-        float clipLength = rigAnimator.GetCurrentAnimatorStateInfo(1).length;
-        float _time = 0;
+        yield return null;
+        while(rigAnimator.GetAnimatorTransitionInfo(1).duration > 0)
+        {
+            print("x");
+            yield return null;
+        }
+        float clipLength = rigAnimator.GetCurrentAnimatorStateInfo(1).length / 2;
         Vector3 startPos = transform.position;
         Vector3 endPos = hit.position; 
         canSideStep = false;
-        while(_time < 1)
+        float elapsedTime = 0f;
+        print(clipLength);
+        while(elapsedTime < clipLength)
         {
             yield return null;
-            _time += Time.deltaTime / clipLength;
-            transform.position = Vector3.Lerp(startPos, endPos, _time);
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / clipLength);
+            transform.position = Vector3.Lerp(startPos, endPos, t);
         }
         sideStepping = false;
         yield return Timer(sideStepCoolDownTime);
         canSideStep = true;
+        
     }
     IEnumerator Search()
     {
@@ -305,6 +391,9 @@ public class BasicShootAI : AIBase
     }
     IEnumerator MoveToDestination(Vector3 point)
     {
+        if(isCrouched)
+            UnCrouch();
+        rigAnimator.SetBool("Walking", true);
         agent.isStopped = false;
         agent.destination = point;
         while (Vector3.Distance(transform.position, point) > 0.2f)
@@ -312,6 +401,8 @@ public class BasicShootAI : AIBase
             yield return null;
         }
         agent.isStopped = true;
+        rigAnimator.SetBool("Walking", false);
+        
     }
 
 }

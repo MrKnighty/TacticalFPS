@@ -351,7 +351,6 @@ MonoBehaviour:
   ammoCap: 20
   damage: 3
   reloadTime: 2
-  inCover: 0
   closestDistanceToCoverXZ: 5
   closestDistanceToCoverY: 5
   maximumDistanceToCoverXZ: 100
@@ -365,13 +364,21 @@ MonoBehaviour:
   onClickCreatePatrolPoint: 1
   patrolWaitTimer: 2
   patrolTurnSpeed: 1
+  movemnetRadius: 5
+  canSeePlayer: 0
+  inCover: 0
+  canSideStep: 1
   isPaused: 0
-  playerInSight: 0
+  isCrouched: 0
+  sideStepMaxDistance: 0
+  sideStepChance: 50
+  sideStepCoolDownTime: 15
   aggressive: 0
   searchIterations: 5
   searchRange: 5
   maxSnapRotateSpeed: 200
   muzzleFX: {fileID: 7305249743711542931}
+  rigAnimator: {fileID: 1782924851216853764}
 --- !u!82 &687864118135339657
 AudioSource:
   m_ObjectHideFlags: 0
