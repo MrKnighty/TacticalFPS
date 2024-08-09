@@ -12,7 +12,7 @@ public class GunManager : MonoBehaviour
 
     [SerializeField] float switchSpeed;
     int activeWeapon = -1;
-    int lastGunIndex = 0;
+    int lastGunIndex = -1;
 
 
     [SerializeField] Animation anim;
@@ -59,10 +59,10 @@ public class GunManager : MonoBehaviour
         ownedGuns[3] = PresistantPlayerData.shotgunUnlocked;
 
         activeWeapon = PresistantPlayerData.currentWeapon;
-        guns[activeWeapon].gameObject.SetActive(true); 
+        guns[activeWeapon].gameObject.SetActive(true);
         guns[activeWeapon].UpdateUI();
 
-       
+
 
     }
     public void WritePersistantData()
@@ -105,6 +105,9 @@ public class GunManager : MonoBehaviour
         if (switchingWeapon)
             return;
 
+        if(Input.GetKeyDown(KeyCode.F6))
+            LightmapSettings.lightmaps = new LightmapData[0];
+
         DebugManager.DisplayInfo("CWeaponI", "CWeaponI" + activeWeapon);
         DebugManager.DisplayInfo("LWeaponI", "LWeaponI" + lastGunIndex);
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -137,34 +140,42 @@ public class GunManager : MonoBehaviour
 
     void SwitchWeapon(int newWeapon)
     {
-        #if UNITY_EDITOR
-        if(activeWeapon < 0)
-            activeWeapon = 0;
-        #endif
-
-        if (activeWeapon == newWeapon)
-            return;
+        if (activeWeapon != -1)
+        {
+            if (activeWeapon == newWeapon)
+                return;
             if (!guns[activeWeapon].ReadyToSwitch())
                 return;
 
-        guns[activeWeapon].StopReloading();
+            guns[activeWeapon].StopReloading();
 
-        BaseGun.fireForbidden = true;
+            BaseGun.fireForbidden = true;
 
 
-        anim.Play(guns[activeWeapon].name + "Deaquip");
+            anim.Play(guns[activeWeapon].name + "Deaquip");
+        }
+
+
+
+
         switchingWeapon = true;
         lastGunIndex = activeWeapon;
         activeWeapon = newWeapon;
         guns[activeWeapon].GetComponent<Animator>().StopPlayback();
 
         CancelADS();
+        if (lastGunIndex == -1)
+            SwitchGun();
     }
 
     public void SwitchGun() // controlled by animator
     {
-        guns[lastGunIndex].GetComponent<Animator>().SetTrigger("StopADS");
-        guns[lastGunIndex].gameObject.SetActive(false);
+        if (lastGunIndex != -1)
+        {
+            guns[lastGunIndex].GetComponent<Animator>().SetTrigger("StopADS");
+            guns[lastGunIndex].gameObject.SetActive(false);
+        }
+
         guns[activeWeapon].gameObject.SetActive(true);
         guns[activeWeapon].UpdateUI();
 
@@ -220,7 +231,7 @@ public class GunManager : MonoBehaviour
             return;
         }
         ownedGuns[index] = true;
-        
+
         SwitchWeapon(index);
     }
 }

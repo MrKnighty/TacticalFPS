@@ -84,6 +84,8 @@ public class MeleeAIBase : AIBase
     public override void DamageTrigger()
     {
         aggro = true;
+        Vector3 pos = new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z);
+        transform.LookAt(pos);
         animator.SetBool("Moving", true);
     }
     

@@ -150,7 +150,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   meteringMode:
     m_OverrideState: 1
     m_Value: 2
@@ -159,7 +159,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 7.474576
+    m_Value: 6.1052628
   compensation:
     m_OverrideState: 0
     m_Value: -1.5
@@ -300,17 +300,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   normalBias:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   viewBias:
-    m_OverrideState: 0
-    m_Value: 2
+    m_OverrideState: 1
+    m_Value: 0
   scaleBiasWithMinProbeDistance:
     m_OverrideState: 0
     m_Value: 0
   samplingNoise:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0.964
   animateSamplingNoise:
     m_OverrideState: 0
     m_Value: 1
@@ -324,8 +324,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   intensityMultiplier:
-    m_OverrideState: 0
-    m_Value: 0.295
+    m_OverrideState: 1
+    m_Value: 1
   skyOcclusionIntensityMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f077503be6ae942a1e1245dbd53ea9, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   quality:
     m_OverrideState: 1
     m_Value: 0
