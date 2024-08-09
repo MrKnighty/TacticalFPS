@@ -6,7 +6,7 @@ using System.Collections;
 
 public class UICommunicator : MonoBehaviour
 {
-
+    //Liam It would be good to have a Seperate DEBUG UI popup so it doesn't mix with the game one, and we can turn it off and on without breaking the game.
     static Dictionary<string, TextMeshProUGUI> ui;
     [SerializeField] TextMeshProUGUI[] uiElemets;
 
@@ -19,7 +19,7 @@ public class UICommunicator : MonoBehaviour
 
     [SerializeField] GameObject popupTextObject;
     [SerializeField] Vector2 startMessageSpot, endMessageSpot;
-   
+    static float offsetRange = 15f;
     
     void Start()
     {
@@ -115,12 +115,12 @@ public class UICommunicator : MonoBehaviour
         GameObject ui = Instantiate(popupTextObject);
         TextMeshProUGUI text = ui.GetComponent<TextMeshProUGUI>();
         text.text = message;
-        text.rectTransform.position = startMessageSpot;
+        text.rectTransform.position = startMessageSpot + Vector2.one * Random.Range(-offsetRange, offsetRange);
         ui.transform.SetParent(this.transform, true);
-        StartCoroutine(MessageFloatUp( messageTime, text));
+        StartCoroutine(MessageFloatUp( messageTime, text, text.rectTransform.position));
     }
 
-    IEnumerator MessageFloatUp(float messageTime, TextMeshProUGUI element)
+    IEnumerator MessageFloatUp(float messageTime, TextMeshProUGUI element, Vector2 startMessageSpot)
     {
         float currentTime = 0;
         float alphaLerp = 0;

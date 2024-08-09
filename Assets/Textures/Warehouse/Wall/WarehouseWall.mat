@@ -286,8 +286,8 @@ Material:
     - _UseEmissiveIntensity: 0
     - _UseEmissiveMap: 0
     - _UseMetallicMap: 0
-    - _UseNormalMap: 1
-    - _UseRoughnessMap: 0
+    - _UseNormalMap: 0
+    - _UseRoughnessMap: 1
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4

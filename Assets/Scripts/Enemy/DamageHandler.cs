@@ -3,7 +3,7 @@ using UnityEngine;
 public enum BodyParts {Head, Body, Legs, Arms}
 public class DamageHandler : MonoBehaviour
 {
-    [SerializeField] float maxHealth;
+    public float maxHealth;
     public float currentHealth;
     [SerializeField] bool dropItem;
     [SerializeField] GameObject itemToDrop;
