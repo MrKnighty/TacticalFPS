@@ -10,12 +10,13 @@ public class LoadLevelTrigger : MonoBehaviour
     [SerializeField] int levelindex;
 
     static bool allowedToLoad;
-
+    static bool allreadyLoading;
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.transform.tag == "Player")
         {
-            if (initiateLoad)
+            if (initiateLoad && !allreadyLoading)
                 StartCoroutine("LoadScene");
             if(load)
                 allowedToLoad = true;
@@ -23,11 +24,14 @@ public class LoadLevelTrigger : MonoBehaviour
         }
     }
 
+
+   
+
     IEnumerator LoadScene()
     {
         AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(levelindex);
         sceneLoader.allowSceneActivation = false;
-
+        allreadyLoading = true;
         while (!sceneLoader.isDone)
         {
             DebugManager.DisplayInfo("Asyunc", "Scene Load %" + sceneLoader.progress * 100);
