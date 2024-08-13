@@ -106,11 +106,11 @@ Material:
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 0
-    - _Zoom: 0.529
+    - _Zoom: 0.235
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ObjectScreenPosition: {r: 0.25274563, g: 0.9064146, b: 0, a: 0}
+    - _ObjectScreenPosition: {r: 0.6201491, g: 0.42730567, b: 0, a: 0}
     - _Tiling: {r: 0.9, g: 0.9, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
