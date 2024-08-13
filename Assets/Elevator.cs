@@ -18,7 +18,11 @@ public class Elevator : MonoBehaviour
     private void Start()
     {
         if(autoStart)
-             StartCoroutine("Elevate");
+        {
+            skinnedMeshRenderer.SetBlendShapeWeight(0,0);
+            StartCoroutine("Elevate");
+        }
+             
     }
 
     IEnumerator CloseDoorAnim()
@@ -42,7 +46,7 @@ public class Elevator : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
 
-            skinnedMeshRenderer.SetBlendShapeWeight(0, Mathf.Lerp(0, 100, currentTime / timeToClose));
+            skinnedMeshRenderer.SetBlendShapeWeight(0, Mathf.Lerp(100, 0, currentTime / timeToClose));
             yield return null;
         }
         yield return null;
