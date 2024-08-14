@@ -6,7 +6,7 @@ using Unity.Mathematics;
 
 public class BaseGun : MonoBehaviour
 {
-    [Header("Standard Settings")]
+    [Header("Standard Settings")]    
     [SerializeField] int magazineSize; // max amount of ammo that can be in magazine
     public int totalRemainingAmmo; // remaining ammo not in magazine
     [SerializeField] int maxAmmo;

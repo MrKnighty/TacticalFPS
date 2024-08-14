@@ -52,6 +52,8 @@ public class EventSecurityOverride : Interactable
         {
             obj.SetActive(true);
         }
+
+
         StartCoroutine("LightsFlicker");
 
        
@@ -65,15 +67,17 @@ public class EventSecurityOverride : Interactable
 
         
     }
-
+    LightmapData[] data;
     IEnumerator LightsFlicker()
     {
+        data = LightmapSettings.lightmaps;
         yield return new WaitForSeconds(lightsOutTime);
         UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
         foreach (Light light in lights)
         {
 
             light.gameObject.SetActive(false);
+            LightmapSettings.lightmaps = new LightmapData[]{};
         }
 
         for (int i =0; i< 8; i++)
@@ -83,6 +87,7 @@ public class EventSecurityOverride : Interactable
             {
 
                 light.gameObject.SetActive(true);
+                LightmapSettings.lightmaps = data;
             }
             yield return new WaitForSeconds(Random.Range(0.1f, 0.2f));
             UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
@@ -90,6 +95,7 @@ public class EventSecurityOverride : Interactable
             {
 
                 light.gameObject.SetActive(false);
+                LightmapSettings.lightmaps = new LightmapData[] { };
             }
             yield return new WaitForSeconds(Random.Range(0.1f,0.2f));
 
