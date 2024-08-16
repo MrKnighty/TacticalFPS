@@ -23,6 +23,7 @@ public class BasicShootAI : AIBase
     [SerializeField, Tooltip("In Degrees")] float maxSnapRotateSpeed = 15;
     [SerializeField] ParticleSystem muzzleFX;
     [SerializeField] Animator rigAnimator;
+    IEnumerator relocateCoroutine;
     
     //Triggers
     bool playerInSightTrigger;
@@ -38,13 +39,17 @@ public class BasicShootAI : AIBase
         switch (currentState)
         {
             case AIStates.Aggro:
+            StopCoroutine("Shoot");
+            StopCoroutine("Aggro");
+            if(relocateCoroutine != null)
+            StopCoroutine(relocateCoroutine);
             break;
             
         }
     }
     void SwitchStates(AIStates state)
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         agent.isStopped = true;
         ExitState();
         switch (state)
@@ -71,8 +76,8 @@ public class BasicShootAI : AIBase
 
                 currentState = state;
                 rigAnimator.SetBool("Aggro", true);
-                StartCoroutine(Aggro());
-                StartCoroutine(Shoot());
+                StartCoroutine("Aggro");
+                StartCoroutine("Shoot");
                 break;
             case AIStates.Chase:
                 currentState = state;
@@ -88,11 +93,17 @@ public class BasicShootAI : AIBase
     }
     IEnumerator MeleeAttack()
     {
+        UnCrouch();
         canMelee = false; 
         rigAnimator.SetTrigger("Melee");
+        //
         yield return Timer(0.6f);
-        yield return Relocate(false);
+        //
+        relocateCoroutine = Relocate(false);
         SwitchStates(AIStates.Aggro);
+        //
+        yield return StartCoroutine(relocateCoroutine);
+        //
         yield return Timer(meleeCooldownTime);
         canMelee = true; 
     }
@@ -184,7 +195,13 @@ public class BasicShootAI : AIBase
             }
             else 
             {
-                StartCoroutine(Relocate(true));
+                if(agent.isStopped)
+                {
+                    if(relocateCoroutine != null)
+                        StopCoroutine(relocateCoroutine);
+                    relocateCoroutine = Relocate(false);
+                    StartCoroutine(relocateCoroutine);
+                }
             }
         }
         while(currentState == AIStates.Aggro)
@@ -209,13 +226,23 @@ public class BasicShootAI : AIBase
     }
     IEnumerator Relocate(bool dir) //Move Slightly Towards / away from player
     {
+        
+        print("Relocate");
+        float moveDist = movemnetRadius;
+        if(Vector3.Distance(transform.position, playerTransform.position) < movemnetRadius)
+            {
+                dir = false;
+                //moveDist *= 0.5f;
+            }
         UICommunicator.refrence.PopupText("Relocating", 2f);
-        Vector3 point = GetNavmeshPointInRadiusTowardsPlayer(movemnetRadius, dir);
+        Vector3 point = GetNavmeshPointInRadiusTowardsPlayer(moveDist, dir);
         if(point != Vector3.zero)
         {
+            if(isCrouched)
+            UnCrouch();
             yield return MoveToDestination(point);
-            rigAnimator.SetBool("Crouch", true);
-            isCrouched = true;
+            print("Crounching");
+            Crouch();
         }
     }
     IEnumerator Shoot()
@@ -255,9 +282,11 @@ public class BasicShootAI : AIBase
     {
         UICommunicator.refrence.PopupText("Reloading", 2f);
         rigAnimator.SetTrigger("Reload");
+        if(agent.isStopped)
         if(damageHandler.currentHealth > damageHandler.maxHealth * 0.5f) // HP is greater than half == high confidence
         {
-            StartCoroutine(Relocate(true)); //advnace towards player
+            relocateCoroutine = Relocate(true);//advnace towards player
+            StartCoroutine(relocateCoroutine);
         }
         else
         {
@@ -270,7 +299,8 @@ public class BasicShootAI : AIBase
             }
             else
             {
-                StartCoroutine(Relocate(false));//Retreat away from player
+                relocateCoroutine = Relocate(false);//retrete away player
+                StartCoroutine(relocateCoroutine);
             }
         }
         rigAnimator.SetTrigger("Reload");
@@ -287,10 +317,6 @@ public class BasicShootAI : AIBase
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir, Vector3.up), maxSnapRotateSpeed * Time.deltaTime);
     }
     
-    IEnumerator Gaurd()
-    {
-        yield return null;
-    }
     IEnumerator Chase()
     {
         
@@ -391,13 +417,13 @@ public class BasicShootAI : AIBase
     }
     IEnumerator MoveToDestination(Vector3 point)
     {
-        if(isCrouched)
-            UnCrouch();
         rigAnimator.SetBool("Walking", true);
         agent.isStopped = false;
         agent.destination = point;
         while (Vector3.Distance(transform.position, point) > 0.2f)
         {
+            if(isCrouched)
+                UnCrouch();
             yield return null;
         }
         agent.isStopped = true;

@@ -108,7 +108,7 @@ public class PlayerDamageHandler : MonoBehaviour
         ChangeHealth(-amount);
         if (audioSource)
             try {audioSource.PlayOneShot(hurtAudioClips[UnityEngine.Random.Range(0, hurtAudioClips.Length - 1)]); }
-            catch { print("No Hurt Audio Clips in Array: " + this.name); }
+            catch { Debug.LogWarning("No Hurt Audio Clips in Array: " + this.name); }
         if(damageImage != null)
         {
             StopCoroutine(DamageImageFade());

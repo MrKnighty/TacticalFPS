@@ -48,6 +48,7 @@ public class AIBase : MonoBehaviour
     [SerializeField] protected bool canSeePlayer = false;
     [SerializeField] protected bool inCover = false;
     [SerializeField] protected bool canSideStep = true;
+    [SerializeField] protected bool isMoving = false;
     [SerializeField] protected bool isPaused = false;
     [SerializeField] protected bool isCrouched = false;
     protected DamageHandler damageHandler;
