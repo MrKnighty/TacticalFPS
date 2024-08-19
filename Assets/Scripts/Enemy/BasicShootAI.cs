@@ -170,9 +170,23 @@ public class BasicShootAI : AIBase
 
     IEnumerator Aggro()
     {
-        bool checkedForCover = false;
         if(!playerPoint)
             playerPoint = playerBodyPoint;
+        if (!inCover)
+        {
+            Vector3 point = GetCoverPointOnNavMesh(FindClosestCover());
+            if(point != Vector3.zero)
+            {
+                if(Vector3.Distance(transform.position, point) > Vector3.Distance(transform.position, playerDamageHandler.transform.position))
+
+                yield return MoveToDestination(point);
+                inCover = true;
+            }
+            else 
+            {
+                StartCoroutine(Relocate(true));
+            }
+        }
         while(currentState == AIStates.Aggro)
         {
             if(!playerPoint)
@@ -189,22 +203,7 @@ public class BasicShootAI : AIBase
                     yield break;
                 }
             }
-            if (!inCover && !checkedForCover)
-            {
-                checkedForCover = true;
-                Vector3 point = GetCoverPointOnNavMesh(FindClosestCover());
-                if(point != Vector3.zero)
-                {
-                    if(Vector3.Distance(transform.position, point) > Vector3.Distance(transform.position, playerDamageHandler.transform.position))
-
-                    yield return MoveToDestination(point);
-                    inCover = true;
-                }
-                else 
-                {
-                    StartCoroutine(Relocate(true));
-                }
-            }
+            
             yield return null;
         }
     }
@@ -274,6 +273,7 @@ public class BasicShootAI : AIBase
                 StartCoroutine(Relocate(false));//Retreat away from player
             }
         }
+        rigAnimator.SetTrigger("Reload");
         yield return Timer(reloadTime);
          UICommunicator.refrence.PopupText("FinReloading", 2f);
         ammo = ammoCap;

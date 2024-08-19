@@ -1,0 +1,4017 @@
+animVersion 1.1;
+mayaVersion 2024;
+timeUnit film;
+linearUnit cm;
+angularUnit deg;
+startTime 0;
+endTime 60;
+anim Soldier1 0 2 0;
+anim Soldier1Shape 1 0 0;
+anim Soldier1ShapeOrig 1 0 0;
+anim scale.scaleX scaleX mixamorig:Hips 0 3 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 100 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:Hips 0 3 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 100 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:Hips 0 3 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 100 auto auto 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:Hips 0 3 3;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -8.6597734e-05 spline spline 1 0 0;
+    0.8 -8.6597734e-05 spline spline 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:Hips 0 3 4;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 237.12819 spline spline 1 0 0;
+    0.8 237.12819 spline spline 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:Hips 0 3 5;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 2.8190026 spline spline 1 0 0;
+    0.8 2.8190026 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:Hips 0 3 6;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 2.693017e-06 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:Hips 0 3 7;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.1085847e-05 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:Hips 0 3 8;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.00033671819 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:Hips 0 3 9;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:Spine 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -3.0527108e-06 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:Spine 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 4.4322809e-05 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:Spine 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.00033397222 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:Spine1 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:Spine1 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:Spine1 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:Spine2 0 3 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:Spine2 0 3 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:Spine2 0 3 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:Neck 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    12 1 auto auto 1 0 0;
+    18 1 fixed fixed 1 0 0 0 1 0 1;
+    36 1 auto auto 1 0 0;
+    42 1 auto auto 1 0 0;
+    55 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:Neck 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    12 1 auto auto 1 0 0;
+    18 1 fixed fixed 1 0 0 0 1 0 1;
+    36 1 auto auto 1 0 0;
+    42 1 auto auto 1 0 0;
+    55 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:Neck 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    12 1 auto auto 1 0 0;
+    18 1 fixed fixed 1 0 0 0 1 0 1;
+    36 1 auto auto 1 0 0;
+    42 1 auto auto 1 0 0;
+    55 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:Neck 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 3.5943654e-07 spline spline 1 0 0;
+    12 0 auto auto 1 0 0;
+    18 0 fixed fixed 1 0 0 0 1 0 1;
+    36 0 auto auto 1 0 0;
+    42 0 auto auto 1 0 0;
+    55 0 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:Neck 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+    12 29.742173 auto auto 1 0 0;
+    18 29.742173 fixed fixed 1 0 0 0 1 0 1;
+    36 -44.84079 auto auto 1 0 0;
+    42 -44.84079 auto auto 1 0 0;
+    55 -23.071948 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:Neck 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+    12 0 auto auto 1 0 0;
+    18 0 fixed fixed 1 0 0 0 1 0 1;
+    36 0 auto auto 1 0 0;
+    42 0 auto auto 1 0 0;
+    55 0 auto auto 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:Neck 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    12 1 spline step 1 0 0;
+    18 1 fixed step 1 0 0 0 1;
+    36 1 spline step 1 0 0;
+    42 1 spline step 1 0 0;
+    55 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:Neck 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    12 0 auto auto 1 0 0;
+    18 0 fixed fixed 1 0 0 0 1 0 1;
+    36 0 auto auto 1 0 0;
+    42 0 auto auto 1 0 0;
+    55 0 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:Neck 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    12 0.28967884 auto auto 1 0 0;
+    18 0.28967884 fixed fixed 1 0 0 0 1 0 1;
+    36 0.28967884 auto auto 1 0 0;
+    42 0.28967884 auto auto 1 0 0;
+    55 0.28967884 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:Neck 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    12 -1.0325267e-08 auto auto 1 0 0;
+    18 -1.0325267e-08 fixed fixed 1 0 0 0 1 0 1;
+    36 -1.0325267e-08 auto auto 1 0 0;
+    42 -1.0325267e-08 auto auto 1 0 0;
+    55 -1.0325267e-08 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:Head 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:Head 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:Head 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 spline spline 1 0 0;
+  }
+}
+anim mixamorig:HeadTop_End 0 0 0;
+anim rotate.rotateX rotateX mixamorig:LeftShoulder 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.7272784 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftShoulder 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.031173255 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftShoulder 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.17054546 spline spline 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftArm 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftArm 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftArm 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftArm 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 68.129398 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftArm 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 17.798411 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftArm 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.6945335 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:LeftArm 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftArm 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.0086e-10 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftArm 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.30258557 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftArm 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.2881305e-09 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftForeArm 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftForeArm 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftForeArm 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftForeArm 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 12.169504 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftForeArm 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -29.650541 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftForeArm 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 73.909766 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:LeftForeArm 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftForeArm 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.0789799e-09 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftForeArm 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.60204202 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftForeArm 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.7036546e-09 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftHand 0 2 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftHand 0 2 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftHand 0 2 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftHand 0 2 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 11.182561 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftHand 0 2 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -51.312639 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftHand 0 2 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 2.6614992 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:LeftHand 0 2 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftHand 0 2 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 2.2541058e-09 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftHand 0 2 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.60364121 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftHand 0 2 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.6371704e-10 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftHandThumb1 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -8.5540628 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftHandThumb1 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.50313389 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftHandThumb1 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 5.2924166 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftHandThumb2 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -19.377604 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftHandThumb2 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.1794305 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftHandThumb2 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -4.3981366 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftHandThumb3 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.6999451 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftHandThumb3 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.25015444 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftHandThumb3 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 8.3500338 spline spline 1 0 0;
+  }
+}
+anim mixamorig:LeftHandThumb4 0 0 0;
+anim rotate.rotateX rotateX mixamorig:LeftHandIndex1 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -14.917693 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftHandIndex1 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.056209691 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftHandIndex1 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.68972832 spline spline 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftHandIndex2 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftHandIndex2 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftHandIndex2 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftHandIndex2 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 11.883779 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftHandIndex2 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -18.426298 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftHandIndex2 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 52.413725 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:LeftHandIndex2 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftHandIndex2 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.00099129195 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftHandIndex2 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.10235481 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftHandIndex2 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.6947603e-09 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftHandIndex3 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftHandIndex3 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftHandIndex3 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftHandIndex3 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 13.276319 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftHandIndex3 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -28.167079 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftHandIndex3 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 41.0212 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:LeftHandIndex3 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftHandIndex3 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.00030797438 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftHandIndex3 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.076807685 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftHandIndex3 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 4.7933923e-10 auto auto 1 0 0;
+  }
+}
+anim mixamorig:LeftHandIndex4 0 0 0;
+anim rotate.rotateX rotateX mixamorig:RightShoulder 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.7443875 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightShoulder 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.02599466 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightShoulder 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.1916012 spline spline 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightArm 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightArm 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightArm 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightArm 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 68.778657 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightArm 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -12.24254 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightArm 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -3.709442 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:RightArm 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:RightArm 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:RightArm 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.3025856 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightArm 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.9320234e-09 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightForeArm 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightForeArm 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightForeArm 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightForeArm 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 41.612545 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightForeArm 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 14.032554 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightForeArm 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -80.023413 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:RightForeArm 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:RightForeArm 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -6.8162009e-10 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:RightForeArm 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.60134792 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightForeArm 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 4.4346073e-09 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightHand 0 2 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightHand 0 2 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightHand 0 2 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightHand 0 2 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -6.5071956 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightHand 0 2 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 21.111049 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightHand 0 2 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -3.8881951 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:RightHand 0 2 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:RightHand 0 2 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.7559595e-09 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:RightHand 0 2 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.60363281 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightHand 0 2 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.5006184e-09 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightHandThumb1 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightHandThumb1 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightHandThumb1 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightHandThumb1 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 10.616616 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightHandThumb1 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -3.6035701 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightHandThumb1 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 9.9332814 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:RightHandThumb1 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:RightHandThumb1 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.057123456 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:RightHandThumb1 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.094636507 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightHandThumb1 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.2597225e-09 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightHandThumb2 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightHandThumb2 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightHandThumb2 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightHandThumb2 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 13.436654 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightHandThumb2 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -14.968588 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightHandThumb2 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 3.4936863 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:RightHandThumb2 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:RightHandThumb2 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.0028008434 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:RightHandThumb2 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.088387869 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightHandThumb2 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 3.317715e-10 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightHandThumb3 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 8.4612741 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightHandThumb3 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 3.0891821 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightHandThumb3 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -16.67695 spline spline 1 0 0;
+  }
+}
+anim mixamorig:RightHandThumb4 0 0 0;
+anim scale.scaleX scaleX mixamorig:RightHandIndex1 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightHandIndex1 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightHandIndex1 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightHandIndex1 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 35.459133 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightHandIndex1 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.35217708 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightHandIndex1 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -7.2524948 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:RightHandIndex1 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:RightHandIndex1 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.3072561e-09 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:RightHandIndex1 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.19540353 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightHandIndex1 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.0018488183 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightHandIndex2 0 1 0;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -8.9924641 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightHandIndex2 0 1 1;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.1150924 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightHandIndex2 0 1 2;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 7.271585 spline spline 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightHandIndex3 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightHandIndex3 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightHandIndex3 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightHandIndex3 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 39.907115 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightHandIndex3 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 3.8797579 spline spline 1 0 0;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightHandIndex3 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -4.5466035 spline spline 1 0 0;
+  }
+}
+anim visibility visibility mixamorig:RightHandIndex3 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:RightHandIndex3 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.0046031699 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:RightHandIndex3 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.07698857 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightHandIndex3 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 5.1540061e-10 auto auto 1 0 0;
+  }
+}
+anim mixamorig:RightHandIndex4 0 0 0;
+anim scale.scaleX scaleX mixamorig:LeftUpLeg 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    60 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftUpLeg 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    60 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftUpLeg 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    60 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftUpLeg 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.0072272 spline spline 1 0 0;
+    8 16.063571 auto auto 1 0 0;
+    16 -15.736228 auto auto 1 0 0;
+    24 22.203877 auto fixed 1 0 0 0 1;
+    32 -15.736228 fixed auto 1 0 0 0 1;
+    36 16.063571 auto fixed 1 0 0 0 1;
+    44 -15.736228 auto auto 1 0 0;
+    52 22.203877 auto fixed 1 0 0 0 1;
+    60 -15.736228 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftUpLeg 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.11586139 spline spline 1 0 0;
+    8 -0.77608599 auto auto 1 0 0;
+    16 0.79060192 auto auto 1 0 0;
+    24 -1.0659442 auto fixed 1 0 0 0 1;
+    32 0.79060192 fixed auto 1 0 0 0 1;
+    36 -0.77608599 auto fixed 1 0 0 0 1;
+    44 0.79060192 auto auto 1 0 0;
+    52 -1.0659442 auto fixed 1 0 0 0 1;
+    60 0.79060192 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftUpLeg 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.0219842 spline spline 1 0 0;
+    8 0.91700995 auto auto 1 0 0;
+    16 0.91286734 auto auto 1 0 0;
+    24 0.81821723 auto fixed 1 0 0 -0.089007714 1;
+    32 0.91286734 fixed auto 1 0 0 0 1;
+    36 0.91700995 auto fixed 1 0 0 -0.089007714 1;
+    44 0.91286734 auto auto 1 0 0;
+    52 0.81821723 auto fixed 1 0 0 -0.089007714 1;
+    60 0.91286734 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:LeftUpLeg 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    32 1 spline step 1 0 0;
+    36 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    60 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftUpLeg 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 0.19382118 auto auto 1 0 0;
+    16 0.19382118 auto auto 1 0 0;
+    24 0.19382118 auto auto 1 0 0;
+    32 0.19382118 auto auto 1 0 0;
+    36 0.19382118 auto auto 1 0 0;
+    44 0.19382118 auto auto 1 0 0;
+    52 0.19382118 auto auto 1 0 0;
+    60 0.19382118 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftUpLeg 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 -0.10646129 auto auto 1 0 0;
+    16 -0.10646129 auto auto 1 0 0;
+    24 -0.10646129 auto auto 1 0 0;
+    32 -0.10646129 auto auto 1 0 0;
+    36 -0.10646129 auto auto 1 0 0;
+    44 -0.10646129 auto auto 1 0 0;
+    52 -0.10646129 auto auto 1 0 0;
+    60 -0.10646129 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftUpLeg 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 -0.025583062 auto auto 1 0 0;
+    16 -0.025583062 auto auto 1 0 0;
+    24 -0.025583062 auto auto 1 0 0;
+    32 -0.025583062 auto auto 1 0 0;
+    36 -0.025583062 auto auto 1 0 0;
+    44 -0.025583062 auto auto 1 0 0;
+    52 -0.025583062 auto auto 1 0 0;
+    60 -0.025583062 auto auto 1 0 0;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftLeg 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    21 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    49 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    56 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftLeg 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    21 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    49 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    56 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftLeg 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    21 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    49 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    56 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftLeg 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.7283681 spline spline 1 0 0;
+    4 -8.0681461 auto auto 1 0 0;
+    8 -18.4037 auto auto 1 0 0;
+    10 -18.4037 auto auto 1 0 0;
+    12 -18.4037 auto auto 1 0 0;
+    16 -18.4037 auto auto 1 0 0;
+    21 -18.4037 auto auto 1 0 0;
+    24 -18.4037 auto auto 1 0 0;
+    28 -18.4037 auto auto 1 0 0;
+    32 -18.4037 auto auto 1 0 0;
+    36 -18.4037 auto fixed 1 0 0 0 1;
+    38 -18.4037 auto auto 1 0 0;
+    40 -18.4037 auto auto 1 0 0;
+    44 -18.4037 auto auto 1 0 0;
+    49 -18.4037 auto auto 1 0 0;
+    52 -18.4037 auto auto 1 0 0;
+    56 -18.4037 auto auto 1 0 0;
+    60 -18.4037 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftLeg 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.027584933 spline spline 1 0 0;
+    4 -0.027584933 auto auto 1 0 0;
+    8 -0.47008986 auto auto 1 0 0;
+    10 -0.47008986 auto auto 1 0 0;
+    12 -0.47008986 auto auto 1 0 0;
+    16 -0.47008986 auto auto 1 0 0;
+    21 -0.47008986 auto auto 1 0 0;
+    24 -0.47008986 auto auto 1 0 0;
+    28 -0.47008986 auto auto 1 0 0;
+    32 -0.47008986 auto auto 1 0 0;
+    36 -0.47008986 auto fixed 1 0 0 0 1;
+    38 -0.47008986 auto auto 1 0 0;
+    40 -0.47008986 auto auto 1 0 0;
+    44 -0.47008986 auto auto 1 0 0;
+    49 -0.47008986 auto auto 1 0 0;
+    52 -0.47008986 auto auto 1 0 0;
+    56 -0.47008986 auto auto 1 0 0;
+    60 -0.47008986 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftLeg 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.0049011899 spline spline 1 0 0;
+    4 -0.0049011899 auto auto 1 0 0;
+    8 0.027094854 auto auto 1 0 0;
+    10 0.027094854 auto auto 1 0 0;
+    12 0.027094854 auto auto 1 0 0;
+    16 0.027094854 auto auto 1 0 0;
+    21 0.027094854 auto auto 1 0 0;
+    24 0.027094854 auto auto 1 0 0;
+    28 0.027094854 auto auto 1 0 0;
+    32 0.027094854 auto auto 1 0 0;
+    36 0.027094854 auto fixed 1 0 0 0 1;
+    38 0.027094854 auto auto 1 0 0;
+    40 0.027094854 auto auto 1 0 0;
+    44 0.027094854 auto auto 1 0 0;
+    49 0.027094854 auto auto 1 0 0;
+    52 0.027094854 auto auto 1 0 0;
+    56 0.027094854 auto auto 1 0 0;
+    60 0.027094854 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:LeftLeg 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+    4 1 spline step 1 0 0;
+    8 1 spline step 1 0 0;
+    10 1 spline step 1 0 0;
+    12 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    21 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    28 1 spline step 1 0 0;
+    32 1 spline step 1 0 0;
+    36 1 spline step 1 0 0;
+    38 1 spline step 1 0 0;
+    40 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    49 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    56 1 spline step 1 0 0;
+    60 1 fixed step 1 0 0 0 1;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftLeg 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -7.0031891e-10 auto auto 1 0 0;
+    4 -7.0031891e-10 auto auto 1 0 0;
+    8 -7.0031891e-10 auto auto 1 0 0;
+    10 -0.0023112505 auto auto 1 0 0;
+    12 -0.0096847668 auto auto 1 0 0;
+    16 -0.00073601315 auto auto 1 0 0;
+    21 0.0036742234 auto auto 1 0 0;
+    24 0.002559162 auto auto 1 0 0;
+    28 -0.00048443661 auto auto 1 0 0;
+    32 0.00094172059 auto auto 1 0 0;
+    36 -7.0031891e-10 auto fixed 1 0 0 0 1;
+    38 -0.0023112505 auto auto 1 0 0;
+    40 -0.0096847668 auto auto 1 0 0;
+    44 -0.00073601315 auto auto 1 0 0;
+    49 0.0036742234 auto auto 1 0 0;
+    52 0.002559162 auto auto 1 0 0;
+    56 -0.00048443661 auto auto 1 0 0;
+    60 0.00094172059 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftLeg 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.86993879 auto auto 1 0 0;
+    4 0.86993879 auto auto 1 0 0;
+    8 0.86993879 auto auto 1 0 0;
+    10 0.87087577 auto auto 1 0 0;
+    12 0.76832719 auto auto 1 0 0;
+    16 0.86301677 auto auto 1 0 0;
+    21 0.92216626 auto auto 1 0 0;
+    24 0.8944366 auto auto 1 0 0;
+    28 0.83099076 auto auto 1 0 0;
+    32 0.85960844 auto auto 1 0 0;
+    36 0.86993879 auto fixed 1 0 0 0 1;
+    38 0.87087577 auto auto 1 0 0;
+    40 0.76832719 auto auto 1 0 0;
+    44 0.86301677 auto auto 1 0 0;
+    49 0.92216626 auto auto 1 0 0;
+    52 0.8944366 auto auto 1 0 0;
+    56 0.83099076 auto auto 1 0 0;
+    60 0.85960844 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftLeg 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0 auto auto 1 0 0;
+    4 0 auto auto 1 0 0;
+    8 0 auto auto 1 0 0;
+    10 0.0072890554 auto auto 1 0 0;
+    12 0.036574185 auto auto 1 0 0;
+    16 0.03023828 auto auto 1 0 0;
+    21 0.007131351 auto auto 1 0 0;
+    24 0.0076105924 auto auto 1 0 0;
+    28 0.0087654191 auto auto 1 0 0;
+    32 0.0163772 auto auto 1 0 0;
+    36 0 auto fixed 1 0 0 0 1;
+    38 0.0072890554 auto auto 1 0 0;
+    40 0.036574185 auto auto 1 0 0;
+    44 0.03023828 auto auto 1 0 0;
+    49 0.007131351 auto auto 1 0 0;
+    52 0.0076105924 auto auto 1 0 0;
+    56 0.0087654191 auto auto 1 0 0;
+    60 0.0163772 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftFoot 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    18 1 auto auto 1 0 0;
+    20 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    27 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    35 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    46 1 auto auto 1 0 0;
+    48 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    56 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftFoot 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    18 1 auto auto 1 0 0;
+    20 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    27 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    35 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    46 1 auto auto 1 0 0;
+    48 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    56 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftFoot 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    18 1 auto auto 1 0 0;
+    20 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    27 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    35 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    46 1 auto auto 1 0 0;
+    48 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    56 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftFoot 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 2.1714537 spline spline 1 0 0;
+    8 14.721631 auto auto 1 0 0;
+    10 8.0882214 auto auto 1 0 0;
+    12 -10.032916 auto auto 1 0 0;
+    16 -3.8572687 auto auto 1 0 0;
+    18 0.49391362 auto auto 1 0 0;
+    20 16.663029 auto auto 1 0 0;
+    24 11.231593 auto auto 1 0 0;
+    26 7.0419211 auto auto 1 0 0;
+    27 9.1117857 auto auto 1 0 0;
+    28 2.6755772 auto auto 1 0 0;
+    32 -3.4903059 auto auto 1 0 0;
+    35 11.876016 auto auto 1 0 0;
+    36 14.721631 auto fixed 1 0 0 0 1;
+    38 8.0882214 auto auto 1 0 0;
+    40 -10.032916 auto auto 1 0 0;
+    44 -3.8572687 auto auto 1 0 0;
+    46 0.49391362 auto auto 1 0 0;
+    48 16.663029 auto auto 1 0 0;
+    52 11.231593 auto auto 1 0 0;
+    54 7.0419211 auto auto 1 0 0;
+    56 2.6755772 auto auto 1 0 0;
+    60 -3.4903059 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftFoot 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.6965036 spline spline 1 0 0;
+    8 -0.14573113 auto auto 1 0 0;
+    10 -0.85945167 auto auto 1 0 0;
+    12 -2.7812989 auto auto 1 0 0;
+    16 -2.1153534 auto auto 1 0 0;
+    18 -1.6477327 auto auto 1 0 0;
+    20 0.11517016 auto auto 1 0 0;
+    24 -0.49460016 auto auto 1 0 0;
+    26 -0.94729052 auto auto 1 0 0;
+    27 -0.71641807 auto auto 1 0 0;
+    28 -1.4158884 auto auto 1 0 0;
+    32 -2.0766977 auto auto 1 0 0;
+    35 -0.44744466 auto auto 1 0 0;
+    36 -0.14573113 auto fixed 1 0 0 0 1;
+    38 -0.85945167 auto auto 1 0 0;
+    40 -2.7812989 auto auto 1 0 0;
+    44 -2.1153534 auto auto 1 0 0;
+    46 -1.6477327 auto auto 1 0 0;
+    48 0.11517016 auto auto 1 0 0;
+    52 -0.49460016 auto auto 1 0 0;
+    54 -0.94729052 auto auto 1 0 0;
+    56 -1.4158884 auto auto 1 0 0;
+    60 -2.0766977 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftFoot 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.44204401 spline spline 1 0 0;
+    8 -0.02269085 auto auto 1 0 0;
+    10 0.13266046 auto auto 1 0 0;
+    12 0.33146684 auto auto 1 0 0;
+    16 0.10782355 auto auto 1 0 0;
+    18 0.044682482 auto auto 1 0 0;
+    20 0.0062733201 auto auto 1 0 0;
+    24 -0.060874493 auto auto 1 0 0;
+    26 -0.035944405 auto auto 1 0 0;
+    27 -0.039575156 auto auto 1 0 0;
+    28 0.01668578 auto auto 1 0 0;
+    32 0.098678069 auto auto 1 0 0;
+    35 -0.0037269567 auto auto 1 0 0;
+    36 -0.02269085 auto fixed 1 0 0 3.2891961 1;
+    38 0.13266046 auto auto 1 0 0;
+    40 0.33146684 auto auto 1 0 0;
+    44 0.10782355 auto auto 1 0 0;
+    46 0.044682482 auto auto 1 0 0;
+    48 0.0062733201 auto auto 1 0 0;
+    52 -0.060874493 auto auto 1 0 0;
+    54 -0.035944405 auto auto 1 0 0;
+    56 0.01668578 auto auto 1 0 0;
+    60 0.098678069 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:LeftFoot 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1 spline step 1 0 0;
+    8 1 spline step 1 0 0;
+    10 1 spline step 1 0 0;
+    12 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    18 1 spline step 1 0 0;
+    20 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    26 1 spline step 1 0 0;
+    27 1 spline step 1 0 0;
+    28 1 spline step 1 0 0;
+    32 1 spline step 1 0 0;
+    35 1 spline step 1 0 0;
+    36 1 spline step 1 0 0;
+    38 1 spline step 1 0 0;
+    40 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    46 1 spline step 1 0 0;
+    48 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    54 1 spline step 1 0 0;
+    56 1 spline step 1 0 0;
+    60 1 fixed step 1 0 0 0 1;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftFoot 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 6.3483059e-09 auto auto 1 0 0;
+    8 6.3483059e-09 auto auto 1 0 0;
+    10 -0.00096992336 auto auto 1 0 0;
+    12 6.3483059e-09 auto auto 1 0 0;
+    16 6.3483059e-09 auto auto 1 0 0;
+    18 0.0018501105 auto auto 1 0 0;
+    20 0.0003687064 auto auto 1 0 0;
+    24 6.3483059e-09 auto auto 1 0 0;
+    26 -0.0021411966 auto auto 1 0 0;
+    27 -0.0029466903 auto auto 1 0 0;
+    28 -0.00018362351 auto auto 1 0 0;
+    32 6.3483059e-09 auto auto 1 0 0;
+    35 -0.0010603613 auto auto 1 0 0;
+    36 6.3483059e-09 auto fixed 1 0 0 0 1;
+    38 -0.00096992336 auto auto 1 0 0;
+    40 6.3483059e-09 auto auto 1 0 0;
+    44 6.3483059e-09 auto auto 1 0 0;
+    46 0.0018501105 auto auto 1 0 0;
+    48 0.0003687064 auto auto 1 0 0;
+    52 6.3483059e-09 auto auto 1 0 0;
+    54 -0.0021411966 auto auto 1 0 0;
+    56 -0.00018362351 auto auto 1 0 0;
+    60 6.3483059e-09 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftFoot 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.0116777 auto auto 1 0 0;
+    8 1.0116777 auto auto 1 0 0;
+    10 1.0335221 auto auto 1 0 0;
+    12 1.0116777 auto auto 1 0 0;
+    16 1.0116777 auto auto 1 0 0;
+    18 0.97299527 auto auto 1 0 0;
+    20 1.004254 auto auto 1 0 0;
+    24 1.0116777 auto auto 1 0 0;
+    26 1.0601286 auto auto 1 0 0;
+    27 1.0782913 auto auto 1 0 0;
+    28 1.0178454 auto auto 1 0 0;
+    32 1.0116777 auto auto 1 0 0;
+    35 1.0355755 auto auto 1 0 0;
+    36 1.0116777 auto fixed 1 0 0 0 1;
+    38 1.0335221 auto auto 1 0 0;
+    40 1.0116777 auto auto 1 0 0;
+    44 1.0116777 auto auto 1 0 0;
+    46 0.97299527 auto auto 1 0 0;
+    48 1.004254 auto auto 1 0 0;
+    52 1.0116777 auto auto 1 0 0;
+    54 1.0601286 auto auto 1 0 0;
+    56 1.0178454 auto auto 1 0 0;
+    60 1.0116777 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftFoot 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -7.7020595e-10 auto auto 1 0 0;
+    8 -7.7020595e-10 auto auto 1 0 0;
+    10 0.0029679319 auto auto 1 0 0;
+    12 -7.7020595e-10 auto auto 1 0 0;
+    16 -7.7020595e-10 auto auto 1 0 0;
+    18 -0.021164511 auto auto 1 0 0;
+    20 -0.0097435282 auto auto 1 0 0;
+    24 -7.7020595e-10 auto auto 1 0 0;
+    26 0.0021542613 auto auto 1 0 0;
+    27 0.0035144551 auto auto 1 0 0;
+    28 -0.0067116938 auto auto 1 0 0;
+    32 -7.7020595e-10 auto auto 1 0 0;
+    35 0.0032469231 auto auto 1 0 0;
+    36 -7.7020595e-10 auto fixed 1 0 0 0 1;
+    38 0.0029679319 auto auto 1 0 0;
+    40 -7.7020595e-10 auto auto 1 0 0;
+    44 -7.7020595e-10 auto auto 1 0 0;
+    46 -0.021164511 auto auto 1 0 0;
+    48 -0.0097435282 auto auto 1 0 0;
+    52 -7.7020595e-10 auto auto 1 0 0;
+    54 0.0021542613 auto auto 1 0 0;
+    56 -0.0067116938 auto auto 1 0 0;
+    60 -7.7020595e-10 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleX scaleX mixamorig:LeftToeBase 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    18 1 auto auto 1 0 0;
+    21 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    30 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    46 1 auto auto 1 0 0;
+    49 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    58 1 auto auto 1 0 0;
+    60 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleY scaleY mixamorig:LeftToeBase 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    18 1 auto auto 1 0 0;
+    21 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    30 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    46 1 auto auto 1 0 0;
+    49 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    58 1 auto auto 1 0 0;
+    60 1 auto auto 1 0 0;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:LeftToeBase 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    18 1 auto auto 1 0 0;
+    21 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    30 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    46 1 auto auto 1 0 0;
+    49 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    58 1 auto auto 1 0 0;
+    60 1 auto auto 1 0 0;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:LeftToeBase 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.2165722e-06 spline spline 1 0 0;
+    8 14.512063 auto auto 1 0 0;
+    16 40.251017 auto auto 1 0 0;
+    18 27.283006 auto auto 1 0 0;
+    21 3.4100779 auto auto 1 0 0;
+    24 20.940511 auto auto 1 0 0;
+    26 10.909166 auto auto 1 0 0;
+    30 36.712443 auto auto 1 0 0;
+    32 35.704333 auto auto 1 0 0;
+    36 14.512063 auto fixed 1 0 0 68.321907 1;
+    44 40.251017 auto auto 1 0 0;
+    46 27.283006 auto auto 1 0 0;
+    49 3.4100779 auto auto 1 0 0;
+    52 20.940511 auto auto 1 0 0;
+    54 10.909166 auto auto 1 0 0;
+    58 36.712443 auto auto 1 0 0;
+    60 35.704333 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:LeftToeBase 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -6.1899078e-07 spline spline 1 0 0;
+    8 4.4567021 auto auto 1 0 0;
+    16 8.3556569 auto auto 1 0 0;
+    18 5.7549116 auto auto 1 0 0;
+    21 0.96717597 auto auto 1 0 0;
+    24 5.8869962 auto auto 1 0 0;
+    26 3.5217934 auto auto 1 0 0;
+    30 7.4989798 auto auto 1 0 0;
+    32 7.9137448 auto auto 1 0 0;
+    36 4.4567021 auto fixed 1 0 0 27.574851 1;
+    44 8.3556569 auto auto 1 0 0;
+    46 5.7549116 auto auto 1 0 0;
+    49 0.96717597 auto auto 1 0 0;
+    52 5.8869962 auto auto 1 0 0;
+    54 3.5217934 auto auto 1 0 0;
+    58 7.4989798 auto auto 1 0 0;
+    60 7.9137448 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:LeftToeBase 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 7.9894443e-07 spline spline 1 0 0;
+    8 5.8157754 auto auto 1 0 0;
+    16 17.749659 auto auto 1 0 0;
+    18 12.033171 auto auto 1 0 0;
+    21 1.5096376 auto auto 1 0 0;
+    24 8.6547999 auto auto 1 0 0;
+    26 4.2392547 auto auto 1 0 0;
+    30 16.093792 auto auto 1 0 0;
+    32 15.557963 auto auto 1 0 0;
+    36 5.8157754 auto fixed 1 0 0 47.967685 1;
+    44 17.749659 auto auto 1 0 0;
+    46 12.033171 auto auto 1 0 0;
+    49 1.5096376 auto auto 1 0 0;
+    52 8.6547999 auto auto 1 0 0;
+    54 4.2392547 auto auto 1 0 0;
+    58 16.093792 auto auto 1 0 0;
+    60 15.557963 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:LeftToeBase 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    18 1 spline step 1 0 0;
+    21 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    26 1 spline step 1 0 0;
+    30 1 spline step 1 0 0;
+    32 1 spline step 1 0 0;
+    36 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    46 1 spline step 1 0 0;
+    49 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    54 1 spline step 1 0 0;
+    58 1 spline step 1 0 0;
+    60 1 spline step 1 0 0;
+  }
+}
+anim translate.translateX translateX mixamorig:LeftToeBase 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 -3.7621312e-10 auto auto 1 0 0;
+    16 -3.7621312e-10 auto auto 1 0 0;
+    18 0.0044271704 auto auto 1 0 0;
+    21 -3.7621312e-10 auto auto 1 0 0;
+    24 -3.7621312e-10 auto auto 1 0 0;
+    26 -3.7621312e-10 auto auto 1 0 0;
+    30 -3.7621312e-10 auto auto 1 0 0;
+    32 -3.7621312e-10 auto auto 1 0 0;
+    36 -3.7621312e-10 auto auto 1 0 0;
+    44 -3.7621312e-10 auto auto 1 0 0;
+    46 0.0044271704 auto auto 1 0 0;
+    49 -3.7621312e-10 auto auto 1 0 0;
+    52 -3.7621312e-10 auto auto 1 0 0;
+    54 -3.7621312e-10 auto auto 1 0 0;
+    58 -3.7621312e-10 auto auto 1 0 0;
+    60 -3.7621312e-10 auto auto 1 0 0;
+  }
+}
+anim translate.translateY translateY mixamorig:LeftToeBase 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 0.52083898 auto auto 1 0 0;
+    16 0.52083898 auto auto 1 0 0;
+    18 0.4837951 auto auto 1 0 0;
+    21 0.52083898 auto auto 1 0 0;
+    24 0.52083898 auto auto 1 0 0;
+    26 0.52083898 auto auto 1 0 0;
+    30 0.52083898 auto auto 1 0 0;
+    32 0.52083898 auto auto 1 0 0;
+    36 0.52083898 auto auto 1 0 0;
+    44 0.52083898 auto auto 1 0 0;
+    46 0.4837951 auto auto 1 0 0;
+    49 0.52083898 auto auto 1 0 0;
+    52 0.52083898 auto auto 1 0 0;
+    54 0.52083898 auto auto 1 0 0;
+    58 0.52083898 auto auto 1 0 0;
+    60 0.52083898 auto auto 1 0 0;
+  }
+}
+anim translate.translateZ translateZ mixamorig:LeftToeBase 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 -2.2068982e-09 auto auto 1 0 0;
+    16 -2.2068982e-09 auto auto 1 0 0;
+    18 0.023576353 auto auto 1 0 0;
+    21 -2.2068982e-09 auto auto 1 0 0;
+    24 -2.2068982e-09 auto auto 1 0 0;
+    26 -2.2068982e-09 auto auto 1 0 0;
+    30 -2.2068982e-09 auto auto 1 0 0;
+    32 -2.2068982e-09 auto auto 1 0 0;
+    36 -2.2068982e-09 auto auto 1 0 0;
+    44 -2.2068982e-09 auto auto 1 0 0;
+    46 0.023576353 auto auto 1 0 0;
+    49 -2.2068982e-09 auto auto 1 0 0;
+    52 -2.2068982e-09 auto auto 1 0 0;
+    54 -2.2068982e-09 auto auto 1 0 0;
+    58 -2.2068982e-09 auto auto 1 0 0;
+    60 -2.2068982e-09 auto auto 1 0 0;
+  }
+}
+anim mixamorig:LeftToe_End 0 0 0;
+anim scale.scaleX scaleX mixamorig:RightUpLeg 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto fixed 1 0 0 0 1;
+    32 1 fixed auto 1 0 0 0 1;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto fixed 1 0 0 0 1;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightUpLeg 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto fixed 1 0 0 0 1;
+    32 1 fixed auto 1 0 0 0 1;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto fixed 1 0 0 0 1;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightUpLeg 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto fixed 1 0 0 0 1;
+    32 1 fixed auto 1 0 0 0 1;
+    36 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto fixed 1 0 0 0 1;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightUpLeg 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -2.2089393 spline spline 1 0 0;
+    8 -12.712009 auto auto 1 0 0;
+    16 14.145749 auto auto 1 0 0;
+    24 -12.712009 auto fixed 1 0 0 0 1;
+    32 14.145749 fixed auto 1 0 0 0 1;
+    36 -12.712009 auto fixed 1 0 0 0 1;
+    44 14.145749 auto auto 1 0 0;
+    52 -12.712009 auto fixed 1 0 0 0 1;
+    60 14.145749 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightUpLeg 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.12780051 spline spline 1 0 0;
+    8 -0.64632856 auto auto 1 0 0;
+    16 -2.4997646 auto auto 1 0 0;
+    24 -0.64632856 auto fixed 1 0 0 -8.4325537 1;
+    32 -2.4997646 fixed auto 1 0 0 0 1;
+    36 -0.64632856 auto fixed 1 0 0 -8.4325537 1;
+    44 -2.4997646 auto auto 1 0 0;
+    52 -0.64632856 auto fixed 1 0 0 -8.4325537 1;
+    60 -2.4997646 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightUpLeg 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.0219657 spline spline 1 0 0;
+    8 -0.95081529 auto auto 1 0 0;
+    16 -0.22199544 auto auto 1 0 0;
+    24 -0.95081529 auto fixed 1 0 0 1.5283702 1;
+    32 -0.22199544 fixed auto 1 0 0 0 1;
+    36 -0.95081529 auto fixed 1 0 0 1.5283702 1;
+    44 -0.22199544 auto auto 1 0 0;
+    52 -0.95081529 auto fixed 1 0 0 1.5283702 1;
+    60 -0.22199544 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateX translateX mixamorig:RightUpLeg 0 1 6;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 -0.19382118 auto auto 1 0 0;
+    16 -0.19382118 auto auto 1 0 0;
+    24 -0.19382118 auto fixed 1 0 0 0 1;
+    32 -0.19382118 fixed auto 1 0 0 0 1;
+    36 -0.19382118 auto auto 1 0 0;
+    44 -0.19382118 auto auto 1 0 0;
+    52 -0.19382118 auto fixed 1 0 0 0 1;
+    60 -0.19382118 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateY translateY mixamorig:RightUpLeg 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 -0.10646129 auto auto 1 0 0;
+    16 -0.10646129 auto auto 1 0 0;
+    24 -0.10646129 auto fixed 1 0 0 0 1;
+    32 -0.10646129 fixed auto 1 0 0 0 1;
+    36 -0.10646129 auto auto 1 0 0;
+    44 -0.10646129 auto auto 1 0 0;
+    52 -0.10646129 auto fixed 1 0 0 0 1;
+    60 -0.10646129 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightUpLeg 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 -0.022497978 auto auto 1 0 0;
+    16 -0.022497978 auto auto 1 0 0;
+    24 -0.022497978 auto fixed 1 0 0 0 1;
+    32 -0.022497978 fixed auto 1 0 0 0 1;
+    36 -0.022497978 auto auto 1 0 0;
+    44 -0.022497978 auto auto 1 0 0;
+    52 -0.022497978 auto fixed 1 0 0 0 1;
+    60 -0.022497978 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:RightUpLeg 0 1 9;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    8 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    32 1 fixed step 1 0 0 0 1;
+    36 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    60 1 fixed step 1 0 0 0 1;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightLeg 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    22 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    34 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    50 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightLeg 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    22 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    34 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    50 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightLeg 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    10 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    22 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    34 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    38 1 auto auto 1 0 0;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    50 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightLeg 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.0036740475 spline spline 1 0 0;
+    4 -8.1707784 auto auto 1 0 0;
+    8 -21.019782 auto auto 1 0 0;
+    10 -17.736046 auto auto 1 0 0;
+    12 -12.263153 auto auto 1 0 0;
+    16 -3.5065242 auto auto 1 0 0;
+    22 -3.5065242 auto auto 1 0 0;
+    24 -11.414111 auto auto 1 0 0;
+    32 -11.414111 auto auto 1 0 0;
+    34 -1.1570278 auto auto 1 0 0;
+    36 -21.019782 auto fixed 1 0 0 0 1;
+    38 -17.736046 auto auto 1 0 0;
+    40 -12.263153 auto auto 1 0 0;
+    44 -3.5065242 auto auto 1 0 0;
+    50 -3.5065242 auto auto 1 0 0;
+    52 -11.414111 auto auto 1 0 0;
+    60 -11.414111 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightLeg 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -0.094839387 spline spline 1 0 0;
+    4 0.25604869 auto auto 1 0 0;
+    8 0.79795642 auto auto 1 0 0;
+    10 0.60508442 auto auto 1 0 0;
+    12 0.28363109 auto auto 1 0 0;
+    16 -0.23069425 auto auto 1 0 0;
+    22 -0.23069425 auto auto 1 0 0;
+    24 -0.020081095 auto auto 1 0 0;
+    32 -0.020081095 auto auto 1 0 0;
+    34 -0.18166109 auto auto 1 0 0;
+    36 0.79795642 auto fixed 1 0 0 0 1;
+    38 0.60508442 auto auto 1 0 0;
+    40 0.28363109 auto auto 1 0 0;
+    44 -0.23069425 auto auto 1 0 0;
+    50 -0.23069425 auto auto 1 0 0;
+    52 -0.020081095 auto auto 1 0 0;
+    60 -0.020081095 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightLeg 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.1562363e-05 spline spline 1 0 0;
+    4 -0.00052624859 auto auto 1 0 0;
+    8 -0.101905 auto auto 1 0 0;
+    10 -0.33586015 auto auto 1 0 0;
+    12 -0.60045294 auto auto 1 0 0;
+    16 -0.94693277 auto auto 1 0 0;
+    22 -0.94693277 auto auto 1 0 0;
+    24 -0.91898451 auto auto 1 0 0;
+    32 -0.91898451 auto auto 1 0 0;
+    34 -0.92538708 auto auto 1 0 0;
+    36 -0.101905 auto fixed 1 0 0 -3.1988751 1;
+    38 -0.33586015 auto auto 1 0 0;
+    40 -0.60045294 auto auto 1 0 0;
+    44 -0.94693277 auto auto 1 0 0;
+    50 -0.94693277 auto auto 1 0 0;
+    52 -0.91898451 auto auto 1 0 0;
+    60 -0.91898451 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:RightLeg 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 spline step 1 0 0;
+    8 1 spline step 1 0 0;
+    10 1 spline step 1 0 0;
+    12 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    22 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    32 1 spline step 1 0 0;
+    34 1 spline step 1 0 0;
+    36 1 spline step 1 0 0;
+    38 1 spline step 1 0 0;
+    40 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    50 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    60 1 fixed step 1 0 0 0 1;
+  }
+}
+anim translate.translateX translateX mixamorig:RightLeg 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 8.341664e-10 auto auto 1 0 0;
+    8 0.0016658477 auto auto 1 0 0;
+    10 0.0020434709 auto auto 1 0 0;
+    12 -0.00071281189 auto auto 1 0 0;
+    16 0.0030051157 auto auto 1 0 0;
+    22 0.0013956352 auto auto 1 0 0;
+    24 0.0013956352 auto auto 1 0 0;
+    32 0.0002528305 auto auto 1 0 0;
+    34 0.00081011908 auto auto 1 0 0;
+    36 0.0016658477 auto fixed 1 0 0 0.019513701 1;
+    38 0.0020434709 auto auto 1 0 0;
+    40 -0.00071281189 auto auto 1 0 0;
+    44 0.0030051157 auto auto 1 0 0;
+    50 0.0013956352 auto auto 1 0 0;
+    52 0.0013956352 auto auto 1 0 0;
+    60 0.0002528305 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateY translateY mixamorig:RightLeg 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 0.8699646 auto auto 1 0 0;
+    8 0.83654029 auto auto 1 0 0;
+    10 0.83120189 auto auto 1 0 0;
+    12 0.8928021 auto auto 1 0 0;
+    16 0.90483449 auto auto 1 0 0;
+    22 0.85200322 auto auto 1 0 0;
+    24 0.85200322 auto auto 1 0 0;
+    32 0.88217724 auto auto 1 0 0;
+    34 0.86336256 auto auto 1 0 0;
+    36 0.83654029 auto fixed 1 0 0 -0.37015145 1;
+    38 0.83120189 auto auto 1 0 0;
+    40 0.8928021 auto auto 1 0 0;
+    44 0.90483449 auto auto 1 0 0;
+    50 0.85200322 auto auto 1 0 0;
+    52 0.85200322 auto auto 1 0 0;
+    60 0.88217724 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightLeg 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 -1.1548937e-10 auto auto 1 0 0;
+    8 -0.0069578787 auto auto 1 0 0;
+    10 -0.012147918 auto auto 1 0 0;
+    12 -0.0085574354 auto auto 1 0 0;
+    16 0.051509711 auto auto 1 0 0;
+    22 -0.024555743 auto auto 1 0 0;
+    24 -0.024555743 auto auto 1 0 0;
+    32 -0.032662832 auto auto 1 0 0;
+    34 -0.019810356 auto auto 1 0 0;
+    36 -0.0069578787 auto fixed 1 0 0 -0.11600392 1;
+    38 -0.012147918 auto auto 1 0 0;
+    40 -0.0085574354 auto auto 1 0 0;
+    44 0.051509711 auto auto 1 0 0;
+    50 -0.024555743 auto auto 1 0 0;
+    52 -0.024555743 auto auto 1 0 0;
+    60 -0.032662832 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightFoot 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    22 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    34 1 auto auto 1 0 0;
+    35 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    50 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightFoot 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    22 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    34 1 auto auto 1 0 0;
+    35 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    50 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightFoot 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    22 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    28 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    34 1 auto auto 1 0 0;
+    35 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    50 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightFoot 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 2.302702 spline spline 1 0 0;
+    4 4.6136239 auto auto 1 0 0;
+    8 -15.997834 auto auto 1 0 0;
+    12 10.630458 auto auto 1 0 0;
+    16 6.0871548 auto auto 1 0 0;
+    22 -3.6689614 auto auto 1 0 0;
+    24 -4.9004314 auto auto 1 0 0;
+    26 -4.2214039 auto auto 1 0 0;
+    28 9.8329859 auto auto 1 0 0;
+    32 -0.55465528 auto auto 1 0 0;
+    34 0.75029137 auto auto 1 0 0;
+    35 -7.6237711 auto auto 1 0 0;
+    36 -15.997834 auto fixed 1 0 0 0 1;
+    40 10.630458 auto auto 1 0 0;
+    44 6.0871548 auto auto 1 0 0;
+    50 -3.6689614 auto auto 1 0 0;
+    52 -4.9004314 auto auto 1 0 0;
+    54 -4.2214039 auto auto 1 0 0;
+    60 -0.55465528 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightFoot 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.68048561 spline spline 1 0 0;
+    4 0.42022665 auto auto 1 0 0;
+    8 2.7010362 auto auto 1 0 0;
+    12 -1.0676768 auto auto 1 0 0;
+    16 -0.84971914 auto auto 1 0 0;
+    22 0.22142745 auto auto 1 0 0;
+    24 0.36666419 auto auto 1 0 0;
+    26 0.3054465 auto auto 1 0 0;
+    28 -1.5394232 auto auto 1 0 0;
+    32 -0.025129062 auto auto 1 0 0;
+    34 0.18732517 auto auto 1 0 0;
+    35 1.523851 auto auto 1 0 0;
+    36 2.7010362 auto fixed 1 0 0 0 1;
+    40 -1.0676768 auto auto 1 0 0;
+    44 -0.84971914 auto auto 1 0 0;
+    50 0.22142745 auto auto 1 0 0;
+    52 0.36666419 auto auto 1 0 0;
+    54 0.3054465 auto auto 1 0 0;
+    60 -0.025129062 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightFoot 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 0.43949112 spline spline 1 0 0;
+    4 0.43764467 auto auto 1 0 0;
+    8 0.086741349 auto auto 1 0 0;
+    12 -0.33864441 auto auto 1 0 0;
+    16 0.42017482 auto auto 1 0 0;
+    22 0.74650907 auto auto 1 0 0;
+    24 0.76602756 auto auto 1 0 0;
+    26 0.75087126 auto auto 1 0 0;
+    28 0.060016374 auto auto 1 0 0;
+    32 0.66902727 auto auto 1 0 0;
+    34 0.24748937 auto auto 1 0 0;
+    35 0.15514473 auto auto 1 0 0;
+    36 0.086741349 auto fixed 1 0 0 -5.5424087 1;
+    40 -0.33864441 auto auto 1 0 0;
+    44 0.42017482 auto auto 1 0 0;
+    50 0.74650907 auto auto 1 0 0;
+    52 0.76602756 auto auto 1 0 0;
+    54 0.75087126 auto auto 1 0 0;
+    60 0.66902727 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:RightFoot 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 spline step 1 0 0;
+    8 1 spline step 1 0 0;
+    12 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    22 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    26 1 spline step 1 0 0;
+    28 1 spline step 1 0 0;
+    32 1 spline step 1 0 0;
+    34 1 spline step 1 0 0;
+    35 1 spline step 1 0 0;
+    36 1 spline step 1 0 0;
+    40 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    50 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    54 1 spline step 1 0 0;
+    60 1 fixed step 1 0 0 0 1;
+  }
+}
+anim translate.translateX translateX mixamorig:RightFoot 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 -6.7298411e-09 auto auto 1 0 0;
+    8 -6.7298411e-09 auto auto 1 0 0;
+    12 -6.7298411e-09 auto auto 1 0 0;
+    16 -6.7298411e-09 auto auto 1 0 0;
+    22 -0.001521615 auto auto 1 0 0;
+    24 -6.7298411e-09 auto auto 1 0 0;
+    26 -0.0015635554 auto auto 1 0 0;
+    28 0.00049714874 auto auto 1 0 0;
+    32 -6.7298411e-09 auto auto 1 0 0;
+    34 -6.7298411e-09 auto auto 1 0 0;
+    35 -0.0019633469 auto auto 1 0 0;
+    36 -6.7298411e-09 auto fixed 1 0 0 0 1;
+    40 -6.7298411e-09 auto auto 1 0 0;
+    44 -6.7298411e-09 auto auto 1 0 0;
+    50 -0.00076081087 auto auto 1 0 0;
+    52 -0.00039217415 auto auto 1 0 0;
+    54 -0.0015635554 auto auto 1 0 0;
+    60 -6.7298411e-09 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateY translateY mixamorig:RightFoot 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1.0116733 auto auto 1 0 0;
+    8 1.0116733 auto auto 1 0 0;
+    12 1.0116733 auto auto 1 0 0;
+    16 1.0116733 auto auto 1 0 0;
+    22 0.96113545 auto auto 1 0 0;
+    24 1.0116733 auto auto 1 0 0;
+    26 0.96246323 auto auto 1 0 0;
+    28 1.0223623 auto auto 1 0 0;
+    32 1.0116733 auto auto 1 0 0;
+    34 1.0116733 auto auto 1 0 0;
+    35 0.959593 auto auto 1 0 0;
+    36 1.0116733 auto fixed 1 0 0 0 1;
+    40 1.0116733 auto auto 1 0 0;
+    44 1.0116733 auto auto 1 0 0;
+    50 0.98640439 auto auto 1 0 0;
+    52 0.99822115 auto auto 1 0 0;
+    54 0.96246323 auto auto 1 0 0;
+    60 1.0116733 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightFoot 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 -3.9637779e-10 auto auto 1 0 0;
+    8 -3.9637779e-10 auto auto 1 0 0;
+    12 -3.9637779e-10 auto auto 1 0 0;
+    16 -3.9637779e-10 auto auto 1 0 0;
+    22 -0.011157582 auto auto 1 0 0;
+    24 -3.9637779e-10 auto auto 1 0 0;
+    26 -0.018272854 auto auto 1 0 0;
+    28 -0.0042308765 auto auto 1 0 0;
+    32 -3.9637779e-10 auto auto 1 0 0;
+    34 -3.9637779e-10 auto auto 1 0 0;
+    35 -0.019008682 auto auto 1 0 0;
+    36 -3.9637779e-10 auto fixed 1 0 0 0 1;
+    40 -3.9637779e-10 auto auto 1 0 0;
+    44 -3.9637779e-10 auto auto 1 0 0;
+    50 -0.0055787912 auto auto 1 0 0;
+    52 -0.0061427029 auto auto 1 0 0;
+    54 -0.018272854 auto auto 1 0 0;
+    60 -3.9637779e-10 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleX scaleX mixamorig:RightToeBase 0 1 0;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleY scaleY mixamorig:RightToeBase 0 1 1;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim scale.scaleZ scaleZ mixamorig:RightToeBase 0 1 2;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 auto auto 1 0 0;
+    8 1 auto auto 1 0 0;
+    12 1 auto auto 1 0 0;
+    16 1 auto auto 1 0 0;
+    24 1 auto auto 1 0 0;
+    26 1 auto auto 1 0 0;
+    32 1 auto auto 1 0 0;
+    36 1 auto fixed 1 0 0 0 1;
+    40 1 auto auto 1 0 0;
+    44 1 auto auto 1 0 0;
+    52 1 auto auto 1 0 0;
+    54 1 auto auto 1 0 0;
+    60 1 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateX rotateX mixamorig:RightToeBase 0 1 3;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -7.6190731e-06 spline spline 1 0 0;
+    4 23.760868 auto auto 1 0 0;
+    8 49.024395 auto auto 1 0 0;
+    12 13.562243 auto auto 1 0 0;
+    16 7.1840687 auto auto 1 0 0;
+    24 39.129659 auto auto 1 0 0;
+    26 29.285896 auto auto 1 0 0;
+    32 6.4323071 auto auto 1 0 0;
+    36 49.024395 auto fixed 1 0 0 0 1;
+    40 13.562243 auto auto 1 0 0;
+    44 7.1840687 auto auto 1 0 0;
+    52 39.129659 auto auto 1 0 0;
+    54 29.285896 auto auto 1 0 0;
+    60 6.4323071 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateY rotateY mixamorig:RightToeBase 0 1 4;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 1.2225987e-06 spline spline 1 0 0;
+    4 -6.6305466 auto auto 1 0 0;
+    8 -7.1607531 auto auto 1 0 0;
+    12 0.35980424 auto auto 1 0 0;
+    16 1.5622339 auto auto 1 0 0;
+    24 -4.4678289 auto auto 1 0 0;
+    26 -3.3212079 auto auto 1 0 0;
+    32 3.1205269 auto auto 1 0 0;
+    36 -7.1607531 auto fixed 1 0 0 0 1;
+    40 0.35980424 auto auto 1 0 0;
+    44 1.5622339 auto auto 1 0 0;
+    52 -4.4678289 auto auto 1 0 0;
+    54 -3.3212079 auto auto 1 0 0;
+    60 3.1205269 fixed auto 1 0 0 0 1;
+  }
+}
+anim rotate.rotateZ rotateZ mixamorig:RightToeBase 0 1 5;
+animData {
+  input time;
+  output angular;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    0 -1.0175017e-06 spline spline 1 0 0;
+    4 -9.9481195 auto auto 1 0 0;
+    8 -21.809961 auto auto 1 0 0;
+    12 -7.4350922 auto auto 1 0 0;
+    16 -4.5150555 auto auto 1 0 0;
+    24 -17.900247 auto auto 1 0 0;
+    26 -13.506062 auto auto 1 0 0;
+    32 -5.0265085 auto auto 1 0 0;
+    36 -21.809961 auto fixed 1 0 0 0 1;
+    40 -7.4350922 auto auto 1 0 0;
+    44 -4.5150555 auto auto 1 0 0;
+    52 -17.900247 auto auto 1 0 0;
+    54 -13.506062 auto auto 1 0 0;
+    60 -5.0265085 fixed auto 1 0 0 0 1;
+  }
+}
+anim visibility visibility mixamorig:RightToeBase 0 1 6;
+animData {
+  input time;
+  output unitless;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 1 spline step 1 0 0;
+    8 1 spline step 1 0 0;
+    12 1 spline step 1 0 0;
+    16 1 spline step 1 0 0;
+    24 1 spline step 1 0 0;
+    26 1 spline step 1 0 0;
+    32 1 spline step 1 0 0;
+    36 1 spline step 1 0 0;
+    40 1 spline step 1 0 0;
+    44 1 spline step 1 0 0;
+    52 1 spline step 1 0 0;
+    54 1 spline step 1 0 0;
+    60 1 fixed step 1 0 0 0 1;
+  }
+}
+anim translate.translateX translateX mixamorig:RightToeBase 0 1 7;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 3.3627665e-10 auto auto 1 0 0;
+    8 3.3627665e-10 auto auto 1 0 0;
+    12 3.3627665e-10 auto auto 1 0 0;
+    16 3.3627665e-10 auto auto 1 0 0;
+    24 3.3627665e-10 auto auto 1 0 0;
+    26 3.3627665e-10 auto auto 1 0 0;
+    32 3.3627665e-10 auto auto 1 0 0;
+    36 3.3627665e-10 auto fixed 1 0 0 0 1;
+    40 3.3627665e-10 auto auto 1 0 0;
+    44 3.3627665e-10 auto auto 1 0 0;
+    52 3.3627665e-10 auto auto 1 0 0;
+    54 3.3627665e-10 auto auto 1 0 0;
+    60 3.3627665e-10 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateY translateY mixamorig:RightToeBase 0 1 8;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 0.5166741 auto auto 1 0 0;
+    8 0.5166741 auto auto 1 0 0;
+    12 0.5166741 auto auto 1 0 0;
+    16 0.5166741 auto auto 1 0 0;
+    24 0.5166741 auto auto 1 0 0;
+    26 0.5166741 auto auto 1 0 0;
+    32 0.5166741 auto auto 1 0 0;
+    36 0.5166741 auto fixed 1 0 0 0 1;
+    40 0.5166741 auto auto 1 0 0;
+    44 0.5166741 auto auto 1 0 0;
+    52 0.5166741 auto auto 1 0 0;
+    54 0.5166741 auto auto 1 0 0;
+    60 0.5166741 fixed auto 1 0 0 0 1;
+  }
+}
+anim translate.translateZ translateZ mixamorig:RightToeBase 0 1 9;
+animData {
+  input time;
+  output linear;
+  weighted 0;
+  preInfinity constant;
+  postInfinity constant;
+  keys {
+    4 3.7402859e-09 auto auto 1 0 0;
+    8 3.7402859e-09 auto auto 1 0 0;
+    12 3.7402859e-09 auto auto 1 0 0;
+    16 3.7402859e-09 auto auto 1 0 0;
+    24 3.7402859e-09 auto auto 1 0 0;
+    26 3.7402859e-09 auto auto 1 0 0;
+    32 3.7402859e-09 auto auto 1 0 0;
+    36 3.7402859e-09 auto fixed 1 0 0 0 1;
+    40 3.7402859e-09 auto auto 1 0 0;
+    44 3.7402859e-09 auto auto 1 0 0;
+    52 3.7402859e-09 auto auto 1 0 0;
+    54 3.7402859e-09 auto auto 1 0 0;
+    60 3.7402859e-09 fixed auto 1 0 0 0 1;
+  }
+}
+anim mixamorig:RightToe_End 0 0 0;
