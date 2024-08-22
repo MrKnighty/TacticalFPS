@@ -49,9 +49,9 @@ MonoBehaviour:
     supportTransparentDepthPrepass: 0
     supportTransparentDepthPostpass: 0
     colorBufferFormat: 74
-    supportCustomPass: 0
+    supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 3
     planarReflectionResolution:
       m_Values: 000100000002000000020000
       m_SchemaId:
@@ -83,7 +83,7 @@ MonoBehaviour:
     supportProbeVolumeScenarioBlending: 1
     probeVolumeBlendingMemoryBudget: 512
     supportRayTracing: 0
-    supportVFXRayTracing: 1
+    supportVFXRayTracing: 0
     supportedRayTracingMode: 3
     lightLoopSettings:
       cookieAtlasSize: 64
@@ -159,7 +159,7 @@ MonoBehaviour:
           m_Id: With3Levels
       perChannelMask: 1
     postProcessSettings:
-      m_LutSize: 32
+      m_LutSize: 16
       lutFormat: 48
       bufferFormat: 74
     dynamicResolutionSettings:
