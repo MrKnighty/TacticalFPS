@@ -395,23 +395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371f1b7f3213b834cb961744d3f792fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: a
-      Entry: 6
-      Data: 
   magazineSize: 2
   totalRemainingAmmo: 6
   maxAmmo: 12
   reloadTime: 2
   damage: 3
+  damageDistances: []
   isAutomatic: 0
   fireRate: 0.1
   currentAmmoInMagazine: 0
@@ -1872,7 +1861,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1958,7 +1947,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2461,12 +2450,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2654576668054007573}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.123508945, y: -0.56804967, z: -0.3786276, w: -0.7202127}
-  m_LocalPosition: {x: 0.0339, y: 0.0949, z: 0.0446}
+  m_LocalRotation: {x: 0.12350895, y: -0.56804967, z: -0.37862757, w: -0.72021276}
+  m_LocalPosition: {x: 0.033900023, y: 0.09489983, z: 0.044600368}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5630699725687452441}
+  m_Father: {fileID: 7129238913951966176}
   m_LocalEulerAnglesHint: {x: -28.994, y: 129.093, z: 100.667}
 --- !u!1 &2798598780863885767
 GameObject:
@@ -2690,7 +2679,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6781
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.74e-43, y: NaN, z: 6.67e-43, w: -0.6258545}
+  m_BoundingSphereOverride: {x: 7.19e-43, y: 5.833848e-26, z: 7.15e-43, w: -4.7312018e-35}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -3224,7 +3213,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3310,7 +3299,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3864,7 +3853,7 @@ MonoBehaviour:
   - {fileID: 7767471698255333722}
   - {fileID: 1735417265554458543}
   - {fileID: 4589889954184169461}
-  ownedGuns: 00010100
+  ownedGuns: 01010100
   playerSyringe: {fileID: 0}
   switchSpeed: 0
   anim: {fileID: 8088425586309883353}
@@ -9911,7 +9900,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -10027,8 +10016,8 @@ Transform:
   - {fileID: 1107517052585580212}
   - {fileID: 9200296387993519002}
   - {fileID: 1004720915748991548}
-  - {fileID: 1128587043172093133}
   - {fileID: 537501092960032514}
+  - {fileID: 7129238913951966176}
   m_Father: {fileID: 1600443155656881756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4175929999943871892
@@ -10043,23 +10032,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ade7d1521f2e4d8b3a48deea7eb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: a
-      Entry: 6
-      Data: 
   magazineSize: 12
   totalRemainingAmmo: 62
   maxAmmo: 62
   reloadTime: 1.5
   damage: 2.5
+  damageDistances:
+  - minDistnce: 10
+    damage: 2
+  - minDistnce: 25
+    damage: 1.875
+  - minDistnce: 50
+    damage: 1.25
   isAutomatic: 0
   fireRate: 0.1
   currentAmmoInMagazine: 0
@@ -10126,6 +10110,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5635295497144139201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7129238913951966176}
+  m_Layer: 7
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7129238913951966176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635295497144139201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1128587043172093133}
+  m_Father: {fileID: 5630699725687452441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5687041102111382184
 GameObject:
   m_ObjectHideFlags: 0
@@ -10198,7 +10214,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -17590,23 +17606,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ade7d1521f2e4d8b3a48deea7eb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: a
-      Entry: 6
-      Data: 
   magazineSize: 5
   totalRemainingAmmo: 5
   maxAmmo: 10
   reloadTime: 2.2
   damage: 5
+  damageDistances:
+  - minDistnce: 1000
+    damage: 5
   isAutomatic: 0
   fireRate: 1.2
   currentAmmoInMagazine: 0
@@ -17704,7 +17711,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.027666826, y: 0.6, z: 0.19674288}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1600443155656881756}
@@ -17730,7 +17737,7 @@ Camera:
   m_ShutterSpeed: 17.52
   m_Aperture: 17.98
   m_FocusDistance: 0.2
-  m_FocalLength: 11.070002
+  m_FocalLength: 11.119061
   m_BladeCount: 5
   m_Curvature: {x: 11.739474, y: 32}
   m_BarrelClipping: 0.25
@@ -18530,23 +18537,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827ade7d1521f2e4d8b3a48deea7eb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: a
-      Entry: 6
-      Data: 
   magazineSize: 30
   totalRemainingAmmo: 120
   maxAmmo: 120
   reloadTime: 2.2
   damage: 2
+  damageDistances:
+  - minDistnce: 10
+    damage: 1.5
+  - minDistnce: 25
+    damage: 1.125
+  - minDistnce: 50
+    damage: 0.75
   isAutomatic: 1
   fireRate: 0.08
   currentAmmoInMagazine: 0

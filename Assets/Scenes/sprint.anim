@@ -47,7 +47,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: WeaponHolder
+    path: WeaponOffset/WeaponHolder
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -121,7 +121,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1857530506
+      path: 1551840654
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -204,7 +204,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: WeaponHolder
+    path: WeaponOffset/WeaponHolder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -261,7 +261,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: WeaponHolder
+    path: WeaponOffset/WeaponHolder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -318,7 +318,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: WeaponHolder
+    path: WeaponOffset/WeaponHolder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -448,7 +448,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: WeaponHolder
+    path: WeaponOffset/WeaponHolder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -460,7 +460,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: WeaponHolder
+    path: WeaponOffset/WeaponHolder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -472,7 +472,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: WeaponHolder
+    path: WeaponOffset/WeaponHolder
     classID: 4
     script: {fileID: 0}
     flags: 0

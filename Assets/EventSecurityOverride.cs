@@ -44,14 +44,7 @@ public class EventSecurityOverride : Interactable
     void LightsOut()
     {
 
-        foreach (GameObject enemy in newEnemiesToEnable)
-        {
-            enemy.SetActive(true);
-        }
-        foreach (GameObject obj in objectsToEnable)
-        {
-            obj.SetActive(true);
-        }
+      
 
 
         StartCoroutine("LightsFlicker");
@@ -73,6 +66,7 @@ public class EventSecurityOverride : Interactable
         data = LightmapSettings.lightmaps;
         yield return new WaitForSeconds(lightsOutTime);
         UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
+ 
         foreach (Light light in lights)
         {
 
@@ -108,6 +102,14 @@ public class EventSecurityOverride : Interactable
         {
             gunshotSource.PlayOneShot(gunshotSounds[Random.Range(0, gunshotSounds.Length -1)],GameControllsManager.audioVolume );
             yield return new WaitForSeconds(Random.Range(0.1f,0.25f));
+        }
+        foreach (GameObject enemy in newEnemiesToEnable)
+        {
+            enemy.SetActive(true);
+        }
+        foreach (GameObject obj in objectsToEnable)
+        {
+            obj.SetActive(true);
         }
     }
 

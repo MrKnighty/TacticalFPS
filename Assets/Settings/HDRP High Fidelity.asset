@@ -49,9 +49,9 @@ MonoBehaviour:
     supportTransparentDepthPrepass: 0
     supportTransparentDepthPostpass: 0
     colorBufferFormat: 74
-    supportCustomPass: 0
+    supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 3
     planarReflectionResolution:
       m_Values: 000100000002000000020000
       m_SchemaId:
@@ -83,7 +83,7 @@ MonoBehaviour:
     supportProbeVolumeScenarioBlending: 1
     probeVolumeBlendingMemoryBudget: 512
     supportRayTracing: 0
-    supportVFXRayTracing: 1
+    supportVFXRayTracing: 0
     supportedRayTracingMode: 3
     lightLoopSettings:
       cookieAtlasSize: 64
@@ -125,11 +125,11 @@ MonoBehaviour:
         shadowAtlasDepthBits: 16
         useDynamicViewportRescale: 1
       areaLightShadowAtlas:
-        shadowAtlasResolution: 4096
+        shadowAtlasResolution: 8192
         shadowAtlasDepthBits: 16
-        useDynamicViewportRescale: 0
+        useDynamicViewportRescale: 1
       cachedPunctualLightShadowAtlas: 4096
-      cachedAreaLightShadowAtlas: 4096
+      cachedAreaLightShadowAtlas: 8192
       allowDirectionalMixedCachedShadows: 0
       shadowResolutionDirectional:
         m_Values: 00020000000400000008000000100000
@@ -159,7 +159,7 @@ MonoBehaviour:
           m_Id: With3Levels
       perChannelMask: 1
     postProcessSettings:
-      m_LutSize: 32
+      m_LutSize: 16
       lutFormat: 48
       bufferFormat: 74
     dynamicResolutionSettings:
@@ -219,7 +219,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000000
+        m_Values: 010101
         m_SchemaId:
           m_Id: 
     maximumLODLevel:

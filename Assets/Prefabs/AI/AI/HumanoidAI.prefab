@@ -340,8 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4e7e44188a1b84a97468c72f190ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  currentHealth: 30
+  maxHealth: 8
+  currentHealth: 8
   dropItem: 0
   itemToDrop: {fileID: 0}
   bodyPartArmour:

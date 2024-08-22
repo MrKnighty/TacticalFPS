@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LabPallete
   m_EditorClassIdentifier: 
   array:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: fc4ff4dfaa143fd42947b22e0b5395c7, type: 2}
   - {fileID: 2100000, guid: 3bcf7146c43b7a94f9d931e7d0236bf1, type: 2}
   - {fileID: 2100000, guid: 1156336b9898747449878b66436584f4, type: 2}
   - {fileID: 2100000, guid: 4105176349c340e408431ce77a4cbed0, type: 2}
@@ -22,4 +22,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e8117f0abf713a44ea4e8770f5f838d6, type: 2}
   - {fileID: 2100000, guid: 9fbaae1c8dd296446a2f91c1456019ac, type: 2}
   - {fileID: 2100000, guid: 7a6483420d5dbe047a0b27c9836943c7, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 112975b65d678df4a88fb2886b2eccc4, type: 2}

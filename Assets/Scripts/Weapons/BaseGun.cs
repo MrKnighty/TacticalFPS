@@ -2,8 +2,12 @@ using System;
 using UnityEngine;
 using System.Collections;
 using Unity.Mathematics;
-
-
+[Serializable]
+public struct DamageInfo
+{
+    public float minDistnce;
+    public float damage;
+}
 public class BaseGun : MonoBehaviour
 {
     [Header("Standard Settings")]    
@@ -12,6 +16,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] int maxAmmo;
     [SerializeField] float reloadTime;
     [SerializeField] float damage;
+    [SerializeField] DamageInfo[] damageDistances;
     [SerializeField] bool isAutomatic;
     [SerializeField] float fireRate;
 
@@ -51,7 +56,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] float randomHitRadius;
     [SerializeField] float sprintingRecoilModifyer;
 
-    [Header("Range Settings")]
+    [Header("Range Settings")] // currently unsed, will remove when fully switched to new system
     [SerializeField] float startFalloffRange;
     [SerializeField] float maxRange;
 
@@ -347,13 +352,19 @@ public class BaseGun : MonoBehaviour
             Rigidbody rb;
             if (hitObject.GetComponent<BodyPartDamageHandler>())
             {
-                 distanceFromTarget = Vector3.Distance(transform.position, hitObject.transform.position);
-                 distanceDamageMultiplyer = 1;
+                distanceFromTarget = Vector3.Distance(transform.position, hit.point);
+                float distDamage = 0;
+                foreach (DamageInfo info in damageDistances)
+                {
+                    if (info.minDistnce < distanceFromTarget)
+                        continue;
+
+                    distDamage = info.damage;
+                    break;
+                }    
                 DebugManager.DisplayInfo("quick", "Shot Distace: " + distanceFromTarget.ToString(), true);
-                if (distanceFromTarget > startFalloffRange)
-                    distanceDamageMultiplyer = Mathf.Clamp( (1 - (distanceFromTarget  / maxRange) ) * 2,0,damage);
-                print(damage * distanceDamageMultiplyer);
-                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(damage * distanceDamageMultiplyer, force);
+                DebugManager.DisplayInfo("quick1", "Last Damage: " + distDamage.ToString(), true);
+                hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(distDamage, force);
                 shotsHit++;
             }
             else if(TryGetComponent<Rigidbody>(out rb))
