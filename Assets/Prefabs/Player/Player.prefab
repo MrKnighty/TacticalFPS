@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4651423089214681524}
   - component: {fileID: 1867541469989733603}
   - component: {fileID: 3156293339984368013}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCylinder6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 2731519811213645979}
   - component: {fileID: 5169274806172586828}
   - component: {fileID: 4589889954184169461}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,11 @@ MonoBehaviour:
   maxAmmo: 12
   reloadTime: 2
   damage: 3
-  damageDistances: []
+  damageDistances:
+  - minDistnce: 10
+    damage: 3
+  - minDistnce: 20
+    damage: 1
   isAutomatic: 0
   fireRate: 0.1
   currentAmmoInMagazine: 0
@@ -443,6 +447,8 @@ MonoBehaviour:
   animator: {fileID: 5169274806172586828}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 5632813047272910595}
+  wobbleSpeed: 0
+  wobbleMag: 0
   pelletCount: 18
   spreadArea: {x: 0.05, y: 0.05}
   minDistanceBetweenPellets: 0.04
@@ -457,7 +463,7 @@ GameObject:
   - component: {fileID: 10330615172223860}
   - component: {fileID: 2229928612872904755}
   - component: {fileID: 1826479733229271183}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCylinder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4560586094984170437}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: MP7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +593,7 @@ GameObject:
   - component: {fileID: 831593500856114950}
   - component: {fileID: 5895856555748768865}
   - component: {fileID: 1213018751419441143}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rifle_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,7 +918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376577919226933823}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -946,7 +952,7 @@ GameObject:
   - component: {fileID: 2774229766564274590}
   - component: {fileID: 4498398470894900710}
   - component: {fileID: 5018479898591714779}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Muzzle Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1192,7 @@ GameObject:
   - component: {fileID: 537501092960032514}
   - component: {fileID: 2263069123915041701}
   - component: {fileID: 7669959319774797142}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1427,7 +1433,7 @@ GameObject:
   - component: {fileID: 7326750367944539196}
   - component: {fileID: 4458996514643523773}
   - component: {fileID: 7523952942348685875}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,7 +1518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3412888711373767532}
   - component: {fileID: 3486043166643814785}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1559,7 +1565,7 @@ GameObject:
   - component: {fileID: 1854724225623099684}
   - component: {fileID: 1169948943720319366}
   - component: {fileID: 7524209518611083825}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1800,7 +1806,7 @@ GameObject:
   - component: {fileID: 6807458034585334226}
   - component: {fileID: 2501113776195349326}
   - component: {fileID: 5011568745058994874}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCube7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1886,7 +1892,7 @@ GameObject:
   - component: {fileID: 3790167537759379114}
   - component: {fileID: 6820709358449710038}
   - component: {fileID: 7313699520349655293}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1976,7 +1982,7 @@ GameObject:
   - component: {fileID: 6478669957211515781}
   - component: {fileID: 1387405357643592093}
   - component: {fileID: 8270342828133429093}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PolyShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2196,7 +2202,7 @@ GameObject:
   - component: {fileID: 3839292809294257794}
   - component: {fileID: 2947611628841390087}
   - component: {fileID: 4785247485713505789}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2435,7 +2441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1128587043172093133}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: BulletEjectPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2466,7 +2472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 945328273746331692}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: imagePlane2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2497,7 +2503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 85251295239309640}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: imagePlane1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2559,7 +2565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2845937204191978143}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sniper_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2600,7 +2606,7 @@ GameObject:
   - component: {fileID: 9137240242305228335}
   - component: {fileID: 5197869098487689643}
   - component: {fileID: 5041452096665062351}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2947,7 +2953,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3806536384349547976}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -3011,7 +3017,7 @@ Transform:
   m_GameObject: {fileID: 3987358634949925806}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.455, z: -0.428}
+  m_LocalPosition: {x: 0.003, y: -0.399, z: -0.298}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3152,7 +3158,7 @@ GameObject:
   - component: {fileID: 4247644035717375707}
   - component: {fileID: 5344388275344978116}
   - component: {fileID: 4189425815036667508}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3238,7 +3244,7 @@ GameObject:
   - component: {fileID: 291163713826625191}
   - component: {fileID: 7054005451362522921}
   - component: {fileID: 4873504803790727089}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCube6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3324,7 +3330,7 @@ GameObject:
   - component: {fileID: 5370001667976518163}
   - component: {fileID: 6379519838074664974}
   - component: {fileID: 7179804011589904784}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: MP7:pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3410,7 +3416,7 @@ GameObject:
   - component: {fileID: 2053073154252709558}
   - component: {fileID: 5911960644979505294}
   - component: {fileID: 5314485227885630856}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCylinder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3495,7 +3501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6044720450624966777}
   - component: {fileID: 7025380993113749665}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Local Volumetric Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3564,7 +3570,7 @@ GameObject:
   - component: {fileID: 772106078568629736}
   - component: {fileID: 1152943697129310112}
   - component: {fileID: 3169736873961231862}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCylinder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9119,7 +9125,7 @@ GameObject:
   - component: {fileID: 5756893539600527966}
   - component: {fileID: 2515094873587835630}
   - component: {fileID: 3410693495569552287}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Muzzle Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9359,7 +9365,7 @@ GameObject:
   - component: {fileID: 7450463582767352852}
   - component: {fileID: 7964334518900946236}
   - component: {fileID: 160182975677996142}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCylinder4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9445,7 +9451,7 @@ GameObject:
   - component: {fileID: 5502959158360727455}
   - component: {fileID: 1559917364687715449}
   - component: {fileID: 3372212669756198383}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Scope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9531,7 +9537,7 @@ GameObject:
   - component: {fileID: 1004720915748991548}
   - component: {fileID: 1050973613935772905}
   - component: {fileID: 8675899745477373880}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Muzzle Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9770,7 +9776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3938557051714261147}
   - component: {fileID: 3422377660630278350}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Local Volumetric Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9839,7 +9845,7 @@ GameObject:
   - component: {fileID: 5589912011636067799}
   - component: {fileID: 8577596592034428466}
   - component: {fileID: 5858879860399455419}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9924,7 +9930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3782513944547796003}
   - component: {fileID: 1221797629212626950}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Local Volumetric Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9993,7 +9999,7 @@ GameObject:
   - component: {fileID: 5630699725687452441}
   - component: {fileID: 4175929999943871892}
   - component: {fileID: 5861937941056429558}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10016,6 +10022,7 @@ Transform:
   - {fileID: 1107517052585580212}
   - {fileID: 9200296387993519002}
   - {fileID: 1004720915748991548}
+  - {fileID: 1928911322935395099}
   - {fileID: 537501092960032514}
   - {fileID: 7129238913951966176}
   m_Father: {fileID: 1600443155656881756}
@@ -10040,7 +10047,7 @@ MonoBehaviour:
   damageDistances:
   - minDistnce: 10
     damage: 2
-  - minDistnce: 25
+  - minDistnce: 30
     damage: 1.875
   - minDistnce: 50
     damage: 1.25
@@ -10088,6 +10095,8 @@ MonoBehaviour:
   animator: {fileID: 5861937941056429558}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 294247215914634254}
+  wobbleSpeed: 1
+  wobbleMag: 1
 --- !u!95 &5861937941056429558
 Animator:
   serializedVersion: 7
@@ -10136,7 +10145,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1128587043172093133}
@@ -10153,7 +10162,7 @@ GameObject:
   - component: {fileID: 6076325495089182359}
   - component: {fileID: 4566469104668354157}
   - component: {fileID: 1305992992368888175}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: pCube5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10239,7 +10248,7 @@ GameObject:
   - component: {fileID: 5781565823150976453}
   - component: {fileID: 3856584257150526013}
   - component: {fileID: 6099032897313361039}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: MP7_Rail1:Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10325,7 +10334,7 @@ GameObject:
   - component: {fileID: 3887091456702325418}
   - component: {fileID: 8848605527925885980}
   - component: {fileID: 4149420727980357184}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: MP7:pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17363,7 +17372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3315040727695894103}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rifle_bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17395,7 +17404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5497329285089007028}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: group1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17427,6 +17436,37 @@ Transform:
   - {fileID: 10330615172223860}
   m_Father: {fileID: 4560586094984170437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6961548012997689362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928911322935395099}
+  m_Layer: 11
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1928911322935395099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961548012997689362}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5630699725687452441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7096019829448507505
 GameObject:
   m_ObjectHideFlags: 0
@@ -17436,7 +17476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4310162379450983271}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: imagePlane3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17467,7 +17507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2413313664839863197}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17502,7 +17542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2848946850289443482}
   - component: {fileID: 1810530895780233437}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Local Volumetric Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17571,7 +17611,7 @@ GameObject:
   - component: {fileID: 6103356242899527345}
   - component: {fileID: 7767471698255333722}
   - component: {fileID: 6829008957751227376}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17659,6 +17699,8 @@ MonoBehaviour:
   animator: {fileID: 6829008957751227376}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 3185483525484591141}
+  wobbleSpeed: 0
+  wobbleMag: 0
 --- !u!95 &6829008957751227376
 Animator:
   serializedVersion: 7
@@ -17694,6 +17736,7 @@ GameObject:
   - component: {fileID: 4566136834999043109}
   - component: {fileID: 5613172450007185351}
   - component: {fileID: 5056591862655637315}
+  - component: {fileID: 177086145578972518}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -17711,7 +17754,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.027666826, y: 0.6, z: 0.19674288}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1600443155656881756}
@@ -17797,13 +17840,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
   taaSharpenStrength: 0.5
-  TAAQuality: 1
-  taaSharpenMode: 0
+  TAAQuality: 2
+  taaSharpenMode: 2
   taaRingingReduction: 0
   taaHistorySharpening: 0.35
   taaAntiFlicker: 0.5
@@ -17867,7 +17910,7 @@ MonoBehaviour:
     materialQuality: 0
   renderingPathCustomFrameSettingsOverrideMask:
     mask:
-      data1: 0
+      data1: 32768
       data2: 34359738368
   defaultFrameSettings: 0
   m_Version: 9
@@ -17939,6 +17982,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &177086145578972518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7615221839760034783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d6499a6bd256e47b859377446493a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  fadeRadius: 0
+  priority: 0
+  customPasses:
+  - rid: 3554633477394792448
+  - rid: 3554633477394792520
+  injectionPoint: 0
+  m_TargetCamera: {fileID: 7542710404507141791}
+  useTargetCamera: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 3554633477394792448
+      type: {class: DrawRenderersCustomPass, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
+      data:
+        m_Name: DrawWeapons
+        enabled: 1
+        targetColorBuffer: 0
+        targetDepthBuffer: 0
+        clearFlags: 0
+        passFoldout: 0
+        m_Version: 0
+        filterFoldout: 1
+        rendererFoldout: 1
+        renderQueueType: 10
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 2048
+        sortingCriteria: -1
+        overrideMode: 2
+        overrideMaterial: {fileID: 0}
+        overrideMaterialPassIndex: 0
+        overrideMaterialPassName: Forward
+        overrideShader: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
+        overrideShaderPassIndex: 0
+        overrideShaderPassName: FORWARD
+        overrideDepthState: 1
+        depthCompareFunction: 8
+        depthWrite: 1
+        overrideStencil: 0
+        stencilReferenceValue: 64
+        stencilWriteMask: 192
+        stencilReadMask: 192
+        stencilCompareFunction: 8
+        stencilPassOperation: 0
+        stencilFailOperation: 0
+        stencilDepthFailOperation: 0
+        shaderPass: 0
+    - rid: 3554633477394792520
+      type: {class: DrawRenderersCustomPass, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
+      data:
+        m_Name: DrawWeapons2ndPass
+        enabled: 1
+        targetColorBuffer: 0
+        targetDepthBuffer: 0
+        clearFlags: 0
+        passFoldout: 0
+        m_Version: 0
+        filterFoldout: 1
+        rendererFoldout: 1
+        renderQueueType: 10
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 2048
+        sortingCriteria: -1
+        overrideMode: 1
+        overrideMaterial: {fileID: 0}
+        overrideMaterialPassIndex: 0
+        overrideMaterialPassName: Forward
+        overrideShader: {fileID: 0}
+        overrideShaderPassIndex: 0
+        overrideShaderPassName: Forward
+        overrideDepthState: 1
+        depthCompareFunction: 4
+        depthWrite: 1
+        overrideStencil: 0
+        stencilReferenceValue: 64
+        stencilWriteMask: 192
+        stencilReadMask: 192
+        stencilCompareFunction: 8
+        stencilPassOperation: 0
+        stencilFailOperation: 0
+        stencilDepthFailOperation: 0
+        shaderPass: 0
 --- !u!1 &7718680326830465492
 GameObject:
   m_ObjectHideFlags: 0
@@ -17950,7 +18089,7 @@ GameObject:
   - component: {fileID: 2206178871012047033}
   - component: {fileID: 1491961906623027248}
   - component: {fileID: 8583228674136432554}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Muzzle Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18222,7 +18361,7 @@ GameObject:
   - component: {fileID: 7903724358367442570}
   - component: {fileID: 4406170257206869884}
   - component: {fileID: 1788150898809364466}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18329,7 +18468,7 @@ GameObject:
   - component: {fileID: 4985189930527526546}
   - component: {fileID: 1921941355948679753}
   - component: {fileID: 8678804345031820487}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rifle_bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18415,7 +18554,7 @@ GameObject:
   - component: {fileID: 4016405135406375511}
   - component: {fileID: 431347461302262466}
   - component: {fileID: 6037670031447293395}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Corsshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18502,7 +18641,7 @@ GameObject:
   - component: {fileID: 1735417265554458543}
   - component: {fileID: 1846067306395836239}
   - component: {fileID: 2607669019434386946}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: MP7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18518,7 +18657,7 @@ Transform:
   m_GameObject: {fileID: 8350333394419388172}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.396, y: 0, z: 0.001}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0.001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18545,7 +18684,7 @@ MonoBehaviour:
   damageDistances:
   - minDistnce: 10
     damage: 1.5
-  - minDistnce: 25
+  - minDistnce: 30
     damage: 1.125
   - minDistnce: 50
     damage: 0.75
@@ -18596,6 +18735,8 @@ MonoBehaviour:
   animator: {fileID: 1846067306395836239}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 294629844935915925}
+  wobbleSpeed: 0
+  wobbleMag: 0
 --- !u!95 &1846067306395836239
 Animator:
   serializedVersion: 7
@@ -18641,7 +18782,7 @@ GameObject:
   - component: {fileID: 5599341641342578446}
   - component: {fileID: 3778482479774653620}
   - component: {fileID: 2738899072523907936}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: MP7:pCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18730,11 +18871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296181206120659523, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2458419638789987736, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3371073303173201718, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: playOnAwake
@@ -18790,7 +18931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763749832657769526, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18821,11 +18962,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296181206120659523, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2458419638789987736, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3371073303173201718, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: playOnAwake
@@ -18893,7 +19034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763749832657769526, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18919,11 +19060,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296181206120659523, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2458419638789987736, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3371073303173201718, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: playOnAwake
@@ -18991,7 +19132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763749832657769526, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19023,6 +19164,10 @@ PrefabInstance:
     - target: {fileID: 1728385572185169815, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.02269705
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848178444152937303, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3891799804497024010, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19069,8 +19214,24 @@ PrefabInstance:
       value: Glock17
       objectReference: {fileID: 0}
     - target: {fileID: 4416241100290428592, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416241100290428592, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5293232281426130320, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640697973370205587, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269393953839173999, guid: 1914be56a8657d643b7fcc9dc9388ad9, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19098,6 +19259,10 @@ PrefabInstance:
     - target: {fileID: 3734693551479671880, guid: 479659a0883f7144fa6193382d6dd66e, type: 3}
       propertyPath: m_Name
       value: ScopeLens
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734693551479671880, guid: 479659a0883f7144fa6193382d6dd66e, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8312348368779129012, guid: 479659a0883f7144fa6193382d6dd66e, type: 3}
       propertyPath: m_LocalScale.x
@@ -19174,9 +19339,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 1787097061827490800, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2064356841063572812, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
       propertyPath: m_Name
       value: GameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064356841063572812, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2312190190370450511, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910623444613384193, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286618589893264149, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6144974465007139059, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8413657144553594915, guid: 25707595277d85d439bb9c89c92fdfd4, type: 3}
       propertyPath: m_LocalScale.x
@@ -19404,11 +19593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296181206120659523, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2458419638789987736, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3371073303173201718, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: playOnAwake
@@ -19476,7 +19665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763749832657769526, guid: 6f230b7a46504014daeb592b2d5f7951, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
