@@ -10,7 +10,7 @@ public struct DamageInfo
 }
 public class BaseGun : MonoBehaviour
 {
-    [Header("Standard Settings")]    
+    [Header("Standard Settings")]
     [SerializeField] int magazineSize; // max amount of ammo that can be in magazine
     public int totalRemainingAmmo; // remaining ammo not in magazine
     [SerializeField] int maxAmmo;
@@ -90,7 +90,7 @@ public class BaseGun : MonoBehaviour
     public static bool playerInMidAir;
     public static bool fireForbidden;
 
-   
+
     GameObject[] shells;
     int currentShellIndex;
 
@@ -103,12 +103,12 @@ public class BaseGun : MonoBehaviour
     float shotsFired;
     float shotsHit;
 
-    public static bool holdADS ;
+    public static bool holdADS;
     bool hasInit;
     void Start()
     {
-       
-       Initilize();
+
+        Initilize();
         initFOV = Camera.main.fieldOfView;
 
         //reset static values
@@ -122,7 +122,7 @@ public class BaseGun : MonoBehaviour
             canReload = true;
 
         animator.keepAnimatorStateOnDisable = true;
-        
+
     }
 
     private void OnEnable()
@@ -135,7 +135,7 @@ public class BaseGun : MonoBehaviour
     {
         modelObject.SetActive(true);
     }
-    
+
     public void Initilize()
     {
         if (hasInit)
@@ -274,7 +274,7 @@ public class BaseGun : MonoBehaviour
 
     IEnumerator ZoomOut()
     {
-         while (Camera.main.fieldOfView <= initFOV)
+        while (Camera.main.fieldOfView <= initFOV)
         {
             Camera.main.fieldOfView += zoomSpeed * Time.deltaTime;
 
@@ -319,7 +319,7 @@ public class BaseGun : MonoBehaviour
     {
         shotsFired++;
         lastTimeSinceFired = fireRate;
-      
+
         if (singleShot)
         {
             FireFVX();
@@ -331,7 +331,7 @@ public class BaseGun : MonoBehaviour
 
         animator.SetTrigger("Fire");
 
-        
+
         UpdateUI();
 
         Vector3 offset = Vector3.zero;
@@ -343,11 +343,11 @@ public class BaseGun : MonoBehaviour
 
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward + offset);
         Recoil();
-        
+
 
         try
         {
-          
+
             GameObject hitObject = HitScan(Camera.main.transform.position, Camera.main.transform.forward).transform.gameObject;
             Rigidbody rb;
             if (hitObject.GetComponent<BodyPartDamageHandler>())
@@ -361,17 +361,18 @@ public class BaseGun : MonoBehaviour
 
                     distDamage = info.damage;
                     break;
-                }    
+                }
                 DebugManager.DisplayInfo("quick", "Shot Distace: " + distanceFromTarget.ToString(), true);
                 DebugManager.DisplayInfo("quick1", "Last Damage: " + distDamage.ToString(), true);
                 hitObject.GetComponent<BodyPartDamageHandler>().DealDamage(distDamage, force);
                 shotsHit++;
             }
-            else if(TryGetComponent<Rigidbody>(out rb))
+            else if (TryGetComponent<Rigidbody>(out rb))
             {
                 rb.AddForceAtPosition((Camera.main.transform.forward + offset) * force, hit.point, ForceMode.Force);
             }
             BulletInpact(hit);
+            ScreenShake();
         }
 
         catch { }
@@ -470,13 +471,13 @@ public class BaseGun : MonoBehaviour
             }
         }
 
-        if(isADSing && Camera.main.fieldOfView >= finalFOV)
+        if (isADSing && Camera.main.fieldOfView >= finalFOV)
         {
             Camera.main.fieldOfView -= zoomSpeed * Time.deltaTime;
             if (Camera.main.fieldOfView <= finalFOV)
                 Camera.main.fieldOfView = finalFOV;
         }
-        else if(Camera.main.fieldOfView <= initFOV)
+        else if (Camera.main.fieldOfView <= initFOV)
         {
             Camera.main.fieldOfView += zoomSpeed * Time.deltaTime;
 
@@ -496,14 +497,14 @@ public class BaseGun : MonoBehaviour
         }
         return false;
     }
-    
+
 
     protected void Flashlight()
     {
 
         if (Input.GetKeyDown(KeyCode.T) && flashLight != null)
         {
-            if(flashLight.activeSelf == false)
+            if (flashLight.activeSelf == false)
             {
                 source.PlayOneShot(flashLightOn);
                 Invoke("ChangeFlashLightState", flashLightOn.length);
@@ -552,6 +553,30 @@ public class BaseGun : MonoBehaviour
         PlayerController.playerInstance.isAdsIng = isADSing;
         Flashlight();
     }
+    
+    [Header("ScreenShake")]
+    [SerializeField] float wobbleSpeed;
+    [SerializeField] float wobbleMag;
+
+    void ScreenShake()
+    {
+   
+        //StartCoroutine(Shake());
+        
+    }
+    IEnumerator Shake()
+    {
+        float x = 0;
+        while (x != 1)
+        {
+            x += Time.deltaTime * wobbleSpeed;
+            x = Mathf.Clamp01(x);
+            Quaternion rot = Camera.main.transform.rotation;
+            Vector3 camEuler = rot.eulerAngles;
+            Camera.main.transform.rotation = Quaternion.Euler(camEuler.x, camEuler.y, Wobble.WobbleEase(x, wobbleMag));
+            yield return null;
+        }
+    }
 
     private void OnDrawGizmos()
     {
@@ -559,4 +584,6 @@ public class BaseGun : MonoBehaviour
 
         Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 1000);
     }
+
+
 }

@@ -16,11 +16,17 @@ public class EventSecurityOverride : Interactable
    // Light[] lights;
     Animation anim;
 
+    ReflectionProbe[] probes;
+
     protected override void Start()
     {
       //  lights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None);
         base.Start();
         anim = GetComponent<Animation>();
+
+        probes = FindObjectsOfType<ReflectionProbe>();
+
+       
 
     }
     protected override void TriggerEvent()
@@ -66,7 +72,10 @@ public class EventSecurityOverride : Interactable
         data = LightmapSettings.lightmaps;
         yield return new WaitForSeconds(lightsOutTime);
         UnityEngine.Rendering.ProbeReferenceVolume.instance.lightingScenario = "lights_out";
- 
+        foreach (ReflectionProbe probe in probes)
+        {
+            probe.enabled = false;
+        }
         foreach (Light light in lights)
         {
 
