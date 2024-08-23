@@ -343,7 +343,7 @@ public class BaseGun : MonoBehaviour
 
         RaycastHit hit = HitScan(Camera.main.transform.position, Camera.main.transform.forward + offset);
         Recoil();
-
+        ScreenShake();
 
         try
         {
@@ -372,7 +372,6 @@ public class BaseGun : MonoBehaviour
                 rb.AddForceAtPosition((Camera.main.transform.forward + offset) * force, hit.point, ForceMode.Force);
             }
             BulletInpact(hit);
-            ScreenShake();
         }
 
         catch { }
@@ -553,29 +552,35 @@ public class BaseGun : MonoBehaviour
         PlayerController.playerInstance.isAdsIng = isADSing;
         Flashlight();
     }
+    private void LateUpdate() {
+        Shake();
+        
+    }
     
     [Header("ScreenShake")]
     [SerializeField] float wobbleSpeed;
     [SerializeField] float wobbleMag;
 
+     float wobbleTime;
     void ScreenShake()
     {
-   
-        //StartCoroutine(Shake());
-        
+        if(wobbleTime != 0)
+            wobbleTime = 0;
     }
-    IEnumerator Shake()
+    void Shake()
     {
-        float x = 0;
-        while (x != 1)
+        if(wobbleTime < 1)
         {
-            x += Time.deltaTime * wobbleSpeed;
-            x = Mathf.Clamp01(x);
-            Quaternion rot = Camera.main.transform.rotation;
+            wobbleTime += Time.deltaTime * wobbleSpeed;
+            wobbleTime = Mathf.Clamp01(wobbleTime);
+            Quaternion rot = Camera.main.transform.localRotation;
             Vector3 camEuler = rot.eulerAngles;
-            Camera.main.transform.rotation = Quaternion.Euler(camEuler.x, camEuler.y, Wobble.WobbleEase(x, wobbleMag));
-            yield return null;
+            float t;
+            t = Wobble.WobbleEase(wobbleTime, wobbleMag);
+            
+            Camera.main.transform.localRotation = Quaternion.Euler(camEuler.x, camEuler.y, t);
         }
+        
     }
 
     private void OnDrawGizmos()

@@ -21,10 +21,6 @@ MonoBehaviour:
   - m_enabled: 0
     m_path: Assets/Scenes/Main Menu.unity
   - m_enabled: 0
-    m_path: Assets/Scenes/MainLevel.unity
-  - m_enabled: 0
-    m_path: Assets/Scenes/Level 2.unity
-  - m_enabled: 0
     m_path: Assets/Scenes/TestScenes/EndScreen.unity
   - m_enabled: 0
     m_path: Assets/Scenes/TestScenes/LightingTest.unity

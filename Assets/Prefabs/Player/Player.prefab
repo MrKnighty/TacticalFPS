@@ -10096,7 +10096,7 @@ MonoBehaviour:
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 294247215914634254}
   wobbleSpeed: 1
-  wobbleMag: 1
+  wobbleMag: 0.05
 --- !u!95 &5861937941056429558
 Animator:
   serializedVersion: 7
@@ -17699,8 +17699,8 @@ MonoBehaviour:
   animator: {fileID: 6829008957751227376}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 3185483525484591141}
-  wobbleSpeed: 0
-  wobbleMag: 0
+  wobbleSpeed: 1
+  wobbleMag: 0.05
 --- !u!95 &6829008957751227376
 Animator:
   serializedVersion: 7
@@ -18735,8 +18735,8 @@ MonoBehaviour:
   animator: {fileID: 1846067306395836239}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 294629844935915925}
-  wobbleSpeed: 0
-  wobbleMag: 0
+  wobbleSpeed: 1
+  wobbleMag: 0.05
 --- !u!95 &1846067306395836239
 Animator:
   serializedVersion: 7

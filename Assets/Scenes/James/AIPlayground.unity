@@ -1904,6 +1904,14 @@ PrefabInstance:
       value: 4998
       objectReference: {fileID: 0}
     - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: wobbleMag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: wobbleSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735417265554458543, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: totalRemainingAmmo
       value: 9999
       objectReference: {fileID: 0}
@@ -1960,6 +1968,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4175929999943871892, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: wobbleMag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175929999943871892, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: wobbleSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175929999943871892, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: totalRemainingAmmo
       value: 9999
       objectReference: {fileID: 0}
@@ -1989,7 +2005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5572596599104690861, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5613172450007185351, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: clearColorMode
@@ -2036,6 +2052,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7767471698255333722, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: wobbleMag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767471698255333722, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
+      propertyPath: wobbleSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767471698255333722, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: totalRemainingAmmo
       value: 9999
       objectReference: {fileID: 0}
@@ -2061,7 +2085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8350333394419388172, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8570423114114035900, guid: 4d77777a845dc664aa08e11ff4abd101, type: 3}
       propertyPath: m_Layer
