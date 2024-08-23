@@ -72,7 +72,7 @@ public class BasicShootAI : AIBase
                 }
                 break;
             case AIStates.Aggro:
-                UICommunicator.refrence.PopupText("Switch>Aggro", 2f);
+              //  UICommunicator.refrence.PopupText("Switch>Aggro", 2f);
 
                 currentState = state;
                 rigAnimator.SetBool("Aggro", true);
@@ -85,7 +85,7 @@ public class BasicShootAI : AIBase
                 StartCoroutine(Chase());
                 break;
             case AIStates.Melee:
-                UICommunicator.refrence.PopupText("Switch>Melee", 2f);
+              //  UICommunicator.refrence.PopupText("Switch>Melee", 2f);
                 StartCoroutine(MeleeAttack());
             break;
         }
@@ -234,7 +234,7 @@ public class BasicShootAI : AIBase
                 dir = false;
                 //moveDist *= 0.5f;
             }
-        UICommunicator.refrence.PopupText("Relocating", 2f);
+      //  UICommunicator.refrence.PopupText("Relocating", 2f);
         Vector3 point = GetNavmeshPointInRadiusTowardsPlayer(moveDist, dir);
         if(point != Vector3.zero)
         {
@@ -267,7 +267,7 @@ public class BasicShootAI : AIBase
             }
             if(ShootAtTarget(playerPoint.position, shootRadius))
             {
-                UICommunicator.refrence.PopupText("ShootingPlayer", 0.1f);
+              //  UICommunicator.refrence.PopupText("ShootingPlayer", 0.1f);
 
                 playerDamageHandler.Damage(damage);
             }
@@ -280,7 +280,7 @@ public class BasicShootAI : AIBase
     }
     IEnumerator Reload()
     {
-        UICommunicator.refrence.PopupText("Reloading", 2f);
+       // UICommunicator.refrence.PopupText("Reloading", 2f);
         rigAnimator.SetTrigger("Reload");
         if(agent.isStopped)
         if(damageHandler.currentHealth > damageHandler.maxHealth * 0.5f) // HP is greater than half == high confidence
@@ -294,7 +294,7 @@ public class BasicShootAI : AIBase
             if((destination = GetCoverPointOnNavMesh(FindClosestCover())) != Vector3.zero) // Go to cover
             {
                 MoveToDestination(destination);
-                UICommunicator.refrence.PopupText("Moving To Cover", 2f);
+              //  UICommunicator.refrence.PopupText("Moving To Cover", 2f);
 
             }
             else
@@ -305,7 +305,7 @@ public class BasicShootAI : AIBase
         }
         rigAnimator.SetTrigger("Reload");
         yield return Timer(reloadTime);
-         UICommunicator.refrence.PopupText("FinReloading", 2f);
+       //  UICommunicator.refrence.PopupText("FinReloading", 2f);
         ammo = ammoCap;
     }
     void RotateTowardsTarget()

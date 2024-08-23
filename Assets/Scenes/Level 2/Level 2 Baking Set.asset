@@ -126,11 +126,11 @@ MonoBehaviour:
         hasOnlyBiggerBricks: 0
     - position: {x: 0, y: -1, z: 1}
       index: 38
-      probeCount: 3456
+      probeCount: 4416
       minSubdiv: 0
       indexChunkCount: 5
       shChunkCount: 1
-      bricksCount: 54
+      bricksCount: 69
       indirectionEntryInfo:
       - positionInBricks: {x: 0, y: -9, z: 9}
         minSubdiv: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
           - offset: 0
             elementCount: 1
         m_Asset: {fileID: 0}
-    - sceneHash: -1901062400
+    - sceneHash: -646041885
       cellDataAsset:
         m_AssetGUID: ddfd7645df2dbbf4b94357d7e4dcf85e
         m_StreamableAssetPath: APVStreamingAssets\94b7de163f8c0214e85639015a8ea6b2\ddfd7645df2dbbf4b94357d7e4dcf85e.bytes
@@ -546,22 +546,22 @@ MonoBehaviour:
       - offset: 3392
         elementCount: 10
       - offset: 3552
-        elementCount: 54
-      - offset: 4416
+        elementCount: 69
+      - offset: 4656
         elementCount: 29
-      - offset: 4880
+      - offset: 5120
         elementCount: 8
-      - offset: 5008
+      - offset: 5248
         elementCount: 135
-      - offset: 7168
+      - offset: 7408
         elementCount: 170
-      - offset: 9888
+      - offset: 10128
         elementCount: 158
-      - offset: 12416
+      - offset: 12656
         elementCount: 79
-      - offset: 13680
+      - offset: 13920
         elementCount: 80
-      - offset: 14960
+      - offset: 15200
         elementCount: 10
     m_Asset: {fileID: 0}
   cellSupportDataAsset:
@@ -635,7 +635,7 @@ MonoBehaviour:
   supportLayerMaskChunkSize: 0
   supportOffsetsChunkSize: 98304
   supportDataChunkSize: 262144
-  lightingScenario: lights_out
+  lightingScenario: lights_on
   version: 1
   freezePlacement: 0
   probeOffset: {x: 0, y: 0, z: 0}

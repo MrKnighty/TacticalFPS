@@ -51,9 +51,12 @@ public class DebugManager : MonoBehaviour
             
     }
 
- 
+   static bool release = true;
     public static void DisplayInfo(string identifyer, string message, bool ignoreDebugMode)
     {
+        if (release && !DebugMode)
+            return;
+
         if (debugUI.ContainsKey(identifyer))
         {
             debugUI[identifyer].text = message;
