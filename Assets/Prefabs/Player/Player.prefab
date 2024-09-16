@@ -3705,10 +3705,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b993723dd3c3d1e4c8fb00801ff814bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 15
   accelerationSpeed: 5
   velocityFallOff: 25
-  adsMoveSpeedPunishment: 0.5
+  adsMoveSpeedPunishment: 0.8
   sprintingSpeedMultiplyer: 1.2
   controller: {fileID: 4956643583194996890}
   cameraShakePerFootstep: {x: 0, y: 0}
@@ -10042,7 +10042,7 @@ MonoBehaviour:
   magazineSize: 12
   totalRemainingAmmo: 62
   maxAmmo: 62
-  reloadTime: 1.5
+  reloadTime: 1
   damage: 2.5
   damageDistances:
   - minDistnce: 10
@@ -10076,7 +10076,7 @@ MonoBehaviour:
   recoilMultiplyer: 20
   notADSingRecoilMultiplyer: 10
   midAirRecoilMultiplyer: 2
-  randomHipFire: 1
+  randomHipFire: 0
   randomHitRadius: 0.02
   sprintingRecoilModifyer: 2
   startFalloffRange: 10
@@ -10095,8 +10095,8 @@ MonoBehaviour:
   animator: {fileID: 5861937941056429558}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 294247215914634254}
-  wobbleSpeed: 1
-  wobbleMag: 0.05
+  wobbleSpeed: 10
+  wobbleMag: 1
 --- !u!95 &5861937941056429558
 Animator:
   serializedVersion: 7
@@ -17680,7 +17680,7 @@ MonoBehaviour:
   recoilMultiplyer: 13
   notADSingRecoilMultiplyer: 10
   midAirRecoilMultiplyer: 0
-  randomHipFire: 1
+  randomHipFire: 0
   randomHitRadius: 0.1
   sprintingRecoilModifyer: 0
   startFalloffRange: 400
@@ -17699,8 +17699,8 @@ MonoBehaviour:
   animator: {fileID: 6829008957751227376}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 3185483525484591141}
-  wobbleSpeed: 1
-  wobbleMag: 0.05
+  wobbleSpeed: 10
+  wobbleMag: 1
 --- !u!95 &6829008957751227376
 Animator:
   serializedVersion: 7
@@ -18679,7 +18679,7 @@ MonoBehaviour:
   magazineSize: 30
   totalRemainingAmmo: 120
   maxAmmo: 120
-  reloadTime: 2.2
+  reloadTime: 1.3
   damage: 2
   damageDistances:
   - minDistnce: 10
@@ -18735,8 +18735,8 @@ MonoBehaviour:
   animator: {fileID: 1846067306395836239}
   mainCam: {fileID: 7615221839760034783}
   modelObject: {fileID: 294629844935915925}
-  wobbleSpeed: 1
-  wobbleMag: 0.05
+  wobbleSpeed: 10
+  wobbleMag: 1
 --- !u!95 &1846067306395836239
 Animator:
   serializedVersion: 7

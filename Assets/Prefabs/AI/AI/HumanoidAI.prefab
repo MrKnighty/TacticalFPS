@@ -340,8 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4e7e44188a1b84a97468c72f190ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 8
-  currentHealth: 8
+  maxHealth: 7
+  currentHealth: 7
   dropItem: 0
   itemToDrop: {fileID: 0}
   bodyPartArmour:
@@ -376,10 +376,10 @@ MonoBehaviour:
   shootSFX: {fileID: 8300000, guid: fcc4b2df3792f094a8a53ea0633a515b, type: 3}
   bulletSparkFX: {fileID: 6599165949420749886, guid: 9dfa530b8dbcd03439166900db1f96a3, type: 3}
   shootRadius: 1.2
-  attackSpeed: 0.15
+  attackSpeed: 0.18
   reactionSpeed: 0.32
   ammoCap: 20
-  damage: 2
+  damage: 1.5
   reloadTime: 2
   closestDistanceToCoverXZ: 5
   closestDistanceToCoverY: 5

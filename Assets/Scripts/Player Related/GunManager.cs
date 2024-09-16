@@ -39,7 +39,7 @@ public class GunManager : MonoBehaviour
         foreach (AnimationState state in anim)
         {
 
-            state.speed = 1.5f;
+            state.speed = 3f;
         }
 
 
