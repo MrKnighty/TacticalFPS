@@ -830,14 +830,14 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Standalone: ENABLE_UNITYMESHSIMPLIFIER;BAKERY_INCLUDED;BAKERY_NOREIMPORT;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3
+    Standalone: ENABLE_UNITYMESHSIMPLIFIER;BAKERY_INCLUDED;BAKERY_NOREIMPORT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
     Standalone: 1
   il2cppCompilerConfiguration:
-    Standalone: 1
+    Standalone: 2
   il2cppCodeGeneration:
     Standalone: 1
   il2cppStacktraceInformation:
@@ -851,7 +851,7 @@ PlayerSettings:
     PS4: 1
     PS5: 1
     QNX: 1
-    Standalone: 4
+    Standalone: 1
     WebGL: 1
     Windows Store Apps: 1
     XboxOne: 1
